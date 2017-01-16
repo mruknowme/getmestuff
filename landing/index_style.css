@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+header {
+    background-color: white;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+}
+
+h2 {
+    margin-left: 14%;
+    display: inline-block;
+    margin-top: 27px;
+    font-size: 1.25em;
+    font-family: 'Merriweather', serif;
+}
+
+nav {
+    float: right;
+    margin-right: 14%;
+    margin-top: 25px;
+    font-size: 1em;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Open Sans', serif;
+}
+
+nav a:hover {
+    color: #707070;
+}
+
+nav li {
+    display: inline;
+    padding: 0 30px;
+}
+
+main {
+    padding-top: 70px;
+}
+
+.content {
+    margin-right: 14%;
+    margin-left: 14%;
+    width: 980px;
+    height: 400px;
+    box-sizing: border-box;
+}
+
+.mainwrapper {
+    background-image: url(../background.jpeg);
+    height: 580px;
+    background-attachment: fixed;
+}
+
+.main {
+    text-align: center;
+    background-color: rgba(0, 25, 150, 0.1);
+    height: 580px;
+}
+
+.maintextwrapper {
+    padding: 128.91px 14% 0 14%;
+}
+
+.maintextwrapper p {
+    font-size: 2em;
+    color: white;
+}
+
+.maintextwrapper button {
+    height: 53px;
+    width: 200px;
+    background-color: rgb(241, 104, 118);
+    color: white;
+    margin-top 20px;
+    font-size: 1.2em;
+    display: block;
+    margin: 5px auto;
+}
+
+h1 {
+    font-size: 4em;
+    color: white;
+    font-family: 'Open Sans', serif;
+}
+
+.secondtextwrapper {
+    width: 350px;
+    display: inline-block;
+}
+
+h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    font-family: 'Merriweather', sans-serif;
+}
+
+p {
+    font-size: 1.1em;
+    font-family: 'Lato', sans-serif;
+}
+
+.btn {
+    height: 41px;
+    width: 146px;
+    background-color: rgb(241, 104, 118);
+    color: white;
+    margin-top 20px;
+    font-size: 1em;
+    display: block;
+    margin: 30px 0;
+    font-family: 'Open Sans', serif;
+}
+
+.divisionwrapper {
+    width: 100%;
+    background-color: rgba(201, 219, 225, 0.3);
+}
+
+.howimg {
+    display: inline-block;
+    margin-top: 75px;
+    margin-left: 50px;
+}
+
+.how {
+    margin-top: 77.3px;
+    float: right;
+    margin-right: 50px;
+}
+
+.whoimg {
+    display: inline-block;
+    float: right;
+    margin-top: 75px;
+    margin-right: 50px;
+}
+
+.we {
+    margin-top: 58.2px;
+    float: left;
+    margin-left: 50px;
+}
+
+.story h3 {
+    text-align: center;
+}
+
+.success {
+    width: 300px;
+    display: inline-block;
+    text-align: center;
+}
+
+.storywarpper {
+    margin-top: 126.8px;
+    display: inline-block;
+}
+
+.middle {
+    margin-left: 36px;
+    margin-right: 36px;
+}
+
+.contact h3 {
+    width: 500px;
+    float: right;
+}
+
+.contact p {
+    display: inline-block;
+    width: 320px;
+    float: left;
+    margin-top: 68.4px;
+}
+
+.contact form {
+    width: 600px;
+    display: inline-block;
+    float: right;
+}
+
+.contact form input,
+textarea {
+    border: 1px solid black;
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 500px;
+    box-sizing: border-box;
+    float: right;
+}
+
+.contact form button {
+    height: 41px;
+    width: 146px;
+    background-color: rgb(241, 104, 118);
+    color: white;
+    font-size: 1em;
+    display: block;
+    float: right;
+    margin-right: 354px;
+    font-family: 'Open Sans', serif;
+}
+
+.contact form textarea {
+    height: 100px;
+    resize: none;
+}
+
+.contactwarpper {
+    display: inline-block;
+    height: auto;
+    margin-top: 48.3px;
+}
+
+footer {
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    border-top: 1px outset black;
+}
