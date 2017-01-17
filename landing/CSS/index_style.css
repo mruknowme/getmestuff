@@ -15,7 +15,7 @@ header {
     position: fixed;
 }
 
-h2 {
+.navtitle {
     margin-left: 14%;
     display: inline-block;
     margin-top: 27px;
@@ -58,7 +58,7 @@ main {
 }
 
 .mainwrapper {
-    background-image: url(../background.jpeg);
+    background-image: url(../IMG/aboutbackground.jpg);
     height: 580px;
     background-attachment: fixed;
 }
@@ -87,6 +87,12 @@ main {
     font-size: 1.2em;
     display: block;
     margin: 5px auto;
+    cursor: pointer;
+}
+
+.maintextwrapper button:hover {
+    background-color: darkblue;
+    transition: 0.5s;
 }
 
 h1 {
@@ -121,6 +127,12 @@ p {
     display: block;
     margin: 30px 0;
     font-family: 'Open Sans', serif;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: darkblue;
+    transition: 0.5s;
 }
 
 .divisionwrapper {
@@ -212,6 +224,12 @@ textarea {
     float: right;
     margin-right: 354px;
     font-family: 'Open Sans', serif;
+    cursor: pointer;
+}
+
+.contact form button:hover {
+    background-color: darkblue;
+    transition: 0.5s;
 }
 
 .contact form textarea {

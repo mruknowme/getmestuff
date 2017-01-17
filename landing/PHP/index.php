@@ -3,7 +3,7 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link href="index_style.css" type="text/css" rel="stylesheet">
+    <link href="../CSS/index_style.css" type="text/css" rel="stylesheet">
     <meta charset="utf-8">
     <title>GetMeStuff</title>
 </head>
@@ -16,7 +16,7 @@
                 <div class="maintextwrapper">
                     <h1>GetMeStuff</h1>
                     <p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p>
-                    <button type="button" action="">Sign Up</button>
+                    <button type="button">Sign Up</button>
                 </div>
             </section>
         </div>
