@@ -16,8 +16,8 @@
         </section>
         <section class="login">
             <form action="" method="post">
-                <input name="login" type="text" placeholder="Username">
-                <input name="password" type="password" placeholder="Username">
+                <input name="login" type="text" placeholder="Email">
+                <input name="password" type="password" placeholder="Password">
                 <button type="submit">Login</button>
             </form>
         </section>
