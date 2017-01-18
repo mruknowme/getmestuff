@@ -1,5 +1,7 @@
 <?php
 
+header("Location: signup.php");
+
 require_once("dbh.php");
 
 $name = $_POST['name'];
@@ -16,14 +18,17 @@ if (isset($_POST['newsletter'])) {
 
 $sql = "INSERT INTO users (name, surname, email, paswd, newsletter) VALUES ('$name', '$surname', '$email', '$paswd', '$newsletter')";
 $check = $conn->query("SELECT email FROM users WHERE email='$email'");
-$row = $check->fetch_array();
 
-if(count($row) >= 1) {
-    echo 'email is taken';
+$_SESSION['emailtaken'] = 0;
+
+if(count($check->fetch_array()) >= 1) {
+    $_SESSION['emailtaken'] = 1;
+    header("Location: signup.php");
 } else {
     if($paswd == $checkpaswd) {
         $conn->query($sql);
     } else {
-        echo 'passwords don\'t match';
+        $_SESSION['paswdnotmatch'] = true;
+        header["Location: signup.php"];
     }
 }

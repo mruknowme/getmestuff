@@ -49,54 +49,140 @@ main {
     padding-top: 70px;
 }
 
-.main {
-    width: 100%;
-    height: 275px;
-    background-image: url(../IMG/aboutbackground.jpg);
-    background-attachment: fixed;
-    background-color: rgba(0, 25, 150, 0.1);
+body {
+    background-color: rgba(201, 219, 225, 0.3);
+}
+
+.tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+}
+
+.tabs:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.tabs li {
+    display: inline;
+}
+
+.tab {
+    display: block;
+    padding: 15px;
+    background: rgba(160, 179, 176, 0.25);
+    color: #a0b3b0;
+    font-size: 1.25em;
+    float: left;
+    width: 45%;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s ease;
+    text-decoration: none;
+}
+
+.tab:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+.active {
+    background-color: rgb(241, 104, 118);
+    color: white;
+}
+
+.form {
+    background-color: white;
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 
 h1 {
-    font-size: 4em;
-    color: white;
+    text-align: center;
     font-family: 'Open Sans', serif;
-    margin-left: 37.175%;
-    margin-top: 93.5px;
-    display: inline-block;
-}
-
-form {
-    display: inline-block;
-    margin-left: 42.64%;
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-
-input, button {
-    display: block;
-    padding: 5px;
-    font-size: 1.1em;
-    font-family: 'Lato', sans-serif;
-    border-radius: 3px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
 input {
-    margin-bottom: 10px;
-    border: 1px solid black;
-    width: 200px;
+    border: 1px solid #a0b3b0;
+    position: relative;
+    margin-bottom: 40px;
+    height: 30px;
+    font-size: 1.2em;
+}
+
+input:focus {
+    outline: 0;
+    border-color: lightblue;
+}
+
+.toprow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.toprow input {
+    float: left;
+    width: 49.165%;
+}
+
+.firstchild {
+    margin-right: 1%;
+}
+
+.lastchild {
+    margin: 0;
+}
+
+.secondary input {
+    width: 100%;
 }
 
 button {
+    padding: 15px 0;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     background-color: rgb(241, 104, 118);
     color: white;
-    width: 75px;
+    transition: all 0.5s ease;
+    width: 100%;
+    display: block;
     cursor: pointer;
 }
 
 button:hover {
     background-color: darkblue;
-    transition: 0.5s;
+}
+
+.forgot {
+  margin-top: -30px;
+  text-align: right;
+    margin-bottom: 5px;
+}
+
+.forgot a {
+    text-decoration: none;
+    color: black;
+}
+
+.forgot a:hover {
+    color: green;
+}
+
+#signup {
+    display: block;
+}
+
+#login {
+    display: none;
 }
 
 footer {

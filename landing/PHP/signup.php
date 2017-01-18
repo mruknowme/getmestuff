@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +21,13 @@
             <input type="text" name="name" placeholder="Your Name" class="info">
             <input type="text" name="surname" placeholder="Your Surname" class="info">
             <input type="email" name="email" placeholder="Your Email" class="info">
+            <?php 
+    
+                if($_SESSION['emailtaken'] == 1) {
+                    echo '<p>Email is already taken.</p>';
+                }
+    
+            ?>
             <input type="password" name="paswd" placeholder="Choose Password" class="info">
             <input type="password" name="checkpaswd" placeholder="Repeat Password" class="info">
             <label>Recieve Newsletter</label>
