@@ -16,7 +16,7 @@
                 <div class="maintextwrapper">
                     <h1>GetMeStuff</h1>
                     <p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p>
-                    <button type="button">Sign Up</button>
+                    <a href="login.php">Sign Up</a>
                 </div>
             </section>
         </div>
@@ -25,7 +25,7 @@
             <div class="secondtextwrapper how">
                 <h3>How it works?</h3>
                 <p>The idea behind this site is very simple. Think about what you really want (iPhone, holidays) and ask people to help raise the funds. Although, to do this, you need to help first.</p>
-                <button type="button" action="" class="btn">More...</button>
+                <a href="about.php" class="btn">More...</a>
             </div>
         </section>
         <div class="divisionwrapper">
@@ -33,7 +33,7 @@
                 <div class="secondtextwrapper we">
                     <h3>Who are we?</h3>
                     <p>Just to firends who understood, that in the hour of need, it can be embarassing to ask others for help. Therefore, we came up with the idea of asking anonymously not only your firends, but the whole world.</p>
-                    <button type="button" action="" class="btn">More...</button>
+                    <a href="about.php" class="btn">More...</a>
                 </div>
                 <img class="whoimg" src="http://placehold.it/250x250">
             </section>

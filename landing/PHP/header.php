@@ -4,8 +4,8 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About Us</a></li>
-            <li><a href="login.php">Login</a></li>
-            <li><a href="signup.php">Sign up</a></li>
+            <li><a href="login.php#login">Log In</a></li>
+            <li><a href="login.php">Sign Up</a></li>
         </ul>
     </nav>
 </header>

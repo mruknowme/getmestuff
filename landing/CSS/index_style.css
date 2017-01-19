@@ -43,6 +43,7 @@ nav a:hover {
 nav li {
     display: inline;
     padding: 0 30px;
+    box-sizing: border-box;
 }
 
 main {
@@ -78,20 +79,24 @@ main {
     color: white;
 }
 
-.maintextwrapper button {
-    height: 53px;
-    width: 200px;
-    background-color: rgb(241, 104, 118);
-    color: white;
-    margin-top 20px;
-    font-size: 1.2em;
+.maintextwrapper a {
     display: block;
-    margin: 5px auto;
+    padding: 15px;
+    background: rgb(241, 104, 118);
+    color: white;
+    font-size: 1.25em;
+    margin: 10px auto 0 auto;
+    width: 30%;
+    text-align: center;
     cursor: pointer;
+    transition: 0.5s ease;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
 }
 
-.maintextwrapper button:hover {
-    background-color: darkblue;
+.maintextwrapper a:hover {
+    background-color: rgb(236, 58, 76);
     transition: 0.5s;
 }
 
@@ -118,20 +123,24 @@ p {
 }
 
 .btn {
-    height: 41px;
-    width: 146px;
-    background-color: rgb(241, 104, 118);
-    color: white;
-    margin-top 20px;
-    font-size: 1em;
     display: block;
-    margin: 30px 0;
-    font-family: 'Open Sans', serif;
+    padding: 8px;
+    background: rgb(241, 104, 118);
+    color: white;
+    font-size: 1.15em;
+    margin-top: 10px;
+    height: auto;
+    width: 35%;
+    text-align: center;
     cursor: pointer;
+    transition: 0.5s ease;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
 }
 
 .btn:hover {
-    background-color: darkblue;
+    background-color: rgb(236, 58, 76);
     transition: 0.5s;
 }
 
@@ -228,7 +237,7 @@ textarea {
 }
 
 .contact form button:hover {
-    background-color: darkblue;
+    background-color: rgb(236, 58, 76);
     transition: 0.5s;
 }
 

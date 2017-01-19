@@ -9,12 +9,12 @@
 </head>
 
 <body>
-<?php require_once("header.php") ?>
+   <?php require_once("header.php"); ?>
     <main>
         <section class="form">
             <ul class="tabs">
-                <li><a class="tab active" href="javascript:void(0)" onclick="openTab(event, 'signup')">Sing Up</a></li>
-                <li><a class="tab" href="javascript:void(0)" onclick="openTab(event, 'login')">Log In</a></li>
+                <li><a class="tab active" id="one" href="javascript:void(0)" onclick="openTab(event, 'signup')">Sing Up</a></li>
+                <li><a class="tab" id="two" href="javascript:void(0)" onclick="openTab(event, 'login')">Log In</a></li>
             </ul>
             <div class="formcontent" id="signup">
                 <h1>Sign Up</h1>
@@ -44,8 +44,8 @@
             </div>
         </section>
     </main>
-    <?php require_once("footer.php") ?>
-    <script src="../JS/login.js"></script>
+    <?php require_once("footer.php"); ?>
+    <script src="login.js"></script>
 
 </body>
 
