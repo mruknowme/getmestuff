@@ -16,7 +16,7 @@
                 <div class="maintextwrapper">
                     <h1>GetMeStuff</h1>
                     <p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p>
-                    <a href="login.php">Sign Up</a>
+                    <a class="mainbtn" href="login.php">Sign Up</a>
                 </div>
             </section>
         </div>
@@ -76,6 +76,7 @@
         </div>
     </main>
     <?php require_once("footer.php")?>
+    <script src="login.js"></script>
 </body>
 
 </html>

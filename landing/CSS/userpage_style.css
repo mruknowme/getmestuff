@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+header {
+    background-color: white;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+}
+
+.navtitle {
+    margin-left: 14%;
+    display: inline-block;
+    margin-top: 27px;
+    font-size: 1.25em;
+    font-family: 'Merriweather', serif;
+}
+
+nav {
+    float: right;
+    margin-right: 14%;
+    margin-top: 25px;
+    font-size: 1em;
+}
+
+nav .menulink {
+    text-decoration: none;
+    color: black;
+    font-family: 'Open Sans', serif;
+    cursor: pointer;
+}
+
+nav .menulink:hover {
+    color: #707070;
+}
+
+nav .menu {
+    display: inline;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+nav .current {
+    color: blue;
+}
+
+main {
+    padding-top: 130px;
+    margin-left: 14%;
+    margin-right: 14%;
+}
+
+body {
+    background-color: rgba(201, 219, 225, 0.3);
+}
+
+.maincontent {
+    border-top: 1px solid rgb(241, 104, 118);
+    background-color: white;
+    width: 55%;
+    float: left;
+    box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
+    float: left;
+    clear: left;
+    height: 100%;
+}
+
+.usernav li {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    float: left;
+    clear: right;
+}
+
+.usernav .tab {
+    box-sizing: border-box;
+    height: 30px;
+    background-color: white;
+    display: inline-flex;
+    border: 1px solid rgb(241, 104, 118);
+    border-bottom: none;
+    padding-top: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Open Sans', serif;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.usernav .tab:hover {
+    background-color: rgb(236, 58, 76);
+    color: white;
+}
+
+.usernav .active {
+    background-color: rgb(241, 104, 118);
+    color: white;
+}
+
+section {
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-bottom: 15px;
+}
+
+.optionrow{
+    display: block;
+}
+
+.one {
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.topprofile input {
+    display: block;
+    border: 1px solid #a0b3b0;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 98%;
+    border-radius: 3px;
+}
+
+.topprofile input:last-child {
+    margin-bottom: 5px;;
+    margin-top: 10px;
+}
+
+.field{
+    display: block;
+}
+
+.input {
+    border: 1px solid #a0b3b0;
+}
+
+.wrapper {
+    border-top: 1px solid grey;
+}
+
+.wish {
+    width: 98%;
+}
+
+h1 {
+    display: inline-block;
+    font-size: 1.5em;
+    font-family: 'Open Sans', serif;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.confirm {
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.3);
+    padding: 15px;
+}
+
+.confirm p, input {
+    margin-bottom: 5px;
+}
+
+.confirm input {
+    padding: 5px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.btnwrapper {
+    border-top: 1px solid grey;
+    margin-top: 10px;
+}
+
+.btnwrapper button {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background-color: rgb(241, 104, 118);
+    color: white;
+    display: block;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    transition: all 0.5s ease;
+}
+
+button:hover {
+    background-color: rgb(236, 58, 76);
+    color: white;
+}
+
+.topup select{
+    display: block;
+    width: 30%;
+    padding: 2px;
+    margin-bottom: 10px;
+}
+
+.topup input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.topup .name {
+    width: 60%;
+}
+
+.topup .card {
+    width: 40%;
+}
+
+.topup .ccv {
+    width: 17%;
+}
+
+.topup .month {
+    width: 30.8%;
+    display: inline-block;
+}
+
+.topup .year {
+    display: inline-block;
+    width: 30.8%;
+}
+
+.amount {
+    width: 28.5%;
+}
+
+.createwish input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.boxes {
+    float: right;
+    width: 40%;
+    margin-left: 5%;
+    margin-top: -30px;
+}
+
+.divisor {
+    height: 40px;
+    display: block;
+    width: 100%;
+}
+
+.box {
+    box-sizing: border-box;
+    box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
+}
+
+.box h2 {
+    display: inline-block;
+    width: 100%;
+    line-height: 1.8em;
+    font-size: 1.3em;
+    background-color: rgb(241, 104, 118);
+    color: white;
+    text-align: center;
+    font-family: 'Open Sans', serif;
+}
+
+.boxcontent {
+    padding: 10px 20px;
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+.boxcontent .sub {
+    display: inline-block;
+    width: 49.45%;
+}
+
+.boxcontent .title {
+    font-size: 1.4em;
+}
+
+.boxcontent .para {
+    line-height: 1.4em;
+    text-align: right;
+    font-size: 1em;
+}
+
+.boxcontent .boxtop {
+    margin-bottom: 18px;
+}
+
+.progresspara {
+    font-size: 0.9em;
+}
+
+.progress {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+    border: 1px solid rgb(241, 104, 118);
+    margin-bottom: 40px;
+}
+
+.collected {
+    display: inline-block;
+    width: 49.45%;
+    margin-bottom: 20px;
+}
+
+.donate {
+    display: inline-block;
+    width: 49.45%;
+    height: 20px;
+}
+
+.donate input {
+    border: 1px solid rgb(241, 104, 118);
+    padding: 2px;
+    font-size: 0.9em;
+    font-family: 'Lato', sans-serif;
+    width: 60%;
+}
+
+.donate button {
+    padding: 2px;
+    font-size: 0.9em;
+    background-color: rgb(241, 104, 118);
+    color: white;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    width: 30%;
+    transition: all 0.3s ease;
+}
+
+.donate button:hover {
+    background-color: rgb(236, 58, 76);
+}
+
+.donate input, button{
+    display: inline-block;
+}
+
+#settings {
+    display: block;
+}
+
+#money {
+    display: none;
+}
+
+#achievements {
+    display: none;
+}
+
+#wish {
+    display: none;
+}
+
+#barone {
+    height: 100%;
+    width: 57%;
+    background-color: #91FFE2;
+}
+
+#bartwo {
+    height: 100%;
+    width: 57%;
+    background-color: #91FFE2;
+}
+
+#credit {
+    display: block;
+}
+
+#paypal {
+    display: none;
+}
+
+#qiwi {
+    display: none;
+}
+
+.sitecontent {
+    overflow: hidden;
+}
+
+footer {
+    margin-top: 100px;
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    border-top: 1px outset black;
+}

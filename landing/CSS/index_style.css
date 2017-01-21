@@ -30,20 +30,25 @@ nav {
     font-size: 1em;
 }
 
-nav a {
+nav .menulink {
     text-decoration: none;
     color: black;
     font-family: 'Open Sans', serif;
+    cursor: pointer;
 }
 
-nav a:hover {
+nav .menulink:hover {
     color: #707070;
 }
 
-nav li {
+nav .menu {
     display: inline;
     padding: 0 30px;
     box-sizing: border-box;
+}
+
+nav .current {
+    color: blue;
 }
 
 main {
@@ -79,7 +84,7 @@ main {
     color: white;
 }
 
-.maintextwrapper a {
+.maintextwrapper .mainbtn {
     display: block;
     padding: 15px;
     background: rgb(241, 104, 118);
@@ -95,7 +100,7 @@ main {
     font-family: 'Lato', sans-serif;
 }
 
-.maintextwrapper a:hover {
+.maintextwrapper .mainbtn:hover {
     background-color: rgb(236, 58, 76);
     transition: 0.5s;
 }
