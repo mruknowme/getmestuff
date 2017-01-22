@@ -40,6 +40,10 @@ nav a:hover {
     color: #707070;
 }
 
+nav .current {
+    color: blue;
+}
+
 nav li {
     display: inline;
     padding: 0 30px;

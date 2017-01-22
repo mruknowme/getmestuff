@@ -46,6 +46,10 @@ nav li {
     box-sizing: border-box;
 }
 
+nav .current {
+    color: blue;
+}
+
 main {
     padding-top: 70px;
 }

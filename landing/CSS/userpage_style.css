@@ -41,10 +41,24 @@ nav .menulink:hover {
     color: #707070;
 }
 
+nav .lastmenu {
+    display: inline;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+
 nav .menu {
     display: inline;
     padding: 0 30px;
     box-sizing: border-box;
+}
+
+.logout {
+    position: absolute;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-top: 2.3px;
 }
 
 nav .current {
@@ -52,7 +66,7 @@ nav .current {
 }
 
 main {
-    padding-top: 130px;
+    padding-top: 100px;
     margin-left: 14%;
     margin-right: 14%;
 }
@@ -109,10 +123,26 @@ body {
     color: white;
 }
 
-section {
+.formcontent {
     margin-left: 2%;
     margin-right: 2%;
     padding-bottom: 15px;
+}
+
+.userinfo {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #95989A;
+}
+
+.userinfo p{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 49.8%;
+    color: #95989A;
+}
+
+.userinfo .balance {
+    text-align: right;
 }
 
 .optionrow{

@@ -12,6 +12,10 @@
     <?php require_once("userheader.php"); ?>
     <div class="sitecontent">
         <main>
+            <section class="userinfo">
+                <p class="usrname">Daniil Belov</p>
+                <p class="balance">123.95$</p>
+            </section>
             <aside class="usernav">
                 <ul>
                     <li><a class="tab active" href="javascript:void(0)" onclick="openTab(event, 'settings')">Account Settings</a></li>

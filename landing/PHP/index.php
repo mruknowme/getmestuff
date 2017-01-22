@@ -76,7 +76,6 @@
         </div>
     </main>
     <?php require_once("footer.php")?>
-    <script src="login.js"></script>
 </body>
 
 </html>
