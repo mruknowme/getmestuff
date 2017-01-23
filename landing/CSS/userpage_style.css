@@ -258,16 +258,6 @@ button:hover {
     width: 17%;
 }
 
-.topup .month {
-    width: 30.8%;
-    display: inline-block;
-}
-
-.topup .year {
-    display: inline-block;
-    width: 30.8%;
-}
-
 .amount {
     width: 28.5%;
 }
@@ -276,6 +266,22 @@ button:hover {
     padding: 5px;
     margin-bottom: 10px;
     border-radius: 3px;
+}
+
+.two {
+    border-bottom: 1px solid grey;
+}
+
+.street, .city, .country {
+    width: 40%;
+}
+
+.street, .house, .flat, .city, .zip {
+    display: inline-block;
+}
+
+.house, .flat, .zip {
+    width: 25%;
 }
 
 .boxes {
@@ -426,6 +432,73 @@ button:hover {
 
 .sitecontent {
     overflow: hidden;
+}
+
+.dropdown {
+    border: 1px solid #a0b3b0;
+    border-radius: 3px;
+    display: block;
+    height: 30px;
+    margin-bottom: 10px;
+    background: #fff url("../IMG/caret-bottom.svg") no-repeat 90% 50%;
+}
+
+.currenttitle {
+    width: 100%;
+    display: inline-block;
+    line-height: 32px;
+    margin-left: 5px;
+    font-size: 1em;
+    color: gray;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+.dropdownitems {
+    position: absolute;
+    background-color: white;
+    box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
+}
+
+.dropdownitems a {
+    cursor: pointer;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+}
+
+.dropdownitems a:hover {
+    background-color: rgb(241, 104, 118);
+    color: white;
+}
+
+.datefield {
+    display: inline-block;
+    width: 30.3%;
+}
+
+.methdofield {
+    width: 30.3%;
+}
+
+.month {
+    height: 30%;
+    overflow: scroll;
+}
+
+#paymentmethod {
+    display: none;
+}
+
+#date {
+    display: none;
+}
+
+#year {
+    display: none;
 }
 
 footer {

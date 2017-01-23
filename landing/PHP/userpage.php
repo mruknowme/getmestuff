@@ -2,10 +2,12 @@
 <html>
 
 <head>
-    <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
     <meta charset="utf-8">
     <title>Your Account</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
+    <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -57,11 +59,14 @@
                 </section>
                 <section class="topup formcontent" id="money">
                     <h1>Top Up Your Wallet</h1>
-                    <select class="input" id="myselect">
-                        <option value="credit" selected="selected" onclick="selectForm('credit')">Credit Card</option>
-                        <option value="paypal" onclick="selectForm('paypal')">PayPal</option>
-                        <option value="qiwi" onclick="selectForm('qiwi')">Qiwi</option>
-                    </select>
+                    <div class="dropdown methdofield">
+                        <a onclick="openDropDown()" class="currenttitle" id="menutitle">Credit Card</a>
+                        <div id="paymentmethod" class="dropdownitems">
+                            <a onclick="selectForm('credit', 'Credit Card')">Credit Card</a>
+                            <a onclick="selectForm('paypal', 'PayPal')">PayPal</a>
+                            <a onclick="selectForm('qiwi', 'Qiwi')">Qiwi</a>
+                        </div>
+                    </div>
                     <form class="pay" id="credit">
                         <input class="field input name" type="text" placeholder="Cardholder's Name" required>
                         <div class="topuprow">
@@ -69,25 +74,33 @@
                             <input class="input ccv" type="text" name="ccv" placeholder="CCV" autocomplete="off" required>
                         </div>
                         <div class="daterow">
-                            <select class="input month" required>
-                           <option>Month</option>
-                            <option>January</option>
-                            <option>Febuary</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option>
-                            <option>August</option>
-                            <option>September</option>
-                            <option>October</option>
-                            <option>November</option>
-                            <option>December</option>
-                        </select>
-                            <select class="input year" required>
-                            <option>Year</option>
-                            <option>2017</option>
-                        </select>
+                            <div class="dropdown datefield">
+                                <a onclick="openDate()" class="currenttitle" id="datetitle">Month</a>
+                                <div id="date" class="dropdownitems month">
+                                    <a onclick="chnageDate('January')">January</a>
+                                    <a onclick="chnageDate('Febuary')">February</a>
+                                    <a onclick="chnageDate('March')">March</a>
+                                    <a onclick="chnageDate('April')">April</a>
+                                    <a onclick="chnageDate('May')">May</a>
+                                    <a onclick="chnageDate('June')">June</a>
+                                    <a onclick="chnageDate('July')">July</a>
+                                    <a onclick="chnageDate('August')">August</a>
+                                    <a onclick="chnageDate('September')">September</a>
+                                    <a onclick="chnageDate('October')">October</a>
+                                    <a onclick="chnageDate('November')">Novermber</a>
+                                    <a onclick="chnageDate('December')">December</a>
+                                </div>
+                            </div>
+                            <div class="dropdown datefield">
+                                <a onclick="openYear()" class="currenttitle" id="yeartitle">Year</a>
+                                <div id="year" class="dropdownitems">
+                                    <a onclick="chnageYear('2017')">2017</a>
+                                    <a onclick="chnageYear('2018')">2018</a>
+                                    <a onclick="chnageYear('2019')">2019</a>
+                                    <a onclick="chnageYear('2020')">2020</a>
+                                    <a onclick="chnageYear('2021')">2021</a>
+                                </div>
+                            </div>
                         </div>
                         <input class="field input amount" type="number" name="amount" placeholder="Amount" autocomplete="off" required>
                         <div class="btnwrapper">
@@ -117,7 +130,18 @@
                 <section class="createwish formcontent" id="wish">
                     <h1>Make a Wish</h1>
                     <form>
-                        <input class="field input wish" type="text" placeholder="Link to your desired product..." required>
+                        <div class="two">
+                            <input type="text" class="field input wish" placeholder="What is Your Wish?" required>
+                            <input class="field input wish link" type="text" placeholder="Link to your desired product..." required>
+                        </div>
+                        <div class="confirm">
+                            <input type="text" class="field input street" placeholder="Street Name" required>
+                            <input type="text" class="field input house" placeholder="House Number" required>
+                            <input type="text" class="field input flat" placeholder="Falt (optional)">
+                            <input type="text" class="field input city" placeholder="City" required>
+                            <input type="text" class="field input zip" placeholder="Zip Code" required>
+                            <input type="text" class="field input country" placeholder="Country" required>
+                        </div>
                         <div class="btnwrapper">
                             <button type="submit">Make Your Wish</button>
                         </div>
@@ -162,7 +186,7 @@
         </main>
     </div>
     <?php require_once("footer.php") ?>
-    <script src="login.js"></script>
+    <script src="../JS/login.js"></script>
 </body>
 
 </html>

@@ -45,7 +45,7 @@
         </section>
     </main>
     <?php require_once("footer.php"); ?>
-    <script src="login.js"></script>
+    <script src="../JS/login.js"></script>
 
 </body>
 
