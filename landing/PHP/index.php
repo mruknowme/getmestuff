@@ -4,6 +4,21 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
     <link href="../CSS/index_style.css" type="text/css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../JS/jquery.smooth-scroll.js"></script>
+    <script src="../JS/jquery.countTo.js"></script>
+    <script src="../JS/jquery.lazyload.js"></script>
+
+    <script>
+        $(function() {
+            $("img.lazy").lazyload({
+                effect: "fadeIn"
+            });
+        });
+
+    </script>
+
     <meta charset="utf-8">
     <title>GetMeStuff</title>
 </head>
@@ -21,7 +36,7 @@
             </section>
         </div>
         <section class="about content">
-            <img class="howimg" src="http://placehold.it/250x250">
+            <img class="howimg lazy" data-original="../IMG/placeholder250.png">
             <div class="secondtextwrapper how">
                 <h3>How it works?</h3>
                 <p>The idea behind this site is very simple. Think about what you really want (iPhone, holidays) and ask people to help raise the funds. Although, to do this, you need to help first.</p>
@@ -35,7 +50,7 @@
                     <p>Just to firends who understood, that in the hour of need, it can be embarassing to ask others for help. Therefore, we came up with the idea of asking anonymously not only your firends, but the whole world.</p>
                     <a href="about.php" class="btn">More...</a>
                 </div>
-                <img class="whoimg" src="http://placehold.it/250x250">
+                <img class="whoimg lazy" data-original="../IMG/placeholder250.png">
             </section>
         </div>
         <section class="story content">

@@ -430,6 +430,10 @@ button:hover {
     display: none;
 }
 
+#datetitle, #yeartitle {
+    margin-bottom: 1px;
+}
+
 .sitecontent {
     overflow: hidden;
 }
@@ -444,12 +448,12 @@ button:hover {
 }
 
 .currenttitle {
-    width: 100%;
+    width: 90%;
     display: inline-block;
-    line-height: 32px;
-    margin-left: 5px;
+    line-height: 20px;
     font-size: 1em;
-    color: gray;
+    color: transparent;
+    text-shadow: 0 0 0 black;
     cursor: pointer;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -489,6 +493,10 @@ button:hover {
     overflow: scroll;
 }
 
+.selected {
+    color: black;
+}
+
 #paymentmethod {
     display: none;
 }
@@ -499,6 +507,45 @@ button:hover {
 
 #year {
     display: none;
+}
+
+#menutitle {
+    color: black;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-bottom: 6px;
+}
+
+.numbers {
+    font-family: 'Lato', sans-serif;
+    padding-left: 30%;
+}
+
+.donatedrow {
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.donatedrow:not(:last-child) {
+    padding-right: 15%;
+}
+
+.donatedrow .donated {
+    display: block;
+    font-size: 0.95em;
+    color: black;
+}
+
+.donatedrow .timer {
+    display: inline-block;
+    color: black;
+    font-size: 1.25em;
+}
+
+.donatedrow .dollar {
+    display: inline-block;
+    color: black;
+    font-size: 1.5em;
 }
 
 footer {

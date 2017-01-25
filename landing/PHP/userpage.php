@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <title>Your Account</title>
 
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../JS/jquery.countTo.js"></script>
+    <script src="../JS/jquery.lazyload.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
     <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
 
@@ -20,10 +24,10 @@
             </section>
             <aside class="usernav">
                 <ul>
-                    <li><a class="tab active" href="javascript:void(0)" onclick="openTab(event, 'settings')">Account Settings</a></li>
-                    <li><a class="tab" href="javascript:void(0)" onclick="openTab(event, 'money')">Top Up</a></li>
-                    <li><a class="tab" href="javascript:void(0)" onclick="openTab(event, 'achievements')">Achievements</a></li>
-                    <li><a class="tab" href="javascript:void(0)" onclick="openTab(event, 'wish')">Make a Wish</a></li>
+                    <li><a class="tab active" onclick="openTab(event, 'settings')">Account Settings</a></li>
+                    <li><a class="tab" onclick="openTab(event, 'money')">Top Up</a></li>
+                    <li><a class="tab" id="achievtab" onclick="openTab(event, 'achievements')">Achievements</a></li>
+                    <li><a class="tab" onclick="openTab(event, 'wish')">Make a Wish</a></li>
                 </ul>
             </aside>
             <div class="maincontent">
@@ -75,7 +79,7 @@
                         </div>
                         <div class="daterow">
                             <div class="dropdown datefield">
-                                <a onclick="openDate()" class="currenttitle" id="datetitle">Month</a>
+                                <input type="text" placeholder="Month" value="" onclick="openDate()" class="currenttitle" id="datetitle" readonly>
                                 <div id="date" class="dropdownitems month">
                                     <a onclick="chnageDate('January')">January</a>
                                     <a onclick="chnageDate('Febuary')">February</a>
@@ -92,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="dropdown datefield">
-                                <a onclick="openYear()" class="currenttitle" id="yeartitle">Year</a>
+                                <input type="text" placeholder="Year" value="" onclick="openYear()" class="currenttitle" id="yeartitle" readonly>
                                 <div id="year" class="dropdownitems">
                                     <a onclick="chnageYear('2017')">2017</a>
                                     <a onclick="chnageYear('2018')">2018</a>
@@ -126,6 +130,16 @@
                 </section>
                 <section class="formcontent" id="achievements">
                     <h1>Your Achievements</h1>
+                    <div class="numbers">
+                        <div class="donatedrow">
+                            <p class="donated">Donated</p>
+                            <p class="dollar"><span class="timerone"></span>$</p>
+                        </div>
+                        <div class="donatedrow">
+                            <p class="donated">Recieved</p>
+                            <p class="dollar"><span class="timertwo"></span>$</p>
+                        </div>
+                    </div>
                 </section>
                 <section class="createwish formcontent" id="wish">
                     <h1>Make a Wish</h1>
@@ -187,6 +201,22 @@
     </div>
     <?php require_once("footer.php") ?>
     <script src="../JS/login.js"></script>
+    <script src="../JS/jquery.js"></script>
+    <script>
+        $("#achievtab").click(function() {
+            $('.timerone').countTo({
+                from: 0,
+                to: 1000,
+                speed: 1000
+            });
+            $('.timertwo').countTo({
+                from: 0,
+                to: 10000,
+                speed: 2000
+            });
+        });
+
+    </script>
 </body>
 
 </html>

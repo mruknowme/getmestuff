@@ -55,20 +55,15 @@ function openYear() {
 }
 
 function chnageDate(text) {
-    document.getElementById("datetitle").innerHTML = text;
+    document.getElementById("datetitle").setAttribute("value", text);
     document.getElementById("date").style.display = "none";
 }
 
 function chnageYear(text) {
-    document.getElementById("yeartitle").innerHTML = text;
+    document.getElementById("yeartitle").setAttribute("value", text);
     document.getElementById("year").style.display = "none";
 }
 
-$(document).click(function(){
-  $("#paymentmethod").css("display", "none");
+$(document).click(function () {
+    $("#paymentmethod").css("display", "none");
 });
-
-if (window.location.hash) {
-    document.getElementById('login').style.display = "block";
-    document.getElementById('signup').style.display = "none";
-}

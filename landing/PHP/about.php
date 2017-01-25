@@ -4,6 +4,11 @@
 <head>
     <link href="../CSS/about_style.css"s rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
+    
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../JS/jquery.countTo.js"></script>
+    <script src="../JS/jquery.lazyload.js"></script>
+    
     <meta charset="utf-8">
     <title>About Us</title>
 </head>

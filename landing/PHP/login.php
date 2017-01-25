@@ -4,12 +4,15 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
     <link href="../CSS/login_style.css" rel="stylesheet" type="text/css">
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <meta charset="utf-8">
     <title>Register/Login</title>
 </head>
 
 <body>
-   <?php require_once("header.php"); ?>
+    <?php require_once("header.php"); ?>
     <main>
         <section class="form">
             <ul class="tabs">
@@ -46,6 +49,7 @@
     </main>
     <?php require_once("footer.php"); ?>
     <script src="../JS/login.js"></script>
+    <script src="../JS/jquery.js"></script>
 
 </body>
 
