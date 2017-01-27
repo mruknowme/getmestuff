@@ -1,213 +1,213 @@
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
 }
 
 header {
-    background-color: white;
-    width: 100%;
-    height: 70px;
-    position: fixed;
+	background-color: white;
+	width: 100%;
+	height: 70px;
+	position: fixed;
 }
 
 .navtitle {
-    margin-left: 14%;
-    display: inline-block;
-    margin-top: 27px;
-    font-size: 1.25em;
-    font-family: 'Merriweather', serif;
+	margin-left: 14%;
+	display: inline-block;
+	margin-top: 27px;
+	font-size: 1.25em;
+	font-family: 'Merriweather', serif;
 }
 
 nav {
-    float: right;
-    margin-right: 14%;
-    margin-top: 25px;
-    font-size: 1em;
+	float: right;
+	margin-right: 14%;
+	margin-top: 25px;
+	font-size: 1em;
 }
 
 nav ul {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 nav .lastmenu {
-    display: inline;
-    padding-left: 30px;
-    box-sizing: border-box;
+	display: inline;
+	padding-left: 30px;
+	box-sizing: border-box;
 }
 
 nav .menulink {
-    text-decoration: none;
-    color: black;
-    font-family: 'Open Sans', serif;
-    cursor: pointer;
+	text-decoration: none;
+	color: black;
+	font-family: 'Open Sans', serif;
+	cursor: pointer;
 }
 
 nav .menulink:hover {
-    color: #707070;
+	color: #707070;
 }
 
 .logout {
-    position: absolute;
-    display: inline-block;
-    height: 16px;
-    width: 16px;
-    margin-top: 2.3px;
+	position: absolute;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	margin-top: 2.3px;
 }
 
 nav .menu {
-    display: inline;
-    padding: 0 30px;
-    box-sizing: border-box;
+	display: inline;
+	padding: 0 30px;
+	box-sizing: border-box;
 }
 
 nav .current {
-    color: blue;
+	color: blue;
 }
 
 main {
-    padding-top: 100px;
-    margin-left: 14%;
-    margin-right: 14%;
+	padding-top: 100px;
+	margin-left: 14%;
+	margin-right: 14%;
 }
 
 body {
-    background-color: rgba(201, 219, 225, 0.3);
+	background-color: rgba(201, 219, 225, 0.3);
 }
 
 .userinfo {
-    margin-bottom: 30px;
-    border-bottom: 1px solid #95989A;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #95989A;
 }
 
-.userinfo p{
-    display: inline-block;
-    box-sizing: border-box;
-    width: 49.8%;
-    color: #95989A;
+.userinfo p {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 49.8%;
+	color: #95989A;
 }
 
 .userinfo .balance {
-    text-align: right;
+	text-align: right;
 }
 
 .box {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 30%;
-    box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
-    border: 3px solid rgb(241, 104, 118);
+	display: inline-block;
+	box-sizing: border-box;
+	width: 30%;
+	box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
+	border: 3px solid rgb(241, 104, 118);
 }
 
 .middle {
-    margin-left: 4.6167%;
-    margin-right: 4.6167%;
+	margin-left: 4.6167%;
+	margin-right: 4.6167%;
 }
 
 .boxcontent {
-    box-sizing: border-box;
-    padding: 10px 20px;
-    background-color: white;
-    font-family: 'Lato', sans-serif;
+	box-sizing: border-box;
+	padding: 10px 20px;
+	background-color: white;
+	font-family: 'Lato', sans-serif;
 }
 
 .boxcontent .sub {
-    display: inline-block;
-    width: 49.16%;
+	display: inline-block;
+	width: 49.16%;
 }
 
 .boxcontent .title {
-    font-size: 1.4em;
+	font-size: 1.4em;
 }
 
 .boxcontent .para {
-    line-height: 1.4em;
-    text-align: right;
-    font-size: 1em;
+	line-height: 1.4em;
+	text-align: right;
+	font-size: 1em;
 }
 
 .boxcontent {
-    width: 100%;
-    display: inline-block;
-    padding-bottom: 20px;
-    padding-top: 20px;
+	width: 100%;
+	display: inline-block;
+	padding-bottom: 20px;
+	padding-top: 20px;
 }
 
 .boxtop {
-    margin-bottom: 25px;
+	margin-bottom: 25px;
 }
 
 .progresspara {
-    font-size: 0.9em;
+	font-size: 0.9em;
 }
 
 .progress {
-    box-sizing: border-box;
-    display: inline-block;
-    width: 100%;
-    height: 20px;
-    border: 1px solid rgb(241, 104, 118);
-    margin-bottom: 40px;
+	box-sizing: border-box;
+	display: inline-block;
+	width: 100%;
+	height: 20px;
+	border: 1px solid rgb(241, 104, 118);
+	margin-bottom: 40px;
 }
 
 .collected {
-    font-size: 0.8em;
-    display: inline-block;
-    width: 49%;
-    margin-bottom: 20px;
+	font-size: 0.8em;
+	display: inline-block;
+	width: 49%;
+	margin-bottom: 20px;
 }
 
 .donate {
-    display: inline-block;
-    width: 49%;
-    height: 20px;
+	display: inline-block;
+	width: 49%;
+	height: 20px;
 }
 
 .donate input {
-    border: 1px solid rgb(241, 104, 118);
-    padding: 2px;
-    font-size: 0.9em;
-    font-family: 'Lato', sans-serif;
-    width: 52%;
+	border: 1px solid rgb(241, 104, 118);
+	padding: 2px;
+	font-size: 0.9em;
+	font-family: 'Lato', sans-serif;
+	width: 52%;
 }
 
 .donate button {
-    padding: 2px;
-    font-size: 0.9em;
-    background-color: rgb(241, 104, 118);
-    color: white;
-    cursor: pointer;
-    font-family: 'Lato', sans-serif;
-    width: 38%;
-    transition: all 0.3s ease;
+	padding: 2px;
+	font-size: 0.9em;
+	background-color: rgb(241, 104, 118);
+	color: white;
+	cursor: pointer;
+	font-family: 'Lato', sans-serif;
+	width: 38%;
+	transition: all 0.3s ease;
 }
 
 .donate button:hover {
-    background-color: rgb(236, 58, 76);
+	background-color: rgb(236, 58, 76);
 }
 
-.donate input, button{
-    display: inline-block;
+.donate input, button {
+	display: inline-block;
 }
 
 #barone {
-    height: 100%;
-    width: 57%;
-    background-color: #91FFE2;
+	height: 100%;
+	width: 57%;
+	background-color: #91FFE2;
 }
 
 .row {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 footer {
-    margin-top: 100px;
-    width: 100%;
-    height: 70px;
-    background-color: white;
-    border-top: 1px outset black;
+	margin-top: 100px;
+	width: 100%;
+	height: 70px;
+	background-color: white;
+	border-top: 1px outset black;
 }

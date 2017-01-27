@@ -1,4 +1,23 @@
-(function($) {
+/*!
+ * jQuery Smooth Scroll - v2.1.2 - 2017-01-19
+ * https://github.com/kswedberg/jquery-smooth-scroll
+ * Copyright (c) 2017 Karl Swedberg
+ * Licensed MIT
+ */
+
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS
+    factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function($) {
+
   var version = '2.1.2';
   var optionOverrides = {};
   var defaults = {
@@ -316,4 +335,5 @@
   // default options
   $.fn.smoothScroll.defaults = defaults;
 
-})(jQuery);
+}));
+

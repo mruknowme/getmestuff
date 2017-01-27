@@ -1,265 +1,328 @@
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	font-size: 100%;
 }
 
 header {
-    background-color: white;
-    width: 100%;
-    height: 70px;
-    position: fixed;
+	position: fixed;
+	width: 100%;
+	height: 70px;
+	background-color: white;
 }
 
 .navtitle {
-    margin-left: 14%;
-    display: inline-block;
-    margin-top: 27px;
-    font-size: 1.25em;
-    font-family: 'Merriweather', serif;
+	display: inline-block;
+	margin-top: 27px;
+	margin-left: 14%;
+	font-family: 'Merriweather', serif;
+	font-size: 1.25em;
 }
 
 nav {
-    float: right;
-    margin-right: 14%;
-    margin-top: 25px;
-    font-size: 1em;
+	float: right;
+	margin-top: 25px;
+	margin-right: 14%;
+	font-size: 1em;
 }
 
 nav .menulink {
-    text-decoration: none;
-    color: black;
-    font-family: 'Open Sans', serif;
-    cursor: pointer;
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+	font-family: 'Open Sans', serif;
 }
 
 nav .menulink:hover {
-    color: #707070;
+	color: #707070;
 }
 
 nav .menu {
-    display: inline;
-    padding: 0 30px;
-    box-sizing: border-box;
+	display: inline;
+	box-sizing: border-box;
+	padding: 0 30px;
 }
 
 nav .current {
-    color: blue;
+	color: blue;
 }
 
 main {
-    padding-top: 70px;
+	padding-top: 70px;
+}
+
+.jumpto {
+	position: fixed;
+	float: right;
+	margin-left: 80%;
+	margin-top: -200px;
+}
+
+.jumpto li {
+	list-style: none;
+	height: 20px;
+	margin-bottom: 20px;
+}
+
+.jumpto svg {
+	stroke: rgb(201, 219, 225);
+	stroke-width: 2;
+	fill: transparent;
+	transition: all 0.4s;
+}
+
+.jumpto svg:hover {
+	fill: rgb(201, 219, 225);
+}
+
+.jumpto ul {
+	display: inline-block;
+}
+
+.jumpto .tooltip {
+	margin-left: -100px;
+	position: absolute;
+	color: rgb(201, 219, 225);
+	font-family: 'Open Sans', serif;
+	font-size: 0.9em;
+}
+
+.toolone {
+	opacity: 0;
+	transition: all 0.3s;
+}
+
+.tooltwo {
+	margin-right: -7px;
+	opacity: 0;
+	transition: all 0.3s;
+}
+
+.toolthree {
+	margin-left: 47px;
+	opacity: 0;
+	transition: all 0.3s;
+	width: 46.1666px;
+}
+
+.toolfour {
+	width: 51.6666px;
+	margin-left: 42px;
+	opacity: 0;
+	transition: all 0.3s;
 }
 
 .content {
-    margin-right: 14%;
-    margin-left: 14%;
-    width: 980px;
-    height: 400px;
-    box-sizing: border-box;
+	box-sizing: border-box;
+	width: 980px;
+	height: 470px;
+	margin-right: 14%;
+	margin-left: 14%;
+	padding-top: 70px;
+	margin-top: -70px;
 }
 
 .mainwrapper {
-    background-image: url(../IMG/aboutbackground.jpg);
-    height: 580px;
-    background-attachment: fixed;
+	height: 580px;
+	background-image: url(../IMG/aboutbackground.jpg);
+	background-attachment: fixed;
 }
 
 .main {
-    text-align: center;
-    background-color: rgba(0, 25, 150, 0.1);
-    height: 580px;
+	height: 580px;
+	text-align: center;
+	background-color: rgba(0, 25, 150, 0.1);
 }
 
 .maintextwrapper {
-    padding: 128.91px 14% 0 14%;
+	padding: 128.91px 14% 0 14%;
 }
 
 .maintextwrapper p {
-    font-size: 2em;
-    color: white;
+	color: white;
+	font-size: 2em;
 }
 
 .maintextwrapper .mainbtn {
-    display: block;
-    padding: 15px;
-    background: rgb(241, 104, 118);
-    color: white;
-    font-size: 1.25em;
-    margin: 10px auto 0 auto;
-    width: 30%;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.5s ease;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+	display: block;
+	box-sizing: border-box;
+	width: 30%;
+	margin: 10px auto 0 auto;
+	padding: 15px;
+	cursor: pointer;
+	transition: 0.5s ease;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	background: rgb(241, 104, 118);
+	font-family: 'Lato', sans-serif;
+	font-size: 1.25em;
 }
 
 .maintextwrapper .mainbtn:hover {
-    background-color: rgb(236, 58, 76);
-    transition: 0.5s;
+	transition: 0.5s;
+	background-color: rgb(236, 58, 76);
 }
 
 h1 {
-    font-size: 4em;
-    color: white;
-    font-family: 'Open Sans', serif;
+	color: white;
+	font-family: 'Open Sans', serif;
+	font-size: 4em;
 }
 
 .secondtextwrapper {
-    width: 350px;
-    display: inline-block;
+	display: inline-block;
+	width: 350px;
 }
 
 h3 {
-    font-size: 2em;
-    margin-bottom: 30px;
-    font-family: 'Merriweather', sans-serif;
+	margin-bottom: 30px;
+	font-family: 'Merriweather', sans-serif;
+	font-size: 2em;
 }
 
 p {
-    font-size: 1.1em;
-    font-family: 'Lato', sans-serif;
+	font-family: 'Lato', sans-serif;
+	font-size: 1.1em;
 }
 
 .btn {
-    display: block;
-    padding: 8px;
-    background: rgb(241, 104, 118);
-    color: white;
-    font-size: 1.15em;
-    margin-top: 10px;
-    height: auto;
-    width: 35%;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.5s ease;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+	display: block;
+	box-sizing: border-box;
+	width: 35%;
+	height: auto;
+	margin-top: 10px;
+	padding: 8px;
+	cursor: pointer;
+	transition: 0.5s ease;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	background: rgb(241, 104, 118);
+	font-family: 'Lato', sans-serif;
+	font-size: 1.15em;
 }
 
 .btn:hover {
-    background-color: rgb(236, 58, 76);
-    transition: 0.5s;
+	transition: 0.5s;
+	background-color: rgb(236, 58, 76);
 }
 
 .divisionwrapper {
-    width: 100%;
-    background-color: rgba(201, 219, 225, 0.3);
+	width: 100%;
+	display: inline-block;
+	background-color: rgba(201, 219, 225, 0.3);
 }
 
 .howimg {
-    display: inline-block;
-    margin-top: 75px;
-    margin-left: 50px;
+	display: inline-block;
+	margin-top: 75px;
+	margin-left: 50px;
 }
 
 .how {
-    margin-top: 77.3px;
-    float: right;
-    margin-right: 50px;
+	float: right;
+	margin-top: 77.3px;
+	margin-right: 50px;
 }
 
 .whoimg {
-    display: inline-block;
-    float: right;
-    margin-top: 75px;
-    margin-right: 50px;
+	display: inline-block;
+	float: right;
+	margin-top: 75px;
+	margin-right: 50px;
 }
 
 .we {
-    margin-top: 58.2px;
-    float: left;
-    margin-left: 50px;
+	float: left;
+	margin-top: 58.2px;
+	margin-left: 50px;
 }
 
 .story h3 {
-    text-align: center;
+	text-align: center;
 }
 
 .success {
-    width: 300px;
-    display: inline-block;
-    text-align: center;
+	display: inline-block;
+	width: 300px;
+	text-align: center;
 }
 
 .storywarpper {
-    margin-top: 126.8px;
-    display: inline-block;
+	display: inline-block;
+	margin-top: 110.1px;
 }
 
 .middle {
-    margin-left: 36px;
-    margin-right: 36px;
+	margin-right: 36px;
+	margin-left: 36px;
 }
 
 .contact h3 {
-    width: 500px;
-    float: right;
+	float: right;
+	width: 500px;
 }
 
 .contact p {
-    display: inline-block;
-    width: 320px;
-    float: left;
-    margin-top: 68.4px;
+	display: inline-block;
+	float: left;
+	width: 320px;
+	margin-top: 68.4px;
 }
 
 .contact form {
-    width: 600px;
-    display: inline-block;
-    float: right;
+	display: inline-block;
+	float: right;
+	width: 600px;
 }
 
-.contact form input,
-textarea {
-    border: 1px solid black;
-    display: block;
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 500px;
-    box-sizing: border-box;
-    float: right;
+.contact form input, textarea {
+	display: block;
+	float: right;
+	box-sizing: border-box;
+	width: 500px;
+	margin-bottom: 10px;
+	padding: 5px;
+	border: 1px solid black;
 }
 
 .contact form button {
-    height: 41px;
-    width: 146px;
-    background-color: rgb(241, 104, 118);
-    color: white;
-    font-size: 1em;
-    display: block;
-    float: right;
-    margin-right: 354px;
-    font-family: 'Open Sans', serif;
-    cursor: pointer;
+	display: block;
+	float: right;
+	width: 146px;
+	height: 41px;
+	margin-right: 354px;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(241, 104, 118);
+	font-family: 'Open Sans', serif;
+	font-size: 1em;
 }
 
 .contact form button:hover {
-    background-color: rgb(236, 58, 76);
-    transition: 0.5s;
+	transition: 0.5s;
+	background-color: rgb(236, 58, 76);
 }
 
 .contact form textarea {
-    height: 100px;
-    resize: none;
+	height: 100px;
+	resize: none;
 }
 
 .contactwarpper {
-    display: inline-block;
-    height: auto;
-    margin-top: 48.3px;
+	display: inline-block;
+	height: auto;
+	margin-top: 48.3px;
 }
 
 footer {
-    width: 100%;
-    height: 70px;
-    background-color: white;
-    border-top: 1px outset black;
+	width: 100%;
+	height: 70px;
+	border-top: 1px outset black;
+	background-color: white;
 }

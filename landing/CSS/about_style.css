@@ -1,114 +1,114 @@
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
 }
 
 header {
-    background-color: white;
-    width: 100%;
-    height: 70px;
-    position: fixed;
+	background-color: white;
+	width: 100%;
+	height: 70px;
+	position: fixed;
 }
 
 .navtitle {
-    margin-left: 14%;
-    display: inline-block;
-    margin-top: 27px;
-    font-size: 1.25em;
-    font-family: 'Merriweather', serif;
+	margin-left: 14%;
+	display: inline-block;
+	margin-top: 27px;
+	font-size: 1.25em;
+	font-family: 'Merriweather', serif;
 }
 
 nav {
-    float: right;
-    margin-right: 14%;
-    margin-top: 25px;
-    font-size: 1em;
+	float: right;
+	margin-right: 14%;
+	margin-top: 25px;
+	font-size: 1em;
 }
 
 nav a {
-    text-decoration: none;
-    color: black;
-    font-family: 'Open Sans', serif;
+	text-decoration: none;
+	color: black;
+	font-family: 'Open Sans', serif;
 }
 
 nav a:hover {
-    color: #707070;
+	color: #707070;
 }
 
 nav .current {
-    color: blue;
+	color: blue;
 }
 
 nav li {
-    display: inline;
-    padding: 0 30px;
-    box-sizing: border-box;
+	display: inline;
+	padding: 0 30px;
+	box-sizing: border-box;
 }
 
 main {
-    padding-top: 70px;
+	padding-top: 70px;
 }
 
 .mainheadingwrapper {
-    width: 100%;
-    height: 275px;
-    background-image: url(../IMG/aboutbackground.jpg);
-    background-attachment: fixed;
-    background-color: rgba(0, 25, 150, 0.1);
+	width: 100%;
+	height: 275px;
+	background-image: url(../IMG/aboutbackground.jpg);
+	background-attachment: fixed;
+	background-color: rgba(0, 25, 150, 0.1);
 }
 
 .mainheadingwrapper h1 {
-    display: inline-block;
-    margin-left: 14%;
-    font-size: 3.75em;
-    color: white;
-    margin-top: 101.5px;
+	display: inline-block;
+	margin-left: 14%;
+	font-size: 3.75em;
+	color: white;
+	margin-top: 101.5px;
 }
 
 section {
-    width: 100%;
-    height: 400px;
+	width: 100%;
+	height: 400px;
 }
 
 .secondwrapper {
-    margin-left: 14%;
-    margin-right: 14%;
-    width: 554px;
+	margin-left: 14%;
+	margin-right: 14%;
+	width: 554px;
 }
 
 .secondwrapper h2 {
-    font-family: 'Merriweather', sans-serif;
-    font-size: 1.75em;
-    margin-bottom: 20px;
+	font-family: 'Merriweather', sans-serif;
+	font-size: 1.75em;
+	margin-bottom: 20px;
 }
 
 .secondwrapper p {
-    font-size: 1.1em;
-    font-family: 'Lato', sans-serif;
+	font-size: 1.1em;
+	font-family: 'Lato', sans-serif;
 }
 
 .one {
-    display: inline-block;
-    margin-top: 150px;
+	display: inline-block;
+	margin-top: 150px;
 }
 
 .two {
-    display: inline-block;
-    margin-top: 150px;
+	display: inline-block;
+	margin-top: 150px;
 }
 
 .division {
-    background-color: rgba(201, 219, 225, 0.3);
+	background-color: rgba(201, 219, 225, 0.3);
 }
 
 footer {
-    width: 100%;
-    height: 70px;
-    background-color: white;
-    border-top: 1px outset black;
+	width: 100%;
+	height: 70px;
+	background-color: white;
+	border-top: 1px outset black;
 }

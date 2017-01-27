@@ -12,11 +12,39 @@
 
     <script>
         $(function() {
-            $("img.lazy").lazyload({
+            $(".lazy").lazyload({
                 effect: "fadeIn"
             });
-        });
 
+            $('body').smoothScroll({
+                delegateSelector: 'aside.jumpto a'
+            });
+
+            $('#linkone').hover(function(){
+              $('.toolone').css('opacity', '1');
+            }, function(){
+              $('.toolone').css('opacity', '0');
+            });
+
+            $('#linktwo').hover(function(){
+              $('.tooltwo').css('opacity', '1');
+            }, function(){
+              $('.tooltwo').css('opacity', '0');
+            });
+
+            $('#linkthree').hover(function(){
+              $('.toolthree').css('opacity', '1');
+            }, function(){
+              $('.toolthree').css('opacity', '0');
+            });
+
+            $('#linkfour').hover(function(){
+              $('.toolfour').css('opacity', '1');
+            }, function(){
+              $('.toolfour').css('opacity', '0');
+            });
+
+        });
     </script>
 
     <meta charset="utf-8">
@@ -32,10 +60,48 @@
                     <h1>GetMeStuff</h1>
                     <p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p>
                     <a class="mainbtn" href="login.php">Sign Up</a>
+                    <aside class="jumpto">
+                      <ul class="tooltip">
+                        <li class="toolone">How it works?</li>
+                        <li class="tooltwo">Who we are?</li>
+                        <li class="toolthree">Stories</li>
+                        <li class="toolfour">Contact</li>
+                      </ul>
+                      <ul class="quicknav">
+                        <li>
+                          <a id="linkone" href="#how">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
+                              <circle cx="10" cy="10" r='5' />
+                            </svg>
+                          </a>
+                        </li>
+                        <li>
+                          <a id="linktwo" href="#who">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
+                              <circle cx="10" cy="10" r='5' />
+                            </svg>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#success">
+                            <svg id="linkthree" xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
+                              <circle cx="10" cy="10" r='5' />
+                            </svg>
+                          </a>
+                        </li>
+                        <li>
+                          <a id="linkfour" href="#contact">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
+                              <circle cx="10" cy="10" r='5' />
+                            </svg>
+                          </a>
+                        </li>
+                      </ul>
+                    </aside>
                 </div>
             </section>
         </div>
-        <section class="about content">
+        <section class="about content" id="how">
             <img class="howimg lazy" data-original="../IMG/placeholder250.png">
             <div class="secondtextwrapper how">
                 <h3>How it works?</h3>
@@ -44,7 +110,7 @@
             </div>
         </section>
         <div class="divisionwrapper">
-            <section class="who content">
+            <section class="who content" id="who">
                 <div class="secondtextwrapper we">
                     <h3>Who are we?</h3>
                     <p>Just to firends who understood, that in the hour of need, it can be embarassing to ask others for help. Therefore, we came up with the idea of asking anonymously not only your firends, but the whole world.</p>
@@ -53,7 +119,7 @@
                 <img class="whoimg lazy" data-original="../IMG/placeholder250.png">
             </section>
         </div>
-        <section class="story content">
+        <section class="story content" id="success">
             <div class="storywarpper">
                 <h3>Success stories</h3>
                 <div class="successwrapper">
@@ -76,7 +142,7 @@
             </div>
         </section>
         <div class="divisionwrapper">
-            <section class="contact content">
+            <section class="contact content" id="contact">
                 <div class="contactwarpper">
                     <h3>Contact Us</h3>
                     <p>We would like to here from you about any suggestions or problems.</p>
