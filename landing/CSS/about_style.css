@@ -1,32 +1,32 @@
 * {
 	margin: 0;
 	padding: 0;
+	vertical-align: baseline;
 	border: 0;
 	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
 	background: transparent;
+	font-size: 100%;
 }
 
 header {
-	background-color: white;
+	position: fixed;
 	width: 100%;
 	height: 70px;
-	position: fixed;
+	background-color: white;
 }
 
 .navtitle {
-	margin-left: 14%;
 	display: inline-block;
 	margin-top: 27px;
-	font-size: 1.25em;
+	margin-left: 14%;
 	font-family: 'Merriweather', serif;
+	font-size: 1.25em;
 }
 
 nav {
 	float: right;
-	margin-right: 14%;
 	margin-top: 25px;
+	margin-right: 14%;
 	font-size: 1em;
 }
 
@@ -46,8 +46,8 @@ nav .current {
 
 nav li {
 	display: inline;
-	padding: 0 30px;
 	box-sizing: border-box;
+	padding: 0 30px;
 }
 
 main {
@@ -57,17 +57,17 @@ main {
 .mainheadingwrapper {
 	width: 100%;
 	height: 275px;
+	background-color: rgba(0, 25, 150, 0.1);
 	background-image: url(../IMG/aboutbackground.jpg);
 	background-attachment: fixed;
-	background-color: rgba(0, 25, 150, 0.1);
 }
 
 .mainheadingwrapper h1 {
 	display: inline-block;
-	margin-left: 14%;
-	font-size: 3.75em;
-	color: white;
 	margin-top: 101.5px;
+	margin-left: 14%;
+	color: white;
+	font-size: 3.75em;
 }
 
 section {
@@ -76,20 +76,20 @@ section {
 }
 
 .secondwrapper {
-	margin-left: 14%;
-	margin-right: 14%;
 	width: 554px;
+	margin-right: 14%;
+	margin-left: 14%;
 }
 
 .secondwrapper h2 {
+	margin-bottom: 20px;
 	font-family: 'Merriweather', sans-serif;
 	font-size: 1.75em;
-	margin-bottom: 20px;
 }
 
 .secondwrapper p {
-	font-size: 1.1em;
 	font-family: 'Lato', sans-serif;
+	font-size: 1.1em;
 }
 
 .one {
@@ -109,6 +109,6 @@ section {
 footer {
 	width: 100%;
 	height: 70px;
-	background-color: white;
 	border-top: 1px outset black;
+	background-color: white;
 }

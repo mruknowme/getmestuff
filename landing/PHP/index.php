@@ -9,6 +9,8 @@
     <script src="../JS/jquery.smooth-scroll.js"></script>
     <script src="../JS/jquery.countTo.js"></script>
     <script src="../JS/jquery.lazyload.js"></script>
+    <script src="../JS/jquery.waypoints.js"></script>
+    <script src="../JS/jquery.js"></script>
 
     <script>
         $(function() {
@@ -20,31 +22,7 @@
                 delegateSelector: 'aside.jumpto a'
             });
 
-            $('#linkone').hover(function(){
-              $('.toolone').css('opacity', '1');
-            }, function(){
-              $('.toolone').css('opacity', '0');
-            });
-
-            $('#linktwo').hover(function(){
-              $('.tooltwo').css('opacity', '1');
-            }, function(){
-              $('.tooltwo').css('opacity', '0');
-            });
-
-            $('#linkthree').hover(function(){
-              $('.toolthree').css('opacity', '1');
-            }, function(){
-              $('.toolthree').css('opacity', '0');
-            });
-
-            $('#linkfour').hover(function(){
-              $('.toolfour').css('opacity', '1');
-            }, function(){
-              $('.toolfour').css('opacity', '0');
-            });
-
-        });
+        });  
     </script>
 
     <meta charset="utf-8">
@@ -55,20 +33,15 @@
     <?php require_once("header.php") ?>
     <main>
         <div class="mainwrapper">
-            <section class="main">
+            <section class="main" id="mainsection">
                 <div class="maintextwrapper">
                     <h1>GetMeStuff</h1>
                     <p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p>
                     <a class="mainbtn" href="login.php">Sign Up</a>
                     <aside class="jumpto">
-                      <ul class="tooltip">
-                        <li class="toolone">How it works?</li>
-                        <li class="tooltwo">Who we are?</li>
-                        <li class="toolthree">Stories</li>
-                        <li class="toolfour">Contact</li>
-                      </ul>
                       <ul class="quicknav">
                         <li>
+                          <span class="toolone">How it works?</span>
                           <a id="linkone" href="#how">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
                               <circle cx="10" cy="10" r='5' />
@@ -76,6 +49,7 @@
                           </a>
                         </li>
                         <li>
+                          <span class="tooltwo">Who we are?</span>
                           <a id="linktwo" href="#who">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
                               <circle cx="10" cy="10" r='5' />
@@ -83,13 +57,15 @@
                           </a>
                         </li>
                         <li>
-                          <a href="#success">
-                            <svg id="linkthree" xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
+                          <span class="toolthree">Stories</span>
+                          <a id="linkthree" href="#success">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
                               <circle cx="10" cy="10" r='5' />
                             </svg>
                           </a>
                         </li>
                         <li>
+                          <span class="toolfour">Contact</span>
                           <a id="linkfour" href="#contact">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
                               <circle cx="10" cy="10" r='5' />

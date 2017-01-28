@@ -57,73 +57,68 @@ main {
 
 .jumpto {
 	position: fixed;
-	float: right;
-	margin-left: 80%;
-	margin-top: -200px;
+	margin-top: -250px;
+	margin-left: 75%;
 }
 
 .jumpto li {
-	list-style: none;
 	height: 20px;
 	margin-bottom: 20px;
+	list-style: none;
 }
 
 .jumpto svg {
+	float: right;
+	transition: all 0.4s;
+
+	fill: transparent;
 	stroke: rgb(201, 219, 225);
 	stroke-width: 2;
-	fill: transparent;
-	transition: all 0.4s;
 }
 
 .jumpto svg:hover {
 	fill: rgb(201, 219, 225);
 }
 
-.jumpto ul {
+.jumpto span {
 	display: inline-block;
-}
-
-.jumpto .tooltip {
-	margin-left: -100px;
-	position: absolute;
+	width: 94.15px;
+	height: 20px;
+	text-align: right;
 	color: rgb(201, 219, 225);
 	font-family: 'Open Sans', serif;
 	font-size: 0.9em;
+	line-height: 19px;
 }
 
 .toolone {
-	opacity: 0;
 	transition: all 0.3s;
+	opacity: 0;
 }
 
 .tooltwo {
-	margin-right: -7px;
-	opacity: 0;
 	transition: all 0.3s;
+	opacity: 0;
 }
 
 .toolthree {
-	margin-left: 47px;
-	opacity: 0;
 	transition: all 0.3s;
-	width: 46.1666px;
+	opacity: 0;
 }
 
 .toolfour {
-	width: 51.6666px;
-	margin-left: 42px;
-	opacity: 0;
 	transition: all 0.3s;
+	opacity: 0;
 }
 
 .content {
 	box-sizing: border-box;
 	width: 980px;
 	height: 470px;
+	margin-top: -70px;
 	margin-right: 14%;
 	margin-left: 14%;
 	padding-top: 70px;
-	margin-top: -70px;
 }
 
 .mainwrapper {
@@ -213,8 +208,8 @@ p {
 }
 
 .divisionwrapper {
-	width: 100%;
 	display: inline-block;
+	width: 100%;
 	background-color: rgba(201, 219, 225, 0.3);
 }
 
