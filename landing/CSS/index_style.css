@@ -137,9 +137,10 @@ main {
 	padding: 128.91px 14% 0 14%;
 }
 
-.maintextwrapper p {
+.maintextwrapper .item {
 	color: white;
 	font-size: 2em;
+	width: 100%;
 }
 
 .maintextwrapper .mainbtn {

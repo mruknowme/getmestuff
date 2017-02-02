@@ -8,10 +8,11 @@
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="../JS/jquery.countTo.js"></script>
     <script src="../JS/jquery.lazyload.js"></script>
+    <script src="../JS/jquery.validate.js"></script>
+    <script src="jquery.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
     <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -27,34 +28,26 @@
                     <li><a class="tab active" onclick="openTab(event, 'settings')">Account Settings</a></li>
                     <li><a class="tab" onclick="openTab(event, 'money')">Top Up</a></li>
                     <li><a class="tab" id="achievtab" onclick="openTab(event, 'achievements')">Achievements</a></li>
-                    <li><a class="tab" onclick="openTab(event, 'wish')">Make a Wish</a></li>
+                    <li><a class="tab lastuser" onclick="openTab(event, 'wish')">Make a Wish</a></li>
                 </ul>
             </aside>
             <div class="maincontent">
                 <section class="accountsettings formcontent" id="settings">
                     <h1>Edit Profile</h1>
-                    <form>
+                    <form id="edit">
                         <div class="mainformcontent">
                             <div class="topprofile">
-                                <input type="text" name="firstname" placeholder="Your Name" autocomplete="off">
-                                <input type="text" name="lastname" placeholder="Your Last Name" autocomplete="off">
-                                <input type="email" name="mail" placeholder="Your Email" autocomplete="off">
+                                <input type="text" id="firstname" name="firstname" placeholder="Your Name" autocomplete="off">
+                                <input type="text" id="lastname" name="lastname" placeholder="Your Last Name" autocomplete="off">
+                                <input type="email" id="email" name="email" placeholder="Your Email" autocomplete="off">
                                 <div class="wrapper">
-                                    <input type="password" name="paswd" placeholder="Your Password">
+                                    <input type="password" id="paswd" name="paswd" placeholder="Edit Password">
                                 </div>
-                            </div>
-                            <div class="optionrow one">
-                                <input type="checkbox">
-                                <label>Show password</label>
                             </div>
                         </div>
                         <div class="confirm">
                             <p class="field">Please enter your current password to confirm changes:</p>
-                            <input class="field input" type="password" name="currentpaswd" placeholder="Your Current Password" required>
-                            <div class="optionrow">
-                                <input type="checkbox">
-                                <label>Show password</label>
-                            </div>
+                            <input class="field input" type="password" id="currentpaswd" name="currentpaswd" placeholder="Your Current Password">
                         </div>
                         <div class="btnwrapper">
                             <button type="submit">Save Changes</button>

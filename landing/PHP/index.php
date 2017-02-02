@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <link href="../CSS/owlCarusel/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="../CSS/owlCarusel/owl.theme.default.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
     <link href="../CSS/index_style.css" type="text/css" rel="stylesheet">
 
@@ -11,6 +13,7 @@
     <script src="../JS/jquery.lazyload.js"></script>
     <script src="../JS/jquery.waypoints.js"></script>
     <script src="../JS/jquery.js"></script>
+    <script src="../JS/owl.carousel.min.js"></script>
 
     <script>
         $(function() {
@@ -36,7 +39,14 @@
             <section class="main" id="mainsection">
                 <div class="maintextwrapper">
                     <h1>GetMeStuff</h1>
-                    <p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p>
+                    <div class="owl-carousel owl-theme">
+                    <div class="item"><p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p></div>
+                    <div class="item"><p>Information about something1</p></div>
+                    <div class="item"><p>Information about something2</p></div>
+                    <div class="item"><p>Information about something3</p></div>
+                    <div class="item"><p>Information about something4</p></div>
+                    <div class="item"><p>Information about something5</p></div>
+                    </div>
                     <a class="mainbtn" href="login.php">Sign Up</a>
                     <aside class="jumpto">
                       <ul class="quicknav">

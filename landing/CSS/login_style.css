@@ -1,205 +1,218 @@
 * {
-	margin: 0;
-	padding: 0;
-	vertical-align: baseline;
-	border: 0;
-	outline: 0;
-	background: transparent;
-	font-size: 100%;
+    font-size : 100%;
+    margin : 0;
+    padding : 0;
+    vertical-align : baseline;
+    border : 0;
+    outline : 0;
+    background : transparent;
 }
 
 header {
-	position: fixed;
-	width: 100%;
-	height: 70px;
-	background-color: white;
+    position : fixed;
+    width : 100%;
+    height : 70px;
+    background-color : white;
 }
 
 .navtitle {
-	display: inline-block;
-	margin-top: 27px;
-	margin-left: 14%;
-	font-family: 'Merriweather', serif;
-	font-size: 1.25em;
+    font-family : 'Merriweather', serif;
+    font-size : 1.25em;
+    display : inline-block;
+    margin-top : 27px;
+    margin-left : 14%;
 }
 
 nav {
-	float: right;
-	margin-top: 25px;
-	margin-right: 14%;
-	font-size: 1em;
+    font-size : 1em;
+    float : right;
+    margin-top : 25px;
+    margin-right : 14%;
 }
 
 nav a {
-	text-decoration: none;
-	color: black;
-	font-family: 'Open Sans', serif;
+    font-family : 'Open Sans', serif;
+    text-decoration : none;
+    color : black;
 }
 
 nav a:hover {
-	color: #707070;
+    color : #707070;
 }
 
 nav li {
-	display: inline;
-	box-sizing: border-box;
-	padding: 0 30px;
+    display : inline;
+    box-sizing : border-box;
+    padding : 0 30px;
 }
 
 nav .current {
-	color: blue;
+    color : blue;
 }
 
 main {
-	padding-top: 70px;
+    padding-top : 70px;
 }
 
 body {
-	background-color: rgba(201, 219, 225, 0.3);
+    background-color : rgba(201, 219, 225, 0.3);
 }
 
 .tabs {
-	margin: 0 0 40px 0;
-	padding: 0;
-	list-style: none;
+    margin : 0 0 40px 0;
+    padding : 0;
+    list-style : none;
 }
 
 .tabs:after {
-	display: table;
-	clear: both;
-	content: '';
+    display : table;
+    clear : both;
+    content : '';
 }
 
 .tabs li {
-	display: inline;
+    display : inline;
 }
 
 .tab {
-	display: block;
-	float: left;
-	box-sizing: border-box;
-	width: 50%;
-	padding: 15px;
-	cursor: pointer;
-	transition: 0.5s ease;
-	text-align: center;
-	text-decoration: none;
-	color: #A0B3B0;
-	background: rgba(160, 179, 176, 0.25);
-	font-family: 'Lato', sans-serif;
-	font-size: 1.25em;
+    font-family : 'Lato', sans-serif;
+    font-size : 1.25em;
+    display : block;
+    float : left;
+    box-sizing : border-box;
+    width : 50%;
+    padding : 15px;
+    cursor : pointer;
+    transition : 0.5s ease;
+    text-align : center;
+    text-decoration : none;
+    color : #A0B3B0;
+    background : rgba(160, 179, 176, 0.25);
 }
 
 .tab:hover {
-	color: white;
-	background-color: rgb(236, 58, 76);
+    color : white;
+    background-color : rgb(236, 58, 76);
 }
 
 .active {
-	color: white;
-	background-color: rgb(241, 104, 118);
+    color : white;
+    background-color : rgb(241, 104, 118);
 }
 
 .form {
-	max-width: 600px;
-	margin: 40px auto;
-	padding: 40px;
-	border-radius: 4px;
-	background-color: white;
-	box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    max-width : 600px;
+    margin : 40px auto;
+    padding : 40px;
+    border-radius : 4px;
+    background-color : white;
+    box-shadow : 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 
 h1 {
-	margin-bottom: 20px;
-	text-align: center;
-	font-family: 'Open Sans', serif;
-	font-size: 1.8em;
+    font-family : 'Open Sans', serif;
+    font-size : 1.8em;
+    margin-bottom : 20px;
+    text-align : center;
 }
 
 input {
-	position: relative;
-	box-sizing: border-box;
-	height: auto;
-	margin-bottom: 35px;
-	padding: 10px;
-	border: 1px solid #A0B3B0;
-	font-family: 'Lato', sans-serif;
-	font-size: 1.2em;
+    font-family : 'Lato', sans-serif;
+    font-size : 1.2em;
+    position : relative;
+    box-sizing : border-box;
+    height : 46px;
+    padding : 10px;
+    margin-bottom: 30px;
+    border : 1px solid #A0B3B0;
+    display: inline-block;
 }
 
 input:focus {
-	border-color: lightblue;
-	outline: 0;
+    border-color : lightblue;
+    outline : 0;
 }
 
-.toprow:after {
-	display: table;
-	clear: both;
-	content: '';
+.toprow {
+    box-sizing: border-box;
 }
 
 .toprow input {
-	float: left;
-	box-sizing: border-box;
-	width: 48%;
-}
-
-.firstchild {
-	margin-right: 4%;
-}
-
-.lastchild {
-	margin: 0;
+    float : left;
+    box-sizing : border-box;
+    width : 100%;
+    margin-bottom: 30px;
 }
 
 .secondary input {
-	width: 100%;
+    width : 100%;
 }
 
 button {
-	display: block;
-	width: 100%;
-	padding: 15px 0;
-	cursor: pointer;
-	transition: all 0.5s ease;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-	color: white;
-	background-color: rgb(241, 104, 118);
-	font-family: 'Lato', sans-serif;
-	font-size: 1.5em;
+    font-family : 'Lato', sans-serif;
+    font-size : 1.5em;
+    display : block;
+    width : 100%;
+    padding : 15px 0;
+    cursor : pointer;
+    transition : all 0.5s ease;
+    letter-spacing : 0.1em;
+    text-transform : uppercase;
+    color : white;
+    background-color : rgb(241, 104, 118);
 }
 
 button:hover {
-	background-color: rgb(236, 58, 76);
+    background-color : rgb(236, 58, 76);
 }
 
 .forgot {
-	margin-top: -30px;
-	margin-bottom: 5px;
-	text-align: right;
+    margin-top : -30px;
+    margin-bottom : 20px;
+    text-align : right;
 }
 
 .forgot a {
-	text-decoration: none;
-	color: black;
+    text-decoration : none;
+    color : black;
 }
 
 .forgot a:hover {
-	color: green;
+    color : green;
 }
 
 #signup {
-	display: block;
+    display : block;
 }
 
 #login {
-	display: none;
+    display : none;
+}
+
+.up {
+    margin-right: 4%;
+}
+
+.errorwrapper {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 48%;
+    float: left;
+    height: 76px;
+}
+
+.errortxt {
+    font-family : 'Lato', sans-serif;
+    font-size : 0.8em;
+    width: 100%;
+    float: left;
+    margin-top: -30px;
+    color: orangered;
 }
 
 footer {
-	width: 100%;
-	height: auto;
-	border-top: 1px outset black;
-	background-color: white;
+    width : 100%;
+    height : auto;
+    border-top : 1px outset black;
+    background-color : white;
 }
