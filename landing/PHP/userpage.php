@@ -9,9 +9,11 @@
     <script src="../JS/jquery.countTo.js"></script>
     <script src="../JS/jquery.lazyload.js"></script>
     <script src="../JS/jquery.validate.js"></script>
-    <script src="jquery.js"></script>
+    <script src="../JS/jquery.card.js"></script>
+    <script src="../JS/jquery.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
 </head>
 
@@ -23,7 +25,7 @@
                 <p class="usrname">Daniil Belov</p>
                 <p class="balance">123.95$</p>
             </section>
-            <aside class="usernav">
+            <aside class="usernav cf">
                 <ul>
                     <li><a class="tab active" onclick="openTab(event, 'settings')">Account Settings</a></li>
                     <li><a class="tab" onclick="openTab(event, 'money')">Top Up</a></li>
@@ -48,6 +50,10 @@
                         <div class="confirm">
                             <p class="field">Please enter your current password to confirm changes:</p>
                             <input class="field input" type="password" id="currentpaswd" name="currentpaswd" placeholder="Your Current Password">
+                            <span class="showpassword">
+                                <i class="fa fa-eye-slash show" aria-hidden="true"></i>
+                                <i class="fa fa-eye show hidden" aria-hidden="true"></i>
+                            </span>
                         </div>
                         <div class="btnwrapper">
                             <button type="submit">Save Changes</button>
@@ -56,70 +62,47 @@
                 </section>
                 <section class="topup formcontent" id="money">
                     <h1>Top Up Your Wallet</h1>
-                    <div class="dropdown methdofield">
-                        <a onclick="openDropDown()" class="currenttitle" id="menutitle">Credit Card</a>
-                        <div id="paymentmethod" class="dropdownitems">
-                            <a onclick="selectForm('credit', 'Credit Card')">Credit Card</a>
-                            <a onclick="selectForm('paypal', 'PayPal')">PayPal</a>
-                            <a onclick="selectForm('qiwi', 'Qiwi')">Qiwi</a>
+                    <div class="maintopup">
+                        <div class="amountwrapper cf">
+                            <div class="dropdown methdofield">
+                                <a onclick="openDropDown()" class="currenttitle" id="menutitle">Credit Card</a>
+                                <div id="paymentmethod" class="dropdownitems">
+                                    <a onclick="selectForm('credit', 'Credit Card')"><i class="fa fa-credit-card fa-fw" aria-hidden="true"></i> Credit Card</a>
+                                    <a onclick="selectForm('paypal', 'PayPal')"><i class="fa fa-paypal fa-fw" aria-hidden="true"></i> PayPal</a>
+                                    <a onclick="selectForm('qiwi', 'Qiwi')"><i class="fa fa-google-wallet fa-fw" aria-hidden="true"></i> Qiwi</a>
+                                </div>
+                            </div>
+                            <input class="amount" placeholder="Amount">
                         </div>
+                            <form class="pay cf" id="credit">
+                                <div class="bakcgroundcc">
+                                    <div class="cardcontainer"></div>
+                                    <div class="credittop">
+                                        <input class="input card" type="text" name="card" placeholder="Card Number" autocomplete="off" maxlength="19">
+                                        <input class="input cardname" type="text" placeholder="Cardholder's Name">
+                                    </div>
+                                    <input class="input carddate" type="text" placeholder="mm/yy" autocomplete="off" maxlength="7">
+                                    <input class="input ccv" type="text" name="ccv" placeholder="CCV" autocomplete="off" maxlength="3">
+                                </div>
+                                <div class="btnwrapper">
+                                    <button type="submit">Top Up</button>
+                                </div>
+                            </form>
+                        <form class="pay" id="paypal">
+                            <input class="field input" type="text" placeholder="PayPal Login" required>
+                            <input class="field input" type="password" placeholder="Password" required>
+                            <div class="btnwrapper">
+                                <button type="submit">Top Up</button>
+                            </div>
+                        </form>
+                        <form class="pay" id="qiwi">
+                            <input class="field input" type="text" placeholder="Qiwi Login" required>
+                            <input class="field input" type="password" placeholder="Password" required>
+                            <div class="btnwrapper">
+                                <button type="submit">Top Up</button>
+                            </div>
+                        </form>
                     </div>
-                    <form class="pay" id="credit">
-                        <input class="field input name" type="text" placeholder="Cardholder's Name" required>
-                        <div class="topuprow">
-                            <input class="input card" type="text" name="card" placeholder="Card Number" autocomplete="off" required>
-                            <input class="input ccv" type="text" name="ccv" placeholder="CCV" autocomplete="off" required>
-                        </div>
-                        <div class="daterow">
-                            <div class="dropdown datefield">
-                                <input type="text" placeholder="Month" value="" onclick="openDate()" class="currenttitle" id="datetitle" readonly>
-                                <div id="date" class="dropdownitems month">
-                                    <a onclick="chnageDate('January')">January</a>
-                                    <a onclick="chnageDate('Febuary')">February</a>
-                                    <a onclick="chnageDate('March')">March</a>
-                                    <a onclick="chnageDate('April')">April</a>
-                                    <a onclick="chnageDate('May')">May</a>
-                                    <a onclick="chnageDate('June')">June</a>
-                                    <a onclick="chnageDate('July')">July</a>
-                                    <a onclick="chnageDate('August')">August</a>
-                                    <a onclick="chnageDate('September')">September</a>
-                                    <a onclick="chnageDate('October')">October</a>
-                                    <a onclick="chnageDate('November')">Novermber</a>
-                                    <a onclick="chnageDate('December')">December</a>
-                                </div>
-                            </div>
-                            <div class="dropdown datefield">
-                                <input type="text" placeholder="Year" value="" onclick="openYear()" class="currenttitle" id="yeartitle" readonly>
-                                <div id="year" class="dropdownitems">
-                                    <a onclick="chnageYear('2017')">2017</a>
-                                    <a onclick="chnageYear('2018')">2018</a>
-                                    <a onclick="chnageYear('2019')">2019</a>
-                                    <a onclick="chnageYear('2020')">2020</a>
-                                    <a onclick="chnageYear('2021')">2021</a>
-                                </div>
-                            </div>
-                        </div>
-                        <input class="field input amount" type="number" name="amount" placeholder="Amount" autocomplete="off" required>
-                        <div class="btnwrapper">
-                            <button type="submit">Top Up</button>
-                        </div>
-                    </form>
-                    <form class="pay" id="paypal">
-                        <input class="field input" type="text" placeholder="PayPal Login" required>
-                        <input class="field input" type="password" placeholder="Password" required>
-                        <input class="field input amount" type="number" name="amount" placeholder="Amount" autocomplete="off" required>
-                        <div class="btnwrapper">
-                            <button type="submit">Top Up</button>
-                        </div>
-                    </form>
-                    <form class="pay" id="qiwi">
-                        <input class="field input" type="text" placeholder="Qiwi Login" required>
-                        <input class="field input" type="password" placeholder="Password" required>
-                        <input class="field input amount" type="number" name="amount" placeholder="Amount" autocomplete="off" required>
-                        <div class="btnwrapper">
-                            <button type="submit">Top Up</button>
-                        </div>
-                    </form>
                 </section>
                 <section class="formcontent" id="achievements">
                     <h1>Your Achievements</h1>
@@ -207,6 +190,30 @@
                 to: 10000,
                 speed: 2000
             });
+        });
+
+        $(function() {
+            $('.show').click(function() {
+                $('.show').toggleClass('hidden');
+                $('.showpassword').toggleClass('checked');
+                if($('.showpassword').hasClass('checked')) {
+                    $('#currentpaswd').attr('type', 'text');
+                } else {
+                    $('#currentpaswd').attr('type', 'password');
+                }
+            });
+        });
+
+        $(function(){
+            $('#credit').card({
+                container: '.cardcontainer',
+                formSelectors: {
+                    numberInput: 'input.card',
+                    expiryInput: 'input.carddate',
+                    cvcInput: 'input.ccv',
+                    nameInput: 'input.cardname'
+                }
+            }, false);
         });
 
     </script>

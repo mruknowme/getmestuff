@@ -13,6 +13,7 @@ header {
 	width: 100%;
 	height: 70px;
 	position: fixed;
+	z-index: 2;
 }
 
 .navtitle {
@@ -45,6 +46,14 @@ nav .lastmenu {
 	display: inline;
 	padding-left: 30px;
 	box-sizing: border-box;
+}
+
+nav .lastmenulink {
+	color: black;
+}
+
+nav .lastmenulink:hover {
+	color: #707070;
 }
 
 nav .menu {
@@ -132,6 +141,7 @@ body {
 	margin-left: 2%;
 	margin-right: 2%;
 	padding-bottom: 15px;
+	width: auto;
 }
 
 .userinfo {
@@ -159,7 +169,7 @@ body {
 	display: block;
 	border: 1px solid #A0B3B0;
 	padding: 5px;
-	margin-bottom: 16px;
+	margin-bottom: 18px;
 	width: 98%;
 	border-radius: 3px;
 }
@@ -198,6 +208,7 @@ h1 {
 	border-radius: 5px;
 	background-color: rgba(211, 211, 211, 0.3);
 	padding: 10px 10px 2px 10px;
+	position: relative;
 }
 
 .confirm p {
@@ -209,6 +220,29 @@ h1 {
 	background-color: white;
 	border-radius: 3px;
 	margin-bottom: 16px;
+}
+
+.showpassword {
+	position: absolute;
+	top: 42px;
+	left: 210px;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+}
+
+.showpassword i{
+	position: absolute;
+	color: #777;
+	cursor: pointer;
+}
+
+.showpassword i:hover {
+	color: #555;
+}
+
+.showpassword i.hidden {
+	display: none;
 }
 
 .btnwrapper {
@@ -242,26 +276,29 @@ button:hover {
 	margin-bottom: 10px;
 }
 
-.topup input {
+.topup input:not(.amount):not(.carddate):not(.ccv) {
 	padding: 5px;
 	margin-bottom: 10px;
 	border-radius: 3px;
 }
 
-.topup .name {
-	width: 60%;
-}
-
-.topup .card {
-	width: 40%;
-}
-
-.topup .ccv {
-	width: 17%;
-}
-
 .amount {
 	width: 28.5%;
+	display: inline-block;
+	font-size: 1em;
+	padding: 5px;
+	border-radius: 3px;
+	border: 1px solid #A0B3B0;
+	float: left;
+	margin-bottom: 0px;
+}
+
+.input.card, .input.cardname, .input.carddate, .input.ccv {
+	width: 37.5%;
+	padding: 5px;
+	border-radius: 3px;
+	border: 1px solid #A0B3B0;
+	background-color: white;
 }
 
 .createwish input {
@@ -443,10 +480,11 @@ button:hover {
 .dropdown {
 	border: 1px solid #A0B3B0;
 	border-radius: 3px;
-	display: block;
+	display: inline-block;
 	height: 30px;
-	margin-bottom: 10px;
 	background: #FFFFFF url('../IMG/caret-bottom.svg') no-repeat 90% 50%;
+	float: left;
+	margin-right: 5px;
 }
 
 .currenttitle {
@@ -454,8 +492,7 @@ button:hover {
 	display: inline-block;
 	line-height: 20px;
 	font-size: 1em;
-	color: transparent;
-	text-shadow: 0 0 0 black;
+	color: black;
 	cursor: pointer;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
@@ -465,6 +502,7 @@ button:hover {
 	position: absolute;
 	background-color: white;
 	box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
+	z-index: 1;
 }
 
 .dropdownitems a {
@@ -552,10 +590,47 @@ button:hover {
 
 .errortxt {
 	font-family : 'Lato', sans-serif;
-    font-size : 0.8em;
+    font-size : 0.7em;
     width: 100%;
     color: orangered;
-    margin-top: -16px;
+    position: absolute;
+    margin-top: -18px;
+}
+
+.amountwrapper {
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid grey;
+	width: auto;
+}
+
+.cardcontainer {
+	margin-bottom: 10px;
+	width: 350px;
+	margin-left: 10px;
+	position: relative;
+	z-index: 0;
+}
+
+.bakcgroundcc {
+	background-color: rgba(211, 211, 211, 0.3);
+	border-radius: 5px;
+	padding-left: 18%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.cf {
+	zoom: 1;
+}
+
+.cf:before, .cf:after {
+	content: " ";
+    display: table;
+}
+
+.cf:after {
+	clear: both;
 }
 
 footer {

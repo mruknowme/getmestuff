@@ -36,34 +36,6 @@ function openDropDown() {
     }
 }
 
-function openDate() {
-    var x = document.getElementById("date");
-    if (x.style.display == "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
-
-function openYear() {
-    var x = document.getElementById("year");
-    if (x.style.display == "block") {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
-
-function chnageDate(text) {
-    document.getElementById("datetitle").setAttribute("value", text);
-    document.getElementById("date").style.display = "none";
-}
-
-function chnageYear(text) {
-    document.getElementById("yeartitle").setAttribute("value", text);
-    document.getElementById("year").style.display = "none";
-}
-
 $(document).click(function () {
     $("#paymentmethod").css("display", "none");
 });
