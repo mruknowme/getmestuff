@@ -2,11 +2,12 @@
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
     <link href="../CSS/login_style.css" rel="stylesheet" type="text/css">
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="../JS/jquery.validate.js"></script>
+    <script src="../JS/jquery.js"></script>
 
     <meta charset="utf-8">
     <title>Register/Login</title>
@@ -23,18 +24,29 @@
             <div class="formcontent sing" id="signup">
                 <h1>Sign Up</h1>
                 <form action="" mehtod="" id="singupform">
-                    <div class="toprow" id="topsignup">
+                    <div class="toprow cf" id="topsignup">
                         <div class="errorwrapper up">
-                            <input class="firstchild" type="text" id="firstname" name="firstname" placeholder="First Name*" autocomplete="off">
+                            <input class="firstchild inputsign" type="text" id="firstname" name="firstname" autocomplete="off">
+                            <lable class="signlable">First Name</lable>
                         </div>
                         <div class="errorwrapper">
-                            <input class="lastchild" type="text" id="lastname" name="lastname" placeholder="Last Name*" autocomplete="off">
+                            <input class="lastchild inputsign" type="text" id="lastname" name="lastname" autocomplete="off">
+                            <lable class="signlable">Last Name</lable>
                         </div>
                     </div>
                     <div class="secondary">
-                        <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="off">
-                        <input type="password" id="pass" name="pass" placeholder="Set a Password*" autocomplete="off">
-                        <input type="password" id="passcheck" name="passcheck" placeholder="Verify Your Password*" autocomplete="off">
+                        <div class="inputwrapper">
+                            <input class="inputsign" type="email" id="email" name="email" autocomplete="off">
+                            <lable class="signlable">Email Address</lable>
+                        </div>
+                        <div class="inputwrapper">
+                            <input class="inputsign" type="password" id="pass" name="pass" autocomplete="off">
+                            <lable class="signlable">Set a Password</lable>
+                        </div>
+                        <div class="inputwrapper">
+                            <input class="inputsign" type="password" id="passcheck" name="passcheck" autocomplete="off">
+                            <lable class="signlable">Verify Your Password</lable>
+                        </div>
                     </div>
                     <button type="submit">Get Started</button>
                 </form>
@@ -43,8 +55,14 @@
                 <h1>Welcome Back</h1>
                 <form action="" method="" id="loginform">
                     <div class="secondary">
-                        <input type="email" id="loginmail" name="email" placeholder="Email Address" autocomplete="off" required>
-                        <input type="password" id="loginpass" name="pass" placeholder="Password" autocomplete="off" required>
+                        <div class="inputwrapper">
+                            <input class="inputsign" type="email" id="loginmail" name="email" autocomplete="off">
+                            <lable class="signlable">Email Address</lable>
+                        </div>
+                        <div class="inputwrapper">
+                            <input class="inputsign" type="password" id="loginpass" name="pass" autocomplete="off">
+                            <lable class="signlable">Passowrd</lable>
+                        </div>
                     </div>
                     <p class="forgot"><a href="">Forgot Password?</a></p>
                     <button type="submit">Log In</button>
@@ -54,7 +72,18 @@
     </main>
     <?php require_once("footer.php"); ?>
     <script src="../JS/login.js"></script>
-    <script src="../JS/jquery.js"></script>
+    <script>
+        $(function(){
+            $('input.inputsign').focusout(function() {
+                var text_val = $(this).val();
+                if (text_val === "") {
+                    $(this).removeClass('hasvalue');
+                } else {
+                    $(this).addClass('hasvalue');
+                }
+            });
+        }); 
+    </script>
 
 </body>
 

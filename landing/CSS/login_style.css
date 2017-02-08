@@ -129,7 +129,7 @@ input {
 }
 
 input:focus {
-    border-color : lightblue;
+    border-color : #A0B3B0;
     outline : 0;
 }
 
@@ -183,6 +183,7 @@ button:hover {
 
 #signup {
     display : block;
+    position: relative;
 }
 
 #login {
@@ -199,6 +200,7 @@ button:hover {
     width: 48%;
     float: left;
     height: 76px;
+    position: relative;
 }
 
 .errortxt {
@@ -208,6 +210,60 @@ button:hover {
     float: left;
     margin-top: -30px;
     color: orangered;
+}
+
+.inputwrapper {
+    position: relative;
+}
+
+lable.signlable {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 1.2em;
+    color: #777;
+    pointer-events: none;
+    transition: all 0.15s ease-out 0s;
+}
+
+.cf {
+    zoom: 1;
+}
+
+.cf:before, .cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.inputsign:focus ~ lable, .inputsign.hasvalue ~ lable {
+    color: #00c1a3;
+    font-size: 0.8em;
+}
+
+lable.signlable {
+    position: absolute;
+    left: 10px;
+    top: 15%;
+}
+
+.inputsign:focus ~ lable, .inputsign.hasvalue ~ lable {
+    top: -15px;
+    left: 0;
+}
+
+@-moz-document url-prefix() { 
+    lable.signlable {
+        position: absolute;
+        left: 10px;
+        top: 15%;
+    }
+    .inputsign:focus ~ lable, .inputsign.hasvalue ~ lable {
+        top: -15px;
+        left: 0;
+    }
 }
 
 footer {

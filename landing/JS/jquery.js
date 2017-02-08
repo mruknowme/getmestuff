@@ -273,7 +273,7 @@ $().ready(function() {
             },
             email: {
                 required: 'Please enter your email',
-                email: 'Please enter a valid email addres'
+                email: 'Please enter a valid email address'
             },
             pass: {
                 required: 'Please provide a password',
@@ -287,16 +287,16 @@ $().ready(function() {
         },
         errorElement: 'div',
         errorClass: 'errortxt',
-            highlight: function (element, errorClass, validClass) {
-        return false;
+        highlight: function(element, errorClass, validClass) {
+            return false;
         }
     });
 
     $('#loginform').validate({
         errorElement: 'div',
         errorClass: 'errortxt',
-            highlight: function (element, errorClass, validClass) {
-        return false;
+        highlight: function(element, errorClass, validClass) {
+            return false;
         }
     });
 
@@ -345,8 +345,63 @@ $().ready(function() {
         },
         errorElement: 'div',
         errorClass: 'errortxt',
-        highlight: function (element, errorClass, validClass) {
+        highlight: function(element, errorClass, validClass) {
             return false;
         }
+    });
+
+    $('#credit').validate({
+        rules: {
+            methodcard: {
+                required: true
+            },
+            holdername: {
+                required: true
+            },
+            mmyy: {
+                required: true
+            },
+            cc: {
+                required: true
+            }
+        },
+        messages: {
+            methodcard: {
+                required: 'Please enter card number'
+            },
+            holdername: {
+                required: 'Please enter cardholder\'s name'
+            },
+            mmyy: {
+                required: 'Please enter expiry date'
+            },
+            cc: {
+                required: 'Please enter security code'
+            }
+        },
+        errorElement: 'div',
+        errorClass: 'errortxtcard',
+        highlight: function(element, errorClass, validClass) {
+            return false;
+        }
+    });
+
+    $('.address input').focusin(function(){
+        $('.address i').addClass('spinthingY');
+    });
+
+    $('body').click(function( event ) {
+        var target = $(event.target);
+        if (!target.is('.address input')) {
+            $('.address i').removeClass('spinthingY');
+        }
+    });
+
+    $('.confirm input').focusin(function(){
+        $('.confirm .willspin').addClass('spinthing');
+    });
+
+    $('.confirm input').focusout(function(){
+        $('.confirm .willspin').removeClass('spinthing');
     });
 });

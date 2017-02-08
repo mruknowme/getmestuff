@@ -12,7 +12,7 @@
     <script src="../JS/jquery.card.js"></script>
     <script src="../JS/jquery.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
 </head>
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="confirm">
-                            <p class="field">Please enter your current password to confirm changes:</p>
+                            <p class="field"><i class="fa fa-key fa-fw willspin" aria-hidden="true"></i><span>Please enter your current password to confirm changes:</span></p>
                             <input class="field input" type="password" id="currentpaswd" name="currentpaswd" placeholder="Your Current Password">
                             <span class="showpassword">
                                 <i class="fa fa-eye-slash show" aria-hidden="true"></i>
@@ -72,17 +72,28 @@
                                     <a onclick="selectForm('qiwi', 'Qiwi')"><i class="fa fa-google-wallet fa-fw" aria-hidden="true"></i> Qiwi</a>
                                 </div>
                             </div>
-                            <input class="amount" placeholder="Amount">
+                            <form class="dollar">
+                                <input class="amount" placeholder="Amount">
+                                <i class="fa fa-usd" aria-hidden="true"></i>
+                            </form>
                         </div>
                             <form class="pay cf" id="credit">
                                 <div class="bakcgroundcc">
                                     <div class="cardcontainer"></div>
                                     <div class="credittop">
-                                        <input class="input card" type="text" name="card" placeholder="Card Number" autocomplete="off" maxlength="19">
-                                        <input class="input cardname" type="text" placeholder="Cardholder's Name">
+                                        <div class="inputdivisor">
+                                            <input class="input card" type="text" id="methodcard" name="methodcard" placeholder="Card Number" autocomplete="off" maxlength="19">
+                                        </div>
+                                        <div class="inputdivisor">
+                                            <input class="input cardname" id="holdername" name="holdername" type="text" placeholder="Full Name">
+                                        </div>
                                     </div>
-                                    <input class="input carddate" type="text" placeholder="mm/yy" autocomplete="off" maxlength="7">
-                                    <input class="input ccv" type="text" name="ccv" placeholder="CCV" autocomplete="off" maxlength="3">
+                                    <div class="inputdivisor">
+                                        <input class="input carddate" id="mmyy" name="mmyy" type="text" placeholder="mm/yy" autocomplete="off" maxlength="7">
+                                    </div>
+                                    <div class="inputdivisor">
+                                        <input class="input ccv" type="text" id="cc" name="cc" placeholder="CCV" autocomplete="off" maxlength="3">
+                                    </div>
                                 </div>
                                 <div class="btnwrapper">
                                     <button type="submit">Top Up</button>
@@ -119,18 +130,18 @@
                 </section>
                 <section class="createwish formcontent" id="wish">
                     <h1>Make a Wish</h1>
-                    <form>
+                    <form id="shipment">
                         <div class="two">
                             <input type="text" class="field input wish" placeholder="What is Your Wish?" required>
                             <input class="field input wish link" type="text" placeholder="Link to your desired product..." required>
                         </div>
-                        <div class="confirm">
-                            <input type="text" class="field input street" placeholder="Street Name" required>
-                            <input type="text" class="field input house" placeholder="House Number" required>
-                            <input type="text" class="field input flat" placeholder="Falt (optional)">
-                            <input type="text" class="field input city" placeholder="City" required>
-                            <input type="text" class="field input zip" placeholder="Zip Code" required>
-                            <input type="text" class="field input country" placeholder="Country" required>
+                        <div class="address cf">
+                            <p><i class="fa fa-address-card-o fa-fw willspin" aria-hidden="true"></i><span>Please provide your full address:</span></p>
+                            <input type="text" id="streetone" name="streetone" class="field input street" placeholder="Address 1" required>
+                            <input type="text" id="streettwo" name="streettwo" class="field input street" placeholder="Address 2 (optional)">
+                            <input type="text" id="city" name="city" class="field input city" placeholder="City" required>
+                            <input type="text" id="zip" name="zip" class="field input zip" placeholder="Zip Code" required>
+                            <input type="text" id="country" name="country" class="field input country" placeholder="Country" required>
                         </div>
                         <div class="btnwrapper">
                             <button type="submit">Make Your Wish</button>
@@ -177,7 +188,6 @@
     </div>
     <?php require_once("footer.php") ?>
     <script src="../JS/login.js"></script>
-    <script src="../JS/jquery.js"></script>
     <script>
         $("#achievtab").click(function() {
             $('.timerone').countTo({
