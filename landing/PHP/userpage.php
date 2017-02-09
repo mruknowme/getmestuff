@@ -49,7 +49,7 @@
                         </div>
                         <div class="confirm">
                             <p class="field"><i class="fa fa-key fa-fw willspin" aria-hidden="true"></i><span>Please enter your current password to confirm changes:</span></p>
-                            <input class="field input" type="password" id="currentpaswd" name="currentpaswd" placeholder="Your Current Password">
+                            <input class="field input" type="password" id="currentpaswd" name="currentpaswd" placeholder="Your Current Password" autocomplete="off">
                             <span class="showpassword">
                                 <i class="fa fa-eye-slash show" aria-hidden="true"></i>
                                 <i class="fa fa-eye show hidden" aria-hidden="true"></i>
@@ -65,8 +65,8 @@
                     <div class="maintopup">
                         <div class="amountwrapper cf">
                             <div class="dropdown methdofield">
-                                <a onclick="openDropDown()" class="currenttitle" id="menutitle">Credit Card</a>
-                                <div id="paymentmethod" class="dropdownitems">
+                                <a class="currenttitle" id="menutitle">Credit Card</a>
+                                <div id="paymentmethod" class="dropdownitems" style="display: none">
                                     <a onclick="selectForm('credit', 'Credit Card')"><i class="fa fa-credit-card fa-fw" aria-hidden="true"></i> Credit Card</a>
                                     <a onclick="selectForm('paypal', 'PayPal')"><i class="fa fa-paypal fa-fw" aria-hidden="true"></i> PayPal</a>
                                     <a onclick="selectForm('qiwi', 'Qiwi')"><i class="fa fa-google-wallet fa-fw" aria-hidden="true"></i> Qiwi</a>
@@ -132,16 +132,30 @@
                     <h1>Make a Wish</h1>
                     <form id="shipment">
                         <div class="two">
-                            <input type="text" class="field input wish" placeholder="What is Your Wish?" required>
-                            <input class="field input wish link" type="text" placeholder="Link to your desired product..." required>
+                            <div class="wishwrapper">
+                                <input type="text" class="field input wish" id="yourwish" name="yourwish" placeholder="What is Your Wish?">
+                            </div>
+                            <div class="wishwrapper">
+                                <input class="field input wish link" type="text" id="linkwish" name="linkwish" placeholder="Link to your desired product...">
+                            </div>
                         </div>
                         <div class="address cf">
                             <p><i class="fa fa-address-card-o fa-fw willspin" aria-hidden="true"></i><span>Please provide your full address:</span></p>
-                            <input type="text" id="streetone" name="streetone" class="field input street" placeholder="Address 1" required>
-                            <input type="text" id="streettwo" name="streettwo" class="field input street" placeholder="Address 2 (optional)">
-                            <input type="text" id="city" name="city" class="field input city" placeholder="City" required>
-                            <input type="text" id="zip" name="zip" class="field input zip" placeholder="Zip Code" required>
-                            <input type="text" id="country" name="country" class="field input country" placeholder="Country" required>
+                            <div class="addresswrapper">
+                                <input type="text" id="streetone" name="streetone" class="field input street" placeholder="Address 1">
+                            </div>
+                            <div class="addresswrapper">
+                                <input type="text" id="streettwo" name="streettwo" class="field input street" placeholder="Address 2 (optional)">
+                            </div>
+                            <div class="city">
+                                <input type="text" id="city" name="city" class="field input" placeholder="City">
+                            </div>
+                            <div class="zip">
+                                <input type="text" id="zip" name="zip" class="field input" placeholder="Zip Code">
+                            </div>
+                            <div class="country">
+                                <input type="text" id="country" name="country" class="field input" placeholder="Country">
+                            </div>
                         </div>
                         <div class="btnwrapper">
                             <button type="submit">Make Your Wish</button>

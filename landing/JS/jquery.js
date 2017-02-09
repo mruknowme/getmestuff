@@ -1,11 +1,3 @@
-$(document).click(function() {
-    $("#paymentmethod, #date, #year").hide();
-});
-
-$("#menutitle, #datetitle, #yeartitle").click(function(e) {
-    e.stopPropagation();
-});
-
 $(function() {
 
     $(".owl-carousel").owlCarousel({
@@ -353,16 +345,20 @@ $().ready(function() {
     $('#credit').validate({
         rules: {
             methodcard: {
-                required: true
+                required: true,
+                maxlength: false
             },
             holdername: {
-                required: true
+                required: true,
+                maxlength: false
             },
             mmyy: {
-                required: true
+                required: true,
+                maxlength: false
             },
             cc: {
-                required: true
+                required: true,
+                maxlength: false
             }
         },
         messages: {
@@ -386,6 +382,59 @@ $().ready(function() {
         }
     });
 
+    $('#shipment').validate({
+        rules: {
+            yourwish: {
+                required: true
+            },
+            linkwish: {
+                required: true,
+                url: true
+            },
+            streetone: {
+                required: true
+            },
+            streettwo: {
+                required: false
+            },
+            city: {
+                required: true
+            },
+            zip: {
+                required: true
+            },
+            country: {
+                required: true
+            }
+        },
+        messages: {
+            yourwish: {
+                required: 'Please enter your wish'
+            },
+            linkwish: {
+                required: 'Please enter a link to your wish',
+                url: 'Please enter a valid url (including http://)'
+            },
+            streetone: {
+                required: 'Please provide your address'
+            },
+            city: {
+                required: 'Please enter your city name'
+            },
+            zip: {
+                required: 'Please enter your zip code'
+            },
+            country: {
+                required: 'Please enter your country'
+            }
+        },
+        errorElement: 'div',
+        errorClass: 'errortxtaddress',
+        highlight: function(element, errorClass, validClass) {
+            return false;
+        }
+    });
+
     $('.address input').focusin(function(){
         $('.address i').addClass('spinthingY');
     });
@@ -404,4 +453,75 @@ $().ready(function() {
     $('.confirm input').focusout(function(){
         $('.confirm .willspin').removeClass('spinthing');
     });
+
+    $('.dropdown').click(function(){
+        $('#paymentmethod').toggle();
+    });
+
+    $('body').click(function( event ) {
+        var target = $(event.target);
+        if (!target.is('.dropdown, .currenttitle')) {
+            $('#paymentmethod').hide();
+        }
+    });
+
+    /* $('.tab').addClass('notransition');
+
+    setTimeout(function(){
+        $('.tab').removeClass('notransition');
+    }, 2000); */
+
+    $('.tab').click(function(){
+        if(!$(this).hasClass('active')) {
+            $('.tab').toggleClass('active');
+            $('.formcontent').toggle();
+        }
+    });
+
+    var hash = document.location.hash;
+
+    $(window).on('hashchange',function(){
+        hash = document.location.hash;
+        if(hash == '#login') {
+            $('.tab').toggleClass('active');
+            $('.form').addClass('lengththreesixnine');
+            $('.sign').toggle();
+            setTimeout(function(){
+                $('#login').fadeIn();
+            }, 401);
+            setTimeout(function(){
+                $('.form').removeClass('lengththreesixnine');
+            }, 401);
+        } else {
+            $('.tab').toggleClass('active');
+            $('.form').addClass('lengthfivetwoone');
+            $('.login').toggle();
+            setTimeout(function(){
+                $('#signup').fadeIn();
+            }, 401);
+            setTimeout(function(){
+                $('.form').removeClass('lengthfivetwoone');
+            }, 401);
+        }
+    });
+
+    if(hash == '#login') {
+        $('.two').addClass('active');
+        $('.form').addClass('lengththreesixnine');
+        setTimeout(function(){
+            $('#login').fadeIn();
+        }, 401);
+        setTimeout(function(){
+            $('.form').removeClass('lengththreesixnine');
+        }, 401);
+    } else {
+        $('.one').addClass('active');
+        $('.form').addClass('lengthfivetwoone');
+        setTimeout(function(){
+            $('#signup').fadeIn();
+        }, 401);
+        setTimeout(function(){
+            $('.form').removeClass('lengthfivetwoone');
+        }, 401);
+    }
 });

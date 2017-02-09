@@ -13,6 +13,7 @@ header {
     width : 100%;
     height : 70px;
     background-color : white;
+    z-index: 1;
 }
 
 .navtitle {
@@ -56,6 +57,8 @@ main {
 
 body {
     background-color : rgba(201, 219, 225, 0.3);
+    position: relative;
+    z-index: 0;
 }
 
 .tabs {
@@ -102,11 +105,21 @@ body {
 
 .form {
     max-width : 600px;
+    height: auto;
     margin : 40px auto;
     padding : 40px;
     border-radius : 4px;
     background-color : white;
     box-shadow : 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    position: relative;
+}
+
+.sign {
+    height: 424px;
+}
+
+.login {
+    height: 272px;
 }
 
 h1 {
@@ -131,6 +144,38 @@ input {
 input:focus {
     border-color : #A0B3B0;
     outline : 0;
+}
+
+.lengthfivetwoone {
+    animation: lengthone 400ms ease-in-out forwards;
+}
+
+@keyframes lengthone {
+    0% {
+        height: 95px;
+    }
+    70% {
+        height: 550px;
+    }
+    100% {
+        height: 521px;
+    }
+}
+
+.lengththreesixnine {
+    animation: lengthtwo 400ms ease-in-out forwards;
+}
+
+@keyframes lengthtwo {
+    0% {
+        height: 95px;
+    }
+    70% {
+        height: 400px;
+    }
+    100% {
+        height: 369px;
+    }
 }
 
 .toprow {
@@ -167,9 +212,11 @@ button:hover {
 }
 
 .forgot {
-    margin-top : -30px;
-    margin-bottom : 20px;
     text-align : right;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    bottom: 110px;
 }
 
 .forgot a {
@@ -182,12 +229,7 @@ button:hover {
 }
 
 #signup {
-    display : block;
     position: relative;
-}
-
-#login {
-    display : none;
 }
 
 .up {
@@ -252,6 +294,10 @@ lable.signlable {
 .inputsign:focus ~ lable, .inputsign.hasvalue ~ lable {
     top: -15px;
     left: 0;
+}
+
+.notransition {
+    transition: none;
 }
 
 @-moz-document url-prefix() { 

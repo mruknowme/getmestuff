@@ -18,10 +18,10 @@
     <main>
         <section class="form">
             <ul class="tabs">
-                <li><a class="tab active" id="one" href="javascript:void(0)" onclick="openTab(event, 'signup')">Sing Up</a></li>
-                <li><a class="tab" id="two" href="javascript:void(0)" onclick="openTab(event, 'login')">Log In</a></li>
+                <li><a class="tab one">Sing Up</a></li>
+                <li><a class="tab two">Log In</a></li>
             </ul>
-            <div class="formcontent sing" id="signup">
+            <div class="formcontent sign" id="signup" style="display: none;">
                 <h1>Sign Up</h1>
                 <form action="" mehtod="" id="singupform">
                     <div class="toprow cf" id="topsignup">
@@ -51,7 +51,7 @@
                     <button type="submit">Get Started</button>
                 </form>
             </div>
-            <div class="formcontent" id="login">
+            <div class="formcontent login" id="login" style="display: none;">
                 <h1>Welcome Back</h1>
                 <form action="" method="" id="loginform">
                     <div class="secondary">
