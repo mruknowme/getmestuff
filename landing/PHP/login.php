@@ -3,6 +3,7 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="../CSS/login_style.css" rel="stylesheet" type="text/css">
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -64,9 +65,25 @@
                             <lable class="signlable">Passowrd</lable>
                         </div>
                     </div>
-                    <p class="forgot"><a href="">Forgot Password?</a></p>
                     <button type="submit">Log In</button>
                 </form>
+                <div class="forgot">
+                    <p class="forgotp">Forgot Password?</p>
+                    <div class="getpass cf" style="display: none;">
+                    <div class="arrow"></div>
+                        <div class="passwrapper">
+                            <form style="display: block">
+                                <lable>Enter your email:</lable>
+                                <input type="email">
+                                <button type="submit">Send</button>
+                            </form>
+                            <div class="done" style="display: none">
+                                <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                                <p>Check your inbox</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

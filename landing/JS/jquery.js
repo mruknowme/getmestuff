@@ -465,37 +465,26 @@ $().ready(function() {
         }
     });
 
-    /* $('.tab').addClass('notransition');
-
-    setTimeout(function(){
-        $('.tab').removeClass('notransition');
-    }, 2000); */
-
-    $('.tab').click(function(){
-        if(!$(this).hasClass('active')) {
-            $('.tab').toggleClass('active');
-            $('.formcontent').toggle();
-        }
-    });
-
     var hash = document.location.hash;
 
     $(window).on('hashchange',function(){
         hash = document.location.hash;
-        if(hash == '#login') {
-            $('.tab').toggleClass('active');
+        if(hash == '#login' && $('.login').is(':hidden')) {
+            $('.two').addClass('active');
+            $('.one').removeClass('active');
             $('.form').addClass('lengththreesixnine');
-            $('.sign').toggle();
+            $('.sign').hide();
             setTimeout(function(){
                 $('#login').fadeIn();
             }, 401);
             setTimeout(function(){
                 $('.form').removeClass('lengththreesixnine');
             }, 401);
-        } else {
-            $('.tab').toggleClass('active');
+        } else if(hash == '#signup' && $('.sign').is(':hidden')) {
+            $('.one').addClass('active');
+            $('.two').removeClass('active');
             $('.form').addClass('lengthfivetwoone');
-            $('.login').toggle();
+            $('.login').hide();
             setTimeout(function(){
                 $('#signup').fadeIn();
             }, 401);
@@ -505,23 +494,84 @@ $().ready(function() {
         }
     });
 
-    if(hash == '#login') {
-        $('.two').addClass('active');
-        $('.form').addClass('lengththreesixnine');
+    $(function(){
+        if(hash == '#login') {
+            $('.two').addClass('active');
+            $('.form').addClass('lengththreesixnine');
+            setTimeout(function(){
+                $('#login').fadeIn();
+            }, 401);
+            setTimeout(function(){
+                $('.form').removeClass('lengththreesixnine');
+            }, 401);
+        } else if(hash == '#signup') {
+            $('.one').addClass('active');
+            $('.form').addClass('lengthfivetwoone');
+            setTimeout(function(){
+                $('#signup').fadeIn();
+            }, 401);
+            setTimeout(function(){
+                $('.form').removeClass('lengthfivetwoone');
+            }, 401);
+        }
+    });
+
+    $('.tab').click(function(event){
+        var tabtarget = $(event.target);
+        if(!tabtarget.hasClass('active')) {
+            $('.tab').toggleClass('active');
+            $('.formcontent').toggle();
+        }
+    });
+
+    $('.tabusr').click(function(event){
+        var tabtarget = $(event.target);
+        var tabid = tabtarget.attr('data-tab');
+        if(!tabtarget.hasClass('active')) {
+            $('.tabusr').removeClass('active');
+            tabtarget.addClass('active');
+            $('.formcontentusr').hide();
+            $('#'+tabid).show();
+        }
+    });
+    
+    $('.forgot p').click(function(event){
+        var x;
+        if(!$('div.getpass').hasClass('opengetpass')) {
+            x = event.pageX - $('div.forgot').offset().left + 88;
+        }
+        $('div.arrow').css('left', x);
+        $('div.getpass').removeClass('closegetpass');
+        $('div.getpass').show();
+        $('div.getpass').addClass('opengetpass');
+    });
+
+    $('.getpass form button').click(function(){
+        $('.getpass form').addClass('flyout');
         setTimeout(function(){
-            $('#login').fadeIn();
-        }, 401);
+                $('.getpass form').hide();
+        }, 500);
         setTimeout(function(){
-            $('.form').removeClass('lengththreesixnine');
-        }, 401);
-    } else {
-        $('.one').addClass('active');
-        $('.form').addClass('lengthfivetwoone');
-        setTimeout(function(){
-            $('#signup').fadeIn();
-        }, 401);
-        setTimeout(function(){
-            $('.form').removeClass('lengthfivetwoone');
-        }, 401);
-    }
+                $('.getpass .done').show();
+                $('.getpass .done').addClass('flyin');
+        }, 100);
+    });
+
+    $('body').click(function( event ) {
+        var target = $(event.target);
+        if (!target.is('.getpass lable, div.forgot p, .getpass input, .getpass button')) {
+            $('div.getpass').removeClass('opengetpass');
+            $('div.getpass').addClass('closegetpass');
+            setTimeout(function(){
+                $('div.getpass').hide();
+            }, 300);
+            setTimeout(function(){
+                $('.getpass form').removeClass('flyout');
+                $('.getpass form').removeClass('flyout');
+                $('.getpass form').show();
+                $('.getpass .done').hide();
+            }, 301);
+        }
+    });
+
 });

@@ -103,7 +103,7 @@ body {
 	clear: right;
 }
 
-.usernav .tab {
+.usernav .tabusr {
 	box-sizing: border-box;
 	height: 30px;
 	background-color: white;
@@ -127,7 +127,7 @@ body {
 	border-right: 1px solid rgb(241, 104, 118);
 }
 
-.usernav .tab:hover {
+.usernav .tabusr:hover {
 	background-color: rgb(236, 58, 76);
 	color: white;
 }
@@ -137,7 +137,7 @@ body {
 	color: white;
 }
 
-.formcontent {
+.formcontentusr {
 	margin-left: 2%;
 	margin-right: 2%;
 	padding-bottom: 15px;

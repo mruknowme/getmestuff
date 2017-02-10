@@ -27,14 +27,14 @@
             </section>
             <aside class="usernav cf">
                 <ul>
-                    <li><a class="tab active" onclick="openTab(event, 'settings')">Account Settings</a></li>
-                    <li><a class="tab" onclick="openTab(event, 'money')">Top Up</a></li>
-                    <li><a class="tab" id="achievtab" onclick="openTab(event, 'achievements')">Achievements</a></li>
-                    <li><a class="tab lastuser" onclick="openTab(event, 'wish')">Make a Wish</a></li>
+                    <li><a class="tabusr active" data-tab="settings">Account Settings</a></li>
+                    <li><a class="tabusr" data-tab="money">Top Up</a></li>
+                    <li><a class="tabusr" id="achievtab" data-tab="achievements">Achievements</a></li>
+                    <li><a class="tabusr lastuser" data-tab="wish">Make a Wish</a></li>
                 </ul>
             </aside>
             <div class="maincontent">
-                <section class="accountsettings formcontent" id="settings">
+                <section class="accountsettings formcontentusr" id="settings">
                     <h1>Edit Profile</h1>
                     <form id="edit">
                         <div class="mainformcontent">
@@ -60,7 +60,7 @@
                         </div>
                     </form>
                 </section>
-                <section class="topup formcontent" id="money">
+                <section class="topup formcontentusr" id="money">
                     <h1>Top Up Your Wallet</h1>
                     <div class="maintopup">
                         <div class="amountwrapper cf">
@@ -115,7 +115,7 @@
                         </form>
                     </div>
                 </section>
-                <section class="formcontent" id="achievements">
+                <section class="formcontentusr" id="achievements">
                     <h1>Your Achievements</h1>
                     <div class="numbers">
                         <div class="donatedrow">
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="createwish formcontent" id="wish">
+                <section class="createwish formcontentusr" id="wish">
                     <h1>Make a Wish</h1>
                     <form id="shipment">
                         <div class="two">

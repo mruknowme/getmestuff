@@ -219,12 +219,12 @@ button:hover {
     bottom: 110px;
 }
 
-.forgot a {
+.forgot .forgotp {
     text-decoration : none;
     color : black;
 }
 
-.forgot a:hover {
+.forgot .forgotp:hover {
     color : green;
 }
 
@@ -256,6 +256,7 @@ button:hover {
 
 .inputwrapper {
     position: relative;
+    z-index: 0;
 }
 
 lable.signlable {
@@ -296,8 +297,162 @@ lable.signlable {
     left: 0;
 }
 
-.notransition {
-    transition: none;
+.getpass {
+    position: absolute;
+    background-color: white;
+    padding: 10px 20px 15px 20px;
+    box-shadow : 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    width: 202%;
+    top: 29px;
+    border: 1px solid #7a7a7a;
+    right: -60px;
+    cursor: initial;
+    transform-origin: center 0px;
+    z-index: 0;
+    height: 49.6px;
+    font-family : 'Lato', sans-serif;
+}
+
+.flyout {
+    animation: passformout 500ms ease-in-out forwards;
+}
+
+.flyin {
+    animation: passformin 300ms ease-in-out forwards;
+}
+
+.getpass form {
+    position: absolute;
+}
+
+.getpass .done {
+    position: absolute;
+    left: 50%;
+    margin-left: -60.4666px;
+}
+
+.done i {
+    display: block;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 27.43333px;
+    color: #1D9D74;
+}
+
+.done p {
+    position: relative;
+    text-align: left;
+    display: block;
+    width: 120.93333px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5px;
+    font-size: 1em;
+}
+
+.opengetpass {
+    animation: noteplus 500ms ease-in-out forwards;
+}
+
+.closegetpass {
+    animation: noteminus 500ms ease-in-out forwards;
+}
+
+@keyframes passformin {
+    0% {
+        left: 120%;
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+@keyframes passformout {
+    0% {
+        opacity: 1;
+        left: 0%;
+    }
+    100% {
+        left: -110%;
+        opacity: 0;
+    }
+}
+
+@keyframes noteminus {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+@keyframes noteplus {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) rotate(-30deg) translateY(-50px) rotateX(90deg);
+    }
+    50% {
+        transform: rotate(10deg) rotateX(-2deg);
+        opacity: 1;
+    }
+    70% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.passwrapper {
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+}
+
+.arrow {
+    content: "";
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    transform: rotate(45deg);
+    background-color: white;
+    border-top: 1px solid #7a7a7a;
+    border-left: 1px solid #7a7a7a;
+    box-shadow : -4px -2px 10px -5px rgba(19, 35, 47, 0.3);
+    z-index: 1;
+    bottom: 100%;
+    margin-bottom: -10px;
+}
+
+.getpass lable {
+    text-align: left;
+    font-size: 0.8em;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.getpass input {
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 3px;
+    line-height: 0.8em;
+    height: 30px;
+    margin-bottom: 0px;
+    float: left;
+}
+
+.getpass button {
+    height: 30px;
+    font-size: 0.8em;
+    line-height: 1px;
+    width: 80px;
+    float: left;
+    display: inline-block;
+    margin-bottom: 0px;
 }
 
 @-moz-document url-prefix() { 
