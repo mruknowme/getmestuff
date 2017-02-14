@@ -5,7 +5,8 @@ $(function() {
         items: 1,
         autoplay: true,
         autoplayTimeout: 5000,
-        autoplayHoverPause: true
+        autoplayHoverPause: true,
+        autoHeight: true
     });
 
     $('#mainsection').waypoint(function(direction) {
@@ -14,7 +15,7 @@ $(function() {
 
         $('#linkone').hover(function() {
             $('.toolone').css('opacity', '1');
-            $('#linkone svg').css('fill', 'rgb(201, 219, 225)');
+            $('#linkone svg').css('fill', '#ccccf0');
         }, function() {
             $('.toolone').css('opacity', '0');
             $('#linkone svg').css('fill', 'transparent');
@@ -43,25 +44,25 @@ $(function() {
     });
 
     $('#how').waypoint(function() {
-        $('.jumpto span').css('color', 'rgb(201, 219, 225)');
-        $('.jumpto svg').css('stroke', 'rgb(201, 219, 225)');
+        $('.jumpto span').css('color', '#ccccf0');
+        $('.jumpto svg').css('stroke', '#ccccf0');
         $('.toolone').css('opacity', '1');
         $('.tooltwo').css('opacity', '0');
         $('.toolthree').css('opacity', '0');
         $('.toolfour').css('opacity', '0');
-        $('#linkone svg').css('fill', 'rgb(201, 219, 225)');
+        $('#linkone svg').css('fill', '#ccccf0');
         $('#linktwo svg').css('fill', 'transparent');
         $('#linkthree svg').css('fill', 'transparent');
         $('#linkfour svg').css('fill', 'transparent');
 
         $('#linkone').hover(function() {
             $('.toolone').css('opacity', '1');
-            $('#linkone svg').css('fill', 'rgb(201, 219, 225)');
+            $('#linkone svg').css('fill', '#ccccf0');
         });
 
         $('#linktwo').hover(function() {
             $('.tooltwo').css('opacity', '1');
-            $('#linktwo svg').css('fill', 'rgb(201, 219, 225)');
+            $('#linktwo svg').css('fill', '#ccccf0');
         }, function() {
             $('.tooltwo').css('opacity', '0');
             $('#linktwo svg').css('fill', 'transparent');
@@ -69,7 +70,7 @@ $(function() {
 
         $('#linkthree').hover(function() {
             $('.toolthree').css('opacity', '1');
-            $('#linkthree svg').css('fill', 'rgb(201, 219, 225)');
+            $('#linkthree svg').css('fill', '#ccccf0');
         }, function() {
             $('.toolthree').css('opacity', '0');
             $('#linkthree svg').css('fill', 'transparent');
@@ -77,7 +78,7 @@ $(function() {
 
         $('#linkfour').hover(function() {
             $('.toolfour').css('opacity', '1');
-            $('#linkfour svg').css('fill', 'rgb(201, 219, 225)');
+            $('#linkfour svg').css('fill', '#ccccf0');
         }, function() {
             $('.toolfour').css('opacity', '0');
             $('#linkfour svg').css('fill', 'transparent');

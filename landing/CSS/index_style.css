@@ -13,21 +13,29 @@ header {
 	width: 100%;
 	height: 70px;
 	background-color: white;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	z-index: 1000;
 }
 
 .navtitle {
 	display: inline-block;
-	margin-top: 27px;
-	margin-left: 14%;
 	font-family: 'Merriweather', serif;
 	font-size: 1.25em;
 }
 
 nav {
-	float: right;
-	margin-top: 25px;
-	margin-right: 14%;
 	font-size: 1em;
+	min-width: 300px;
+	width: 585px;
+}
+
+nav ul {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 }
 
 nav .menulink {
@@ -44,7 +52,6 @@ nav .menulink:hover {
 nav .menu {
 	display: inline;
 	box-sizing: border-box;
-	padding: 0 30px;
 }
 
 nav .current {
@@ -57,8 +64,9 @@ main {
 
 .jumpto {
 	position: fixed;
-	margin-top: -250px;
-	margin-left: 75%;
+	right: 20px;
+	top: 40%;
+	margin-top: -70px;
 }
 
 .jumpto li {
@@ -70,14 +78,13 @@ main {
 .jumpto svg {
 	float: right;
 	transition: all 0.4s;
-
 	fill: transparent;
-	stroke: rgb(201, 219, 225);
+	stroke: #ccccf0;
 	stroke-width: 2;
 }
 
 .jumpto svg:hover {
-	fill: rgb(201, 219, 225);
+	fill: #ccccf0;
 }
 
 .jumpto span {
@@ -113,12 +120,15 @@ main {
 
 .content {
 	box-sizing: border-box;
-	width: 980px;
+	width: auto;
 	height: 470px;
 	margin-top: -70px;
-	margin-right: 14%;
-	margin-left: 14%;
+	margin-right: 7%;
+	margin-left: 7%;
 	padding-top: 70px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .mainwrapper {
@@ -129,12 +139,26 @@ main {
 
 .main {
 	height: 580px;
-	text-align: center;
 	background-color: rgba(0, 25, 150, 0.1);
 }
 
 .maintextwrapper {
-	padding: 128.91px 14% 0 14%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	z-index: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-right: 10%;
+	margin-left: 10%;
+	height: 300px;
+}
+
+.first {
+	min-height: 86px;
+	height: auto;
 }
 
 .maintextwrapper .item {
@@ -211,32 +235,13 @@ p {
 .divisionwrapper {
 	display: inline-block;
 	width: 100%;
-	background-color: rgba(201, 219, 225, 0.3);
+	background-color: #e8ecf8;
 }
 
-.howimg {
-	display: inline-block;
-	margin-top: 75px;
-	margin-left: 50px;
-}
-
-.how {
-	float: right;
-	margin-top: 77.3px;
-	margin-right: 50px;
-}
-
-.whoimg {
-	display: inline-block;
-	float: right;
-	margin-top: 75px;
-	margin-right: 50px;
-}
-
-.we {
-	float: left;
-	margin-top: 58.2px;
-	margin-left: 50px;
+.contact {
+	width: auto;
+	margin-right: 14%;
+	margin-left: 14%;
 }
 
 .story h3 {
@@ -244,37 +249,36 @@ p {
 }
 
 .success {
-	display: inline-block;
 	width: 300px;
 	text-align: center;
 }
 
-.storywarpper {
-	display: inline-block;
-	margin-top: 110.1px;
+.successwrapper {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
-.middle {
-	margin-right: 36px;
-	margin-left: 36px;
+.formwrapper {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	float: left;
+	width: 100%;
 }
 
-.contact h3 {
+.contactwarpper h3 {
+	width: 54.7%;
 	float: right;
-	width: 500px;
 }
 
 .contact p {
 	display: inline-block;
-	float: left;
 	width: 320px;
-	margin-top: 68.4px;
 }
 
 .contact form {
-	display: inline-block;
-	float: right;
-	width: 600px;
+	width: 500px;
 }
 
 .contact form input, textarea {
@@ -311,12 +315,6 @@ p {
 	resize: none;
 }
 
-.contactwarpper {
-	display: inline-block;
-	height: auto;
-	margin-top: 48.3px;
-}
-
 ::-webkit-input-placeholder {
    font-family: 'Lato', sans-serif;
    font-size: 1.1em;
@@ -340,9 +338,23 @@ p {
    color: #777777;  
 }
 
+.cf {
+	zoom: 1;
+}
+
+.cf:before, .cf:after {
+	content: " ";
+    display: table;
+}
+
+.cf:after {
+	clear: both;
+}
+
 footer {
 	width: 100%;
 	height: 70px;
-	border-top: 1px outset black;
+	border-top: 1px solid #929292;
 	background-color: white;
+	margin-top: -4px;
 }

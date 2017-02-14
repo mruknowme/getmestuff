@@ -71,7 +71,7 @@
                     <p class="forgotp">Forgot Password?</p>
                     <div class="getpass cf" style="display: none;">
                     <div class="arrow"></div>
-                        <div class="passwrapper">
+                        <div class="passwrapper cf">
                             <form style="display: block">
                                 <lable>Enter your email:</lable>
                                 <input type="email">

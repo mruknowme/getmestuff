@@ -1,4 +1,4 @@
-* {
+*, *:before, *:after {
 	margin: 0;
 	padding: 0;
 	vertical-align: baseline;
@@ -6,6 +6,7 @@
 	outline: 0;
 	background: transparent;
 	font-size: 100%;
+	box-sizing: border-box;
 }
 
 header {
@@ -13,41 +14,49 @@ header {
 	width: 100%;
 	height: 70px;
 	background-color: white;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	z-index: 1000;
 }
 
 .navtitle {
 	display: inline-block;
-	margin-top: 27px;
-	margin-left: 14%;
 	font-family: 'Merriweather', serif;
 	font-size: 1.25em;
 }
 
 nav {
-	float: right;
-	margin-top: 25px;
-	margin-right: 14%;
 	font-size: 1em;
+	min-width: 300px;
+	width: 585px;
 }
 
-nav a {
+nav ul {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+nav .menulink {
+	cursor: pointer;
 	text-decoration: none;
 	color: black;
 	font-family: 'Open Sans', serif;
 }
 
-nav a:hover {
+nav .menulink:hover {
 	color: #707070;
+}
+
+nav .menu {
+	display: inline;
+	box-sizing: border-box;
 }
 
 nav .current {
 	color: blue;
-}
-
-nav li {
-	display: inline;
-	box-sizing: border-box;
-	padding: 0 30px;
 }
 
 main {
@@ -56,54 +65,161 @@ main {
 
 .mainheadingwrapper {
 	width: 100%;
-	height: 275px;
-	background-color: rgba(0, 25, 150, 0.1);
-	background-image: url(../IMG/aboutbackground.jpg);
-	background-attachment: fixed;
+	height: 190px;
+	background-color: #f16876;
+	display: flex;
+	align-items: center;
 }
 
 .mainheadingwrapper h1 {
-	display: inline-block;
-	margin-top: 101.5px;
-	margin-left: 14%;
 	color: white;
-	font-size: 3.75em;
+	font-size: 3em;
+	margin-left: 12.5%;
+	font-family: 'Open Sans', serif;
 }
 
-section {
+section.ourtimeline {
 	width: 100%;
-	height: 400px;
+	padding: 20px;
+	background-image: url(../IMG/absurdity.png);
 }
 
-.secondwrapper {
-	width: 554px;
-	margin-right: 14%;
-	margin-left: 14%;
+.timeline {
+	max-width: 1100px;
+	margin: 0 auto;
 }
 
-.secondwrapper h2 {
-	margin-bottom: 20px;
-	font-family: 'Merriweather', sans-serif;
-	font-size: 1.75em;
+.timelinecontainer {
+	width: 100%;
+	margin: 0px auto;
+	padding: 0 10px;
+	position: relative;
 }
 
-.secondwrapper p {
+.timelinecontainer:before {
+	content: "";
+	width: 3px;
+	height: 100%;
+	background: #a3a3a3;
+	left: 50%;
+	top: 7px;
+	position: absolute;
+}
+
+.timelinecontainer:after {
+	content: "";
+	clear: both;
+	display: table;
+	width: 100%;
+}
+
+.timelinecontainer .timelineitem {
+	margin-bottom: 35px;
+	position: relative;
+	width: 50%;
+	float: left;
+}
+
+.timelinecontainer .timelineitem .timelineicon {
+	width: 20px;
+	height: 20px;
+	background: #a3a3a3;
+	position: absolute;
+	top: 7px;
+	left: 100%;
+	border-radius: 50%;
+	margin-left: -8.5px;
+}
+
+.timelinecontainer .timelineitem .timelinecontent {
+	width: 95%;
+	background: #fff;
+	padding: 20px;
+	box-shadow : 0 4px 5px 1px rgba(19, 35, 47, 0.3);
+	border-radius: 5px;
+}
+
+.timelinecontainer .timelineitem .timelinecontent:before {
+	content: '';
+	position: absolute;
+	left: 95%;
+	margin-left: -8px;
+	top: 10px;
+	width: 15px;
+	height: 15px;
+	transform: rotate(45deg);
+	background-color: #F16876;
+}
+
+.timelinecontainer .timelineitem.first:before {
+	content: '2017';
+	font-size: 1em;
+	text-align: center;
+	line-height: 2.5em;
+	color: white;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #C1CFF8;
+	position: absolute;
+	left: 100%;
+	top: -55px;
+	margin-left: -18.5px;
+}
+
+.timelinecontainer .timelineitem:nth-child(1) {
+	margin-top: 55px;
+}
+
+.timelinecontainer .timelineitem:nth-child(2) {
+	margin-top: 140px;
+}
+
+.timelinecontainer .timelineitem.inverted {
+	float: right;
+}
+
+.timelinecontainer .timelineitem.inverted .timelineicon {
+	left: 0%;
+	margin-left: -8.5px;
+}
+
+.timelinecontainer .timelineitem .timelinecontent h2 {
+	padding: 20px;
+	font-family: 'Merriweather', serif;
+	font-size: 1.15em;
+	color: #fff;
+	background-color: #F16876;
+	margin: -20px -20px 10px -20px;
+	border-radius: 3px 3px 0 0;
+}
+
+.timelinecontainer .timelineitem .timelinecontent p {
 	font-family: 'Lato', sans-serif;
-	font-size: 1.1em;
+	font-size: 1em;
+	color: #444;
+	line-height: 1.4em;
 }
 
-.one {
-	display: inline-block;
-	margin-top: 150px;
+.timelinecontainer .timelineitem .timelinecontent.right {
+	float: right;
 }
 
-.two {
-	display: inline-block;
-	margin-top: 150px;
+.timelinecontainer .timelineitem .timelinecontent.right:before {
+	left: 5%;
 }
 
-.division {
-	background-color: rgba(201, 219, 225, 0.3);
+.cf {
+	zoom: 1;
+}
+
+.cf:before, .cf:after {
+	content: " ";
+    display: table;
+}
+
+.cf:after {
+	clear: both;
 }
 
 footer {

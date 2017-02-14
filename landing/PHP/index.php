@@ -12,8 +12,8 @@
     <script src="../JS/jquery.countTo.js"></script>
     <script src="../JS/jquery.lazyload.js"></script>
     <script src="../JS/jquery.waypoints.js"></script>
-    <script src="../JS/jquery.js"></script>
     <script src="../JS/owl.carousel.min.js"></script>
+    <script src="../JS/jquery.js"></script>
 
     <script>
         $(function() {
@@ -40,15 +40,18 @@
                 <div class="maintextwrapper">
                     <h1>GetMeStuff</h1>
                     <div class="owl-carousel owl-theme">
-                    <div class="item"><p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p></div>
-                    <div class="item"><p>Information about something1</p></div>
-                    <div class="item"><p>Information about something2</p></div>
-                    <div class="item"><p>Information about something3</p></div>
-                    <div class="item"><p>Information about something4</p></div>
-                    <div class="item"><p>Information about something5</p></div>
+                        <div class="item first"><p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p></div>
+                        <div class="item"><p>Information about something1</p></div>
+                        <div class="item"><p>Information about something2</p></div>
+                        <div class="item"><p>Information about something3</p></div>
+                        <div class="item"><p>Information about something4</p></div>
+                        <div class="item"><p>Information about something5</p></div>
                     </div>
                     <a class="mainbtn" href="login.php">Sign Up</a>
-                    <aside class="jumpto">
+                </div>
+            </section>
+        </div>
+        <aside class="jumpto">
                       <ul class="quicknav">
                         <li>
                           <span class="toolone">How it works?</span>
@@ -83,10 +86,7 @@
                           </a>
                         </li>
                       </ul>
-                    </aside>
-                </div>
-            </section>
-        </div>
+        </aside>
         <section class="about content" id="how">
             <img class="howimg lazy" data-original="../IMG/placeholder250.png">
             <div class="secondtextwrapper how">
@@ -131,13 +131,15 @@
             <section class="contact content" id="contact">
                 <div class="contactwarpper">
                     <h3>Contact Us</h3>
-                    <p>We would like to here from you about any suggestions or problems.</p>
-                    <form>
-                        <input type="text" name="name" placeholder="Name">
-                        <input type="email" name="email" placeholder="Email">
-                        <textarea name="message" placeholder="Message"></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
+                    <div class="formwrapper">
+                        <p>We would like to here from you about any suggestions or problems.</p>
+                        <form>
+                            <input type="text" name="name" placeholder="Name">
+                            <input type="email" name="email" placeholder="Email">
+                            <textarea name="message" placeholder="Message"></textarea>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </section>
         </div>
