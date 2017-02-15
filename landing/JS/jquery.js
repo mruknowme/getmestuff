@@ -436,6 +436,26 @@ $().ready(function() {
         }
     });
 
+    $('#forgotform').validate({
+        rules: {
+            mailf: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            mailf: {
+                required: 'This field is required',
+                email: 'Please provide a valid email'
+            }
+        },
+        errorElement: 'div',
+        errorClass: 'errortxtpass',
+        highlight: function(element, errorClass, validClass) {
+            return false;
+        }
+    });
+
     $('.address input').focusin(function(){
         $('.address i').addClass('spinthingY');
     });
@@ -473,25 +493,23 @@ $().ready(function() {
         if(hash == '#login' && $('.login').is(':hidden')) {
             $('.two').addClass('active');
             $('.one').removeClass('active');
-            $('.form').addClass('lengththreesixnine');
-            $('.sign').hide();
+            $('.sign').fadeOut(100);
             setTimeout(function(){
-                $('#login').fadeIn();
-            }, 401);
+                $('.form').css('height', '367px');
+            }, 100);
             setTimeout(function(){
-                $('.form').removeClass('lengththreesixnine');
-            }, 401);
+                $('#login').fadeIn(100);
+            }, 400);
         } else if(hash == '#signup' && $('.sign').is(':hidden')) {
             $('.one').addClass('active');
             $('.two').removeClass('active');
-            $('.form').addClass('lengthfivetwoone');
-            $('.login').hide();
+            $('.login').fadeOut(100);
             setTimeout(function(){
-                $('#signup').fadeIn();
-            }, 401);
+                $('.form').css('height', '521px');
+            }, 100);
             setTimeout(function(){
-                $('.form').removeClass('lengthfivetwoone');
-            }, 401);
+                $('#signup').fadeIn(100);
+            }, 400);
         }
     });
 
@@ -505,6 +523,9 @@ $().ready(function() {
             setTimeout(function(){
                 $('.form').removeClass('lengththreesixnine');
             }, 401);
+            setTimeout(function(){
+                $('.form').css('height', '367px');
+            }, 402);
         } else if(hash == '#signup') {
             $('.one').addClass('active');
             $('.form').addClass('lengthfivetwoone');
@@ -514,14 +535,41 @@ $().ready(function() {
             setTimeout(function(){
                 $('.form').removeClass('lengthfivetwoone');
             }, 401);
+            setTimeout(function(){
+                $('.form').css('height', '521px');
+            }, 402);
         }
     });
 
-    $('.tab').click(function(event){
+    /* $('.tab').click(function(event){
         var tabtarget = $(event.target);
         if(!tabtarget.hasClass('active')) {
             $('.tab').toggleClass('active');
             $('.formcontent').toggle();
+        }
+    }); */
+
+    $('.tab').click(function(event){
+        var tabtarget = $(event.target);
+        var tabid = tabtarget.attr('data-tab');
+        if(tabid == 'login' && !tabtarget.hasClass('active')) {
+            $('.tab').toggleClass('active');
+            $('#signup').fadeOut(100);
+            setTimeout(function(){
+                $('.form').css('height', '367px');
+            }, 100);
+            setTimeout(function(){
+                $('#login').fadeIn();
+            }, 400);
+        } else if(tabid == 'signup' && !tabtarget.hasClass('active'))  {
+            $('.tab').toggleClass('active');
+            $('#login').fadeOut(100);
+            setTimeout(function(){
+                $('.form').css('height', '519px');
+            }, 100);
+            setTimeout(function(){
+                $('#signup').fadeIn();
+            }, 400);
         }
     });
 
@@ -548,14 +596,19 @@ $().ready(function() {
     });
 
     $('.getpass form button').click(function(){
-        $('.getpass form').addClass('flyout');
-        setTimeout(function(){
+        var value = $('#mailf').val();
+        var error = $('.errortxtpass').is(':visible');
+        if(error || !value) {
+        } else {
+            $('.getpass form').addClass('flyout');
+            setTimeout(function(){
                 $('.getpass form').hide();
-        }, 500);
-        setTimeout(function(){
+            }, 500);
+            setTimeout(function(){
                 $('.getpass .done').show();
                 $('.getpass .done').addClass('flyin');
-        }, 100);
+            }, 100);
+        }
     });
 
     $('body').click(function( event ) {

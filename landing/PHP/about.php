@@ -21,6 +21,9 @@
         </div>
         <section class="ourtimeline">
             <div class="timeline">
+                <div class="seventeen">
+                    <span>2017</span>
+                </div>
                 <div class="timelinecontainer">
                     <div class="timelineitem first">
                         <div class="timelineicon">

@@ -119,6 +119,8 @@ body {
     background-color : white;
     box-shadow : 0 4px 10px 4px rgba(19, 35, 47, 0.3);
     position: relative;
+    transition: all 300ms;
+    max-height: 550px;
 }
 
 .sign {
@@ -127,6 +129,7 @@ body {
 
 .login {
     height: 272px;
+    position: relative;
 }
 
 h1 {
@@ -154,14 +157,14 @@ input:focus {
 }
 
 .lengthfivetwoone {
-    animation: lengthone 400ms ease-in-out forwards;
+    animation: lengthone 500ms ease-in-out forwards;
 }
 
 @keyframes lengthone {
     0% {
         height: 95px;
     }
-    70% {
+    50% {
         height: 550px;
     }
     100% {
@@ -177,7 +180,7 @@ input:focus {
     0% {
         height: 95px;
     }
-    70% {
+    50% {
         height: 400px;
     }
     100% {
@@ -222,8 +225,8 @@ button:hover {
     text-align : right;
     cursor: pointer;
     position: absolute;
-    right: 40px;
-    bottom: 110px;
+    right: 0px;
+    bottom: 70px;
     perspective: 500px;
 }
 
@@ -260,6 +263,15 @@ button:hover {
     float: left;
     margin-top: -30px;
     color: orangered;
+}
+
+.errortxtpass {
+    position: absolute;
+    color: orangered;
+    font-family : 'Lato', sans-serif;
+    font-size : 0.7em;
+    top: 95%;
+    left: 2px;
 }
 
 .inputwrapper {

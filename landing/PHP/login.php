@@ -19,8 +19,8 @@
     <main>
         <section class="form">
             <ul class="tabs">
-                <li><a class="tab one">Sing Up</a></li>
-                <li><a class="tab two">Log In</a></li>
+                <li><a class="tab one" data-tab="signup">Sing Up</a></li>
+                <li><a class="tab two" data-tab="login">Log In</a></li>
             </ul>
             <div class="formcontent sign" id="signup" style="display: none;">
                 <h1>Sign Up</h1>
@@ -72,10 +72,10 @@
                     <div class="getpass cf" style="display: none;">
                     <div class="arrow"></div>
                         <div class="passwrapper cf">
-                            <form style="display: block">
+                            <form id="forgotform" style="display: block">
                                 <lable>Enter your email:</lable>
-                                <input type="email">
-                                <button type="submit">Send</button>
+                                <input id="mailf" name="mailf">
+                                <button>Send</button>
                             </form>
                             <div class="done" style="display: none">
                                 <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
