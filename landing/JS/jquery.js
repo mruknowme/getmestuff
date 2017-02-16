@@ -565,7 +565,7 @@ $().ready(function() {
             $('.tab').toggleClass('active');
             $('#login').fadeOut(100);
             setTimeout(function(){
-                $('.form').css('height', '519px');
+                $('.form').css('height', '521px');
             }, 100);
             setTimeout(function(){
                 $('#signup').fadeIn();
@@ -588,11 +588,23 @@ $().ready(function() {
         var x;
         if(!$('div.getpass').hasClass('opengetpass')) {
             x = event.pageX - $('div.forgot').offset().left + 88;
+            $('div.arrow').css('left', x);
+            $('div.getpass').removeClass('closegetpass');
+            $('div.getpass').show();
+            $('div.getpass').addClass('opengetpass');
+        } else {
+            $('div.getpass').removeClass('opengetpass');
+            $('div.getpass').addClass('closegetpass');
+            setTimeout(function(){
+                $('div.getpass').hide();
+            }, 300);
+            setTimeout(function(){
+                $('.getpass form').removeClass('flyout');
+                $('.getpass form').removeClass('flyout');
+                $('.getpass form').show();
+                $('.getpass .done').hide();
+            }, 301);
         }
-        $('div.arrow').css('left', x);
-        $('div.getpass').removeClass('closegetpass');
-        $('div.getpass').show();
-        $('div.getpass').addClass('opengetpass');
     });
 
     $('.getpass form button').click(function(){
@@ -625,6 +637,30 @@ $().ready(function() {
                 $('.getpass form').show();
                 $('.getpass .done').hide();
             }, 301);
+        }
+    });
+
+    $('.badgewrapper').click(function(){
+        $('.circle .fill, .circle .mask.full').css('transform', 'rotate(180deg)');
+        $('.circle .fill.fix').css('transform', 'rotate(360deg)');
+    });
+
+    $('div.badgewrapper.einz').click(function(event){
+        if($('.einzt').is(':hidden')) {
+            var x = event.pageX - $('div.badgewrapper.einz').offset().left - 80;
+            var y = event.pageY - $('div.badgewrapper.einz').offset().top + 10;
+            $('.einzt').css('top', y);
+            $('.einzt').css('left', x);
+            $('.einzt').fadeIn();
+        } else {
+            $('.einzt').fadeOut();
+        }
+    });
+
+    $('body').click(function(event){
+        var target = $(event.target);
+        if(!target.is('div.badgewrapper, div.badgewrapper span, div.badgewrapper img, div.badgewrapper radial')) {
+            $('.einzt').fadeOut();
         }
     });
 

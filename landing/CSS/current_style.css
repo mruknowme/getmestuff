@@ -13,31 +13,55 @@ header {
 	width: 100%;
 	height: 70px;
 	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.headerwrap {
+	max-width: 1036.8px;
+	width: 1036.8px;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .navtitle {
-	margin-left: 14%;
 	display: inline-block;
-	margin-top: 27px;
 	font-size: 1.25em;
 	font-family: 'Merriweather', serif;
 }
 
 nav {
-	float: right;
-	margin-right: 14%;
-	margin-top: 25px;
 	font-size: 1em;
+	max-width: 300px;
+	width: 100%;
 }
 
 nav ul {
 	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	list-style: none;
 }
 
 nav .lastmenu {
 	display: inline;
-	padding-left: 30px;
 	box-sizing: border-box;
+}
+
+nav .lastmenulink {
+	color: black;
+}
+
+nav .lastmenulink:hover {
+	color: #707070;
+}
+
+nav .lastmenulink i{
+	margin-top: 3px;
 }
 
 nav .menulink {
@@ -51,17 +75,8 @@ nav .menulink:hover {
 	color: #707070;
 }
 
-.logout {
-	position: absolute;
-	display: inline-block;
-	height: 16px;
-	width: 16px;
-	margin-top: 2.3px;
-}
-
 nav .menu {
 	display: inline;
-	padding: 0 30px;
 	box-sizing: border-box;
 }
 
@@ -71,41 +86,46 @@ nav .current {
 
 main {
 	padding-top: 100px;
-	margin-left: 14%;
-	margin-right: 14%;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 body {
 	background-color: rgba(201, 219, 225, 0.3);
+	background-image: url(../IMG/absurdity.png);
 }
 
 .userinfo {
 	margin-bottom: 30px;
 	border-bottom: 1px solid #95989A;
-}
-
-.userinfo p {
-	display: inline-block;
-	box-sizing: border-box;
-	width: 49.8%;
+	max-width: 1036.8px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	color: #95989A;
 }
 
-.userinfo .balance {
-	text-align: right;
+.row {
+	width: 100%;
+	max-width: 1036.8px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: flex-start;
 }
 
 .box {
 	display: inline-block;
 	box-sizing: border-box;
-	width: 30%;
+	width: 310px;
+	min-width: 310px;
 	box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
 	border: 3px solid rgb(241, 104, 118);
-}
-
-.middle {
-	margin-left: 4.6167%;
-	margin-right: 4.6167%;
+	margin-bottom: 30px;
 }
 
 .boxcontent {
@@ -162,9 +182,9 @@ body {
 }
 
 .donate {
-	display: inline-block;
+	display: inline-flex;
 	width: 49%;
-	height: 20px;
+	justify-content: flex-end;
 }
 
 .donate input {
@@ -172,17 +192,20 @@ body {
 	padding: 2px;
 	font-size: 0.9em;
 	font-family: 'Lato', sans-serif;
-	width: 52%;
+	width: 60%;
+	box-sizing: border-box;
 }
 
 .donate button {
-	padding: 2px;
-	font-size: 0.9em;
+	font-size: 0.8em;
 	background-color: rgb(241, 104, 118);
 	color: white;
 	cursor: pointer;
 	font-family: 'Lato', sans-serif;
-	width: 38%;
+	width: 40%;
+	box-sizing: border-box;
+	text-align: center;
+	line-height: 0.9em;
 	transition: all 0.3s ease;
 }
 
@@ -190,18 +213,10 @@ body {
 	background-color: rgb(236, 58, 76);
 }
 
-.donate input, button {
-	display: inline-block;
-}
-
 #barone {
 	height: 100%;
 	width: 57%;
 	background-color: #91FFE2;
-}
-
-.row {
-	margin-bottom: 30px;
 }
 
 ::-webkit-input-placeholder {

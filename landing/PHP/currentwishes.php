@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="../CSS/current_style.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>GetMeStuff | Current Wishes</title>
@@ -14,8 +16,8 @@
             <p class="usrname">Daniil Belov</p>
             <p class="balance">123.95$</p>
         </section>
-        <div class="row">
-            <section class="box">
+        <section class="row">
+            <div class="box">
                 <div class="boxcontent">
                     <div class="boxtop">
                         <h3 class="sub title">iPhone 6</h3>
@@ -31,8 +33,8 @@
                         <button type="submit">Donate</button>
                     </form>
                 </div>
-            </section>
-            <section class="box middle">
+            </div>
+            <div class="box">
                 <div class="boxcontent">
                     <div class="boxtop">
                         <h3 class="sub title">iPhone 6</h3>
@@ -48,8 +50,8 @@
                         <button type="submit">Donate</button>
                     </form>
                 </div>
-            </section>
-            <section class="box">
+            </div>
+            <div class="box">
                 <div class="boxcontent">
                     <div class="boxtop">
                         <h3 class="sub title">iPhone 6</h3>
@@ -65,10 +67,8 @@
                         <button type="submit">Donate</button>
                     </form>
                 </div>
-            </section>
-        </div>
-        <div class="row">
-            <section class="box">
+            </div>
+            <div class="box">
                 <div class="boxcontent">
                     <div class="boxtop">
                         <h3 class="sub title">iPhone 6</h3>
@@ -84,8 +84,8 @@
                         <button type="submit">Donate</button>
                     </form>
                 </div>
-            </section>
-            <section class="box middle">
+            </div>
+            <div class="box">
                 <div class="boxcontent">
                     <div class="boxtop">
                         <h3 class="sub title">iPhone 6</h3>
@@ -101,8 +101,8 @@
                         <button type="submit">Donate</button>
                     </form>
                 </div>
-            </section>
-            <section class="box">
+            </div>
+            <div class="box">
                 <div class="boxcontent">
                     <div class="boxtop">
                         <h3 class="sub title">iPhone 6</h3>
@@ -118,8 +118,8 @@
                         <button type="submit">Donate</button>
                     </form>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
     <?php require_once("footer.php") ?>
 </body>
