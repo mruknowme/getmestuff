@@ -10,6 +10,7 @@
     <script src="../JS/jquery.lazyload.js"></script>
     <script src="../JS/jquery.validate.js"></script>
     <script src="../JS/jquery.card.js"></script>
+    <script src="../JS/sektor.js"></script>
     <script src="../JS/jquery.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
@@ -132,58 +133,82 @@
                                 </div>
                                 <div class="badges">
                                     <div class="badgewrapper einz">
-                                        <div class="radial">
-                                            <div class="circle">
-                                                <div class="mask full">
-                                                    <div class="fill"></div>
-                                                </div>
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                    <div class="fill fix"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <img src="http://placehold.it/50x50">
+                                        <div class="radial number1"></div>
+                                        <img src="../IMG/badge.svg">
                                         <span>Donator(36%)</span>
                                         <div class="achievtooltip einzt">
                                             <h4>Donator</h4>
                                             <p>Donate 300$ - 108$/300$</p> 
                                         </div>
                                     </div>
-                                    <div class="badgewrapper zwei">
-                                        <div class="radial">
-                                            <div class="circle">
-                                                <div class="mask full">
-                                                    <div class="fill"></div>
-                                                </div>
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                    <div class="fill fix"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <img src="http://placehold.it/50x50">
+                                    <div class="badgewrapper">
+                                        <div class="radial number2"></div>
+                                        <img src="../IMG/badge.svg">
                                         <span>Donator(36%)</span>
-                                        <div class="achievtooltip zweit">
+                                        <div class="achievtooltip">
                                             <h4>Donator</h4>
                                             <p>Donate 300$ - 108$/300$</p> 
                                         </div>
                                     </div>
-                                    <div class="badgewrapper drei">
-                                        <div class="radial">
-                                            <div class="circle">
-                                                <div class="mask full">
-                                                    <div class="fill"></div>
-                                                </div>
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                    <div class="fill fix"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <img src="http://placehold.it/50x50">
+                                    <div class="badgewrapper">
+                                        <div class="radial number3"></div>
+                                        <img src="../IMG/badge.svg">
                                         <span>Donator(36%)</span>
-                                        <div class="achievtooltip dreit">
+                                        <div class="achievtooltip">
+                                            <h4>Donator</h4>
+                                            <p>Donate 300$ - 108$/300$</p> 
+                                        </div>
+                                    </div>
+                                    <div class="badgewrapper">
+                                        <div class="radial number4"></div>
+                                        <img src="../IMG/badge.svg">
+                                        <span>Donator(36%)</span>
+                                        <div class="achievtooltip">
+                                            <h4>Donator</h4>
+                                            <p>Donate 300$ - 108$/300$</p> 
+                                        </div>
+                                    </div>
+                                    <div class="badgewrapper">
+                                        <div class="radial number5"></div>
+                                        <img src="../IMG/badge.svg">
+                                        <span>Donator(36%)</span>
+                                        <div class="achievtooltip">
+                                            <h4>Donator</h4>
+                                            <p>Donate 300$ - 108$/300$</p> 
+                                        </div>
+                                    </div>
+                                    <div class="badgewrapper">
+                                        <div class="radial number6"></div>
+                                        <img src="../IMG/badge.svg">
+                                        <span>Donator(36%)</span>
+                                        <div class="achievtooltip">
+                                            <h4>Donator</h4>
+                                            <p>Donate 300$ - 108$/300$</p> 
+                                        </div>
+                                    </div>
+                                    <div class="badgewrapper">
+                                        <div class="radial number7"></div>
+                                        <img src="../IMG/badge.svg">
+                                        <span>Donator(36%)</span>
+                                        <div class="achievtooltip">
+                                            <h4>Donator</h4>
+                                            <p>Donate 300$ - 108$/300$</p> 
+                                        </div>
+                                    </div>
+                                    <div class="badgewrapper">
+                                        <div class="radial number8"></div>
+                                        <img src="../IMG/badge.svg">
+                                        <span>Donator(36%)</span>
+                                        <div class="achievtooltip">
+                                            <h4>Donator</h4>
+                                            <p>Donate 300$ - 108$/300$</p> 
+                                        </div>
+                                    </div>
+                                    <div class="badgewrapper">
+                                        <div class="radial number9"></div>
+                                        <img src="../IMG/badge.svg">
+                                        <span>Donator(36%)</span>
+                                        <div class="achievtooltip">
                                             <h4>Donator</h4>
                                             <p>Donate 300$ - 108$/300$</p> 
                                         </div>

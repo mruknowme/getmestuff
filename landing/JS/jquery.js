@@ -664,4 +664,30 @@ $().ready(function() {
         }
     });
 
+    /*var sektor = new Sektor('.radial', {
+        size: 50,
+        angle: 360,
+        sectorColor: 'rgba(255,255,255,0.7)',
+        circleColor: 'rgba(21,35,225,0)'
+    }); */
+
+    var slider;
+
+    $(function(){
+        var i;
+        var length = $('.badgewrapper .radial').length;
+        slider = [];
+        for(i = 1; i <= length; i++) {
+            var classname = '.number' + i.toString();
+            slider[i] = {
+                    sektor: new Sektor(classname, {
+                    size: 50,
+                    angle: 360,
+                    sectorColor: 'rgba(255,255,255,0.7)',
+                    circleColor: 'rgba(21,35,225,0)'
+                })
+            };
+        }
+    });
+
 });

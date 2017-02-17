@@ -16,6 +16,7 @@ header {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	z-index: 1000;
 }
 
 .headerwrap {
@@ -690,8 +691,11 @@ button:hover {
 	height: 79px;
 	margin-right: 20px;
 	margin-bottom: 20px;
-	border-radius: 50%;
 	position: relative;
+}
+
+.badges .badgewrapper:nth-child(4n) {
+	margin-right: 0px;
 }
 
 .badges .badgewrapper img {
@@ -710,7 +714,9 @@ button:hover {
 	display: block;
 	text-align: center;
 	color: #333;
-	margin-top: 3px;
+	position: relative;
+	margin-top: 10px;
+	cursor: pointer;
 }
 
 .badges .badgewrapper .achievtooltip {
@@ -747,32 +753,19 @@ button:hover {
 }
 
 .radial {
-    background-color: #F2F2F2;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	position: relative;
+	top: 5px;
+	left: 15px;
+}
+
+.radial .Sektor {
+    width: 50px;
+    height: 50px;
+    transform: rotateY(180deg);
     position: relative;
-    z-index: 1;
-    margin-left: 10px;
-}
-
-.radial .circle .mask .fill {
-	position: absolute;
-    background-color: #1D9D74;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    clip: rect(0px, 30px, 60px, 0px);
-    transition: all 1s;
-}
-
-.radial .circle .mask {
-	position: absolute;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    clip: rect(0px, 60px, 60px, 30px);
-    transition: all 1s;
+    z-index: 2;
 }
 
 .donatedrow {
