@@ -677,8 +677,154 @@ button:hover {
 	box-sizing: border-box;
 }
 
-.badges {
+.awards {
 	width: 80%;
+}
+
+.currency {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: flex-start;
+	position: relative;
+}
+
+.infoses {
+	font-family: 'Lato', sans-serif;
+	color: #333;
+	font-size: 0.8em;
+	max-width: 70%;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.infoses .awardmoreinfo {
+	font-size: 0.9em;
+	color: #666;
+}
+
+.infoses .awardinfo {
+	position: relative;
+}
+
+.infoses .awardinfo .extra {
+	color: #F16876;
+	cursor: pointer;
+}
+
+.infoses .awardinfo .extra:hover {
+	color: #FF2700;
+}
+
+.stars {
+	position: absolute;
+	right: 55px;
+	font-family: 'Lato', sans-serif;
+	font-size: 0.9em;
+	line-height: 1.1em;
+}
+
+.remove {
+	animation: noteminus 500ms ease-in-out forwards;
+}
+
+.add {
+	animation: noteplus 500ms ease-in-out forwards;
+}
+
+@keyframes noteminus {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+@keyframes noteplus {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) rotate(-30deg) translateY(-50px) rotateX(90deg);
+    }
+    50% {
+        transform: rotate(10deg) rotateX(-2deg);
+        opacity: 1;
+    }
+    70% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.stars i {
+	color: #FFD700;
+}
+
+.notenough {
+	position: absolute;
+	font-family: 'Lato', sans-serif;
+	font-size: 0.8em;
+	color: #02549C;
+	width: 210px;
+	background-color: #FFf;
+	padding: 10px;
+	border: 1px solid black;
+	left: 15%;
+	top: 50%;
+	z-index: 5;
+	text-align: center;
+	display: none;
+	transform-origin: center 0;
+}
+
+.notenough:before {
+	content: '';
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	background-color: white;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	transform: rotate(45deg);
+	top: 0;
+	left: 35%;
+	margin-top: -8.3px;
+}
+
+.cool {
+	position: absolute;
+	font-family: 'Lato', sans-serif;
+	font-size: 0.8em;
+	color: #1D9D74;
+	width: 210px;
+	background-color: #FFf;
+	padding: 10px;
+	border: 1px solid black;
+	left: 15%;
+	top: 50%;
+	z-index: 5;
+	text-align: center;
+	display: none;
+}
+
+.cool:before {
+	content: '';
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	background-color: white;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	transform: rotate(45deg);
+	top: 0;
+	left: 35%;
+	margin-top: -8.3px;
+}
+
+.badges {
 	box-sizing: border-box;
 	display: inline-flex;
 	justify-content: flex-start;
@@ -750,6 +896,10 @@ button:hover {
 
 .badges .badgewrapper .achievtooltip p {
 	font-size: 0.7em;
+}
+
+.badges .badgewrapper .achievtooltip em {
+	font-style: normal;
 }
 
 .radial {

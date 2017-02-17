@@ -131,86 +131,97 @@
                                         <p class="doanteddollar"><span class="timertwo"></span>$</p>
                                     </div>
                                 </div>
-                                <div class="badges">
-                                    <div class="badgewrapper einz">
-                                        <div class="radial number1"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip einzt">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                <div class="awards">
+                                    <div class="currency">
+                                        <div class="infoses">
+                                            <p class="awardinfo">Use points to get an extra <a class="extra">Wish</a> (200 points)</p>
+                                            <p class="awardmoreinfo">(Click on a badge for more info.)</p>
                                         </div>
+                                        <p class="stars">123 <i class="fa fa-star" aria-hidden="true"></i></p>
+                                        <div class="notenough">Sorry, you don't have enough points.</div>
+                                        <div class="cool">You now have one extra whish</div>
                                     </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number2"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                    <div class="badges">
+                                        <div class="badgewrapper einz">
+                                            <div class="radial number1"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip einzt">
+                                                <h4>Donator - 20 <i class="fa fa-star" aria-hidden="true"></i></h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number3"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                        <div class="badgewrapper zwei">
+                                            <div class="radial number2"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number4"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                        <div class="badgewrapper drei">
+                                            <div class="radial number3"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number5"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                        <div class="badgewrapper">
+                                            <div class="radial number4"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number6"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                        <div class="badgewrapper">
+                                            <div class="radial number5"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number7"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                        <div class="badgewrapper">
+                                            <div class="radial number6"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number8"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                        <div class="badgewrapper">
+                                            <div class="radial number7"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="badgewrapper">
-                                        <div class="radial number9"></div>
-                                        <img src="../IMG/badge.svg">
-                                        <span>Donator(36%)</span>
-                                        <div class="achievtooltip">
-                                            <h4>Donator</h4>
-                                            <p>Donate 300$ - 108$/300$</p> 
+                                        <div class="badgewrapper">
+                                            <div class="radial number8"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
+                                        </div>
+                                        <div class="badgewrapper">
+                                            <div class="radial number9"></div>
+                                            <img src="../IMG/badge.svg">
+                                            <span>Donator(36%)</span>
+                                            <div class="achievtooltip">
+                                                <h4>Donator</h4>
+                                                <p>Donate 300$ - 108$/300$</p> 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
