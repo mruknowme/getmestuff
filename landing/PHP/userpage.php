@@ -11,7 +11,7 @@
     <script src="../JS/jquery.validate.js"></script>
     <script src="../JS/jquery.card.js"></script>
     <script src="../JS/sektor.js"></script>
-    <script src="../JS/jquery.js"></script>
+    <script src="../JS/userpage.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -20,11 +20,31 @@
 
 <body>
     <?php require_once("userheader.php"); ?>
+    <aside class="mobilenavwrapper">
+        <div class="mobilenav">
+            <ul>
+                <li><a href="userpage.php">Your Profile</a></li>
+                <li><a href="currentwishes.php">Current Wishes</a></li>
+                <li><a href=""><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </aside>
         <main>
+            <aside class="mobileusernav">
+                <ul>
+                    <li><a class="mobileactive" data-tab="settings"><i class="fa fa-cog fa-lg" aria-hidden="true" data-tab="settings"></i><span data-tab="settings">Settings</span></a></li>
+                    <li><a data-tab="money"><i class="fa fa-money fa-lg" aria-hidden="true" data-tab="money"></i><span data-tab="money">Top Up</span></a></li>
+                    <li><a data-tab="achievements" id="achievtab2"><i class="fa fa-trophy fa-lg" aria-hidden="true" data-tab="achievements" id="achievtab2"></i><span id="achievtab2" data-tab="achievements">Achievements</span></a></li>
+                    <li><a data-tab="wish"><i class="fa fa-magic fa-lg" aria-hidden="true" data-tab="wish"></i><span data-tab="wish">Make a Wish</span></a></li>
+                    <li><a data-tab="currentwish"><i class="fa fa-heart fa-lg" aria-hidden="true" data-tab="currentwish"></i><span data-tab="currentwish">Wishes</span></a></li>
+                </ul>
+            </aside>
             <div class="userpagecontent">
-                <section class="userinfo">
-                    <p class="usrname">Daniil Belov</p>
-                    <p class="balance">123.95$</p>
+                <section class="userinfowrapper">
+                    <div class="userinfo">
+                        <p class="usrname">Daniil Belov</p>
+                        <p class="balance">123.95$</p>
+                    </div>
                 </section>
                 <div class="maincontentwrapper">
                 <div class="maintabs">
@@ -83,19 +103,23 @@
                                     <form class="pay cf" id="credit">
                                         <div class="bakcgroundcc">
                                             <div class="cardcontainer"></div>
-                                            <div class="credittop">
-                                                <div class="inputdivisor">
-                                                    <input class="input card" type="text" id="methodcard" name="methodcard" placeholder="Card Number" autocomplete="off" maxlength="19">
+                                            <div class="formwrapper">
+                                                <div class="credittop">
+                                                    <div class="inputdivisor">
+                                                        <input class="input card" type="text" id="methodcard" name="methodcard" placeholder="Card Number" autocomplete="off" maxlength="19">
+                                                    </div>
+                                                    <div class="inputdivisor">
+                                                        <input class="input cardname" id="holdername" name="holdername" type="text" placeholder="Full Name">
+                                                    </div>
                                                 </div>
-                                                <div class="inputdivisor">
-                                                    <input class="input cardname" id="holdername" name="holdername" type="text" placeholder="Full Name">
+                                                <div class="creditbottom">
+                                                    <div class="inputdivisor">
+                                                        <input class="input carddate" id="mmyy" name="mmyy" type="text" placeholder="mm/yy" autocomplete="off" maxlength="7">
+                                                    </div>
+                                                    <div class="inputdivisor">
+                                                        <input class="input ccv" type="text" id="cc" name="cc" placeholder="CCV" autocomplete="off" maxlength="3">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="inputdivisor">
-                                                <input class="input carddate" id="mmyy" name="mmyy" type="text" placeholder="mm/yy" autocomplete="off" maxlength="7">
-                                            </div>
-                                            <div class="inputdivisor">
-                                                <input class="input ccv" type="text" id="cc" name="cc" placeholder="CCV" autocomplete="off" maxlength="3">
                                             </div>
                                         </div>
                                         <div class="btnwrapper">
@@ -264,7 +288,7 @@
                     </div>
                 </div>
                 <div class="boxes">
-                    <aside class="box">
+                    <aside class="box current">
                         <h2>Your Current Wish</h2>
                         <div class="boxcontent">
                             <div class="boxtop">
@@ -278,7 +302,7 @@
                             <p class="collected">Collected: 40 000/70 000</p>
                         </div>
                     </aside>
-                    <aside class="box">
+                    <aside class="box random">
                         <h2>Random Wish</h2>
                         <div class="boxcontent">
                             <div class="boxtop">
@@ -304,6 +328,19 @@
     <script src="../JS/login.js"></script>
     <script>
         $("#achievtab").click(function() {
+            $('.timerone').countTo({
+                from: 0,
+                to: 1000,
+                speed: 1000
+            });
+            $('.timertwo').countTo({
+                from: 0,
+                to: 10000,
+                speed: 2000
+            });
+        });
+
+        $("#achievtab2").click(function() {
             $('.timerone').countTo({
                 from: 0,
                 to: 1000,
