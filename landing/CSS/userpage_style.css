@@ -8,6 +8,11 @@
     background: transparent;
 }
 
+html {
+	position: relative;
+	min-height: 100%;
+}
+
 header {
     position: fixed;
     z-index: 1000;
@@ -388,7 +393,7 @@ button:hover {
 .dollar i {
     position: absolute;
     top: 50%;
-    right: 0.1%;
+    right: 5%;
     margin-top: -8px;
 }
 
@@ -469,7 +474,7 @@ button:hover {
 .box {
     box-sizing: border-box;
     width: 100%;
-    height: 227px;
+    height: auto;
     box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3);
 }
 
@@ -1154,10 +1159,10 @@ input::-webkit-contacts-auto-fill-button {
     position: fixed;
     z-index: 5;
     right: 0;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     display: none;
-    height: 75px;
+    height: 70px;
     background-color: #F16876;
 }
 
@@ -1206,6 +1211,10 @@ input::-webkit-contacts-auto-fill-button {
 }
 
 @media only screen and (max-width: 1036px) {
+	main {
+		padding-bottom: 100px;
+	}
+
     .headerwrap {
         margin: 0 20px;
     }
@@ -1245,7 +1254,9 @@ input::-webkit-contacts-auto-fill-button {
     }
 
     .maincontent {
-        border: none;
+        border: 1px solid #95989A;
+        box-shadow: none;
+        box-sizing: border-box;
     }
 
     #currentpaswd {
@@ -1262,6 +1273,8 @@ input::-webkit-contacts-auto-fill-button {
 
     .box {
         width: 45%;
+        border: 1px solid #95989A;
+        box-shadow: none;
     }
 
     .boxes {
@@ -1269,6 +1282,7 @@ input::-webkit-contacts-auto-fill-button {
         flex-direction: row;
         width: 90%;
         margin: 0 auto;
+        height: auto;
 
         justify-content: space-around;
         align-items: center;
@@ -1279,8 +1293,34 @@ input::-webkit-contacts-auto-fill-button {
     }
 
     footer {
-        padding-bottom: 70px;
+        display: none;
     }
+}
+
+@media only screen and (max-width: 768px) {
+	.boxes {
+		flex-direction: column;
+	}
+
+	.box {
+		width: 414.717px;
+	}
+
+	.box:first-child {
+		margin-bottom: 30px;
+	}
+
+	.numbers {
+		width: 12%;
+	}
+
+	.awards {
+		width: 82%;
+	}
+
+	.badges .badgewrapper:nth-child(7n) {
+		margin-right: 20px;
+	}
 }
 
 @media only screen and (max-width: 670px) {
@@ -1292,6 +1332,42 @@ input::-webkit-contacts-auto-fill-button {
         margin-right: 5px;
         margin-left: 5px;
     }
+	
+	.badges {
+		padding-left: 20px;
+	}
+
+	.boxcontent .title {
+        font-size: 1.2em;
+    }
+
+    .box h2 {
+        font-size: 1.2em;
+    }
+
+    .boxcontent .para {
+        font-size: 0.8em;
+        line-height: 1.2em;
+    }
+
+    .boxcontent .progresspara {
+        font-size: 0.8em;
+    }
+
+    .boxcontent .collected {
+        font-size: 0.9em;
+    }
+
+}
+
+@media only screen and (max-width: 567px) {
+	.badges {
+		padding: 0px;
+	}
+
+	.badges .badgewrapper:nth-child(4n) {
+		margin-right: 0px;
+	}
 }
 
 @media only screen and (max-width: 480px) {
@@ -1308,12 +1384,17 @@ input::-webkit-contacts-auto-fill-button {
         margin: 0;
     }
 
+    .maincontent {
+    	border-right: none;
+    	border-left: none;
+    }
+
     .numbers {
-        width: 15%;
+        width: 18%;
     }
 
     .awards {
-        width: 80%;
+        width: 72%;
     }
 
     .badges .badgewrapper:nth-child(4n) {
@@ -1325,7 +1406,7 @@ input::-webkit-contacts-auto-fill-button {
     }
 
     .badges .badgewrapper:nth-child(3n) {
-        margin-right: 20px;
+        margin-right: 0px;
     }
 
     .box {
@@ -1359,27 +1440,6 @@ input::-webkit-contacts-auto-fill-button {
         font-size: 0.9em;
     }
 
-    .boxcontent .title {
-        font-size: 1.2em;
-    }
-
-    .box h2 {
-        font-size: 1.2em;
-    }
-
-    .boxcontent .para {
-        font-size: 0.8em;
-        line-height: 1.2em;
-    }
-
-    .boxcontent .progresspara {
-        font-size: 0.8em;
-    }
-
-    .boxcontent .collected {
-        font-size: 0.9em;
-    }
-
     ::-webkit-input-placeholder {
         font-size: 1em;
         line-height: 1.2em;
@@ -1399,9 +1459,13 @@ input::-webkit-contacts-auto-fill-button {
         font-size: 1em;
         line-height: 1.2em;
     }
+
+    .formwrapper {
+        width: 100%;
+    }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 375px) {
     .headerwrap {
         margin: 5px;
     }
@@ -1428,7 +1492,7 @@ input::-webkit-contacts-auto-fill-button {
     }
 
     .showpassword {
-        top: 55px;
+        top: 38px;
         left: 210px;
     }
 
@@ -1471,10 +1535,6 @@ input::-webkit-contacts-auto-fill-button {
     .inputdivisor {
         width: 100%;
         margin-bottom: 13px;
-    }
-
-    .formwrapper {
-        width: 100%;
     }
 
     #paypal input {
@@ -1525,18 +1585,39 @@ input::-webkit-contacts-auto-fill-button {
         width: 100%;
     }
 
-    .collected {
-        width: 100%;
+    .mobileusernav ul li a span {
+        font-size: 0.65em;
+    }
+
+    .mobilenav ul li a {
+    	font-size: 0.8em;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+	.showpassword {
+		top: 53px;
+	}
+
+	.dropdownitems a {
+    	padding-left: 10px;
     }
 
     .donate {
         width: 100%;
-
         justify-content: flex-start;
     }
 
-    .mobileusernav ul li a span {
-        font-size: 0.65em;
+    .donate button {
+    	width: 40%;
+    }
+
+    .boxcontent .collected {
+        width: 100%;
+    }
+
+    .box.random .boxcontent .collected {
+    	margin-bottom: 10px;
     }
 }
 
