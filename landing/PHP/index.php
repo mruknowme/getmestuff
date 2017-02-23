@@ -5,6 +5,7 @@
     <link href="../CSS/owlCarusel/owl.carousel.css" rel="stylesheet" type="text/css">
     <link href="../CSS/owlCarusel/owl.theme.default.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="../CSS/index_style.css" type="text/css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -13,7 +14,7 @@
     <script src="../JS/jquery.lazyload.js"></script>
     <script src="../JS/jquery.waypoints.js"></script>
     <script src="../JS/owl.carousel.min.js"></script>
-    <script src="../JS/jquery.js"></script>
+    <script src="../JS/index.js"></script>
 
     <script>
         $(function() {
@@ -34,12 +35,23 @@
 
 <body>
     <?php require_once("header.php") ?>
+    <aside class="mobilenavwrapper">
+        <div class="mobilenav">
+            <ul>
+                <li class="menu"><a class="menulink" href="index.php">Home</a></li>
+                <li class="menu"><a class="menulink" href="about.php">About Us</a></li>
+                <li class="menu"><a class="menulink" href="login.php#login">Log In</a></li>
+                <li class="menu"><a class="menulink" href="login.php#signup">Sign Up</a></li>
+                <li class="menu"><a class="menulink current">EN</a> | <a class="menulink">RU</a></li>
+            </ul>
+        </div>
+    </aside>
     <main>
         <div class="mainwrapper">
             <section class="main" id="mainsection">
                 <div class="maintextwrapper">
                     <h1>GetMeStuff</h1>
-                    <div class="owl-carousel owl-theme">
+                    <div class="moreinfo owl-carousel owl-theme">
                         <div class="item first"><p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p></div>
                         <div class="item"><p>Information about something1</p></div>
                         <div class="item"><p>Information about something2</p></div>
@@ -88,7 +100,9 @@
                       </ul>
         </aside>
         <section class="about content" id="how">
-            <img class="howimg lazy" data-original="../IMG/placeholder250.png">
+            <div class="imgwrapper">
+                <img class="howimg lazy" data-original="../IMG/placeholder250.png">
+            </div>
             <div class="secondtextwrapper how">
                 <h3>How it works?</h3>
                 <p>The idea behind this site is very simple. Think about what you really want (iPhone, holidays) and ask people to help raise the funds. Although, to do this, you need to help first.</p>
@@ -102,7 +116,9 @@
                     <p>Just to firends who understood, that in the hour of need, it can be embarassing to ask others for help. Therefore, we came up with the idea of asking anonymously not only your firends, but the whole world.</p>
                     <a href="about.php" class="btn">More...</a>
                 </div>
-                <img class="whoimg lazy" data-original="../IMG/placeholder250.png">
+                <div class="imgwrapper">
+                    <img class="whoimg lazy" data-original="../IMG/placeholder250.png">
+                </div>
             </section>
         </div>
         <section class="story content" id="success">
@@ -136,7 +152,7 @@
                         <form>
                             <input type="text" name="name" placeholder="Name">
                             <input type="email" name="email" placeholder="Email">
-                            <textarea name="message" placeholder="Message"></textarea>
+                            <textarea name="message"></textarea>
                             <button type="submit">Submit</button>
                         </form>
                     </div>

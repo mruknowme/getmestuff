@@ -10,14 +10,25 @@
 }
 
 header {
-	position: fixed;
-	width: 100%;
-	height: 70px;
-	background-color: white;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	z-index: 1000;
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    width: 100%;
+    height: 70px;
+    background-color: white;
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+.headerwrap {
+    display: flex;
+    width: 1036.8px;
+    max-width: 1036.8px;
+    height: 100%;
+
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navtitle {
@@ -69,12 +80,14 @@ main {
 	background-color: #f16876;
 	display: flex;
 	align-items: center;
+	justify-content: space-around;
 }
 
 .mainheadingwrapper h1 {
 	color: white;
 	font-size: 3em;
-	margin-left: 12.5%;
+	width: 100%;
+	max-width: 1080px;
 	font-family: 'Open Sans', serif;
 }
 
@@ -222,6 +235,211 @@ section.ourtimeline {
 
 .cf:after {
 	clear: both;
+}
+
+.openmenu {
+    position: relative;
+    right: 0;
+    display: none;
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+}
+
+.openmenu:hover {
+    color: #707070;
+}
+
+.mobilenavwrapper {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: -145px;
+    bottom: 0;
+    display: block;
+    width: 145px;
+    transition: all 500ms ease-in-out;
+    background-color: #333333;
+}
+
+.siderbar {
+    right: 0;
+}
+
+.siderbartoggler {
+    right: 145px;
+}
+
+.mobilenav {
+    padding: 20px;
+}
+
+.mobilenav ul {
+    list-style: none;
+}
+
+.mobilenav ul li:not(:last-child) {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    border-style: inset;
+}
+
+.mobilenav ul li a {
+    font-family: 'Open Sans', serif;
+    font-size: 0.9em;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.mobilenav ul li a:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.mobilenav ul li a.current {
+	color: blue;
+}
+
+.mobileusernav {
+    position: fixed;
+    z-index: 5;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    display: none;
+    height: 70px;
+    background-color: #F16876;
+}
+
+.mobileusernav ul {
+    font-family: 'Open Sans', serif;
+    display: flex;
+    width: 100%;
+    max-width: 1036.8px;
+    height: 100%;
+    margin: 0 auto;
+    list-style: none;
+    color: rgba(255, 255, 255, 0.8);
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobileusernav ul li {
+    display: flex;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileusernav ul li a {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    cursor: pointer;
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobileusernav ul li a:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.mobileusernav ul li a span {
+    font-size: 0.8em;
+}
+
+.mobileactive {
+    color: #FFFFFF;
+}
+
+@media only screen and (max-width: 1036px) {
+	.mainheadingwrapper h1 {
+		text-align: center;
+	}
+
+	.headerwrap {
+        margin: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+	.headerwrap {
+        margin: 0 5px;
+    }
+
+    .openmenu {
+        display: block;
+    }
+
+    nav {
+        display: none;
+    }
+	
+	.timelinecontainer .timelineitem {
+		width: 100%;
+	}
+
+	.timelinecontainer .timelineitem .timelinecontent {
+		float: right;
+	}
+
+	.timelinecontainer .timelineitem .timelineicon {
+	    left: 0%;
+	    margin-left: -8.5px;
+	}
+
+	.timelinecontainer .timelineitem .timelinecontent:before {
+	    left: 5%;
+	}
+
+	.timelinecontainer:before {
+		left: 0%;
+		margin-left: 10px;
+	}
+
+	.timeline .seventeen {
+		left: 0%;
+		margin-left: 11.5px;
+	}
+
+	.timelinecontainer .timelineitem:nth-child(2) {
+	    margin-top: 0px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	section.ourtimeline {
+		padding: 20px 10px;
+	}
+
+	.timeline .seventeen {
+		left: 0%;
+		margin-left: 1.5px;
+	}
+
+	.timelinecontainer .timelineitem .timelinecontent {
+		width: 91%;
+	}
+
+	.timelinecontainer .timelineitem .timelinecontent:before, .timelinecontainer .timelineitem .timelinecontent.right:before {
+	    left: 9%;
+	}
+}
+
+@media only screen and (max-width: 375px) {
+	.timelinecontainer .timelineitem .timelinecontent p {
+		font-size: 0.9em;
+		line-height: 1.5em;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.mainheadingwrapper h1 {
+		font-size: 2.5em;
+	}
 }
 
 footer {

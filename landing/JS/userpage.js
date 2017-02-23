@@ -51,11 +51,18 @@ $(function(){
     });
 
     $('div.badgewrapper.einz').click(function(event){
-        if($('.einzt').is(':hidden')) {
+        var width = $(window).width();
+        if($('.einzt').is(':hidden') && width > 320) {
             var x = event.pageX - $('div.badgewrapper.einz').offset().left - 80;
             var y = event.pageY - $('div.badgewrapper.einz').offset().top + 10;
             $('.einzt').css('top', y);
             $('.einzt').css('left', x);
+            $('.einzt').fadeIn();
+        } else if($('.einzt').is(':hidden') && width <= 320) {
+            var x2 = event.pageX - $('div.badgewrapper.einz').offset().left - 60;
+            var y2 = event.pageY - $('div.badgewrapper.einz').offset().top + 10;
+            $('.einzt').css('top', y2);
+            $('.einzt').css('left', x2);
             $('.einzt').fadeIn();
         } else {
             $('.einzt').fadeOut();

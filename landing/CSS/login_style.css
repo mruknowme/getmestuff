@@ -10,13 +10,24 @@
 
 header {
     position: fixed;
+    z-index: 1000;
+    display: flex;
     width: 100%;
     height: 70px;
     background-color: white;
-    display: flex;
+
     justify-content: space-around;
     align-items: center;
-    z-index: 1000;
+}
+
+.headerwrap {
+    display: flex;
+    width: 1036.8px;
+    max-width: 1036.8px;
+    height: 100%;
+
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navtitle {
@@ -111,7 +122,8 @@ body {
 }
 
 .form {
-    max-width : 600px;
+    max-width : 680px;
+    box-sizing: border-box;
     height: auto;
     margin : 40px auto;
     padding : 40px;
@@ -120,7 +132,6 @@ body {
     box-shadow : 0 4px 10px 4px rgba(19, 35, 47, 0.3);
     position: relative;
     transition: all 300ms ease-in-out;
-    max-height: 521px;
 }
 
 .sign {
@@ -165,7 +176,7 @@ input:focus {
         height: 95px;
     }
     100% {
-        height: 521px;
+        height: 601px;
     }
 }
 
@@ -178,7 +189,7 @@ input:focus {
         height: 95px;
     }
     100% {
-        height: 367px;
+        height: 447px;
     }
 }
 
@@ -316,13 +327,13 @@ lable.signlable {
     background-color: white;
     padding: 10px 20px 15px 20px;
     box-shadow : 0 4px 10px 4px rgba(19, 35, 47, 0.3);
-    width: 202%;
-    top: 29px;
+    width: 232px;
+    top: 78%;
     border: 1px solid #7a7a7a;
     right: -60px;
     cursor: initial;
     transform-origin: center 0px;
-    z-index: 0;
+    z-index: 200;
     height: 49.6px;
     font-family : 'Lato', sans-serif;
 }
@@ -345,7 +356,21 @@ lable.signlable {
     margin-left: -60.4666px;
 }
 
-.done i {
+.getpass .close {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    color: #666;
+    transform: rotate(45deg);
+}
+
+.getpass .close:hover {
+    color: #000;
+}
+
+.done .donei {
     display: block;
     position: relative;
     margin-right: auto;
@@ -482,6 +507,214 @@ lable.signlable {
     .inputsign:focus ~ lable, .inputsign.hasvalue ~ lable {
         top: -15px;
         left: 0;
+    }
+}
+
+.openmenu {
+    position: relative;
+    right: 0;
+    display: none;
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+}
+
+.openmenu:hover {
+    color: #707070;
+}
+
+.mobilenavwrapper {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: -145px;
+    bottom: 0;
+    display: block;
+    width: 145px;
+    transition: all 500ms ease-in-out;
+    background-color: #333333;
+}
+
+.siderbar {
+    right: 0;
+}
+
+.siderbartoggler {
+    right: 145px;
+}
+
+.mobilenav {
+    padding: 20px;
+}
+
+.mobilenav ul {
+    list-style: none;
+}
+
+.mobilenav ul li:not(:last-child) {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    border-style: inset;
+}
+
+.mobilenav ul li a {
+    font-family: 'Open Sans', serif;
+    font-size: 0.9em;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.mobilenav ul li a:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.mobilenav ul li a.current {
+    color: blue;
+}
+
+.mobileusernav {
+    position: fixed;
+    z-index: 5;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    display: none;
+    height: 70px;
+    background-color: #F16876;
+}
+
+.mobileusernav ul {
+    font-family: 'Open Sans', serif;
+    display: flex;
+    width: 100%;
+    max-width: 1036.8px;
+    height: 100%;
+    margin: 0 auto;
+    list-style: none;
+    color: rgba(255, 255, 255, 0.8);
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobileusernav ul li {
+    display: flex;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileusernav ul li a {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    cursor: pointer;
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobileusernav ul li a:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.mobileusernav ul li a span {
+    font-size: 0.8em;
+}
+
+.mobileactive {
+    color: #FFFFFF;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: none;
+}
+
+@media only screen and (max-width: 1036px) {
+    .headerwrap {
+        margin: 0 20px;
+    }
+
+    .form {
+        box-shadow: none;
+        border: 1px solid #95989A;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .openmenu {
+        display: block;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .getpass {
+        top: 50%;
+        left: 50%;
+        box-shadow: none;
+        z-index: 1000;
+        margin-left: -146px;
+        margin-top: -38.3px;
+    }
+
+    .getpass .close {
+        display: block;
+    }
+
+    .arrow {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 670px) {
+    .form {
+        width: 100%;
+        border-right: none;
+        border-left: none;
+        border-radius: 0px;
+    }
+
+    .headerwrap {
+        margin: 0 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .form {
+        padding: 20px 10px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .toprow .errorwrapper {
+        margin-right: 0px;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .form {
+        padding: 20px 0px;
+    }
+
+    .errorwrapper, .inputwrapper {
+        padding: 0 5px;
+    }
+
+    .forgot {
+        right: 5px;
     }
 }
 

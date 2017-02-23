@@ -16,6 +16,17 @@
 
 <body>
     <?php require_once("header.php"); ?>
+    <aside class="mobilenavwrapper">
+        <div class="mobilenav">
+            <ul>
+                <li class="menu"><a class="menulink" href="index.php">Home</a></li>
+                <li class="menu"><a class="menulink" href="about.php">About Us</a></li>
+                <li class="menu"><a class="menulink" href="login.php#login">Log In</a></li>
+                <li class="menu"><a class="menulink" href="login.php#signup">Sign Up</a></li>
+                <li class="menu"><a class="menulink current">EN</a> | <a class="menulink">RU</a></li>
+            </ul>
+        </div>
+    </aside>
     <main>
         <section class="form">
             <ul class="tabs">
@@ -65,26 +76,28 @@
                             <lable class="signlable">Passowrd</lable>
                         </div>
                     </div>
-                    <button type="submit">Log In</button>
+                    <button class="formbutton" type="submit">Log In</button>
                 </form>
                 <div class="forgot">
                     <p class="forgotp">Forgot Password?</p>
-                    <div class="getpass cf" style="display: none;">
-                    <div class="arrow"></div>
-                        <div class="passwrapper cf">
-                            <form id="forgotform" style="display: block">
-                                <lable>Enter your email:</lable>
-                                <input id="mailf" name="mailf">
-                                <button>Send</button>
-                            </form>
-                            <div class="done" style="display: none">
-                                <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
-                                <p>Check your inbox</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <div class="getpass one cf" style="display: none;">
+            <i class="fa fa-plus close" aria-hidden="true"></i>
+                        <div class="arrow"></div>
+                            <div class="passwrapper cf">
+                                <form id="forgotform" style="display: block">
+                                    <lable>Enter your email:</lable>
+                                    <input id="mailf" name="mailf">
+                                    <button>Send</button>
+                                </form>
+                                <div class="done" style="display: none">
+                                    <i class="fa fa-check-circle fa-2x donei" aria-hidden="true"></i>
+                                    <p>Check your inbox</p>
+                                </div>
+                            </div>
+                        </div>
+            <div class="overlay"></div>
         </section>
     </main>
     <?php require_once("footer.php"); ?>

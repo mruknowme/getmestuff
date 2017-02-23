@@ -2,12 +2,14 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="../CSS/about_style.css"s rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
     
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="../JS/jquery.countTo.js"></script>
     <script src="../JS/jquery.lazyload.js"></script>
+    <script src='../JS/about.js'></script>
     
     <meta charset="utf-8">
     <title>About Us</title>
@@ -15,6 +17,17 @@
 
 <body>
     <?php require_once("header.php") ?>
+    <aside class="mobilenavwrapper">
+        <div class="mobilenav">
+            <ul>
+                <li class="menu"><a class="menulink" href="index.php">Home</a></li>
+                <li class="menu"><a class="menulink" href="about.php">About Us</a></li>
+                <li class="menu"><a class="menulink" href="login.php#login">Log In</a></li>
+                <li class="menu"><a class="menulink" href="login.php#signup">Sign Up</a></li>
+                <li class="menu"><a class="menulink current">EN</a> | <a class="menulink">RU</a></li>
+            </ul>
+        </div>
+    </aside>
     <main>
         <div class="mainheadingwrapper">
             <h1>Our Timeline</h1>
