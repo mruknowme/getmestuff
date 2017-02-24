@@ -1,4 +1,4 @@
-<header>
+<header class="wow slideInDown">
     <div class="headerwrap">
         <h2 class="navtitle">GetMeStuff</h2>
         <div class="openmenu"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></div>

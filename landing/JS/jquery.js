@@ -94,7 +94,7 @@ $().ready(function() {
             $('.one').removeClass('active');
             $('.sign').fadeOut(100);
             setTimeout(function(){
-                $('.form').css('height', '367px');
+                $('.form').css('height', '447px');
             }, 100);
             setTimeout(function(){
                 $('#login').fadeIn(100);
@@ -104,7 +104,7 @@ $().ready(function() {
             $('.two').removeClass('active');
             $('.login').fadeOut(100);
             setTimeout(function(){
-                $('.form').css('height', '521px');
+                $('.form').css('height', '601px');
             }, 100);
             setTimeout(function(){
                 $('#signup').fadeIn(100);

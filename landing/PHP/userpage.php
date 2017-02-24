@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Your Account</title>
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -11,10 +12,15 @@
     <script src="../JS/jquery.validate.js"></script>
     <script src="../JS/jquery.card.js"></script>
     <script src="../JS/sektor.js"></script>
+    <script src="../JS/wow.js"></script>
     <script src="../JS/userpage.js"></script>
+    <script type="text/javascript">
+        new WOW().init();
+    </script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/animate.css">
     <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
 </head>
 
@@ -30,7 +36,7 @@
         </div>
     </aside>
         <main>
-            <aside class="mobileusernav">
+            <aside class="mobileusernav wow slideInUp">
                 <ul>
                     <li><a class="mobileactive" data-tab="settings"><i class="fa fa-cog fa-lg" aria-hidden="true" data-tab="settings"></i><span data-tab="settings">Settings</span></a></li>
                     <li><a data-tab="money"><i class="fa fa-money fa-lg" aria-hidden="true" data-tab="money"></i><span data-tab="money">Top Up</span></a></li>
@@ -40,14 +46,14 @@
                 </ul>
             </aside>
             <div class="userpagecontent">
-                <section class="userinfowrapper">
+                <section class="userinfowrapper wow fadeInUp">
                     <div class="userinfo">
                         <p class="usrname">Daniil Belov</p>
                         <p class="balance">123.95$</p>
                     </div>
                 </section>
                 <div class="maincontentwrapper">
-                <div class="maintabs">
+                <div class="maintabs wow fadeIn">
                     <aside class="usernav">
                         <ul>
                             <li><a class="tabusr active" data-tab="settings">Account Settings</a></li>
@@ -288,7 +294,7 @@
                     </div>
                 </div>
                 <div class="boxes">
-                    <aside class="box current">
+                    <aside class="box current wow flipInX">
                         <h2>Your Current Wish</h2>
                         <div class="boxcontent">
                             <div class="boxtop">
@@ -302,7 +308,7 @@
                             <p class="collected">Collected: 40 000/70 000</p>
                         </div>
                     </aside>
-                    <aside class="box random">
+                    <aside class="box random wow flipInX">
                         <h2>Random Wish</h2>
                         <div class="boxcontent">
                             <div class="boxtop">

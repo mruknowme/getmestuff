@@ -154,8 +154,7 @@ section.ourtimeline {
 	border-radius: 5px;
 }
 
-.timelinecontainer .timelineitem .timelinecontent:before {
-	content: '';
+.timelinecontainer .timelineitem .timelinecontent .arrow {
 	position: absolute;
 	left: 95%;
 	margin-left: -8px;
@@ -164,6 +163,7 @@ section.ourtimeline {
 	height: 15px;
 	transform: rotate(45deg);
 	background-color: #F16876;
+	z-index: 100;
 }
 
 .timeline .seventeen {
@@ -207,6 +207,8 @@ section.ourtimeline {
 	background-color: #F16876;
 	margin: -20px -20px 10px -20px;
 	border-radius: 3px 3px 0 0;
+	position: relative;
+	z-index: 300;
 }
 
 .timelinecontainer .timelineitem .timelinecontent p {
@@ -220,7 +222,7 @@ section.ourtimeline {
 	float: right;
 }
 
-.timelinecontainer .timelineitem .timelinecontent.right:before {
+.timelinecontainer .timelineitem .timelinecontent.right .arrow {
 	left: 5%;
 }
 
@@ -391,7 +393,11 @@ section.ourtimeline {
 	    margin-left: -8.5px;
 	}
 
-	.timelinecontainer .timelineitem .timelinecontent:before {
+	.timelinecontainer .timelineitem.inverted .timelineicon {
+	    margin-left: -8.5px;
+	}
+
+	.timelinecontainer .timelineitem .timelinecontent .arrow {
 	    left: 5%;
 	}
 
@@ -424,7 +430,7 @@ section.ourtimeline {
 		width: 91%;
 	}
 
-	.timelinecontainer .timelineitem .timelinecontent:before, .timelinecontainer .timelineitem .timelinecontent.right:before {
+	.timelinecontainer .timelineitem .timelinecontent .arrow, .timelinecontainer .timelineitem .timelinecontent.right .arrow {
 	    left: 9%;
 	}
 }
@@ -439,6 +445,14 @@ section.ourtimeline {
 @media only screen and (max-width: 320px) {
 	.mainheadingwrapper h1 {
 		font-size: 2.5em;
+	}
+
+	.timelinecontainer {
+		padding-right: 0px;
+	}
+
+	section.ourtimeline {
+		padding-right: 5px;
 	}
 }
 
