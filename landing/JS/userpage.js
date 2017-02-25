@@ -262,11 +262,9 @@ $(function(){
             }
             $(function(){
                 if(tabtarget.attr('data-tab') == 'currentwish') {
-                    $('.formcontentusr').hide();
                     $('.maintabs').hide();
                     $('.boxes').addClass('displayflex');
                 } else {
-                    $('.formcontentusr').show();
                     $('.maintabs').show();
                     $('.boxes').removeClass('displayflex');
                     $('.mobileusernav ul li a').removeClass('mobileactive');
@@ -281,5 +279,15 @@ $(function(){
     $('.openmenu').click(function(){
         $('.mobilenavwrapper').toggleClass('siderbar');
         $('.openmenu').toggleClass('siderbartoggler');
+    });
+
+    $(window).on('resize', function(){
+        var width = $(window).width();
+        if(width > 1036) {
+            $('.boxes').removeClass('displayflex');
+            $('.maintabs').show();
+            $('.formcontentusr').hide();
+            $('.formcontentusr.accountsettings').show();
+        }
     });
 });

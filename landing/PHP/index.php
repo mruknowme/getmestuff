@@ -103,19 +103,19 @@
                         </li>
                       </ul>
         </aside>
-        <section class="about content" id="how">
+        <section class="about content wow slideInUp" id="how">
             <div class="imgwrapper">
                 <img class="howimg lazy" data-original="../IMG/placeholder250.png">
             </div>
-            <div class="secondtextwrapper how wow slideInUp">
+            <div class="secondtextwrapper how">
                 <h3>How it works?</h3>
                 <p>The idea behind this site is very simple. Think about what you really want (iPhone, holidays) and ask people to help raise the funds. Although, to do this, you need to help first.</p>
                 <a href="about.php" class="btn">More...</a>
             </div>
         </section>
         <div class="divisionwrapper">
-            <section class="who content" id="who">
-                <div class="secondtextwrapper we wow slideInUp">
+            <section class="who content wow slideInUp" id="who">
+                <div class="secondtextwrapper we">
                     <h3>Who are we?</h3>
                     <p>Just to firends who understood, that in the hour of need, it can be embarassing to ask others for help. Therefore, we came up with the idea of asking anonymously not only your firends, but the whole world.</p>
                     <a href="about.php" class="btn">More...</a>
