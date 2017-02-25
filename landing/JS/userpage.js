@@ -61,6 +61,9 @@ $(function(){
         } else if($('.einzt').is(':hidden') && width <= 320) {
             var x2 = event.pageX - $('div.badgewrapper.einz').offset().left - 60;
             var y2 = event.pageY - $('div.badgewrapper.einz').offset().top + 10;
+            if(x2 <= -20) {
+                x2 = -20;
+            }
             $('.einzt').css('top', y2);
             $('.einzt').css('left', x2);
             $('.einzt').fadeIn();
