@@ -492,6 +492,98 @@ p {
     color: #FFFFFF;
 }
 
+footer {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    margin-top: -5px;
+    border-top: 1px solid #929292;
+    background-color: #FFFFFF;
+
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+footer .footerwrap {
+    display: flex;
+    width: 100%;
+    max-width: 1036.8px;
+    height: 70px;
+    box-sizing: border-box;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .footerwrap .social {
+    width: 200px;
+}
+
+footer .footerwrap .social ul {
+    display: flex;
+    width: 100%;
+    list-style: none;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .footerwrap .social ul li a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+footer .footerwrap .social ul li a i {
+    font-size: 1.5em;
+}
+
+footer .footerwrap .social ul li a.facebook:hover {
+    color: #3B5998;
+}
+
+footer .footerwrap .social ul li a.twitter:hover {
+    color: #55ACEE;
+}
+
+footer .footerwrap .social ul li a.vk:hover {
+    color: #507299;
+}
+
+footer .footerwrap .social ul li.sociallast {
+    display: block;
+    height: 24px;
+    width: 24px;
+    background-color: black;
+    clip-path: url(#svgPath);
+}
+
+footer .footerwrap .social ul li a.instagram svg{
+    width: 100%;
+    height: 100%;
+}
+
+footer .footerwrap .social ul a.instagram {
+    cursor: pointer;
+}
+
+footer .footerwrap .social ul a.instagram:hover > li {
+    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, rgba(0, 0, 0, 0)), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+}
+
+footer .footerwrap .copyright p {
+    font-size: 0.9em;
+}
+
+footer .footerwrap .copyright p a {
+    color: #666;
+    text-decoration: none;
+}
+
+footer .footerwrap .copyright p a:hover {
+    color: #333;
+}
+
 @media only screen and (max-width: 1036px) {
     .contactwarpper h3 {
         float: none;
@@ -594,6 +686,17 @@ p {
         position: relative;
         width: 80%;
     }
+
+    .footerwrap {
+        margin: 0 5px;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    footer .footerwrap {
+        flex-direction: column;
+        padding: 10px 0;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -615,6 +718,10 @@ p {
 @media only screen and (max-width: 375px) {
     .secondtextwrapper {
         width: 90%;
+    }
+
+    footer .footerwrap .copyright p {
+        font-size: 0.8em;
     }
 }
 
@@ -646,87 +753,8 @@ p {
     :-ms-input-placeholder {
         font-size: 1.1em;
     }
-}
 
-footer {
-    display: flex;
-    width: 100%;
-    height: 70px;
-    margin-top: -5px;
-    border-top: 1px solid #929292;
-    background-color: #FFFFFF;
-
-    justify-content: space-around;
-    align-items: flex-start;
-}
-
-footer .footerwrap {
-    display: flex;
-    width: 100%;
-    max-width: 1036.8px;
-    height: 100%;
-
-    justify-content: center;
-    align-items: center;
-}
-
-footer .footerwrap .social {
-    width: 200px;
-}
-
-footer .footerwrap .social ul {
-    display: flex;
-    width: 100%;
-    list-style: none;
-
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer .footerwrap .social ul li a {
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
-
-footer .footerwrap .social ul li a.instagram .instwrapper {
-	display: block;
-	height: 27.4333px;
-	width: 27.4333px;
-}
-
-footer .footerwrap .social ul li a.instagram .instwrapper i{
-}
-
-footer .footerwrap .social ul li a.facebook:hover {
-    color: #3B5998;
-}
-
-footer .footerwrap .social ul li a.twitter:hover {
-    color: #55ACEE;
-}
-
-footer .footerwrap .social ul li a.vk:hover {
-    color: #507299;
-}
-
-footer .footerwrap .social ul li a.instagram {
-	display: block;
-	height: 24px;
-	width: 24px;
-	background-color: black;
-	clip-path: url(#svgPath);
-}
-
-footer .footerwrap .social ul li a.instagram svg{
-	width: 100%;
-	height: 100%;
-}
-
-footer .footerwrap .social ul li.sociallast {
-	cursor: pointer;
-}
-
-footer .footerwrap .social ul li.sociallast:hover > a {
-	background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, rgba(0, 0, 0, 0)), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+    footer .footerwrap .copyright p {
+        font-size: 0.7em;
+    }
 }

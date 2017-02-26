@@ -61,7 +61,12 @@
                             <lable class="signlable">Verify Your Password</lable>
                         </div>
                     </div>
-                    <button type="submit">Get Started</button>
+                    <div class="thirdrow">
+                        <label>
+                            <input type="checkbox" name=""> <span>Accept <a href="#">Terms and Conditions</a></span>
+                        </label>
+                        <button type="submit">Get Started</button>
+                    </div>
                 </form>
             </div>
             <div class="formcontent login" id="login" style="display: none;">
