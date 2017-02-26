@@ -1475,7 +1475,7 @@ footer .footerwrap .copyright p a:hover {
 	}
 
     footer .footerwrap {
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: space-around;
         align-items: center;
     }

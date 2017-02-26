@@ -149,7 +149,7 @@
         </section>
         <div class="divisionwrapper">
             <section class="contact content" id="contact">
-                <div class="contactwarpper wow bounceIn">
+                <div class="contactwarpper wow lightSpeedIn">
                     <h3>Contact Us</h3>
                     <div class="formwrapper">
                         <p>We would like to here from you about any suggestions or problems.</p>

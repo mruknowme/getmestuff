@@ -522,7 +522,7 @@ footer .footerwrap .copyright p a:hover {
 
 @media only screen and (max-width: 568px) {
     footer .footerwrap {
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: space-around;
         align-items: center;
     }
