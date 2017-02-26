@@ -1476,7 +1476,8 @@ footer .footerwrap .copyright p a:hover {
 
     footer .footerwrap {
         flex-direction: column;
-        padding: 10px 0;
+        justify-content: space-around;
+        align-items: center;
     }
 }
 
