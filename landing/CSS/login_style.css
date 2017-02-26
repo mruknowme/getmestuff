@@ -1,4 +1,4 @@
-* {
+f* {
     font-size : 100%;
     margin : 0;
     padding : 0;
@@ -524,7 +524,7 @@ lable.signlable {
     font-size: 0.8em;
     display: block;
     position: relative;
-    z-index: 2;
+    z-index: 5;
 }
 
 .getpass input {
