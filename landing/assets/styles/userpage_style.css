@@ -103,7 +103,7 @@ main {
 
 body {
     background-color: rgba(201, 219, 225, 0.3);
-    background-image: url(../IMG/absurdity.png);
+    background-image: url(../img/absurdity.png);
 }
 
 .maintabs {
@@ -624,7 +624,7 @@ button:hover {
     margin-right: 5px;
     border: 1px solid #A0B3B0;
     border-radius: 3px;
-    background: #FFFFFF url('../IMG/caret-bottom.svg') no-repeat 90% 50%;
+    background: #FFFFFF url('../img/caret-bottom.svg') no-repeat 90% 50%;
 }
 
 .currenttitle {

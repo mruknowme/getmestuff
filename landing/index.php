@@ -2,21 +2,21 @@
 <html>
 
 <head>
-    <link href="../CSS/owlCarusel/owl.carousel.css" rel="stylesheet" type="text/css">
-    <link href="../CSS/owlCarusel/owl.theme.default.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/owlCarusel/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/owlCarusel/owl.theme.default.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/animate.css">
-    <link href="../CSS/index_style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/index_style.css">
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../JS/jquery.smooth-scroll.js"></script>
-    <script src="../JS/jquery.countTo.js"></script>
-    <script src="../JS/jquery.lazyload.js"></script>
-    <script src="../JS/jquery.waypoints.js"></script>
-    <script src="../JS/owl.carousel.min.js"></script>
-    <script src="../JS/wow.js"></script>
-    <script src="../JS/index.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery.smooth-scroll.js"></script>
+    <script src="assets/plugins/jquery.countTo.js"></script>
+    <script src="assets/plugins/jquery.lazyload.js"></script>
+    <script src="assets/plugins/jquery.waypoints.js"></script>
+    <script src="assets/plugins/owl.carousel.min.js"></script>
+    <script src="assets/plugins/wow.js"></script>
+    <script src="assets/scripts/index.js"></script>
 
     <script>
         $(function() {
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-    <?php require_once("header.php") ?>
+    <?php require_once("app/block/header.php") ?>
     <aside class="mobilenavwrapper">
         <div class="mobilenav">
             <ul>
@@ -105,7 +105,7 @@
         </aside>
         <section class="about content wow slideInUp" id="how">
             <div class="imgwrapper">
-                <img class="howimg lazy" data-original="../IMG/placeholder250.png">
+                <img class="howimg lazy" data-original="assets/img/placeholder250.png">
             </div>
             <div class="secondtextwrapper how">
                 <h3>How it works?</h3>
@@ -121,7 +121,7 @@
                     <a href="about.php" class="btn">More...</a>
                 </div>
                 <div class="imgwrapper">
-                    <img class="whoimg lazy" data-original="../IMG/placeholder250.png">
+                    <img class="whoimg lazy" data-original="assets/img/placeholder250.png">
                 </div>
             </section>
         </div>
@@ -164,7 +164,7 @@
             </section>
         </div>
     </main>
-    <?php require_once("footer.php")?>
+    <?php require_once("app/block/footer.php")?>
 </body>
 
 </html>

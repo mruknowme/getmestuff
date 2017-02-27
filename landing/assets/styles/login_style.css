@@ -71,12 +71,14 @@ nav .current {
 
 main {
     padding-top : 70px;
+    width: 100%;
 }
 
 body {
     background-color: rgba(201, 219, 225, 0.3);
     position: relative;
     z-index: 0;
+    margin: 0px;
 }
 
 .tabs {
@@ -287,6 +289,7 @@ button:hover {
 .forgot .forgotp {
     text-decoration: none;
     color: black;
+    margin: 0px;
 }
 
 .forgot .forgotp:hover {

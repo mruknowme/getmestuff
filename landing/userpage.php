@@ -7,25 +7,25 @@
     <title>Your Account</title>
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../JS/jquery.countTo.js"></script>
-    <script src="../JS/jquery.lazyload.js"></script>
-    <script src="../JS/jquery.validate.js"></script>
-    <script src="../JS/jquery.card.js"></script>
-    <script src="../JS/sektor.js"></script>
-    <script src="../JS/wow.js"></script>
-    <script src="../JS/userpage.js"></script>
+    <script src="assets/plugins/jquery.countTo.js"></script>
+    <script src="assets/plugins/jquery.lazyload.js"></script>
+    <script src="assets/plugins/jquery.validate.js"></script>
+    <script src="assets/plugins/jquery.card.js"></script>
+    <script src="assets/plugins/sektor.js"></script>
+    <script src="assets/plugins/wow.js"></script>
+    <script src="assets/scripts/userpage.js"></script>
     <script type="text/javascript">
         new WOW().init();
     </script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/animate.css">
-    <link href="../CSS/userpage_style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/animate.css">
+    <link href="assets/styles/userpage_style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-    <?php require_once("userheader.php"); ?>
+    <?php require_once("app/block/userheader.php"); ?>
     <aside class="mobilenavwrapper">
         <div class="mobilenav">
             <ul>
@@ -174,7 +174,7 @@
                                     <div class="badges">
                                         <div class="badgewrapper einz">
                                             <div class="radial number1"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip einzt">
                                                 <h4>Donator - 20 <i class="fa fa-star" aria-hidden="true"></i></h4>
@@ -183,7 +183,7 @@
                                         </div>
                                         <div class="badgewrapper zwei">
                                             <div class="radial number2"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -192,7 +192,7 @@
                                         </div>
                                         <div class="badgewrapper drei">
                                             <div class="radial number3"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -201,7 +201,7 @@
                                         </div>
                                         <div class="badgewrapper">
                                             <div class="radial number4"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -210,7 +210,7 @@
                                         </div>
                                         <div class="badgewrapper">
                                             <div class="radial number5"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -219,7 +219,7 @@
                                         </div>
                                         <div class="badgewrapper">
                                             <div class="radial number6"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -228,7 +228,7 @@
                                         </div>
                                         <div class="badgewrapper">
                                             <div class="radial number7"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -237,7 +237,7 @@
                                         </div>
                                         <div class="badgewrapper">
                                             <div class="radial number8"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -246,7 +246,7 @@
                                         </div>
                                         <div class="badgewrapper">
                                             <div class="radial number9"></div>
-                                            <img src="../IMG/badge.svg">
+                                            <img src="assets/img/badge.svg">
                                             <span>Donator(36%)</span>
                                             <div class="achievtooltip">
                                                 <h4>Donator</h4>
@@ -330,8 +330,8 @@
             </div>
             </div>
         </main>
-    <?php require_once("footer.php") ?>
-    <script src="../JS/login.js"></script>
+    <?php require_once("app/block/footer.php") ?>
+    <script src="assets/scripts/login.js"></script>
     <script>
         $("#achievtab").click(function() {
             $('.timerone').countTo({

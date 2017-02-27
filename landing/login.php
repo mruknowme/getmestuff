@@ -3,12 +3,12 @@
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link href="../CSS/login_style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="assets/styles/login_style.css" rel="stylesheet" type="text/css">
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../JS/jquery.validate.js"></script>
-    <script src="../JS/jquery.js"></script>
+    <script src="assets/plugins/jquery.validate.js"></script>
+    <script src="assets/scripts/jquery.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <?php require_once("header.php"); ?>
+    <?php require_once("app/block/header.php"); ?>
     <aside class="mobilenavwrapper">
         <div class="mobilenav">
             <ul>
@@ -106,8 +106,7 @@
             <div class="overlay"></div>
         </section>
     </main>
-    <?php require_once("footer.php"); ?>
-    <script src="../JS/login.js"></script>
+    <?php require_once("app/block/footer.php"); ?>
     <script>
         $(function(){
             $('input.inputsign').focusout(function() {

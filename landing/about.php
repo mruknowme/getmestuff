@@ -2,16 +2,16 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link href="../CSS/about_style.css"s rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="assets/styles/about_style.css"s rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../CSS/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/animate.css">
     
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../JS/jquery.countTo.js"></script>
-    <script src="../JS/jquery.lazyload.js"></script>
-    <script src="../JS/wow.js"></script>
-    <script src='../JS/about.js'></script>
+    <script src="assets/plugins/jquery.countTo.js"></script>
+    <script src="assets/plugins/jquery.lazyload.js"></script>
+    <script src="assets/plugins/wow.js"></script>
+    <script src="assets/scripts/about.js"></script>
     <script type="text/javascript">
         new WOW().init();
     </script>
@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <?php require_once("header.php") ?>
+    <?php require_once("app/block/header.php") ?>
     <aside class="mobilenavwrapper">
         <div class="mobilenav">
             <ul>
@@ -84,7 +84,7 @@
             </div>
         </section>
     </main>
-    <?php require_once("footer.php") ?>
+    <?php require_once("app/block/footer.php") ?>
 </body>
 
 </html>

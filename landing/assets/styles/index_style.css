@@ -148,7 +148,7 @@ main {
 
 .mainwrapper {
     height: 580px;
-    background-image: url(../IMG/aboutbackground.jpg);
+    background-image: url(../img/aboutbackground.jpg);
     background-attachment: fixed;
 }
 

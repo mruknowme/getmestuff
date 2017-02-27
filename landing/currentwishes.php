@@ -3,16 +3,16 @@
 
 <head>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="../JS/wow.js"></script>
-    <script src="../JS/currentwhishes.js"></script>
+    <script src="assets/plugins/wow.js"></script>
+    <script src="assets/scripts/currentwhishes.js"></script>
     <script type="text/javascript">
         new WOW().init();
     </script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../CSS/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/animate.css">
-    <link href="../CSS/current_style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/animate.css">
+    <link href="assets/styles/current_style.css" rel="stylesheet" type="text/css">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <?php require_once("userheader.php"); ?>
+    <?php require_once("app/block/userheader.php"); ?>
     <aside class="mobilenavwrapper">
         <div class="mobilenav">
             <ul>
@@ -146,7 +146,7 @@
             </section>
         </div>
     </main>
-    <?php require_once("footer.php") ?>
+    <?php require_once("app/block/footer.php") ?>
 </body>
 
 </html>
