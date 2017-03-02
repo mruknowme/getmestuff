@@ -271,6 +271,7 @@ button {
     text-transform : uppercase;
     color : white;
     background-color : rgb(241, 104, 118);
+    border: none;
 }
 
 button:hover {
@@ -600,13 +601,14 @@ lable.signlable {
 
 .mobilenav ul {
     list-style: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 .mobilenav ul li:not(:last-child) {
     margin-bottom: 5px;
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-    border-style: inset;
 }
 
 .mobilenav ul li a {
@@ -724,6 +726,8 @@ footer .footerwrap .social ul {
     display: flex;
     width: 100%;
     list-style: none;
+    padding: 0;
+    margin: 0;
 
     justify-content: space-between;
     align-items: center;
