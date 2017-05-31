@@ -361,6 +361,13 @@ textarea {
   transition: all 150ms ease-out;
 }
 
+input:focus ~ label.animated {
+  color: #00c1a3;
+  font-size: 0.8em;
+  top: -15px;
+  left: 0px;
+}
+
 .overlay {
   position: absolute;
   z-index: 100;
