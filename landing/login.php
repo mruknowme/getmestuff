@@ -1,108 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html class="login overflow-visible">
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link href="assets/styles/login_style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
 
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="assets/plugins/jquery.validate.js"></script>
-    <script src="assets/scripts/jquery.js"></script>
+    <script type="text/javascript" src="assets/scripts/jquery-3.2.1.min.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register/Login</title>
+    <title>GetMeStuff | SignUp</title>
 </head>
 
-<body>
+<body class="overflow-visible">
     <?php require_once("app/block/header.php"); ?>
-    <aside class="mobilenavwrapper">
-        <div class="mobilenav">
-            <ul>
-                <li class="menu"><a class="menulink" href="index.php">Home</a></li>
-                <li class="menu"><a class="menulink" href="about.php">About Us</a></li>
-                <li class="menu"><a class="menulink" href="login.php#login">Log In</a></li>
-                <li class="menu"><a class="menulink" href="login.php#signup">Sign Up</a></li>
-                <li class="menu"><a class="menulink current">EN</a> | <a class="menulink">RU</a></li>
-            </ul>
-        </div>
-    </aside>
-    <main>
-        <section class="form">
+    <main class="mh mw">
+        <section class="pos-r flex vertical center">
             <ul class="tabs">
-                <li><a class="tab one" data-tab="signup">Sing Up</a></li>
-                <li><a class="tab two" data-tab="login">Log In</a></li>
+                <li class="active" data-tab="signup">Sing Up</li>
+                <li data-tab="login">Log In</li>
             </ul>
-            <div class="formcontent sign" id="signup" style="display: none;">
+            <div class="form mw" id="signup" style="display: block;">
                 <h1>Sign Up</h1>
-                <form action="" mehtod="" id="singupform">
-                    <div class="toprow cf" id="topsignup">
-                        <div class="errorwrapper up">
-                            <input class="firstchild inputsign" type="text" id="firstname" name="firstname" autocomplete="off">
-                            <lable class="signlable">First Name</lable>
+                <form class="mw vertical center" action="" mehtod="" id="singupform">
+                    <div class="top-row flex start mw">
+                        <div class="pos-r w45">
+                            <input type="text" id="firstname" name="firstname" autocomplete="off">
+                            <label class="animated">First Name</label>
                         </div>
-                        <div class="errorwrapper">
-                            <input class="lastchild inputsign" type="text" id="lastname" name="lastname" autocomplete="off">
-                            <lable class="signlable">Last Name</lable>
+                        <div class="pos-r w45">
+                            <input type="text" id="lastname" name="lastname" autocomplete="off">
+                            <label class="animated">Last Name</label>
                         </div>
                     </div>
-                    <div class="secondary">
-                        <div class="inputwrapper">
+                    <div class="mw">
+                        <div class="pos-r mw">
                             <input class="inputsign" type="email" id="email" name="email" autocomplete="off">
-                            <lable class="signlable">Email Address</lable>
+                            <label class="animated">Email Address</label>
                         </div>
-                        <div class="inputwrapper">
+                        <div class="pos-r mw">
                             <input class="inputsign" type="password" id="pass" name="pass" autocomplete="off">
-                            <lable class="signlable">Set a Password</lable>
+                            <label class="animated">Set a Password</label>
                         </div>
-                        <div class="inputwrapper">
+                        <div class="pos-r mw">
                             <input class="inputsign" type="password" id="passcheck" name="passcheck" autocomplete="off">
-                            <lable class="signlable">Verify Your Password</lable>
+                            <label class="animated">Verify Your Password</label>
                         </div>
                     </div>
-                    <div class="thirdrow">
-                        <label>
-                            <input type="checkbox" name=""> <span>Accept <a href="#">Terms and Conditions</a></span>
+                    <div class="flex vertical center mw">
+                        <label class="terms flex center self-end">
+                            <input type="checkbox" name=""> <span>Accept <a class="no-select" href="#">Terms and Conditions</a></span>
                         </label>
-                        <button type="submit">Get Started</button>
+                        <button class="mw" type="submit">Get Started</button>
                     </div>
                 </form>
             </div>
-            <div class="formcontent login" id="login" style="display: none;">
+            <div class="form pos-r mw flex vertical center" id="login" style="display: none;">
                 <h1>Welcome Back</h1>
-                <form action="" method="" id="loginform">
-                    <div class="secondary">
-                        <div class="inputwrapper">
-                            <input class="inputsign" type="email" id="loginmail" name="email" autocomplete="off">
-                            <lable class="signlable">Email Address</lable>
+                <form class="vertical center" action="" method="" id="loginform">
+                    <div class="mw">
+                        <div class="pos-r mw">
+                            <input type="email" id="loginmail" name="email" autocomplete="off">
+                            <label class="animated">Email Address</label>
                         </div>
-                        <div class="inputwrapper">
-                            <input class="inputsign" type="password" id="loginpass" name="pass" autocomplete="off">
-                            <lable class="signlable">Passowrd</lable>
+                        <div class="pos-r mw">
+                            <input type="password" id="loginpass" name="pass" autocomplete="off">
+                            <label class="animated">Passowrd</label>
                         </div>
                     </div>
-                    <button class="formbutton" type="submit">Log In</button>
+                    <button class="mw" type="submit">Log In</button>
                 </form>
-                <div class="forgot">
-                    <p class="forgotp">Forgot Password?</p>
+                <div class="pos-a forgot">
+                    <p>Forgot Password?</p>
                 </div>
             </div>
-            <div class="getpass one cf" style="display: none;">
-            <i class="fa fa-plus close" aria-hidden="true"></i>
-                        <div class="arrow"></div>
-                            <div class="passwrapper cf">
-                                <form id="forgotform" style="display: block">
-                                    <lable>Enter your email:</lable>
-                                    <input id="mailf" name="mailf">
-                                    <button>Send</button>
-                                </form>
-                                <div class="done" style="display: none">
-                                    <i class="fa fa-check-circle fa-2x donei" aria-hidden="true"></i>
-                                    <p>Check your inbox</p>
-                                </div>
-                            </div>
+            <div class="forgot-form pos-a" style="display: none;">
+                <div class="pos-a arrow"></div>
+                <div class="pos-r mw pas-wrapper">
+                    <form class="pos-a pos-center mw flex vertical start" id="forgotform" style="display: block">
+                        <label>Enter your email:</label>
+                        <div class="flex start">
+                            <input id="mailf" name="mailf">
+                            <button>Send</button>
                         </div>
+                    </form>
+                    <div class="done" style="display: none">
+                        <i class="fa fa-check-circle fa-2x pos-r" aria-hidden="true"></i>
+                        <p>Check your inbox</p>
+                    </div>
+                </div>
+            </div>
             <div class="overlay"></div>
         </section>
     </main>

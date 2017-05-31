@@ -1,150 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html class="user-bg overflow-visible current-wishes">
 
 <head>
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="assets/plugins/wow.js"></script>
-    <script src="assets/scripts/currentwhishes.js"></script>
-    <script type="text/javascript">
-        new WOW().init();
-    </script>
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/styles/animate.css">
-    <link href="assets/styles/current_style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GetMeStuff | Current Wishes</title>
+    <title>GetMeStuff | Wishes</title>
 </head>
 
-<body>
-    <?php require_once("app/block/userheader.php"); ?>
-    <aside class="mobilenavwrapper">
-        <div class="mobilenav">
-            <ul>
-                <li><a href="userpage.php">Your Profile</a></li>
-                <li><a href="currentwishes.php">Current Wishes</a></li>
-                <li><a href=""><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a></li>
-            </ul>
-        </div>
-    </aside>
-    <main>
-        <div class="maincontent">
-            <section class="userinfowrapper wow fadeInUp">
-                <div class="userinfo">
-                    <p class="usrname">Daniil Belov</p>
-                    <p class="balance">123.95$</p>
-                </div>
-            </section>
-            <section class="rowwrapper">
-                <div class="row">
-                    <div class="box wow flipInX">
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
-                            </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="barone"></div>
-                            </div>
-                            <p class="collected">Collected: 40K / 70K</p>
-                            <form class="donate">
-                                <input type="number" name="amount" required>
-                                <button type="submit">Donate</button>
-                            </form>
+<body class="overflow-visible">
+    <?php require_once("app/block/header.php"); ?>
+    <main class="col-12 mw m-auto main-fix">
+        <section class="mw flex between user-info">
+            <p>Daniil Belov</p>
+            <p>123.95$</p>
+        </section>
+        <section class="flex wrap between mw">
+            <div class="wish mw">
+                <div class="content">
+                    <div class="header">
+                        <h4>iPhone 6</h4>
+                        <p>23/12/16</p>
+                    </div>
+                    <div class="progress">
+                        <p>Progress</p>
+                        <div class="progress-bar">
+                            <div></div>
                         </div>
                     </div>
-                    <div class="box wow flipInX">
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
-                            </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="barone"></div>
-                            </div>
-                            <p class="collected">Collected: 40K / 70K</p>
-                            <form class="donate">
-                                <input type="number" name="amount" required>
-                                <button type="submit">Donate</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="box wow flipInX">
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
-                            </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="barone"></div>
-                            </div>
-                            <p class="collected">Collected: 40K / 70K</p>
-                            <form class="donate">
-                                <input type="number" name="amount" required>
-                                <button type="submit">Donate</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="box wow flipInX">
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
-                            </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="barone"></div>
-                            </div>
-                            <p class="collected">Collected: 40K / 70K</p>
-                            <form class="donate">
-                                <input type="number" name="amount" required>
-                                <button type="submit">Donate</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="box wow flipInX">
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
-                            </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="barone"></div>
-                            </div>
-                            <p class="collected">Collected: 40K / 70K</p>
-                            <form class="donate">
-                                <input type="number" name="amount" required>
-                                <button type="submit">Donate</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="box wow flipInX">
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
-                            </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="barone"></div>
-                            </div>
-                            <p class="collected">Collected: 40K / 70K</p>
-                            <form class="donate">
-                                <input type="number" name="amount" required>
-                                <button type="submit">Donate</button>
-                            </form>
-                        </div>
+                    <div class="footer">
+                        <p>Collected: 40k/70k</p>
+                        <form>
+                            <input type="number" name="amount" required>
+                            <button type="submit">Donate</button>
+                        </form>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+            <div class="wish mw">
+                <div class="content">
+                    <div class="header">
+                        <h4>iPhone 6</h4>
+                        <p>23/12/16</p>
+                    </div>
+                    <div class="progress">
+                        <p>Progress</p>
+                        <div class="progress-bar">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p>Collected: 40k/70k</p>
+                        <form>
+                            <input type="number" name="amount" required>
+                            <button type="submit">Donate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="wish mw">
+                <div class="content">
+                    <div class="header">
+                        <h4>iPhone 6</h4>
+                        <p>23/12/16</p>
+                    </div>
+                    <div class="progress">
+                        <p>Progress</p>
+                        <div class="progress-bar">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p>Collected: 40k/70k</p>
+                        <form>
+                            <input type="number" name="amount" required>
+                            <button type="submit">Donate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="wish mw">
+                <div class="content">
+                    <div class="header">
+                        <h4>iPhone 6</h4>
+                        <p>23/12/16</p>
+                    </div>
+                    <div class="progress">
+                        <p>Progress</p>
+                        <div class="progress-bar">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p>Collected: 40k/70k</p>
+                        <form>
+                            <input type="number" name="amount" required>
+                            <button type="submit">Donate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="wish mw">
+                <div class="content">
+                    <div class="header">
+                        <h4>iPhone 6</h4>
+                        <p>23/12/16</p>
+                    </div>
+                    <div class="progress">
+                        <p>Progress</p>
+                        <div class="progress-bar">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p>Collected: 40k/70k</p>
+                        <form>
+                            <input type="number" name="amount" required>
+                            <button type="submit">Donate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="wish mw">
+                <div class="content">
+                    <div class="header">
+                        <h4>iPhone 6</h4>
+                        <p>23/12/16</p>
+                    </div>
+                    <div class="progress">
+                        <p>Progress</p>
+                        <div class="progress-bar">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <p>Collected: 40k/70k</p>
+                        <form>
+                            <input type="number" name="amount" required>
+                            <button type="submit">Donate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <?php require_once("app/block/footer.php") ?>
 </body>

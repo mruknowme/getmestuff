@@ -1,14 +1,14 @@
-<header class="wow slideInDown">
-    <div class="headerwrap">
-        <h2 class="navtitle">GetMeStuff</h2>
-        <div class="openmenu"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></div>
-        <nav>
-            <ul>
-                <li class="menu"><a class="menulink" href="index.php">Home</a></li>
-                <li class="menu"><a class="menulink" href="about.php">About Us</a></li>
-                <li class="menu"><a class="menulink" href="login.php#login">Log In</a></li>
-                <li class="menu"><a class="menulink" href="login.php#signup">Sign Up</a></li>
-                <li class="menu"><a class="menulink current">EN</a> | <a class="menulink">RU</a></li>
+<header class="wow slideInDown around mw">
+    <div class="col-12 mh flex between mw">
+        <h3 class="navtitle">GetMeStuff</h3>
+        <p class="mobile"><i class="fa fa-bars" aria-hidden="true"></i></p>
+        <nav class="mw">
+            <ul class="mw between">
+                <li><a class="link" href="index.php">Home</a></li>
+                <li><a class="link" href="about.php">About Us</a></li>
+                <li><a class="link" href="login.php#login">Log In</a></li>
+                <li><a class="link" href="login.php#signup">Sign Up</a></li>
+                <li><a class="">EN</a> | <a class="">RU</a></li>
             </ul>
         </nav>
     </div>

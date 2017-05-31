@@ -2,144 +2,79 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="assets/styles/owlCarusel/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="assets/styles/owlCarusel/owl.theme.default.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/styles/animate.css">
-    <link rel="stylesheet" type="text/css" href="assets/styles/index_style.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
 
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery.smooth-scroll.js"></script>
-    <script src="assets/plugins/jquery.countTo.js"></script>
-    <script src="assets/plugins/jquery.lazyload.js"></script>
-    <script src="assets/plugins/jquery.waypoints.js"></script>
-    <script src="assets/plugins/owl.carousel.min.js"></script>
-    <script src="assets/plugins/wow.js"></script>
-    <script src="assets/scripts/index.js"></script>
+    <script src="assets/scripts/jquery-3.2.1.min.js"></script>
+    <script src="assets/plugins/jquery.pagepiling.min.js"></script>
 
-    <script>
-        $(function() {
-            $(".lazy").lazyload({
-                effect: "fadeIn"
-            });
-
-            $('body').smoothScroll({
-                delegateSelector: 'aside.jumpto a'
-            });
-
-        });
-        new WOW().init();  
-    </script>
+    <script type="text/javascript"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GetMeStuff</title>
+    <script type="text/javascript">
+        $(function() {
+            $('#pp').pagepiling({
+                 navigation: {
+                    'textColor': '#FFF',
+                    'bulletsColor': '#FFF',
+                    'position': 'right',
+                    'tooltips': ['Welcome', 'How it Works', 'Who are We', 'Success Stories', 'Contact Us']
+                },
+            });
+        });
+    </script>
 </head>
 
-<body>
+<body class="index">
     <?php require_once("app/block/header.php") ?>
-    <aside class="mobilenavwrapper">
-        <div class="mobilenav">
-            <ul>
-                <li class="menu"><a class="menulink" href="index.php">Home</a></li>
-                <li class="menu"><a class="menulink" href="about.php">About Us</a></li>
-                <li class="menu"><a class="menulink" href="login.php#login">Log In</a></li>
-                <li class="menu"><a class="menulink" href="login.php#signup">Sign Up</a></li>
-                <li class="menu"><a class="menulink current">EN</a> | <a class="menulink">RU</a></li>
-            </ul>
-        </div>
-    </aside>
-    <main>
-        <div class="mainwrapper">
-            <section class="main" id="mainsection">
-                <div class="maintextwrapper wow fadeIn">
-                    <h1>GetMeStuff</h1>
-                    <div class="moreinfo owl-carousel owl-theme">
-                        <div class="item first"><p>Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p></div>
-                        <div class="item"><p>Information about something1</p></div>
-                        <div class="item"><p>Information about something2</p></div>
-                        <div class="item"><p>Information about something3</p></div>
-                        <div class="item"><p>Information about something4</p></div>
-                        <div class="item"><p>Information about something5</p></div>
-                    </div>
-                    <a class="mainbtn" href="login.php">Sign Up</a>
+    <main id="pp">
+        <section class="section">
+            <div class="mw mh flex center vertical main-section">
+                <h1>GetMeStuff</h1>
+                <div class="owl-carousel owl-theme">
+                    <div class="item"><p class="mw">Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p></div>
                 </div>
-            </section>
-        </div>
-        <aside class="jumpto wow wobble">
-                      <ul class="quicknav">
-                        <li>
-                          <span class="toolone">How it works?</span>
-                          <a id="linkone" href="#how">
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
-                              <circle cx="10" cy="10" r='5' />
-                            </svg>
-                          </a>
-                        </li>
-                        <li>
-                          <span class="tooltwo">Who we are?</span>
-                          <a id="linktwo" href="#who">
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
-                              <circle cx="10" cy="10" r='5' />
-                            </svg>
-                          </a>
-                        </li>
-                        <li>
-                          <span class="toolthree">Stories</span>
-                          <a id="linkthree" href="#success">
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
-                              <circle cx="10" cy="10" r='5' />
-                            </svg>
-                          </a>
-                        </li>
-                        <li>
-                          <span class="toolfour">Contact</span>
-                          <a id="linkfour" href="#contact">
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
-                              <circle cx="10" cy="10" r='5' />
-                            </svg>
-                          </a>
-                        </li>
-                      </ul>
-        </aside>
-        <section class="about content wow slideInUp" id="how">
-            <div class="imgwrapper">
-                <img class="howimg lazy" data-original="assets/img/placeholder250.png">
-            </div>
-            <div class="secondtextwrapper how">
-                <h3>How it works?</h3>
-                <p>The idea behind this site is very simple. Think about what you really want (iPhone, holidays) and ask people to help raise the funds. Although, to do this, you need to help first.</p>
-                <a href="about.php" class="btn">More...</a>
+                <a class="btn" href="login.php">Sign Up</a>
             </div>
         </section>
-        <div class="divisionwrapper">
-            <section class="who content wow slideInUp" id="who">
-                <div class="secondtextwrapper we">
-                    <h3>Who are we?</h3>
+        <section class="section">
+            <div class="col-12 mw mh flex between m-auto s-section">
+                <!-- <img class="howimg lazy" data-original="assets/img/placeholder250.png"> -->
+                <img src="http://placehold.it/350x350">
+                <div class="flex vertical start w5">
+                    <h2>How it works?</h2>
+                    <p>The idea behind this site is very simple. Think about what you really want (iPhone, holidays) and ask people to help raise the funds. Although, to do this, you need to help first.</p>
+                    <a href="about.php" class="btn">More...</a>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="col-12 mw mh flex between m-auto s-section">
+                <div class="flex vertical start w5">
+                    <h2>Who are we?</h2>
                     <p>Just to firends who understood, that in the hour of need, it can be embarassing to ask others for help. Therefore, we came up with the idea of asking anonymously not only your firends, but the whole world.</p>
                     <a href="about.php" class="btn">More...</a>
                 </div>
-                <div class="imgwrapper">
-                    <img class="whoimg lazy" data-original="assets/img/placeholder250.png">
-                </div>
-            </section>
-        </div>
-        <section class="story content" id="success">
-            <div class="storywarpper wow slideInUp">
-                <h3>Success stories</h3>
-                <div class="successwrapper">
-                    <div class="success">
+                <img src="http://placehold.it/350x350">
+                <!-- <img class="whoimg lazy" data-original="assets/img/placeholder250.png"> -->
+            </div>
+        </section>
+        <section class="section">
+            <div class="col-12 mw mh flex vertical m-auto s-section center">
+                <h2>Success stories</h2>
+                <div class="flex between mw">
+                    <div class="t-align">
                         <h4>Farid Muradly</h4>
                         <p>I would like to say thanks, to this project and everyone using it. I managed to finally visit USA!</p>
                         <p>Raised: 100 000</p>
                     </div>
-                    <div class="success middle">
+                    <div class="t-align">
                         <h4>Farid Muradly</h4>
                         <p>I would like to say thanks, to this project and everyone using it. I managed to finally visit USA!</p>
                         <p>Raised: 100 000</p>
                     </div>
-                    <div class="success">
+                    <div class="t-align">
                         <h4>Farid Muradly</h4>
                         <p>I would like to say thanks, to this project and everyone using it. I managed to finally visit USA!</p>
                         <p>Raised: 100 000</p>
@@ -147,24 +82,24 @@
                 </div>
             </div>
         </section>
-        <div class="divisionwrapper">
-            <section class="contact content" id="contact">
-                <div class="contactwarpper wow lightSpeedIn">
-                    <h3>Contact Us</h3>
-                    <div class="formwrapper">
-                        <p>We would like to here from you about any suggestions or problems.</p>
-                        <form>
-                            <input type="text" name="name" placeholder="Name">
-                            <input type="email" name="email" placeholder="Email">
-                            <textarea name="message"></textarea>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
+        <section class="section">
+            <div class="col-12 mw mh flex vertical center m-auto s-section">
+                <h2 class="self-start">Contact Us</h2>
+                <div class="mw flex s-between contact-form">
+                    <p class="w4">We would like to here from you about any suggestions or problems.</p>
+                    <form class="vertical center w5">
+                        <input type="text" name="name" placeholder="Name">
+                        <input type="email" name="email" placeholder="Email">
+                        <textarea name="message" placeholder="Your Message..."></textarea>
+                        <button class="self-start" type="submit">
+                            Submit
+                        </button>
+                    </form>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
-    <?php require_once("app/block/footer.php")?>
+    <?php require_once("app/block/footer.php") ?>
 </body>
 
 </html>

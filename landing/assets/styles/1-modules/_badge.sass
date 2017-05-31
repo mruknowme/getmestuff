@@ -1,0 +1,53 @@
+.badge
+    width: 80px
+    height: 80px
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    .radial
+        width: 56px
+        height: 56px
+        background-color: transparentize($white, 0.5)
+        position: absolute
+        border-radius: 50%
+        left: 50%
+        margin-left: -28px
+        top: 0px
+
+    p
+        margin-top: 5px
+        font-size: 0.9rem
+
+    .tool-tip
+        position: absolute
+        background-color: transparentize($black, 0.3)
+        z-index: 5
+        width: 150px
+        padding: 10px
+        top: 50%
+        left: 50%
+        margin-left: -80px
+
+        &:before
+            position: absolute
+            top: -20px
+            left: calc(50% - 5px)
+            width: 0
+            height: 0
+            content: ''
+            border-top: 10px solid transparent
+            border-right: 10px solid transparent
+            border-bottom: 10px solid rgba(0, 0, 0, 0.7)
+            border-left: 10px solid transparent
+
+        h4, p
+            color: $white
+
+        h4
+            font-size: 0.8rem
+
+        p
+            font-size: 0.7rem

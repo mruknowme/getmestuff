@@ -1,389 +1,249 @@
 <!DOCTYPE html>
-<html>
+<html class="overflow-visible user-bg userpage">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your Account</title>
+    <title>GetMeStuff | Daniil Belov</title>
 
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="assets/plugins/jquery.countTo.js"></script>
-    <script src="assets/plugins/jquery.lazyload.js"></script>
-    <script src="assets/plugins/jquery.validate.js"></script>
-    <script src="assets/plugins/jquery.card.js"></script>
-    <script src="assets/plugins/sektor.js"></script>
-    <script src="assets/plugins/wow.js"></script>
-    <script src="assets/scripts/userpage.js"></script>
-    <script type="text/javascript">
-        new WOW().init();
-    </script>
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:700|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/styles/animate.css">
-    <link href="assets/styles/userpage_style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
 </head>
 
-<body>
-    <?php require_once("app/block/userheader.php"); ?>
-    <aside class="mobilenavwrapper">
-        <div class="mobilenav">
-            <ul>
-                <li><a href="userpage.php">Your Profile</a></li>
-                <li><a href="currentwishes.php">Current Wishes</a></li>
-                <li><a href=""><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a></li>
-            </ul>
-        </div>
-    </aside>
-        <main>
-            <aside class="mobileusernav wow slideInUp">
-                <ul>
-                    <li><a class="mobileactive" data-tab="settings"><i class="fa fa-cog fa-lg" aria-hidden="true" data-tab="settings"></i><span data-tab="settings">Settings</span></a></li>
-                    <li><a data-tab="money"><i class="fa fa-money fa-lg" aria-hidden="true" data-tab="money"></i><span data-tab="money">Top Up</span></a></li>
-                    <li><a data-tab="achievements" id="achievtab2"><i class="fa fa-trophy fa-lg" aria-hidden="true" data-tab="achievements" id="achievtab2"></i><span id="achievtab2" data-tab="achievements">Achievements</span></a></li>
-                    <li><a data-tab="wish"><i class="fa fa-magic fa-lg" aria-hidden="true" data-tab="wish"></i><span data-tab="wish">Make a Wish</span></a></li>
-                    <li><a data-tab="currentwish"><i class="fa fa-heart fa-lg" aria-hidden="true" data-tab="currentwish"></i><span data-tab="currentwish">Wishes</span></a></li>
+<body class="overflow-visible">
+    <?php require_once("app/block/header.php"); ?>
+    <main class="col-12 mw mh m-auto main-fix">
+        <section class="mw flex between user-info">
+            <p>Daniil Belov</p>
+            <p>123.95$</p>
+        </section>
+        <div class="mw mh flex s-between">
+            <div class="main-content">
+                <ul class="tabs">
+                    <li class="active" data-tab="settings">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span>Settings</span>
+                    </li>
+                    <li data-tab="money">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        <span>Wallet</span>
+                    </li>
+                    <li data-tab="achievtab">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <span>Achievements</span>
+                    </li>
+                    <li data-tab="wish">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span>Make a Wish</span>
+                    </li>
                 </ul>
-            </aside>
-            <div class="userpagecontent">
-                <section class="userinfowrapper wow fadeInUp">
-                    <div class="userinfo">
-                        <p class="usrname">Daniil Belov</p>
-                        <p class="balance">123.95$</p>
-                    </div>
-                </section>
-                <div class="maincontentwrapper">
-                <div class="maintabs wow fadeIn">
-                    <aside class="usernav">
-                        <ul>
-                            <li><a class="tabusr active" data-tab="settings">Account Settings</a></li>
-                            <li><a class="tabusr" data-tab="money">Top Up</a></li>
-                            <li><a class="tabusr" id="achievtab" data-tab="achievements">Achievements</a></li>
-                            <li><a class="tabusr lastuser" data-tab="wish">Make a Wish</a></li>
-                        </ul>
-                    </aside>
-                    <div class="maincontent">
-                        <section class="accountsettings formcontentusr" id="settings">
-                            <h1>Edit Profile</h1>
-                            <form id="edit">
-                                <div class="mainformcontent">
-                                    <div class="topprofile">
-                                        <input type="text" id="firstname" name="firstname" placeholder="Your Name" autocomplete="off">
-                                        <input type="text" id="lastname" name="lastname" placeholder="Your Last Name" autocomplete="off">
-                                        <input type="email" id="email" name="email" placeholder="Your Email" autocomplete="off">
-                                        <div class="wrapper">
-                                            <input type="password" id="paswd" name="paswd" placeholder="Edit Password">
-                                        </div>
+                <div>
+                    <section style="display: block;" class="flex vertical start bg-white main-section" id="settings">
+                        <h2>Edit Profile</h2>
+                        <form class="mw vertical center">
+                            <div class="mw">
+                                <input type="text" id="firstname" name="firstname" placeholder="Your Name" autocomplete="off">
+                                <input type="text" id="lastname" name="lastname" placeholder="Your Last Name" autocomplete="off">
+                                <input type="email" id="email" name="email" placeholder="Your Email" autocomplete="off">
+                                <div>
+                                    <input type="password" id="paswd" name="paswd" placeholder="Edit Password">
+                                </div>
+                            </div>
+                            <div class="divisor divisor-bg mw">
+                                <p><i class="fa fa-key" aria-hidden="true"></i><span>Please enter your current password to confirm changes:</span></p>
+                                <input type="password" id="currentpaswd" name="currentpaswd" placeholder="Your Current Password" autocomplete="off">
+                                <!-- <span>
+                                    <i aria-hidden="true"></i>
+                                    <i aria-hidden="true"></i>
+                                </span> -->
+                            </div>
+                            <div class="self-start">
+                                <button type="submit">Save Changes</button>
+                            </div>
+                        </form>
+                    </section>
+                    <section class="flex vertical start bg-white main-section" style="display: none" id="money">
+                        <h2>Top Up Your Wallet</h2>
+                        <div>
+                            <div class="flex start select">
+                                <div class="w45 dropdown m-auto">
+                                    <a id="menutitle">Credit Card</a>
+                                    <div id="paymentmethod" style="display: none">
+                                        <a><i class="fa fa-credit-card" aria-hidden="true"></i> Credit Card</a>
+                                        <a><i class="fa fa-paypal" aria-hidden="true"></i> PayPal</a>
+                                        <a><i class="fa fa-google-wallet" aria-hidden="true"></i> Qiwi</a>
                                     </div>
                                 </div>
-                                <div class="confirm">
-                                    <p class="field"><i class="fa fa-key fa-fw willspin" aria-hidden="true"></i><span>Please enter your current password to confirm changes:</span></p>
-                                    <input class="field input" type="password" id="currentpaswd" name="currentpaswd" placeholder="Your Current Password" autocomplete="off">
-                                    <span class="showpassword">
-                                        <i class="fa fa-eye-slash show" aria-hidden="true"></i>
-                                        <i class="fa fa-eye show hidden" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                                <div class="btnwrapper">
-                                    <button type="submit">Save Changes</button>
-                                </div>
-                            </form>
-                        </section>
-                        <section class="topup formcontentusr" id="money">
-                            <h1>Top Up Your Wallet</h1>
-                            <div class="maintopup">
-                                <div class="amountwrapper cf">
-                                    <div class="dropdown methdofield">
-                                        <a class="currenttitle" id="menutitle">Credit Card</a>
-                                        <div id="paymentmethod" class="dropdownitems" style="display: none">
-                                            <a onclick="selectForm('credit', 'Credit Card')"><i class="fa fa-credit-card fa-fw" aria-hidden="true"></i> Credit Card</a>
-                                            <a onclick="selectForm('paypal', 'PayPal')"><i class="fa fa-paypal fa-fw" aria-hidden="true"></i> PayPal</a>
-                                            <a onclick="selectForm('qiwi', 'Qiwi')"><i class="fa fa-google-wallet fa-fw" aria-hidden="true"></i> Qiwi</a>
-                                        </div>
-                                    </div>
-                                    <form class="dollar">
-                                        <input class="amount" placeholder="Amount">
-                                        <i class="fa fa-usd" aria-hidden="true"></i>
-                                    </form>
-                                </div>
-                                    <form class="pay cf" id="credit">
-                                        <div class="bakcgroundcc">
-                                            <div class="cardcontainer"></div>
-                                            <div class="formwrapper">
-                                                <div class="credittop">
-                                                    <div class="inputdivisor">
-                                                        <input class="input card" type="text" id="methodcard" name="methodcard" placeholder="Card Number" autocomplete="off" maxlength="19">
-                                                    </div>
-                                                    <div class="inputdivisor">
-                                                        <input class="input cardname" id="holdername" name="holdername" type="text" placeholder="Full Name">
-                                                    </div>
-                                                </div>
-                                                <div class="creditbottom">
-                                                    <div class="inputdivisor">
-                                                        <input class="input carddate" id="mmyy" name="mmyy" type="text" placeholder="mm/yy" autocomplete="off" maxlength="7">
-                                                    </div>
-                                                    <div class="inputdivisor">
-                                                        <input class="input ccv" type="text" id="cc" name="cc" placeholder="CCV" autocomplete="off" maxlength="3">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="btnwrapper">
-                                            <button type="submit">Top Up</button>
-                                        </div>
-                                    </form>
-                                <form class="pay" id="paypal">
-                                    <input class="field input" type="text" placeholder="PayPal Login" required>
-                                    <input class="field input" type="password" placeholder="Password" required>
-                                    <div class="btnwrapper">
-                                        <button type="submit">Top Up</button>
-                                    </div>
-                                </form>
-                                <form class="pay" id="qiwi">
-                                    <input class="field input" type="text" placeholder="Qiwi Login" required>
-                                    <input class="field input" type="password" placeholder="Password" required>
-                                    <div class="btnwrapper">
-                                        <button type="submit">Top Up</button>
-                                    </div>
+                                <form class="pos-r w45 m-auto">
+                                    <input placeholder="Amount">
+                                    <i class="icn-pos fa fa-usd" aria-hidden="true"></i>
                                 </form>
                             </div>
-                        </section>
-                        <section class="formcontentusr" id="achievements">
-                            <h1>Your Achievements</h1>
-                            <div class="achievementswrapper">
-                                <div class="numbers">
-                                    <div class="donatedrow">
-                                        <p class="donated">Donated:</p>
-                                        <p class="doanteddollar"><span class="timerone"></span>$</p>
+                            <form class="vertical center" id="credit">
+                                <div></div>
+                                <div class="mw">
+                                    <div class="mw flex">
+                                        <div class="w45 m-auto">
+                                            <input type="text" id="methodcard" name="methodcard" placeholder="Card Number" autocomplete="off" maxlength="19">
+                                        </div>
+                                        <div class="w45 m-auto">
+                                            <input id="holdername" name="holdername" type="text" placeholder="Full Name">
+                                        </div>
                                     </div>
-                                    <div class="donatedrow">
-                                        <p class="donated">Recieved:</p>
-                                        <p class="doanteddollar"><span class="timertwo"></span>$</p>
+                                    <div class="mw flex">
+                                        <div class="w45 m-auto">
+                                            <input id="mmyy" name="mmyy" type="text" placeholder="mm/yy" autocomplete="off" maxlength="7">
+                                        </div>
+                                        <div class="w45 m-auto">
+                                            <input type="text" id="cc" name="cc" placeholder="CCV" autocomplete="off" maxlength="3">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="awards">
-                                    <div class="currency">
-                                        <div class="infoses">
-                                            <p class="awardinfo">Use points to get an extra <a class="extra">Wish</a> (200 points)</p>
-                                            <p class="awardmoreinfo">(Click on a badge for more info.)</p>
-                                        </div>
-                                        <p class="stars">123 <i class="fa fa-star" aria-hidden="true"></i></p>
-                                        <div class="notenough">Sorry, you don't have enough points.</div>
-                                        <div class="cool">You now have one extra whish</div>
+                                <div>
+                                    <button type="submit">Top Up</button>
+                                </div>
+                            </form>
+                            <form class="vertical start" id="paypal">
+                                <div class="w5">
+                                    <input type="text" placeholder="PayPal Login" required>
+                                </div>
+                                <div class="w5">
+                                    <input type="password" placeholder="Password" required>
+                                </div>
+                                <div>
+                                    <button type="submit">Top Up</button>
+                                </div>
+                            </form>
+                            <form class="vertical start" id="qiwi">
+                                <div class="w5">  
+                                    <input type="text" placeholder="Qiwi Login" required>
+                                </div>
+                                <div class="w5">
+                                    <input type="password" placeholder="Password" required>
+                                </div>
+                                <div>
+                                    <button type="submit">Top Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    <section class="flex vertical start bg-white main-section" style="display: none" id="achievements">
+                        <h2>Your Achievements</h2>
+                        <div class="flex nc-between">
+                            <div class='donated'>
+                                <div>
+                                    <p>Donated:</p>
+                                    <p><span>1000</span>$</p>
+                                </div>
+                                <div>
+                                    <p>Recieved:</p>
+                                    <p><span>10000</span>$</p>
+                                </div>
+                            </div>
+                            <div class="w8 achievements-info">
+                                <div class="pos-r stars flex nc-between">
+                                    <div class="w8 star-info">
+                                        <p>Use points to get an extra <a>Wish</a> (200 points)</p>
+                                        <p>(Click on a badge for more info.)</p>
                                     </div>
-                                    <div class="badges">
-                                        <div class="badgewrapper einz">
-                                            <div class="radial number1"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip einzt">
-                                                <h4>Donator - 20 <i class="fa fa-star" aria-hidden="true"></i></h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper zwei">
-                                            <div class="radial number2"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper drei">
-                                            <div class="radial number3"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper">
-                                            <div class="radial number4"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper">
-                                            <div class="radial number5"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper">
-                                            <div class="radial number6"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper">
-                                            <div class="radial number7"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper">
-                                            <div class="radial number8"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
-                                        </div>
-                                        <div class="badgewrapper">
-                                            <div class="radial number9"></div>
-                                            <img src="assets/img/badge.svg">
-                                            <span>Donator(36%)</span>
-                                            <div class="achievtooltip">
-                                                <h4>Donator</h4>
-                                                <p>Donate 300$ - 108$/300$</p> 
-                                            </div>
+                                    <p>123 <i class="currency fa fa-star" aria-hidden="true"></i></p>
+                                </div>
+                                <div>
+                                    <div class="badge">
+                                        <div class="radial"></div>
+                                        <img src="assets/img/badge.svg">
+                                        <p>Donator(36%)</p>
+                                        <div class="tool-tip" style="display: none">
+                                            <h4>Donator - 20 <i class="fa fa-star" aria-hidden="true"></i></h4>
+                                            <p>Donate 300$ - 108$/300$</p> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                        <section class="createwish formcontentusr" id="wish">
-                            <h1>Make a Wish</h1>
-                            <form id="shipment">
-                                <div class="two">
-                                    <div class="wishwrapper">
-                                        <input type="text" class="field input wish" id="yourwish" name="yourwish" placeholder="What is Your Wish?">
+                        </div>
+                    </section>
+                    <section class="flex vertical start bg-white main-section" style="display: none" id="wish">
+                        <h2>Make a Wish</h2>
+                        <form class="vertical center mw">
+                            <div class="vertical mw center">
+                                <div class="mw">
+                                    <input type="text" name="yourwish" placeholder="What is Your Wish?" required>
+                                </div>
+                                <div class="mw">
+                                    <input type="text" name="linkwish" placeholder="Link to your desired product..." required>
+                                </div>
+                            </div>
+                            <div class="mw divisor divisor-bg">
+                                <p><i class="fa fa-address-card-o" aria-hidden="true"></i><span>Please provide your full address:</span></p>
+                                <div class="mw">
+                                    <input type="text" name="streetone" placeholder="Address 1" required>
+                                </div>
+                                <div class="mw">
+                                    <input type="text" name="streettwo" placeholder="Address 2 (optional)">
+                                </div>
+                                <div class="mw flex between">
+                                    <div class="w3">
+                                        <input type="text" name="city" placeholder="City" required>
                                     </div>
-                                    <div class="wishwrapper">
-                                        <input class="field input wish link" type="text" id="linkwish" name="linkwish" placeholder="Link to your desired product...">
+                                    <div class="w3">
+                                        <input type="text" name="zip" placeholder="Zip Code" required>
+                                    </div>
+                                    <div class="w3">
+                                        <input type="text" name="country" placeholder="Country" required>
                                     </div>
                                 </div>
-                                <div class="address cf">
-                                    <p><i class="fa fa-address-card-o fa-fw willspin" aria-hidden="true"></i><span>Please provide your full address:</span></p>
-                                    <div class="addresswrapper">
-                                        <input type="text" id="streetone" name="streetone" class="field input street" placeholder="Address 1">
-                                    </div>
-                                    <div class="addresswrapper">
-                                        <input type="text" id="streettwo" name="streettwo" class="field input street" placeholder="Address 2 (optional)">
-                                    </div>
-                                    <div class="city">
-                                        <input type="text" id="city" name="city" class="field input" placeholder="City">
-                                    </div>
-                                    <div class="zip">
-                                        <input type="text" id="zip" name="zip" class="field input" placeholder="Zip Code">
-                                    </div>
-                                    <div class="country">
-                                        <input type="text" id="country" name="country" class="field input" placeholder="Country">
-                                    </div>
-                                </div>
-                                <div class="btnwrapper">
-                                    <button type="submit">Make Your Wish</button>
-                                </div>
-                            </form>
-                        </section>
+                            </div>
+                            <div class="self-start">
+                                <button type="submit">Make Your Wish</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <div class="wishes flex vertical between w4">
+                <div class="wish mw">
+                    <h3>Your Current Wish</h3>
+                    <div class="content">
+                        <div class="header">
+                            <h4>iPhone 6</h4>
+                            <p>23/12/16</p>
+                        </div>
+                        <div class="progress">
+                            <p>Progress</p>
+                            <div class="progress-bar">
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p>Collected: 40 000/70 000</p>
+                        </div>
                     </div>
                 </div>
-                <div class="boxes">
-                    <aside class="box current wow flipInX">
-                        <h2>Your Current Wish</h2>
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
-                            </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="barone"></div>
-                            </div>
-                            <p class="collected">Collected: 40 000/70 000</p>
+                <div class="wish mw">
+                    <h3>Random Wish</h3>
+                    <div class="content">
+                        <div class="header">
+                            <h4>iPhone 6</h4>
+                            <p>23/12/16</p>
                         </div>
-                    </aside>
-                    <aside class="box random wow flipInX">
-                        <h2>Random Wish</h2>
-                        <div class="boxcontent">
-                            <div class="boxtop">
-                                <h3 class="sub title">iPhone 6</h3>
-                                <p class="sub para">23/12/16</p>
+                        <div class="progress">
+                            <p>Progress</p>
+                            <div class="progress-bar">
+                                <div></div>
                             </div>
-                            <p class="progresspara">Progress</p>
-                            <div class="progress">
-                                <div id="bartwo"></div>
-                            </div>
-                            <p class="collected">Collected: 40 000/70 000</p>
-                            <form class="donate">
+                        </div>
+                        <div class="footer">
+                            <p>Collected: 40 000/70 000</p>
+                            <form>
                                 <input type="number" name="amount" required>
                                 <button type="submit">Donate</button>
                             </form>
                         </div>
-                    </aside>
+                    </div>
                 </div>
             </div>
-            </div>
-        </main>
+        </div>
+    </main>
     <?php require_once("app/block/footer.php") ?>
-    <script src="assets/scripts/login.js"></script>
-    <script>
-        $("#achievtab").click(function() {
-            $('.timerone').countTo({
-                from: 0,
-                to: 1000,
-                speed: 1000
-            });
-            $('.timertwo').countTo({
-                from: 0,
-                to: 10000,
-                speed: 2000
-            });
-        });
-
-        $("#achievtab2").click(function() {
-            $('.timerone').countTo({
-                from: 0,
-                to: 1000,
-                speed: 1000
-            });
-            $('.timertwo').countTo({
-                from: 0,
-                to: 10000,
-                speed: 2000
-            });
-        });
-
-        $(function() {
-            $('.show').click(function() {
-                $('.show').toggleClass('hidden');
-                $('.showpassword').toggleClass('checked');
-                if($('.showpassword').hasClass('checked')) {
-                    $('#currentpaswd').attr('type', 'text');
-                } else {
-                    $('#currentpaswd').attr('type', 'password');
-                }
-            });
-        });
-
-        $(function(){
-            $('#credit').card({
-                container: '.cardcontainer',
-                formSelectors: {
-                    numberInput: 'input.card',
-                    expiryInput: 'input.carddate',
-                    cvcInput: 'input.ccv',
-                    nameInput: 'input.cardname'
-                }
-            }, false);
-        });
-
-    </script>
 </body>
 
 </html>

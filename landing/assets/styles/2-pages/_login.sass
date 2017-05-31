@@ -1,0 +1,123 @@
+.login
+    background-color: $main-bg
+
+    footer
+        position: relative
+        box-shadow: 0px 500px 0px 500px $white
+
+    main
+        padding: 70px 0px 0px
+
+    section
+        max-width: 680px
+        width: 100%
+        background-color: $white
+        margin: 40px auto
+        border-radius: 4px
+        padding: 40px
+        border: 1px solid transparentize($black, 0.6)
+
+    .tabs
+        margin-bottom: 40px
+
+    h1
+        text-align: center
+        font-size: 1.8rem
+        margin-bottom: 20px
+
+    .w45
+        width: 48%
+
+    .top-row div:first-child
+        margin-right: 4%
+
+    input:not([type=checkbox])
+        margin-bottom: 30px
+        font-size: 1.2rem
+        padding: 10px
+        border-color: #A0B3B0
+
+        &:focus
+            border-color: #A0B3B0
+
+    .terms
+        span, a
+            font-family: $lato
+
+        input
+            margin-right: 5px
+
+    button
+        padding: 15px 0px
+        font-size: 1.5rem
+        letter-spacing: 0.1rem
+
+    .forgot
+        cursor: pointer
+        right: 0px
+        bottom: 70px
+        perspective: 500px
+
+        &:hover
+            color: $success 
+            
+        p
+            font-size: 1rem
+
+    .forgot-form
+        background-color: $white
+        padding: 10px 20px 15px 20px
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3)
+        width: 232px
+        top: 78%
+        border: 1px solid #7a7a7a
+        right: -60px
+        cursor: initial
+        transform-origin: center 0px
+        z-index: 200
+
+        .arrow
+            height: 20px
+            width: 20px
+            transform: rotate(45deg)
+            background-color: $white
+            border-top: 1px solid #7a7a7a
+            border-left: 1px solid #7a7a7a
+            z-index: 1
+            bottom: 100%
+            margin-bottom: -9px
+
+        .pas-wrapper
+            overflow: hidden
+            height: 60px
+
+        .forgot-form form
+            margin-top: 5px
+
+        label, input, button
+            font-size: 0.8rem
+        
+        input, button
+            padding: 3px
+            height: 25px
+
+        input
+            width: 70%
+            margin: 0px
+
+        button
+            width: 30%
+            padding: 3px
+
+        label
+            font-family: $lato
+
+        .done
+            i
+                left: 50%
+                margin-left: -13.716666px
+                color: $success
+
+            p
+                text-align: center
+                font-size: 1rem

@@ -1,0 +1,82 @@
+.index
+    header, footer
+        background-color: transparent
+        border-color: $white
+        color: $white
+
+        p
+            color: $white
+
+    .link
+        color: $white
+
+        &:after
+            background-color: $white
+
+        &:hover:before
+            background-color: $white
+
+    .social a
+        color: $white
+
+    section
+        &:nth-child(1)
+            background: url('../img/city.jpeg') no-repeat center center fixed
+            background-size: cover
+
+        &:nth-child(2)
+            background-color: $dark-red
+
+        &:nth-child(3)
+            background-color: $light-blue
+
+        &:nth-child(4)
+            background-color: $green
+
+        &:nth-child(5)
+            background-color: $orange
+
+        &:not(:nth-child(1))
+            background-image: url('../img/45deg2.png')
+
+    .main-section
+        background-color: transparentize($black, 0.4)
+
+        h1, p
+            color: $white
+            margin-bottom: 20px
+
+        p
+            font-size: 1.5rem
+            max-width: 1000px
+            text-align: center
+
+        .btn
+            font-size: 1.2rem
+            padding: 10px 20px
+    
+    .s-section
+        h2, p
+            color: $white
+            margin-bottom: 20px
+
+        h4
+            color: $white
+
+        .btn
+            padding: 5px 30px
+
+        .t-align:not(:last-child)
+            margin-right: 20px
+
+        input, textarea
+            border-color: transparent
+
+            &:focus
+                border-color: $success
+
+    #pp-nav ul
+        display: block
+
+    #pp-nav li .active span, .pp-slidesNav .active span
+        background-color: $white
