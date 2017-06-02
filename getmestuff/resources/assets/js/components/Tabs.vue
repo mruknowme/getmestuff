@@ -4,7 +4,8 @@
             <li v-for="tab in tabs" 
                 :class="{ 'active' : tab.isActive }"
                 @click="selectTab(tab)"
-            >{{ tab.name }}</li>
+                v-html="tab.name"> 
+            </li>
         </ul>
         <slot></slot>
     </div>

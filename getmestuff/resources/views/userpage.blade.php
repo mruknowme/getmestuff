@@ -9,16 +9,16 @@
                 <div class="mw mh flex s-between">
                     <div class="main-content">
                         <tabs>
-                            <tab name="Settings" :selected="true">
+                            <tab name="<i class='fa fa-cog' aria-hidden='true'></i><span>Settings</span>" :selected="true">
                                 @include ('layouts.user.settings')
                             </tab>
-                            <tab name="Wallet">
-                                @include ('layouts.user.wallet')
+                            <tab name="<i class='fa fa-money' aria-hidden='true'></i><span>Wallet</span>">
+                                <wallet></wallet>
                             </tab>
-                            <tab name="Achievements">
+                            <tab name="<i class='fa fa-star' aria-hidden='true'></i><span>Achievements</span>">
                                 @include ('layouts.user.achievements')
                             </tab>
-                            <tab name="Make a Wish">
+                            <tab name="<i class='fa fa-pencil' aria-hidden='true'></i><span>Make a Wish</span>">
                                 @include ('layouts.user.make')
                             </tab>
                         </tabs>

@@ -1,4 +1,4 @@
-<section class="flex vertical start bg-white main-section" id="achievements">
+<section class="flex vertical start bg-white main-section achievements">
     <h2>Your Achievements</h2>
     <div class="flex nc-between mw">
         <div class='donated'>
@@ -22,7 +22,7 @@
             <div>
                 <div class="badge">
                     <div class="radial"></div>
-                    <img src="assets/img/badge.svg">
+                    <img src="{{ asset('images/badge.svg') }}">
                     <p>Donator(36%)</p>
                     <div class="tool-tip" style="display: none">
                         <h4>Donator - 20 <i class="fa fa-star" aria-hidden="true"></i></h4>

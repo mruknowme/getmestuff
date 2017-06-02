@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./validation');
 
 window.Vue = require('vue');
 
@@ -17,6 +18,9 @@ window.Vue = require('vue');
 
 Vue.component('tabs', require('./components/Tabs.vue'));
 Vue.component('tab', require('./components/Tab.vue'));
+Vue.component('wallet', require('./components/user/Wallet.vue'));
+Vue.component('login', require('./components/auth/Login.vue'));
+Vue.component('register', require('./components/auth/Register.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -1,30 +1,30 @@
 <section class="flex vertical start bg-white main-section" id="wish">
     <h2>Make a Wish</h2>
-    <form class="vertical center mw">
+    <form class="vertical center mw" data-parsley-validate>
         <div class="vertical mw center">
-            <div class="mw">
+            <div class="mw pos-r">
                 <input type="text" name="yourwish" placeholder="What is Your Wish?" required>
             </div>
-            <div class="mw">
-                <input type="text" name="linkwish" placeholder="Link to your desired product..." required>
+            <div class="mw pos-r">
+                <input type="url" data-parsley-trigger="change" name="linkwish" placeholder="Link to your desired product..." required>
             </div>
         </div>
         <div class="mw divisor divisor-bg">
             <p><i class="fa fa-address-card-o" aria-hidden="true"></i><span>Please provide your full address:</span></p>
-            <div class="mw">
+            <div class="mw pos-r">
                 <input type="text" name="streetone" placeholder="Address 1" required>
             </div>
-            <div class="mw">
+            <div class="mw pos-r">
                 <input type="text" name="streettwo" placeholder="Address 2 (optional)">
             </div>
             <div class="mw flex between">
-                <div class="w3">
+                <div class="w3 pos-r">
                     <input type="text" name="city" placeholder="City" required>
                 </div>
-                <div class="w3">
+                <div class="w3 pos-r">
                     <input type="text" name="zip" placeholder="Zip Code" required>
                 </div>
-                <div class="w3">
+                <div class="w3 pos-r">
                     <input type="text" name="country" placeholder="Country" required>
                 </div>
             </div>

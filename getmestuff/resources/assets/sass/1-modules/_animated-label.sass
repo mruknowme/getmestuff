@@ -1,7 +1,7 @@
 .animated
     position: absolute
     left: 10px
-    top: 15%
+    top: 10px
     font-family: $lato
     font-weight: 300
     font-size: 1.2rem
@@ -9,7 +9,7 @@
     pointer-events: none
     transition: all 150ms ease-out
 
-input:focus ~ label.animated
+input:focus ~ label.animated, input.hasvalue ~ label.animated
     color: #00c1a3
     font-size: 0.8em
     top: -15px

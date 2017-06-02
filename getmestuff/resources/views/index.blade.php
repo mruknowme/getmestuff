@@ -4,7 +4,7 @@
     <body class="index">
         @include ('layouts.header')
         <main id="pp">
-            <section class="section">
+            <section class="section main pos-a" style="z-index: 5">
                 <div class="mw mh flex center vertical main-section">
                     <h1>GetMeStuff</h1>
                     <div class="owl-carousel owl-theme">
@@ -13,9 +13,8 @@
                     <a class="btn" href="/register">Sign Up</a>
                 </div>
             </section>
-            <section class="section">
+            <section class="section main">
                 <div class="col-12 mw mh flex between m-auto s-section">
-                    <!-- <img class="howimg lazy" data-original="assets/img/placeholder250.png"> -->
                     <img src="http://placehold.it/350x350">
                     <div class="flex vertical start w5">
                         <h2>How it works?</h2>
@@ -24,7 +23,7 @@
                     </div>
                 </div>
             </section>
-            <section class="section">
+            <section class="section main">
                 <div class="col-12 mw mh flex between m-auto s-section">
                     <div class="flex vertical start w5">
                         <h2>Who are we?</h2>
@@ -32,10 +31,9 @@
                         <a href="/about" class="btn">More...</a>
                     </div>
                     <img src="http://placehold.it/350x350">
-                    <!-- <img class="whoimg lazy" data-original="assets/img/placeholder250.png"> -->
                 </div>
             </section>
-            <section class="section">
+            <section class="section main">
                 <div class="col-12 mw mh flex vertical m-auto s-section center">
                     <h2>Success stories</h2>
                     <div class="flex between mw">
@@ -57,16 +55,22 @@
                     </div>
                 </div>
             </section>
-            <section class="section">
+            <section class="section main">
                 <div class="col-12 mw mh flex vertical center m-auto s-section">
                     <h2 class="self-start">Contact Us</h2>
                     <div class="mw flex s-between contact-form">
                         <p class="w4">We would like to here from you about any suggestions or problems.</p>
-                        <form class="vertical center w5">
+                        <form class="vertical center w5" data-parsley-validate>
                             {{ csrf_field() }}
-                            <input type="text" name="name" placeholder="Name">
-                            <input type="email" name="email" placeholder="Email">
-                            <textarea name="message" placeholder="Your Message..."></textarea>
+                            <div class="mw input-wrapper pos-r">
+                                <input type="text" name="name" placeholder="Name" required>
+                            </div>
+                            <div class="mw input-wrapper pos-r">
+                                <input type="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="mw input-wrapper pos-r">
+                                <textarea name="message" placeholder="Your Message..." required></textarea>
+                            </div>
                             <button class="self-start" type="submit">
                                 Submit
                             </button>
