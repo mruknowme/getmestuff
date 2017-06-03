@@ -7,6 +7,9 @@
         p
             color: $white
 
+        .mobile
+            color: $white
+
     .link
         color: $white
 
@@ -19,9 +22,15 @@
     .social a
         color: $white
 
+    .pp-section
+        width: 100vw
+
+    .pp-tableCell
+        width: 100vw
+
     section
         &:nth-child(1)
-            background: url('../img/city.jpeg') no-repeat center center fixed
+            background: $black url('../img/city.jpeg') center center no-repeat fixed
             background-size: cover
 
         &:nth-child(2)
@@ -44,16 +53,19 @@
 
         h1, p
             color: $white
-            margin-bottom: 20px
+            // margin-bottom: 15px
 
         p
             font-size: 1.5rem
-            max-width: 1000px
             text-align: center
+            margin-bottom: 20px
 
         .btn
             font-size: 1.2rem
             padding: 10px 20px
+
+        // .text-wrapper
+        //     margin: 0 10%
     
     .s-section
         h2, p
@@ -74,6 +86,9 @@
 
             &:focus
                 border-color: $success
+
+        input.parsley-error, textarea.parsley-error
+            border-color: $orangered
 
     #pp-nav ul
         display: block

@@ -5,10 +5,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-require('./validation');
+ window.Vue = require('vue');
 
-window.Vue = require('vue');
+require('./bootstrap');
+require('parsleyjs');
+require('./validation');
+require('owl.carousel');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,9 +20,11 @@ window.Vue = require('vue');
 
 Vue.component('tabs', require('./components/Tabs.vue'));
 Vue.component('tab', require('./components/Tab.vue'));
+Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('wallet', require('./components/user/Wallet.vue'));
 Vue.component('login', require('./components/auth/Login.vue'));
 Vue.component('register', require('./components/auth/Register.vue'));
+Vue.component('website-header', require('./components/WebsiteHeader.vue'));
 
 const app = new Vue({
     el: '#app'

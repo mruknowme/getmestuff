@@ -10,7 +10,14 @@ header
         cursor: pointer
         display: none
         font-size: 1.25rem
+        position: relative
+        z-index: 1000
+        transition: all 200ms ease-in-out
+
+    .mobile.active
+        color: $white
 
 nav
     max-width: 585px
     z-index: 999
+    transition: all 200ms ease-in-out

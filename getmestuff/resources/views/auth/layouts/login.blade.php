@@ -5,12 +5,10 @@
             {{ csrf_field() }}
             <div class="mw">
                 <div class="pos-r mw">
-                    <input @blur="valueCheck($event)" data-parsley-trigger="change" type="email" id="loginmail" name="email" autocomplete="off" required>
-                    <label class="animated">Email Address</label>
+                    <animated name="email" id="loginmail" trigger="change" type="email">Email Address</animated>
                 </div>
                 <div class="pos-r mw">
-                    <input @blur="valueCheck($event)" type="password" id="loginpass" name="pass" autocomplete="off" required>
-                    <label class="animated">Passowrd</label>
+                    <animated name="pass" id="loginpass" trigger="change" type="password">Passowrd</animated>
                 </div>
             </div>
             <button class="mw" type="submit">Log In</button>

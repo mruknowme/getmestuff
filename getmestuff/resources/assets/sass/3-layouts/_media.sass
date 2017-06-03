@@ -61,6 +61,11 @@
     nav
         max-width: 400px
 
+    // Index
+    .index
+        .stories-wrapper
+            width: 80%
+
     // Login Page
     .login
         .forgot-form
@@ -81,8 +86,14 @@
 
         .main-content
             width: 100%
+            box-shadow: none
 
         .wishes
+            width: 100%
+
+        .wish
+            box-shadow: none
+            margin: 0 auto
             width: 80%
 
     // Current Wishes Page
@@ -93,7 +104,7 @@
 @media only screen and (max-width: 740px)
     // Index
     .index
-        section div.col-12:not(.vertical)
+        section div.col-12:not(.vertical):not(.stories)
             flex-direction: column
             padding: 100px 20px 50px
 
@@ -147,12 +158,11 @@
     nav.mw
         position: fixed
         top: 0px
-        right: -150px
         bottom: 0px
         background-color: transparentize($black, 0.3)
         color: $white
         width: 150px
-        padding: 20px 10px 0px
+        padding: 70px 10px 0px
 
         ul
             flex-direction: column
@@ -241,7 +251,7 @@
             padding-right: 0px
             padding-left: 0px
 
-        .wishes
+        .wish
             width: 90%
 
         .tabs
@@ -294,7 +304,7 @@
 
     // Userpage
     .userpage
-        .wishes
+        .wish
             width: 100%
 
 @media only screen and (max-width: 320px)

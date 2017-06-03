@@ -5,26 +5,21 @@
             {{ csrf_field() }}
             <div class="top-row flex start mw">
                 <div class="pos-r w45">
-                    <input @blur="valueCheck($event)" type="text" id="firstname" name="firstname" autocomplete="off" required>
-                    <label class="animated">First Name</label>
+                    <animated name="firstname" id="firstname" trigger="change" type="text">First Name</animated>
                 </div>
                 <div class="pos-r w45">
-                    <input @blur="valueCheck($event)" type="text" id="lastname" name="lastname" autocomplete="off" required>
-                    <label class="animated">Last Name</label>
+                    <animated name="lastname" id="lastname" trigger="change" type="text">Last Name</animated>
                 </div>
             </div>
             <div class="mw">
                 <div class="pos-r mw">
-                    <input @blur="valueCheck($event)" data-parsley-trigger="change" class="inputsign" type="email" id="email" name="email" autocomplete="off" required>
-                    <label class="animated">Email Address</label>
+                    <animated name="email" id="email" trigger="change" type="email">Email Address</animated>
                 </div>
                 <div class="pos-r mw">
-                    <input @blur="valueCheck($event)" data-parsley-trigger="change" minlength="8" class="inputsign" type="password" id="pass" name="password" autocomplete="off" required>
-                    <label class="animated">Set a Password</label>
+                    <animated name="password" minlength="8" id="pass" trigger="change" type="password">Set a Password</animated>
                 </div>
                 <div class="pos-r mw">
-                    <input @blur="valueCheck($event)" data-parsley-trigger="change" data-parsley-equalto="#pass" class="inputsign" type="password" id="passcheck" name="passcheck" autocomplete="off" required>
-                    <label class="animated">Verify Your Password</label>
+                    <animated name="passcheck" id="passcheck" trigger="change" equalto="#pass" type="password">Set a Password</animated>
                 </div>
             </div>
             <div class="flex vertical center mw">
