@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        props: ['url'],
+        props: ['form'],
         data() {
             return {
                 tabs: []
@@ -28,6 +28,13 @@
         },
         created() {
             this.tabs = this.$children;
+        },
+        mounted() {
+            if (this.form) {
+                this.tabs.forEach(tab => {
+                    tab.isActive = (tab.name == this.form);
+                });
+            }
         }
     }
 </script>

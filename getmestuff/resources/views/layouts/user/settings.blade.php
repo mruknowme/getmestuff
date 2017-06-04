@@ -3,13 +3,13 @@
     <form class="mw vertical center" data-parsley-validate>
         <div class="mw">
             <div class="mw pos-r">
-                <input type="text" id="firstname" name="firstname" placeholder="Your Name" autocomplete="off">
+                <input type="text" id="firstname" name="firstname" placeholder="Your Name" value="{{ Auth::user()->first_name }}" autocomplete="off">
             </div>
             <div class="mw pos-r">
-                <input type="text" id="lastname" name="lastname" placeholder="Your Last Name" autocomplete="off">
+                <input type="text" id="lastname" name="lastname" placeholder="Your Last Name" value="{{ Auth::user()->last_name }}" autocomplete="off">
             </div>
             <div class="mw pos-r">
-                <input data-parsley-trigger="change" type="email" id="email" name="email" placeholder="Your Email" autocomplete="off">
+                <input data-parsley-trigger="change" type="email" id="email" name="email" placeholder="Your Email" value="{{ Auth::user()->email }}" autocomplete="off">
             </div>
             <div class="mw pos-r">
                 <input data-parsley-trigger="change" minlength="8" type="password" id="paswd" name="paswd" placeholder="Edit Password">

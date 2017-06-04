@@ -13,18 +13,18 @@
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('guest');
 
 Route::get('/about', function () {
     return view('about');
-});
+})->middleware('guest');
 
-Route::get('/userpage', function () {
-    return view('userpage');
-});
+Route::get('/home', 'HomeController@index');
 
 Route::get('/wishes', function () {
     return view('wishes');
 });
 
 Auth::routes();
+
+Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');

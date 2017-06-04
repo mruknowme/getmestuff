@@ -1,4 +1,4 @@
 <section class="mw flex between user-info">
-    <p>Daniil Belov</p>
-    <p>123.95$</p>
+    <p>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
+    <p>{{ Auth::user()->balance }}$</p>
 </section>

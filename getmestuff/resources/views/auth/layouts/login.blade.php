@@ -8,13 +8,19 @@
                     <animated name="email" id="loginmail" trigger="change" type="email">Email Address</animated>
                 </div>
                 <div class="pos-r mw">
-                    <animated name="pass" id="loginpass" trigger="change" type="password">Passowrd</animated>
+                    <animated name="password" id="loginpass" trigger="change" type="password">Password</animated>
                 </div>
+            </div>
+            <div class="w5 self-start">
+                <label class="terms flex start-center checkbox-login">
+                    <input type="checkbox" name="remember" checked> <span>Remember me</span>
+                </label>
             </div>
             <button class="mw" type="submit">Log In</button>
         </form>
         <div class="pos-a forgot">
-            <p>Forgot Password?</p>
+            <p class="hover" @click="showForm()">Forgot Password?</p>
+            @include ('auth.passwords.email')
         </div>
     </div>
 </login>

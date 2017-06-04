@@ -19,10 +19,10 @@
             @include ('layouts.header')
             
             @yield ('content')
-            
+
             @include ('layouts.footer')
 
-            <flash message="{{ session('flash') }}"></flash>
+            <flash message="{{ session('message') }}"></flash>
         </div>
 
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

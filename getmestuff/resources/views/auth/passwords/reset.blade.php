@@ -1,18 +1,25 @@
-<div class="forgot-form pos-a" style="display: none;">
-    <div class="pos-a arrow"></div>
-    <div class="pos-r mw pas-wrapper">
-        <form class="pos-a pos-center mw flex vertical start" id="forgotform" method="POST" action="{{ route('password.request') }}" style="display: block">
-            {{ csrf_field() }}
-            <label>Enter your email:</label>
-            <div class="flex start">
-                <input id="mailf" name="mailf">
-                <button>Send</button>
-            </div>
-        </form>
-        <div class="done" style="display: none">
-            <i class="fa fa-check-circle fa-2x pos-r" aria-hidden="true"></i>
-            <p>Check your inbox</p>
+@extends ('layouts.app')
+
+@section ('title', ' | Reset')
+
+@section ('html-class', 'overflow-visible user-bg password-reset')
+
+@section ('body-class', 'overflow-visible')
+
+@section ('html-class')
+
+@section ('content')
+    <main class="fixed-fix flex center main">
+        <div class="w5 flex vertical center bg-white container">
+            <h1>Password Reset</h1>
+            <form class="mw vertical center" method="POST" action="{{ route('password.request') }}">
+                {{ csrf_field() }}
+                <input type="hidden" name="token" value="{{ $token }}">
+                <input type="email" id="email" name="email" placeholder="Email Address" required autofocus>
+                <input type="password" id="password" name="password" placeholder="New Password" required>
+                <input type="password" id="password_confirm" name="password_confirmation" placeholder="Confirm New Password" required>
+                <button class="mw" type="submit">Reset Password</button>
+            </form>
         </div>
-    </div>
-</div>
-<div class="overlay"></div>
+    </main>
+@endsection

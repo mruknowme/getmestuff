@@ -9,8 +9,8 @@
 @section ('content')
     <main class="mh mw">
         <section class="pos-r flex vertical center">
-            <tabs>
-                <tab name="Sign Up" :selected="true">
+            <tabs form="{{ $form }}">
+                <tab name="Sign Up">
                     @include ('auth.layouts.register')
                 </tab>
                 <tab name="Log In">

@@ -87,7 +87,6 @@
                 $('.main-wrapper').addClass('owl-carousel owl-theme');
                 $('.main-wrapper .children').addClass('item');
                 $('.main-wrapper').owlCarousel({
-                    loop: true,
                     items: 1
                 });
             } else {
@@ -102,7 +101,6 @@
             $('.main-wrapper').addClass('owl-carousel owl-theme');
             $('.main-wrapper .children').addClass('item');
             $('.main-wrapper').owlCarousel({
-                loop: true,
                 items: 1
             });
         }

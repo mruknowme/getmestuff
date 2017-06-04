@@ -5,10 +5,10 @@
             {{ csrf_field() }}
             <div class="top-row flex start mw">
                 <div class="pos-r w45">
-                    <animated name="firstname" id="firstname" trigger="change" type="text">First Name</animated>
+                    <animated name="first_name" id="firstname" trigger="change" type="text">First Name</animated>
                 </div>
                 <div class="pos-r w45">
-                    <animated name="lastname" id="lastname" trigger="change" type="text">Last Name</animated>
+                    <animated name="last_name" id="lastname" trigger="change" type="text">Last Name</animated>
                 </div>
             </div>
             <div class="mw">
@@ -19,13 +19,15 @@
                     <animated name="password" minlength="8" id="pass" trigger="change" type="password">Set a Password</animated>
                 </div>
                 <div class="pos-r mw">
-                    <animated name="passcheck" id="passcheck" trigger="change" equalto="#pass" type="password">Set a Password</animated>
+                    <animated name="password_confirmation" id="passcheck" trigger="change" equalto="#pass" type="password">Set a Password</animated>
                 </div>
             </div>
-            <div class="flex vertical center mw">
-                <label class="terms flex center self-end">
-                    <input type="checkbox" name=""> <span>Accept <a class="no-select" href="#">Terms and Conditions</a></span>
+            <div class="mw pos-r">
+                <label class="terms flex start-center checkbox">
+                    <input type="checkbox" name="terms" required> <span>Accept <a class="no-select" href="#">Terms and Conditions</a></span>
                 </label>
+            </div>
+            <div class="flex vertical center mw">
                 <button class="mw" type="submit">Get Started</button>
             </div>
         </form>
