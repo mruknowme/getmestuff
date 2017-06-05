@@ -21,6 +21,9 @@ Route::get('/about', function () {
 
 Route::get('/home', 'HomeController@index');
 
+Route::patch('/home/update', 'UsersController@update');
+Route::get('/home/confirm/{token}', 'UsersController@edit');
+
 Route::get('/wishes', function () {
     return view('wishes');
 });

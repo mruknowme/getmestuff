@@ -32,6 +32,7 @@ class EmailConfirmation extends Mailable
     public function build()
     {
         return $this->view('emails.verify')
+                    ->subject('Email Confirmation')
                     ->with([
                         'first_name' => $this->user->first_name,
                         'last_name' => $this->user->last_name,

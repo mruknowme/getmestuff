@@ -39,4 +39,8 @@ class User extends Authenticatable
 
         $this->save();
     }
+
+    public function canUpdate($input) {
+        return \Hash::check($input, \Auth::user()->getAuthPassword());
+    }
 }

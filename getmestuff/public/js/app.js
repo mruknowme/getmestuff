@@ -12008,18 +12008,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['message'],
+    props: ['message', 'error'],
     data: function data() {
         return {
+            type: 'Success',
             body: '',
-            show: false
+            show: false,
+            classType: 'success'
         };
     },
     created: function created() {
         var _this = this;
 
         if (this.message) {
-            this.flash(this.message);
+            this.flash(this.message, 'success');
+        } else if (this.error) {
+            this.flash(this.error, 'error');
         }
 
         window.events.$on('flash', function (message) {
@@ -12028,8 +12032,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        flash: function flash(message) {
+        flash: function flash(message, type) {
             this.body = message;
+            this.classType = type;
+            this.type = this.capitalize(type);
             this.show = true;
 
             this.hide();
@@ -12040,6 +12046,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             setTimeout(function () {
                 _this2.show = false;
             }, 3000);
+        },
+        capitalize: function capitalize(str) {
+            return str[0].toUpperCase() + str.slice(1).toLowerCase();
         }
     }
 });
@@ -36809,8 +36818,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.show),
       expression: "show"
     }],
-    staticClass: "alert success"
-  }, [_c('span', [_c('strong', [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body))])])
+    staticClass: "alert",
+    class: _vm.classType
+  }, [_c('span', [_c('strong', [_vm._v(_vm._s(_vm.type) + "!")]), _vm._v(" " + _vm._s(_vm.body))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
