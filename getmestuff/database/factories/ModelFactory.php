@@ -36,9 +36,10 @@ $factory->define(App\Wish::class, function (Faker\Generator $faker) {
         'address' => [
             'address' => $faker->streetAddress,
             'city' => $faker->city,
-            'zip' => $faker->postcode,
+            'post_code' => $faker->postcode,
             'country' => $faker->country
         ],
-        'amount_needed' => 2000
+        'current_amount' => $faker->numberBetween(0, 4000),
+        'amount_needed' => 5000
     ];
 });

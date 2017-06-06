@@ -34,31 +34,24 @@ class Settings
 
         $this->passwordCheck($attributes['password']);
 
-        $this->validationCheck($attributes);
+        \Validator::make($attributes, $this->rules)->validate();
 
-        if ($this->authorised($attributes['current_password']))
+        if (!is_null($attributes['email']) && $attributes['email'] != $this->user->email)
+        {
+            $this->sendVerification($attributes['email']);
+        }
+
+        if (\Hash::check($attributes['current_password'], $this->user->getAuthPassword()))
         {
             $update = array_only($attributes, $this->info);
 
             $update = $this->encryptPassword($update);
-
-            $this->sendVerification($attributes);
 
             $this->user->update($update);
 
             flash($this->success);
         }
         else error($this->error);
-    }
-
-    protected function authorised ($current)
-    {
-        return \Hash::check($current, $this->user->getAuthPassword());
-    }
-
-    protected function validationCheck (array $data)
-    {
-        return \Validator::make($data, $this->rules)->validate();
     }
 
     protected function emailCheck ($email)
@@ -86,21 +79,19 @@ class Settings
         return $update;
     }
 
-    protected function sendVerification(array $attributes)
+    protected function sendVerification($email)
     {
-        if (key_exists('email', $attributes)) {
-            $token = str_random(30);
+        $token = str_random(30);
 
-            $reset = \DB::table('email_resets');
-            $reset->insert([
-                'user_id' => $this->user->id,
-                'new_email' => $attributes['email'],
-                'token' => $token,
-                'created_at' => Carbon::now()
-            ]);
+        $reset = \DB::table('email_resets');
+        $reset->insert([
+            'user_id' => $this->user->id,
+            'new_email' => $email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
 
-            \Mail::to($attributes['email'])->send(new EmailChange($token));
-        }
+        \Mail::to($email)->send(new EmailChange($token));
     }
 
     public function updateEmail ($token)
@@ -112,5 +103,18 @@ class Settings
         \DB::table('email_resets')->where('token', $token)->delete();
 
         flash($this->success);
+    }
+
+    public function saveAddress ($address)
+    {
+        if (is_null($this->user->address))
+        {
+            $this->user->update(['address' => $address]);
+        }
+        if (array_diff($address, $this->user->address))
+        {
+            $address = array_merge($this->user->address, $address);
+            $this->user->update(['address' => $address]);
+        }
     }
 }

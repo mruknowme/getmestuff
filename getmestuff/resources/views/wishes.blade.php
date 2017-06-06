@@ -10,20 +10,22 @@
     <main class="col-12 mw m-auto main-fix">
         @include ('layouts.user.info')
         <section class="flex wrap between mw">
+
+        @foreach($wishes as $wish)
             <div class="wish mw">
                 <div class="content">
                     <div class="header">
-                        <h4>iPhone 6</h4>
-                        <p>23/12/16</p>
+                        <h4>{{ $wish->item }}</h4>
+                        <p>{{ $wish->created_at->format('m/d/y') }}</p>
                     </div>
                     <div class="progress">
                         <p>Progress</p>
                         <div class="progress-bar">
-                            <div></div>
+                            <div style="width: {{ $wish->current_amount / $wish->amount_needed * 100 }}%"></div>
                         </div>
                     </div>
                     <div class="footer">
-                        <p>Collected: 40k/70k</p>
+                        <p>Collected: {{ $wish->current_amount }}/{{ $wish->amount_needed }}</p>
                         <form>
                             <input type="number" name="amount" required>
                             <button type="submit">Donate</button>
@@ -31,111 +33,8 @@
                     </div>
                 </div>
             </div>
-            <div class="wish mw">
-                <div class="content">
-                    <div class="header">
-                        <h4>iPhone 6</h4>
-                        <p>23/12/16</p>
-                    </div>
-                    <div class="progress">
-                        <p>Progress</p>
-                        <div class="progress-bar">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <p>Collected: 40k/70k</p>
-                        <form>
-                            <input type="number" name="amount" required>
-                            <button type="submit">Donate</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="wish mw">
-                <div class="content">
-                    <div class="header">
-                        <h4>iPhone 6</h4>
-                        <p>23/12/16</p>
-                    </div>
-                    <div class="progress">
-                        <p>Progress</p>
-                        <div class="progress-bar">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <p>Collected: 40k/70k</p>
-                        <form>
-                            <input type="number" name="amount" required>
-                            <button type="submit">Donate</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="wish mw">
-                <div class="content">
-                    <div class="header">
-                        <h4>iPhone 6</h4>
-                        <p>23/12/16</p>
-                    </div>
-                    <div class="progress">
-                        <p>Progress</p>
-                        <div class="progress-bar">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <p>Collected: 40k/70k</p>
-                        <form>
-                            <input type="number" name="amount" required>
-                            <button type="submit">Donate</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="wish mw">
-                <div class="content">
-                    <div class="header">
-                        <h4>iPhone 6</h4>
-                        <p>23/12/16</p>
-                    </div>
-                    <div class="progress">
-                        <p>Progress</p>
-                        <div class="progress-bar">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <p>Collected: 40k/70k</p>
-                        <form>
-                            <input type="number" name="amount" required>
-                            <button type="submit">Donate</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="wish mw">
-                <div class="content">
-                    <div class="header">
-                        <h4>iPhone 6</h4>
-                        <p>23/12/16</p>
-                    </div>
-                    <div class="progress">
-                        <p>Progress</p>
-                        <div class="progress-bar">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <p>Collected: 40k/70k</p>
-                        <form>
-                            <input type="number" name="amount" required>
-                            <button type="submit">Donate</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        @endforeach
+
         </section>
     </main>
 @endsection

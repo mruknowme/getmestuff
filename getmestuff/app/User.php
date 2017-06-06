@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'token', 'ip_address'
+        'first_name', 'last_name', 'email', 'password', 'token', 'ip_address', 'address'
     ];
 
     /**
@@ -48,5 +48,10 @@ class User extends Authenticatable
     public function settings()
     {
         return new Settings($this);
+    }
+
+    public function wishes()
+    {
+        return $this->hasMany(Wish::class);
     }
 }

@@ -20,28 +20,11 @@ Route::get('/about', function () {
 })->middleware('guest');
 
 Route::get('/home', 'HomeController@index');
-
-//Route::patch('/home/update', function () {
-//    Auth::user()->settings()->override(Request::all());
-//
-//    return back();
-//});
-
 Route::patch('/home/update', 'UserSettingsController@update');
-
 Route::get('/home/confirm/{token}', 'UserSettingsController@edit');
 
-//Route::get('/home/confirm/{token}', function ($token) {
-//    $user = new \App\User();
-//    $user->settings()->updateEmail($token);
-//
-//    return back();
-//});
-
-Route::get('/wishes', function () {
-    return view('wishes');
-});
+Route::get('/wishes', 'WishesController@index');
+Route::post('/wishes', 'WishesController@store');
 
 Auth::routes();
-
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
