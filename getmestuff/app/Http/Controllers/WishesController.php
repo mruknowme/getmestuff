@@ -20,26 +20,14 @@ class WishesController extends Controller
      */
     public function index()
     {
-        if (Cookie::has('set')) {
-            $set = json_decode(Cookie::get('set'));
-
-            $wishes = Wish::find($set)->all();
-
-            return view('wishes', compact('wishes'));
-        } else {
-            $ids = [];
-            $wishes = Wish::inRandomOrder()
+        $wishes = \Cache::remember('set', 1, function () {
+            return Wish::inRandomOrder()
                         ->where('user_id', '!=', auth()->user()->id)
                         ->limit(6)
                         ->get();
-
-            foreach ($wishes as $wish) $ids[] = $wish->id;
-
-            $ids = json_encode($ids);
-
-            return response(view('wishes', compact('wishes')))
-                    ->cookie('set', $ids, 1);
-        }
+        });
+        
+        return view('wishes', compact('wishes'));
     }
 
     /**
