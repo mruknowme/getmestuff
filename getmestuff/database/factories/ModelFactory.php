@@ -20,7 +20,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'hash' => str_random(30),
+        'token' => str_random(30),
         'ip_address' => ip2long($faker->ipv4),
         'remember_token' => str_random(10),
     ];
@@ -33,12 +33,12 @@ $factory->define(App\Wish::class, function (Faker\Generator $faker) {
         },
         'item' => $faker->word,
         'url' => $faker->url,
-        'address' => json_encode([
+        'address' => [
             'address' => $faker->streetAddress,
             'city' => $faker->city,
             'zip' => $faker->postcode,
             'country' => $faker->country
-        ]),
+        ],
         'amount_needed' => 2000
     ];
 });

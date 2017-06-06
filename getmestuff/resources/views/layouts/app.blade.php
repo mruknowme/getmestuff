@@ -25,7 +25,7 @@
             <flash message="{{ session('message') }}" error="{{ session('error') }}"></flash>
 
             @if (count($errors) > 0)
-                <div class="alert danger">
+                <div class="alert error">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

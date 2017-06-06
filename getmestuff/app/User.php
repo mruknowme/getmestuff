@@ -28,19 +28,25 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $casts = [
+        'address' => 'json'
+    ];
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    public function confirmEmail() {
+    public function confirmEmail()
+    {
         $this->verified = true;
         $this->token = null;
 
         $this->save();
     }
 
-    public function canUpdate($input) {
-        return \Hash::check($input, \Auth::user()->getAuthPassword());
+    public function settings()
+    {
+        return new Settings($this);
     }
 }

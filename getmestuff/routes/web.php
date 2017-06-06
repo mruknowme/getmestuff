@@ -21,8 +21,22 @@ Route::get('/about', function () {
 
 Route::get('/home', 'HomeController@index');
 
-Route::patch('/home/update', 'UsersController@update');
-Route::get('/home/confirm/{token}', 'UsersController@edit');
+//Route::patch('/home/update', function () {
+//    Auth::user()->settings()->override(Request::all());
+//
+//    return back();
+//});
+
+Route::patch('/home/update', 'UserSettingsController@update');
+
+Route::get('/home/confirm/{token}', 'UserSettingsController@edit');
+
+//Route::get('/home/confirm/{token}', function ($token) {
+//    $user = new \App\User();
+//    $user->settings()->updateEmail($token);
+//
+//    return back();
+//});
 
 Route::get('/wishes', function () {
     return view('wishes');
