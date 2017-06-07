@@ -11146,6 +11146,7 @@ Vue.component('wallet', __webpack_require__(55));
 Vue.component('login', __webpack_require__(52));
 Vue.component('register', __webpack_require__(53));
 Vue.component('website-header', __webpack_require__(51));
+Vue.component('user-info', __webpack_require__(86));
 
 var app = new Vue({
   el: '#app'
@@ -12000,6 +12001,8 @@ module.exports = function spread(callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 //
 //
 //
@@ -12026,13 +12029,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.flash(this.error, 'error');
         }
 
-        window.events.$on('flash', function (message) {
-            return _this.flash(message);
+        window.events.$on('flash', function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+                message = _ref2[0],
+                type = _ref2[1];
+
+            return _this.flash(message, type);
         });
     },
 
     methods: {
-        flash: function flash(message, type) {
+        flash: function flash(message) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+
             this.body = message;
             this.classType = type;
             this.type = this.capitalize(type);
@@ -12283,6 +12292,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Dropdown_vue__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Dropdown_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Dropdown_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_TopUp_vue__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_TopUp_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__forms_TopUp_vue__);
 //
 //
 //
@@ -12330,34 +12341,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { Dropdown: __WEBPACK_IMPORTED_MODULE_0__Dropdown_vue___default.a },
+    components: { Dropdown: __WEBPACK_IMPORTED_MODULE_0__Dropdown_vue___default.a, Topup: __WEBPACK_IMPORTED_MODULE_1__forms_TopUp_vue___default.a },
+    props: ['user'],
     data: function data() {
         return {
             visible: '<i class="fa fa-credit-card" aria-hidden="true"></i> Credit Card',
@@ -12434,7 +12424,9 @@ if (token) {
 window.events = new Vue();
 
 window.flash = function (message) {
-    window.events.$emit('flash', message);
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+
+    window.events.$emit('flash', [message, type]);
 };
 
 /***/ }),
@@ -36953,26 +36945,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "value": _vm.amountWithInterest
     }
-  })]), _vm._v(" "), _c('form', {
+  })]), _vm._v(" "), _c('topup', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.current == 'credit'),
       expression: "current == 'credit'"
     }],
-    staticClass: "vertical center",
     attrs: {
-      "data-parsley-validate": ""
+      "user": _vm.user,
+      "amount": _vm.amount
     }
-  }, [_c('input', {
-    attrs: {
-      "type": "hidden",
-      "required": ""
-    },
-    domProps: {
-      "value": _vm.amount
-    }
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c('form', {
+  }), _vm._v(" "), _c('form', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -36987,7 +36971,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "value": _vm.amount
     }
-  }), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4)]), _vm._v(" "), _c('form', {
+  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('form', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -37002,65 +36986,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "value": _vm.amount
     }
-  }), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7)])])])
+  }), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5)])], 1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "mw"
-  }, [_c('div', {
-    staticClass: "mw flex"
-  }, [_c('div', {
-    staticClass: "w45 pos-r m-auto"
-  }, [_c('input', {
-    attrs: {
-      "type": "text",
-      "id": "methodcard",
-      "name": "methodcard",
-      "placeholder": "Card Number",
-      "autocomplete": "off",
-      "required": ""
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "w45 pos-r m-auto"
-  }, [_c('input', {
-    attrs: {
-      "id": "holdername",
-      "name": "holdername",
-      "type": "text",
-      "placeholder": "Full Name",
-      "required": ""
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "mw flex"
-  }, [_c('div', {
-    staticClass: "w45 pos-r m-auto"
-  }, [_c('input', {
-    attrs: {
-      "id": "mmyy",
-      "name": "mmyy",
-      "type": "text",
-      "placeholder": "mm/yy",
-      "autocomplete": "off",
-      "required": ""
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "w45 pos-r m-auto"
-  }, [_c('input', {
-    attrs: {
-      "type": "text",
-      "id": "cc",
-      "name": "cc",
-      "placeholder": "CCV",
-      "autocomplete": "off",
-      "required": ""
-    }
-  })])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('button', {
-    attrs: {
-      "type": "submit"
-    }
-  }, [_vm._v("Top Up")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "w5"
   }, [_c('input', {
@@ -46891,6 +46818,241 @@ module.exports = function(module) {
 
 module.exports = __webpack_require__(11);
 
+
+/***/ }),
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['amount', 'user'],
+
+    data: function data() {
+        return {
+            stripeEmail: '',
+            stripeToken: '',
+            value: ''
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        this.stripe = StripeCheckout.configure({
+            key: GetMeStuff.stripeKey,
+            image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+            locale: 'auto',
+            panelLabel: 'Top up',
+            email: this.user,
+            token: function token(_token) {
+                _this.stripeToken = _token.id;
+                _this.stripeEmail = _token.email;
+                _this.value = _this.amount;
+
+                axios.post('/topup', _this.$data).then(function () {
+                    window.events.$emit('increment', _this.amount);
+
+                    flash('All done!');
+                }).catch(function () {
+                    flash('Your card was declined', 'error');
+                });
+            }
+        });
+    },
+
+
+    methods: {
+        topup: function topup() {
+            this.stripe.open({
+                name: 'Wallet',
+                description: 'Top up your wallet',
+                zipCode: true
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(77),
+  /* template */
+  __webpack_require__(79),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/dan/code/getmestuff/resources/assets/js/components/user/forms/TopUp.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] TopUp.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1fd44586", Component.options)
+  } else {
+    hotAPI.reload("data-v-1fd44586", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    staticClass: "mw flex around vertical"
+  }, [_c('input', {
+    attrs: {
+      "type": "hidden",
+      "name": "amount",
+      "required": ""
+    },
+    domProps: {
+      "value": _vm.amount
+    }
+  }), _vm._v(" "), _c('button', {
+    attrs: {
+      "type": "submit"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.topup($event)
+      }
+    }
+  }, [_vm._v("Top Up")])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1fd44586", module.exports)
+  }
+}
+
+/***/ }),
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['user'],
+    data: function data() {
+        return {
+            first_name: '',
+            last_name: '',
+            balance: ''
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        var temp = JSON.parse(this.user);
+
+        this.first_name = temp.first_name;
+        this.last_name = temp.last_name;
+        this.balance = temp.balance;
+
+        window.events.$on('increment', function (argument) {
+            _this.balance += parseFloat(argument);
+        });
+    }
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(85),
+  /* template */
+  __webpack_require__(87),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/dan/code/getmestuff/resources/assets/js/components/user/Userinfo.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Userinfo.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2710685a", Component.options)
+  } else {
+    hotAPI.reload("data-v-2710685a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('section', {
+    staticClass: "mw flex between user-info"
+  }, [_c('p', [_vm._v(_vm._s(_vm.first_name + ' ' + _vm.last_name))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.balance + '$'))])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2710685a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

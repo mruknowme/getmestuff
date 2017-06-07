@@ -10,90 +10,58 @@ class Settings
 {
     protected $user;
 
-    protected $info = [
-        'first_name', 'last_name'
-    ];
-
-    protected $rules = [
-        'first_name' => 'nullable|string|max:255',
-        'last_name' => 'nullable|string|max:255',
-        'current_password' => 'required'
-    ];
-
     protected $success = 'Your profile has been updated';
-    protected $error = 'You\'ve entered a wrong password';
 
+    /**
+     * Settings constructor.
+     * @param User $user
+     */
     public function __construct (User $user)
     {
         $this->user = $user;
     }
 
-    public function override (array $attributes)
+    /**
+     * @param array $attributes
+     */
+    public function update (array $attributes)
     {
-        $this->emailCheck($attributes['email']);
-
-        $this->passwordCheck($attributes['password']);
-
-        \Validator::make($attributes, $this->rules)->validate();
-
-        if (!is_null($attributes['email']) && $attributes['email'] != $this->user->email)
+        if (array_key_exists('email', $attributes))
         {
             $this->sendVerification($attributes['email']);
+
+            unset($attributes['email']);
         }
 
-        if (\Hash::check($attributes['current_password'], $this->user->getAuthPassword()))
+        if (!empty($attributes))
         {
-            $update = array_only($attributes, $this->info);
-
-            $update = $this->encryptPassword($update);
-
-            $this->user->update($update);
+            $this->user->update($attributes);
 
             flash($this->success);
         }
-        else error($this->error);
     }
 
-    protected function emailCheck ($email)
-    {
-        if (!is_null($email) && $email != $this->user->email)
-        {
-            $this->rules += ['email' => 'required|string|email|max:255|unique:users'];
-        }
-    }
-
-    protected function passwordCheck ($password)
-    {
-        if (!is_null($password))
-        {
-            $this->rules += ['password' => 'required|string|min:8'];
-            array_push($this->info, 'password');
-        }
-    }
-
-    protected function encryptPassword($update)
-    {
-        if (key_exists('password', $update)) {
-            $update['password'] = bcrypt($update['password']);
-        }
-        return $update;
-    }
-
+    /**
+     * @param $email
+     */
     protected function sendVerification($email)
     {
         $token = str_random(30);
 
-        $reset = \DB::table('email_resets');
-        $reset->insert([
-            'user_id' => $this->user->id,
-            'new_email' => $email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
+        \DB::table('email_resets')
+            ->insert([
+                'user_id' => $this->user->id,
+                'new_email' => $email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
 
         \Mail::to($email)->send(new EmailChange($token));
     }
 
+    /**
+     * @param $token
+     */
     public function updateEmail ($token)
     {
         $reset = \DB::table('email_resets')->where('token', $token)->first();
@@ -105,6 +73,9 @@ class Settings
         flash($this->success);
     }
 
+    /**
+     * @param $address
+     */
     public function saveAddress ($address)
     {
         if (is_null($this->user->address))

@@ -8,6 +8,12 @@
         
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <script>
+            let GetMeStuff = {
+                stripeKey: "{{ config('services.stripe.key') }}",
+            }
+        </script>
+
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
         
         <title>{{ config('app.name') }} @yield('title')</title>
@@ -35,6 +41,7 @@
             @endif
         </div>
 
+        <script src="https://checkout.stripe.com/checkout.js"></script>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         
         @yield ('script')

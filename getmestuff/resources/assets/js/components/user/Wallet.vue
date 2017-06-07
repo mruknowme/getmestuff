@@ -16,30 +16,7 @@
                 </div>
                 <input class="m-auto w95 p-none" :value="amountWithInterest" type="text" placeholder="Amount +20%" disabled>
             </div>
-            <form class="vertical center" v-show="current == 'credit'" data-parsley-validate>
-                <input type="hidden" :value="amount" required>
-                <div class="mw">
-                    <div class="mw flex">
-                        <div class="w45 pos-r m-auto">
-                            <input type="text" id="methodcard" name="methodcard" placeholder="Card Number" autocomplete="off" required>
-                        </div>
-                        <div class="w45 pos-r m-auto">
-                            <input id="holdername" name="holdername" type="text" placeholder="Full Name" required>
-                        </div>
-                    </div>
-                    <div class="mw flex">
-                        <div class="w45 pos-r m-auto">
-                            <input id="mmyy" name="mmyy" type="text" placeholder="mm/yy" autocomplete="off" required>
-                        </div>
-                        <div class="w45 pos-r m-auto">
-                            <input type="text" id="cc" name="cc" placeholder="CCV" autocomplete="off" required>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <button type="submit">Top Up</button>
-                </div>
-            </form>
+            <topup v-show="current == 'credit'" :user="user" :amount="amount"></topup>
             <form class="vertical center" v-show="current == 'paypal'">
                 <input type="hidden" :value="amount">
                 <div class="w5">
@@ -70,9 +47,11 @@
 
 <script>
     import Dropdown from './Dropdown.vue';
+    import Topup from './forms/TopUp.vue';
 
     export default {
-        components: { Dropdown },
+        components: { Dropdown, Topup },
+        props: ['user'],
         data() {
             return {
                 visible: '<i class="fa fa-credit-card" aria-hidden="true"></i> Credit Card',

@@ -25,6 +25,7 @@ Vue.component('wallet', require('./components/user/Wallet.vue'));
 Vue.component('login', require('./components/auth/Login.vue'));
 Vue.component('register', require('./components/auth/Register.vue'));
 Vue.component('website-header', require('./components/WebsiteHeader.vue'));
+Vue.component('user-info', require('./components/user/Userinfo.vue'));
 
 const app = new Vue({
     el: '#app'

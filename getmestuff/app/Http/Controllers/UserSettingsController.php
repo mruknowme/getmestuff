@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SettingsForm;
 use App\User;
-use Illuminate\Http\Request;
 
 class UserSettingsController extends Controller
 {
@@ -12,9 +12,9 @@ class UserSettingsController extends Controller
         $this->middleware('auth');
     }
 
-    public function update (Request $request)
+    public function update (SettingsForm $form)
     {
-        \Auth::user()->settings()->override($request->all());
+        $form->save();
 
         return back();
     }

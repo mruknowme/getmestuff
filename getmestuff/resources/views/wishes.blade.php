@@ -25,7 +25,10 @@
                         </div>
                     </div>
                     <div class="footer">
-                        <p>Collected: {{ $wish->current_amount }}/{{ $wish->amount_needed }}</p>
+                        <p>Collected:
+                            {{ shortenNum($wish->current_amount) }}/
+                            {{ shortenNum($wish->amount_needed) }}
+                        </p>
                         <form>
                             <input type="number" name="amount" required>
                             <button type="submit">Donate</button>

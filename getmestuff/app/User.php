@@ -5,10 +5,11 @@ namespace App;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +33,9 @@ class User extends Authenticatable
         'address' => 'json'
     ];
 
+    /**
+     * @param string $token
+     */
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
@@ -45,13 +49,24 @@ class User extends Authenticatable
         $this->save();
     }
 
+    /**
+     * @return Settings
+     */
     public function settings()
     {
         return new Settings($this);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function wishes()
     {
         return $this->hasMany(Wish::class);
+    }
+
+    public function topUp($amount)
+    {
+        $this->increment('balance', $amount);
     }
 }

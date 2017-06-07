@@ -26,7 +26,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Wish::class, function (Faker\Generator $faker) {
+/**
+ * @param \Faker\Generator $faker
+ * @return array
+ */
+$factory->define(
+    App\Wish::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function () {
             return factory('App\User')->create()->id;

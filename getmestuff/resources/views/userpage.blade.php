@@ -8,7 +8,7 @@
 
 @section ('content')
     <main class="col-12 mw mh m-auto main-fix">
-        @include ('layouts.user.info')
+        <user-info user="{{ auth()->user() }}"></user-info>
 
         <div class="mw mh flex s-between main-wrapper">
 
@@ -18,7 +18,7 @@
                         @include ('layouts.user.settings')
                     </tab>
                     <tab name="<i class='fa fa-money' aria-hidden='true'></i><span>Wallet</span>">
-                        <wallet></wallet>
+                        <wallet user="{{ auth()->user()->email }}"></wallet>
                     </tab>
                     <tab name="<i class='fa fa-star' aria-hidden='true'></i><span>Achievements</span>">
                         @include ('layouts.user.achievements')
@@ -79,31 +79,31 @@
 @endsection
 
 @section ('script')
-<script type="text/javascript">
-    $(function() {
-        $(window).on('resize', function() {
-            var win = $(this);
-            if (win.width() <= 770) {
+    <script type="text/javascript">
+        $(function() {
+            $(window).on('resize', function() {
+                var win = $(this);
+                if (win.width() <= 770) {
+                    $('.main-wrapper').addClass('owl-carousel owl-theme');
+                    $('.main-wrapper .children').addClass('item');
+                    $('.main-wrapper').owlCarousel({
+                        items: 1
+                    });
+                } else {
+                    $('.main-wrapper').removeClass('owl-carousel owl-theme');
+                    $('.main-wrapper .children').removeClass('item');
+                    $('.main-wrapper').trigger('destroy.owl.carousel');
+                }
+            });
+
+            var width = $(window).width();
+            if (width <= 770) {
                 $('.main-wrapper').addClass('owl-carousel owl-theme');
                 $('.main-wrapper .children').addClass('item');
                 $('.main-wrapper').owlCarousel({
                     items: 1
                 });
-            } else {
-                $('.main-wrapper').removeClass('owl-carousel owl-theme');
-                $('.main-wrapper .children').removeClass('item');
-                $('.main-wrapper').trigger('destroy.owl.carousel');
             }
         });
-        
-        var width = $(window).width();
-        if (width <= 770) {
-            $('.main-wrapper').addClass('owl-carousel owl-theme');
-            $('.main-wrapper .children').addClass('item');
-            $('.main-wrapper').owlCarousel({
-                items: 1
-            });
-        }
-    });
-</script>
+    </script>
 @endsection

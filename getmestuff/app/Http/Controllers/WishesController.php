@@ -20,13 +20,15 @@ class WishesController extends Controller
      */
     public function index()
     {
-        $wishes = \Cache::remember('set', 1, function () {
+        $key = sprintf("user.%s", auth()->id());
+
+        $wishes = \Cache::remember($key, 1, function () {
             return Wish::inRandomOrder()
                         ->where('user_id', '!=', auth()->user()->id)
                         ->limit(6)
                         ->get();
         });
-        
+
         return view('wishes', compact('wishes'));
     }
 

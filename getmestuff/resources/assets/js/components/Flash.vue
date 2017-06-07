@@ -22,10 +22,10 @@
                 this.flash(this.error, 'error');
             }
 
-            window.events.$on('flash', message => this.flash(message));
+            window.events.$on('flash', ([message, type]) => this.flash(message, type));
         },
         methods: {
-            flash(message, type) {
+            flash(message, type = 'success') {
                 this.body = message;
                 this.classType = type;
                 this.type = this.capitalize(type);
