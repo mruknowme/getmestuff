@@ -1,6 +1,9 @@
 <template>
     <div class="alert" :class="classType" v-show="show">
-        <span><strong>{{ type }}!</strong> {{ body }}</span>
+        <h4><strong>{{ type }}</strong></h4>
+        <ul>
+            <li v-for="item in items" v-text="item"></li>
+        </ul>
     </div>
 </template>
 
@@ -10,7 +13,7 @@
         data() {
             return {
                 type: 'Success',
-                body: '',
+                items: '',
                 show: false,
                 classType: 'success'
             }
@@ -25,8 +28,8 @@
             window.events.$on('flash', ([message, type]) => this.flash(message, type));
         },
         methods: {
-            flash(message, type = 'success') {
-                this.body = message;
+            flash(messages, type = 'success') {
+                this.items = messages;
                 this.classType = type;
                 this.type = this.capitalize(type);
                 this.show = true;

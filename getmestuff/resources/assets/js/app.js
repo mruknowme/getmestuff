@@ -21,11 +21,12 @@ require('owl.carousel');
 Vue.component('tabs', require('./components/Tabs.vue'));
 Vue.component('tab', require('./components/Tab.vue'));
 Vue.component('flash', require('./components/Flash.vue'));
-Vue.component('wallet', require('./components/user/Wallet.vue'));
 Vue.component('login', require('./components/auth/Login.vue'));
 Vue.component('register', require('./components/auth/Register.vue'));
 Vue.component('website-header', require('./components/WebsiteHeader.vue'));
 Vue.component('user-info', require('./components/user/Userinfo.vue'));
+Vue.component('wishes', require('./components/wishes/Wishes.vue'));
+Vue.component('user-page', require('./components/user/pages/Userpage.vue'));
 
 const app = new Vue({
     el: '#app'

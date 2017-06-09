@@ -25,6 +25,15 @@
             window.events.$on('increment', (argument) => {
                 this.balance += parseFloat(argument);
             });
+
+            window.events.$on('decrement', (argument) => {
+                this.balance -= parseFloat(argument);
+            });
+
+            window.events.$on('profileUpdate', (argument) => {
+                this.first_name = argument.first_name;
+                this.last_name = argument.last_name;
+            });
         }
     }
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class SettingsForm extends FormRequest
 {
@@ -13,7 +14,7 @@ class SettingsForm extends FormRequest
      */
     public function authorize()
     {
-        return \Hash::check($this->current_password, $this->user()->password);
+        return $this->user();
     }
 
     /**
@@ -23,8 +24,11 @@ class SettingsForm extends FormRequest
     {
         $validator = parent::getValidatorInstance();
 
-        $validator->sometimes('email', 'string|email|max:255|unique:users', function ($input) {
-            return (!is_null($input['email']) && $input['email'] != $this->user()->email);
+        $validator->sometimes('email', 'nullable|string|email|max:255|unique:users', function ($input) {
+            if (isset($input['email'])) {
+                return (!is_null($input['email']) && $input['email'] != $this->user()->email);
+            }
+            return false;
         });
 
         return $validator;
@@ -47,9 +51,13 @@ class SettingsForm extends FormRequest
 
     public function save()
     {
+        if (!(Hash::check($this->current_password, $this->user()->password))) {
+            throw new \Exception('Password is incorrect');
+        }
+
         $data = $this->intersect(['first_name', 'last_name', 'email', 'password']);
 
-        if ($data['email'] == $this->user()->email) unset($data['email']);
+        if (isset($data['email']) && $data['email'] == $this->user()->email) unset($data['email']);
 
         if (isset($data['password'])) $data['password'] = bcrypt($data['password']);
 

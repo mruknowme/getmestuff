@@ -39,7 +39,8 @@ $factory->define(
         'item' => $faker->word,
         'url' => $faker->url,
         'address' => [
-            'address' => $faker->streetAddress,
+            'address_one' => $faker->streetAddress,
+            'address_two' => null,
             'city' => $faker->city,
             'post_code' => $faker->postcode,
             'country' => $faker->country

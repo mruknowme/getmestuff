@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'ip_address', 'token', 'verified'
     ];
 
     protected $casts = [
@@ -68,5 +68,12 @@ class User extends Authenticatable
     public function topUp($amount)
     {
         $this->increment('balance', $amount);
+    }
+
+    public function donate(Wish $wish, $amount)
+    {
+        $wish->recordDonation($this->id, $amount);
+
+        $this->decrement('balance', $amount);
     }
 }

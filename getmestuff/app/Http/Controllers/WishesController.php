@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DonateForm;
+use App\Http\Requests\WishesForm;
 use App\Wish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -20,14 +22,9 @@ class WishesController extends Controller
      */
     public function index()
     {
-        $key = sprintf("user.%s", auth()->id());
+        $id = auth()->user()->id;
 
-        $wishes = \Cache::remember($key, 1, function () {
-            return Wish::inRandomOrder()
-                        ->where('user_id', '!=', auth()->user()->id)
-                        ->limit(6)
-                        ->get();
-        });
+        $wishes = Wish::getWishes($id);
 
         return view('wishes', compact('wishes'));
     }
@@ -42,59 +39,31 @@ class WishesController extends Controller
         //
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * Stores wishes
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param WishesForm $form
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(WishesForm $form)
     {
-        $this->validate($request, [
-            'item' => 'required|string',
-            'url' => 'required|url',
-            'current_amount' => 'nullable|numeric|min:0',
-            'amount_needed' => 'required|numeric|min:0',
-            'address_one' => 'required|string',
-            'address_two' => 'nullable|string',
-            'city' => 'required|alpha_num',
-            'post_code' => 'required|alpha_num',
-            'country' => 'required|alpha_num'
-        ]);
+        $form->save();
 
-        $address = [
-            'address_one' => ucwords(request('address_one')),
-            'address_two' => ucwords(request('address_two')),
-            'city' => ucwords(request('city')),
-            'post_code' => ucwords(request('post_code')),
-            'country' => ucwords(request('country'))
-        ];
-
-        \Auth::user()->settings()->saveAddress($address);
-
-        $wish = Wish::create([
-            'user_id' => auth()->id(),
-            'item' => request('item'),
-            'url' => request('url'),
-            'current_amount' => request('current_amount'),
-            'amount_needed' => request('amount_needed'),
-            'address' => $address
-        ]);
-
-        flash('Your wish has been published');
-
-        return back();
+        return response(['status' => 'Wish published successfully']);
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Wish  $wish
-     * @return \Illuminate\Http\Response
+     * @param Wish $wish
+     * @param Request $request
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|static[]
      */
-    public function show(Wish $wish)
+    public function show(Wish $wish, Request $request)
     {
-        //
+        return $wish->getWish($request->user()->id, $request->set);
     }
 
     /**
@@ -108,16 +77,26 @@ class WishesController extends Controller
         //
     }
 
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Wish  $wish
-     * @return \Illuminate\Http\Response
+     * @param $find
+     * @param DonateForm $form
+     * @param Wish $wish
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Wish $wish)
+    public function update(Wish $wish, DonateForm $form)
     {
-        //
+        try {
+            $form->save($wish);
+        } catch (\Exception $e) {
+            return response()->json(
+                ['amount' => [$e->getMessage()]], 422
+            );
+        }
+
+        return response(['status' => 'Donated successfully']);
     }
 
     /**

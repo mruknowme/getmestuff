@@ -21,12 +21,14 @@ Route::get('/about', function () {
 
 Route::get('/home', 'HomeController@index');
 Route::patch('/home/update', 'UserSettingsController@update');
-Route::get('/home/confirm/{token}', 'UserSettingsController@edit');
+Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
 
 Route::post('/topup', 'PurchasesController@store');
 
 Route::get('/wishes', 'WishesController@index');
+Route::post('/wishes/refresh', 'WishesController@show');
 Route::post('/wishes', 'WishesController@store');
+Route::patch('/wish/{wish}/donate', 'WishesController@update');
 
 Auth::routes();
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');

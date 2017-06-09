@@ -1,6 +1,6 @@
 <template>
     <form class="mw flex around vertical">
-        <input type="hidden" name="amount" :value="amount" required>
+        <!--<input type="hidden" name="amount" :value="amount" required>-->
         <button type="submit" @click.prevent="topup">Top Up</button>
     </form>
 </template>
@@ -32,10 +32,14 @@
                         .then(() => {
                             window.events.$emit('increment', this.amount);
 
-                            flash('All done!');
+                            flash(['All done!']);
                         })
-                        .catch(() => {
-                            flash('Your card was declined', 'error');
+                        .catch((error) => {
+                            let messages = [];
+                            for (let key in error.response.data) {
+                                messages.push(error.response.data[key][0]);
+                            }
+                            flash(messages, 'error');
                         });
                 }
             });

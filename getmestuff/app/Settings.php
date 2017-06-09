@@ -10,8 +10,6 @@ class Settings
 {
     protected $user;
 
-    protected $success = 'Your profile has been updated';
-
     /**
      * Settings constructor.
      * @param User $user
@@ -26,7 +24,7 @@ class Settings
      */
     public function update (array $attributes)
     {
-        if (array_key_exists('email', $attributes))
+        if (isset($attributes['email']))
         {
             $this->sendVerification($attributes['email']);
 
@@ -36,8 +34,6 @@ class Settings
         if (!empty($attributes))
         {
             $this->user->update($attributes);
-
-            flash($this->success);
         }
     }
 
@@ -69,8 +65,6 @@ class Settings
         $this->user->newQuery()->where('id', $reset->user_id)->update(['email' => $reset->new_email]);
 
         \DB::table('email_resets')->where('token', $token)->delete();
-
-        flash($this->success);
     }
 
     /**

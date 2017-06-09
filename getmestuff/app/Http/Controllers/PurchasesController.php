@@ -2,35 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WalletForm;
 use Illuminate\Http\Request;
-use Stripe\Charge;
-use Stripe\Customer;
-use Stripe\Stripe;
 
 class PurchasesController extends Controller
 {
-    public function store()
+    public function store(WalletForm $form)
     {
-        Stripe::setApiKey(config('services.stripe.secret'));
-
-        $info = request()->all();
-
-        $amount = $info['value'];
-
-        $user = Customer::create([
-            'email' => $info['stripeEmail'],
-            'source' => $info['stripeToken']
-        ]);
         try {
-            $charge = Charge::create([
-                'customer' => $user->id,
-                'amount' => ($amount * 100 * 1.2),
-                'currency' => 'usd'
-            ]);
+            $form->save();
         } catch (\Exception $e) {
-            return response()->json(['status' => $e->getMessage()], 422);
+            return response()->json(
+                ['value' => [$e->getMessage()]], 422
+            );
         }
 
-        request()->user()->topUp($amount);
+        return [
+            'status' => 'Success'
+        ];
     }
 }
