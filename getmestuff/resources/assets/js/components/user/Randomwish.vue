@@ -1,9 +1,10 @@
 <template>
     <div class="wish mw">
+        <h3>Random Wish</h3>
         <div class="content">
             <div class="header">
                 <h4 v-text="data.item"></h4>
-                <p v-text="date"></p>
+                <p v-text="when"></p>
             </div>
             <div class="progress">
                 <p>Progress</p>
@@ -23,6 +24,7 @@
         </div>
     </div>
 </template>
+
 <script>
     import moment from 'moment';
 

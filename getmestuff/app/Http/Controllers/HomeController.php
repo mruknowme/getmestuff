@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('userpage');
+        $random = Wish::getWishes(auth()->user()->id, 1);
+        return view('userpage', compact('random'));
     }
 }

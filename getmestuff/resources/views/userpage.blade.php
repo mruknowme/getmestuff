@@ -16,7 +16,6 @@
                 <div class="main-content children">
                     <tabs>
                         <tab name="<i class='fa fa-cog' aria-hidden='true'></i><span>Settings</span>" :selected="true">
-                            {{--@include ('layouts.user.settings')--}}
                             <settings :user="{{ auth()->user() }}"></settings>
                         </tab>
                         <tab name="<i class='fa fa-money' aria-hidden='true'></i><span>Wallet</span>">
@@ -26,56 +25,14 @@
                             @include ('layouts.user.achievements')
                         </tab>
                         <tab name="<i class='fa fa-pencil' aria-hidden='true'></i><span>Make a Wish</span>">
-                            {{--@include ('layouts.user.make')--}}
                             <make :user="{{ auth()->user() }}"></make>
                         </tab>
                     </tabs>
                 </div>
 
-                <div class="wishes flex vertical between w4 children">
-
-                    <div class="wish mw">
-                        <h3>Your Current Wish</h3>
-                        <div class="content">
-                            <div class="header">
-                                <h4>iPhone 6</h4>
-                                <p>23/12/16</p>
-                            </div>
-                            <div class="progress">
-                                <p>Progress</p>
-                                <div class="progress-bar">
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <p>Collected: 40 000/70 000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="wish mw">
-                        <h3>Random Wish</h3>
-                        <div class="content">
-                            <div class="header">
-                                <h4>iPhone 6</h4>
-                                <p>23/12/16</p>
-                            </div>
-                            <div class="progress">
-                                <p>Progress</p>
-                                <div class="progress-bar">
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <p>Collected: 40 000/70 000</p>
-                                <form>
-                                    <input type="number" name="amount" required>
-                                    <button type="submit">Donate</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="wishes vertical flex between w4 children">
+                    <userwishes :wishes="{{ auth()->user()->wishes()->where('completed', 0)->get() }}"></userwishes>
+                    <wishrandom :wishes="{{ $random }}"></wishrandom>
                 </div>
             </div>
         </main>
@@ -85,6 +42,15 @@
 @section ('script')
     <script type="text/javascript">
         $(function() {
+            $('.user-wishes').owlCarousel({
+                items: 1,
+                dots: false,
+                nav: true,
+                navText: [
+                    '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
+                    '<i class="fa fa-chevron-right" aria-hidden="true"></i>']
+            });
+
             $(window).on('resize', function() {
                 var win = $(this);
                 if (win.width() <= 770) {

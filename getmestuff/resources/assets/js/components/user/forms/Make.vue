@@ -81,6 +81,8 @@
     </section>
 </template>
 <script>
+    import moment from 'moment';
+
     export default {
         props: ['user'],
         data() {
@@ -100,6 +102,13 @@
             postWish() {
                 axios.post('/wishes', this.$data)
                     .then(() => {
+                        window.events.$emit('newWish', {
+                            'amount_needed': this.amount_needed,
+                            'created_at': moment(),
+                            'current_amount': this.current_amount,
+                            'item': this.item
+                        });
+
                         this.item = '';
                         this.url = '';
                         this.current_amount = '';
@@ -108,11 +117,12 @@
                         flash(['Your wish has been published!']);
                     })
                     .catch((error) => {
-                        let messages = [];
-                        for (let key in error.response.data) {
-                            messages.push(error.response.data[key][0]);
-                        }
-                        flash(messages, 'error');
+//                        let messages = [];
+//                        for (let key in error.response.data) {
+//                            messages.push(error.response.data[key][0]);
+//                        }
+//                        flash(messages, 'error');
+                        console.log(error);
                     });
             }
         }
