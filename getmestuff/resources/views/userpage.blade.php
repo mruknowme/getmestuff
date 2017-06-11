@@ -9,23 +9,26 @@
 @section ('content')
     <user-page inline-template>
         <main class="col-12 mw mh m-auto main-fix">
-            <user-info user="{{ auth()->user() }}"></user-info>
+            <user-info :user="{{ auth()->user() }}"></user-info>
 
             <div class="mw mh flex s-between main-wrapper">
 
                 <div class="main-content children">
                     <tabs>
-                        <tab name="<i class='fa fa-cog' aria-hidden='true'></i><span>Settings</span>" :selected="true">
+                        <tab name="<i class='fa fa-lg fa-cog' aria-hidden='true'></i>" title="Settings" :selected="true">
                             <settings :user="{{ auth()->user() }}"></settings>
                         </tab>
-                        <tab name="<i class='fa fa-money' aria-hidden='true'></i><span>Wallet</span>">
+                        <tab name="<i class='fa fa-lg fa-money' aria-hidden='true'></i>" title="Wallet">
                             <wallet user="{{ auth()->user()->email }}"></wallet>
                         </tab>
-                        <tab name="<i class='fa fa-star' aria-hidden='true'></i><span>Achievements</span>">
+                        <tab name="<i class='fa fa-lg fa-star' aria-hidden='true'></i>" title="Achievements">
                             @include ('layouts.user.achievements')
                         </tab>
-                        <tab name="<i class='fa fa-pencil' aria-hidden='true'></i><span>Make a Wish</span>">
+                        <tab name="<i class='fa fa-lg fa-pencil' aria-hidden='true'></i>" title="Make a Wish">
                             <make :user="{{ auth()->user() }}"></make>
+                        </tab>
+                        <tab name="<i class='fa fa-lg fa-globe' aria-hidden='true'></i>" title="Social">
+                            @include ('layouts.user.social')
                         </tab>
                     </tabs>
                 </div>

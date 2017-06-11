@@ -17,7 +17,10 @@
                 </p>
                 <form>
                     <input type="number" name="amount" v-model="amount" required>
-                    <button type="submit" @click.prevent="donate">Donate</button>
+                    <button :disabled="this.wait" type="submit" class="pos-r" @click.prevent="donate">
+                        <i v-show="buffering" class="fa fa-refresh fa-spin pos-a" aria-hidden="true"></i>
+                        Donate
+                    </button>
                 </form>
             </div>
         </div>
@@ -27,14 +30,15 @@
     import moment from 'moment';
 
     export default {
-        props: ['data'],
+        props: ['data', 'wait'],
         data() {
             return {
                 id: this.data.id,
                 amount: '',
                 current: this.data.current_amount,
                 needed: this.data.amount_needed,
-                date: ''
+                date: '',
+                buffering: false
             }
         },
         computed: {
@@ -44,6 +48,9 @@
         },
         methods: {
             donate() {
+                this.$emit('disable');
+                this.buffering = true;
+
                 axios.patch('wish/'+this.id+'/donate', {
                     'amount': this.amount})
                     .then(() => {

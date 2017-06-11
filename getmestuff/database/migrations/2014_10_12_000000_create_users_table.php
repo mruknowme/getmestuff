@@ -26,6 +26,10 @@ class CreateUsersTable extends Migration
             $table->json('address')->nullable();
             $table->ipAddress('ip_address');
             $table->tinyInteger('donated')->unsigned()->default(0);
+            $table->integer('allowed_wishes')->unsigned()->default(2);
+            $table->integer('number_of_wishes')->unsigned()->default(1);
+            $table->string('ref_link', 5);
+            $table->string('ref_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

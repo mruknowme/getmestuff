@@ -2,7 +2,7 @@
     <section class="">
         <div class="mw flex wrap between" v-if="arrayCheck(items)">
             <div class="container" v-for="(wish, index) in items" :key="wish.id">
-                <wish :data="wish" @donated="refresh(index)"></wish>
+                <wish :data="wish" :wait="disabled" @disable="disabled = true" @donated="refresh(index)"></wish>
             </div>
             <div class="container"></div>
             <div class="container"></div>
@@ -21,6 +21,7 @@
         data() {
             return {
                 items: this.data,
+                disabled: false
             }
         },
         methods: {
@@ -40,6 +41,7 @@
                             } else {
                                 this.items.splice(index, 1, response.data[0]);
                             }
+                            this.disabled = false;
                         });
                 }, 500)
             },

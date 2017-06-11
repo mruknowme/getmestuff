@@ -8,7 +8,8 @@
     export default {
         props: {
             'name': {required: true},
-            'selected': {default: false}
+            'selected': {default: false},
+            'title': {default: ''}
         },
         data() {
             return {

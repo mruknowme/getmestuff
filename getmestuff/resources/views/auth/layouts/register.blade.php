@@ -3,6 +3,9 @@
         <h1>Sign Up</h1>
         <form class="mw vertical center" method="POST" action="{{ route('register') }}" data-parsley-validate>
             {{ csrf_field() }}
+            @if (isset($ref))
+                <input type="hidden" name="ref" value="{{ $ref ?? '' }}">
+            @endif
             <div class="top-row flex start mw">
                 <div class="pos-r w45">
                     <animated name="first_name" id="firstname" trigger="change" type="text">First Name</animated>

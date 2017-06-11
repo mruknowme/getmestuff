@@ -27,8 +27,9 @@ Route::post('/topup', 'PurchasesController@store');
 
 Route::get('/wishes', 'WishesController@index');
 Route::post('/wishes/refresh', 'WishesController@show');
-Route::post('/wishes', 'WishesController@store');
+Route::post('/wishes', 'WishesController@store')->middleware('donated');
 Route::patch('/wish/{wish}/donate', 'WishesController@update');
 
 Auth::routes();
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
+Route::get('/register/{ref}', 'Auth\RegisterController@showRegistrationFormWithRef');

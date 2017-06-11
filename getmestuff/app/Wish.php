@@ -30,21 +30,14 @@ class Wish extends Model
         static::saving(function (Wish $wish) {
             if ($wish->amount_needed == $wish->current_amount) {
                 $wish->completed = 1;
+
+                if ($wish->user->number_of_wishes == 0) {
+                    $wish->user->increment('number_of_wishes');
+                }
                 return;
             }
         });
     }
-
-//    public static function boot()
-//    {
-//        parent::boot();
-//
-//        static::saved(function ($wish) {
-//            if ($wish->amount_needed == $wish->current_amount) {
-//                $wish->update(['completed' => 1]);
-//            };
-//        });
-//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

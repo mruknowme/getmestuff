@@ -72,7 +72,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'token' => str_random(30),
-            'ip_address' => ip2long(request()->ip())
+            'ip_address' => ip2long(request()->ip()),
+            'ref_link' => str_random(5),
+            'ref_id' => $data['ref'] ?? null
         ]);
     }
 
@@ -100,6 +102,16 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('auth.authenticate', ['form' => 'Sign Up']);
+        return view('auth.authenticate', [
+            'form' => 'Sign Up',
+        ]);
+    }
+
+    public function showRegistrationFormWithRef($ref)
+    {
+        return view('auth.authenticate', [
+            'form' => 'Sign Up',
+            'ref' => $ref
+        ]);
     }
 }

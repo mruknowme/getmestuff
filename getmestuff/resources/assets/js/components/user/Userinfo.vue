@@ -10,18 +10,12 @@
         props: ['user'],
         data() {
             return {
-                first_name: '',
-                last_name: '',
-                balance: ''
+                first_name: this.user.first_name,
+                last_name: this.user.last_name,
+                balance: this.user.balance
             }
         },
         created() {
-            let temp = JSON.parse(this.user);
-
-            this.first_name = temp.first_name;
-            this.last_name = temp.last_name;
-            this.balance = temp.balance;
-
             window.events.$on('increment', (argument) => {
                 this.balance += parseFloat(argument);
             });

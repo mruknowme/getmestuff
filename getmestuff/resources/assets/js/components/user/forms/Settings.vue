@@ -50,7 +50,10 @@
                 </div>
             </div>
             <div class="self-start">
-                <button @click.prevent="updateSettings" type="submit">Save Changes</button>
+                <button class="pos-r" :disabled="buffering" @click.prevent="updateSettings" type="submit">
+                    <i v-show="buffering" class="fa fa-cog fa-spin pos-a fa-lg" aria-hidden="true"></i>
+                    Save Settings
+                </button>
             </div>
         </form>
     </section>
@@ -65,11 +68,14 @@
                 last_name: this.user.last_name,
                 email: this.user.email,
                 password: '',
-                current_password: ''
+                current_password: '',
+                buffering: false
             }
         },
         methods: {
             updateSettings() {
+                this.buffering = true;
+
                 axios.patch('/home/update', this.$data)
                     .then(() => {
                         this.password = '';
@@ -87,6 +93,8 @@
                             'last_name': this.last_name
                         });
 
+                        this.buffering = false;
+
                         flash(messages);
                     })
                     .catch((error) => {
@@ -94,6 +102,8 @@
                         for (let key in error.response.data) {
                             messages.push(error.response.data[key][0]);
                         }
+
+                        this.buffering = false;
                         flash(messages, 'error');
                     });
             }

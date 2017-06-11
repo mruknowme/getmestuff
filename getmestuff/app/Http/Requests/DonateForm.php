@@ -33,12 +33,13 @@ class DonateForm extends FormRequest
     {
         $diff = ($wish->amount_needed) - ($wish->current_amount);
 
-//        dd(($this->amount > $this->user()->balance) || ($this->amount > $diff));
-
         if (($this->amount > $this->user()->balance) || ($this->amount > $diff))
         {
             throw new \Exception('You cannot donate this amount');
         }
+
+        $this->user()->donated = 1;
+        $this->user()->save();
 
         $this->user()->donate($wish, $this->amount);
     }

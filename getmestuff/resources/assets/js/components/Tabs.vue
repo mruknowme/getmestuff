@@ -4,6 +4,7 @@
             <li v-for="tab in tabs" 
                 :class="{ 'active' : tab.isActive }"
                 @click="selectTab(tab)"
+                :title="tab.title"
                 v-html="tab.name"> 
             </li>
         </ul>

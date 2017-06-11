@@ -27660,7 +27660,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         'name': { required: true },
-        'selected': { default: false }
+        'selected': { default: false },
+        'title': { default: '' }
     },
     data: function data() {
         return {
@@ -27678,6 +27679,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -27901,6 +27903,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -27912,7 +27917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             amount: '',
             current: this.data.current_amount,
             needed: this.data.amount_needed,
-            date: ''
+            buffering: false
         };
     },
 
@@ -27925,6 +27930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         donate: function donate() {
             var _this = this;
 
+            this.buffering = true;
             axios.patch('wish/' + this.id + '/donate', {
                 'amount': this.amount }).then(function () {
                 window.events.$emit('decrement', _this.amount);
@@ -27963,19 +27969,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['user'],
     data: function data() {
         return {
-            first_name: '',
-            last_name: '',
-            balance: ''
+            first_name: this.user.first_name,
+            last_name: this.user.last_name,
+            balance: this.user.balance
         };
     },
     created: function created() {
         var _this = this;
-
-        var temp = JSON.parse(this.user);
-
-        this.first_name = temp.first_name;
-        this.last_name = temp.last_name;
-        this.balance = temp.balance;
 
         window.events.$on('increment', function (argument) {
             _this.balance += parseFloat(argument);
@@ -28346,6 +28346,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -28357,11 +28363,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             url: '',
             current_amount: '',
             amount_needed: '',
-            address_one: this.user.address.address_one,
-            address_two: this.user.address.address_two,
-            city: this.user.address.city,
-            post_code: this.user.address.post_code,
-            country: this.user.address.country
+            address_one: this.user.address != null ? this.user.address.address_one : '',
+            address_two: this.user.address != null ? this.user.address.address_two : '',
+            city: this.user.address != null ? this.user.address.city : '',
+            post_code: this.user.address != null ? this.user.address.post_code : '',
+            country: this.user.address != null ? this.user.address.country : '',
+            allowed: this.user.donated,
+            buffering: false
         };
     },
 
@@ -28369,6 +28377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         postWish: function postWish() {
             var _this = this;
 
+            this.buffering = true;
             axios.post('/wishes', this.$data).then(function () {
                 window.events.$emit('newWish', {
                     'amount_needed': _this.amount_needed,
@@ -28382,16 +28391,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.current_amount = '';
                 _this.amount_needed = '';
 
+                _this.buffering = false;
                 flash(['Your wish has been published!']);
             }).catch(function (error) {
-                //                        let messages = [];
-                //                        for (let key in error.response.data) {
-                //                            messages.push(error.response.data[key][0]);
-                //                        }
-                //                        flash(messages, 'error');
-                console.log(error);
+                var messages = [];
+                for (var key in error.response.data) {
+                    messages.push(error.response.data[key][0]);
+                }
+
+                _this.buffering = false;
+                flash(messages, 'error');
             });
         }
+    },
+    created: function created() {
+        var _this2 = this;
+
+        window.events.$on('decrement', function () {
+            _this2.allowed = 1;
+        });
     }
 });
 
@@ -28459,6 +28477,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['user'],
@@ -28468,13 +28489,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             last_name: this.user.last_name,
             email: this.user.email,
             password: '',
-            current_password: ''
+            current_password: '',
+            buffering: false
         };
     },
 
     methods: {
         updateSettings: function updateSettings() {
             var _this = this;
+
+            this.buffering = true;
 
             axios.patch('/home/update', this.$data).then(function () {
                 _this.password = '';
@@ -28492,12 +28516,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'last_name': _this.last_name
                 });
 
+                _this.buffering = false;
+
                 flash(messages);
             }).catch(function (error) {
                 var messages = [];
                 for (var key in error.response.data) {
                     messages.push(error.response.data[key][0]);
                 }
+
+                _this.buffering = false;
                 flash(messages, 'error');
             });
         }
@@ -28628,18 +28656,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['data'],
+    props: ['data', 'wait'],
     data: function data() {
         return {
             id: this.data.id,
             amount: '',
             current: this.data.current_amount,
             needed: this.data.amount_needed,
-            date: ''
+            date: '',
+            buffering: false
         };
     },
 
@@ -28651,6 +28683,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         donate: function donate() {
             var _this = this;
+
+            this.$emit('disable');
+            this.buffering = true;
 
             axios.patch('wish/' + this.id + '/donate', {
                 'amount': this.amount }).then(function () {
@@ -28702,7 +28737,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['data'],
     data: function data() {
         return {
-            items: this.data
+            items: this.data,
+            disabled: false
         };
     },
 
@@ -28725,6 +28761,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     } else {
                         _this.items.splice(index, 1, response.data[0]);
                     }
+                    _this.disabled = false;
                 });
             }, 500);
         },
@@ -54015,7 +54052,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })])]), _vm._v(" "), _c('div', {
     staticClass: "self-start"
   }, [_c('button', {
+    staticClass: "pos-r",
     attrs: {
+      "disabled": _vm.buffering,
       "type": "submit"
     },
     on: {
@@ -54024,7 +54063,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateSettings($event)
       }
     }
-  }, [_vm._v("Save Changes")])])])])
+  }, [_c('i', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.buffering),
+      expression: "buffering"
+    }],
+    staticClass: "fa fa-cog fa-spin pos-a fa-lg",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                Save Settings\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('i', {
     staticClass: "fa fa-key",
@@ -54084,7 +54134,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
+  return (_vm.allowed == 1) ? _c('section', {
     staticClass: "flex vertical start bg-white main-section",
     attrs: {
       "id": "wish"
@@ -54328,6 +54378,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "self-start"
   }, [_c('button', {
     attrs: {
+      "disabled": _vm.buffering,
       "type": "submit"
     },
     on: {
@@ -54336,7 +54387,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.postWish($event)
       }
     }
-  }, [_vm._v("Make Your Wish")])])])])
+  }, [_c('i', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.buffering),
+      expression: "buffering"
+    }],
+    staticClass: "fa fa-refresh fa-spin pos-a fa-lg",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                Make Your Wish\n            ")])])])]) : _c('section', {
+    staticClass: "flex center bg-white main-section"
+  }, [_c('p', [_vm._v("Looks like you haven't donated yet. Please donate and come back to make your wish.")])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('i', {
     staticClass: "fa fa-address-card-o",
@@ -54396,6 +54460,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       class: {
         'active': tab.isActive
+      },
+      attrs: {
+        "title": tab.title
       },
       domProps: {
         "innerHTML": _vm._s(tab.name)
@@ -54508,7 +54575,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
+    staticClass: "pos-r",
     attrs: {
+      "disabled": this.wait,
       "type": "submit"
     },
     on: {
@@ -54517,7 +54586,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.donate($event)
       }
     }
-  }, [_vm._v("Donate")])])])])])
+  }, [_c('i', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.buffering),
+      expression: "buffering"
+    }],
+    staticClass: "fa fa-refresh fa-spin pos-a",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                    Donate\n                ")])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -54540,9 +54620,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "container"
     }, [_c('wish', {
       attrs: {
-        "data": wish
+        "data": wish,
+        "wait": _vm.disabled
       },
       on: {
+        "disable": function($event) {
+          _vm.disabled = true
+        },
         "donated": function($event) {
           _vm.refresh(index)
         }
@@ -54818,7 +54902,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('button', {
     attrs: {
-      "type": "submit"
+      "disabled": _vm.buffering,
+      "type": "submit pos-r"
     },
     on: {
       "click": function($event) {
@@ -54826,7 +54911,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.donate($event)
       }
     }
-  }, [_vm._v("Donate")])])])])])
+  }, [_c('i', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.buffering),
+      expression: "buffering"
+    }],
+    staticClass: "fa fa-refresh fa-spin pos-a",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                    Donate\n                ")])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

@@ -1,5 +1,5 @@
 <template>
-    <section class="flex vertical start bg-white main-section" id="wish">
+    <section class="flex vertical start bg-white main-section" id="wish" v-if="allowed == 1">
         <h2>Make a Wish</h2>
         <form class="vertical center mw" data-parsley-validate>
             <div class="vertical mw center">
@@ -75,9 +75,15 @@
                 </div>
             </div>
             <div class="self-start">
-                <button @click.prevent="postWish" type="submit">Make Your Wish</button>
+                <button :disabled="buffering" @click.prevent="postWish" type="submit">
+                    <i v-show="buffering" class="fa fa-refresh fa-spin pos-a fa-lg" aria-hidden="true"></i>
+                    Make Your Wish
+                </button>
             </div>
         </form>
+    </section>
+    <section class="flex center bg-white main-section" v-else>
+        <p>Looks like you haven't donated yet. Please donate and come back to make your wish.</p>
     </section>
 </template>
 <script>
@@ -91,15 +97,18 @@
                 url: '',
                 current_amount: '',
                 amount_needed: '',
-                address_one: this.user.address.address_one,
-                address_two: this.user.address.address_two,
-                city: this.user.address.city,
-                post_code: this.user.address.post_code,
-                country: this.user.address.country
+                address_one: (this.user.address != null) ? this.user.address.address_one : '',
+                address_two: (this.user.address != null) ? this.user.address.address_two : '',
+                city: (this.user.address != null) ? this.user.address.city : '',
+                post_code: (this.user.address != null) ? this.user.address.post_code : '',
+                country: (this.user.address != null) ? this.user.address.country : '',
+                allowed: this.user.donated,
+                buffering: false
             }
         },
         methods: {
             postWish() {
+                this.buffering = true;
                 axios.post('/wishes', this.$data)
                     .then(() => {
                         window.events.$emit('newWish', {
@@ -114,17 +123,24 @@
                         this.current_amount = '';
                         this.amount_needed = '';
 
+                        this.buffering = false;
                         flash(['Your wish has been published!']);
                     })
                     .catch((error) => {
-//                        let messages = [];
-//                        for (let key in error.response.data) {
-//                            messages.push(error.response.data[key][0]);
-//                        }
-//                        flash(messages, 'error');
-                        console.log(error);
+                        let messages = [];
+                        for (let key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+
+                        this.buffering = false;
+                        flash(messages, 'error');
                     });
             }
+        },
+        created() {
+            window.events.$on('decrement', () => {
+                this.allowed = 1;
+            })
         }
     }
 </script>

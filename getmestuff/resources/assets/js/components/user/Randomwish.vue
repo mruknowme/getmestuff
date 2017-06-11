@@ -18,7 +18,10 @@
                 </p>
                 <form>
                     <input type="number" name="amount" v-model="amount" required>
-                    <button type="submit" @click.prevent="donate">Donate</button>
+                    <button :disabled="buffering" type="submit pos-r" @click.prevent="donate">
+                        <i v-show="buffering" class="fa fa-refresh fa-spin pos-a" aria-hidden="true"></i>
+                        Donate
+                    </button>
                 </form>
             </div>
         </div>
@@ -36,7 +39,7 @@
                 amount: '',
                 current: this.data.current_amount,
                 needed: this.data.amount_needed,
-                date: ''
+                buffering: false
             }
         },
         computed: {
@@ -46,6 +49,7 @@
         },
         methods: {
             donate() {
+                this.buffering = true;
                 axios.patch('wish/'+this.id+'/donate', {
                     'amount': this.amount})
                     .then(() => {

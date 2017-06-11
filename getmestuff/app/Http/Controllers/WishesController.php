@@ -48,7 +48,13 @@ class WishesController extends Controller
      */
     public function store(WishesForm $form)
     {
-        $form->save();
+        try {
+            $form->save();
+        } catch (\Exception $e) {
+            return response()->json(
+                ['amount' => [$e->getMessage()]], 422
+            );
+        }
 
         return response(['status' => 'Wish published successfully']);
     }

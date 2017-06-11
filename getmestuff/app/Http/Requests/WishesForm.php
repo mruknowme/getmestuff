@@ -38,6 +38,10 @@ class WishesForm extends FormRequest
 
     public function save()
     {
+        if ($this->user()->wishes->count() == $this->user()->allowed_wishes || $this->user()->number_of_wishes == 0) {
+            throw new \Exception('You have published a maximum amount of wishes');
+        }
+
         $address = [
             'address_one' => ucwords($this->address_one),
             'address_two' => ucwords($this->address_two),
@@ -47,6 +51,7 @@ class WishesForm extends FormRequest
         ];
 
         $this->user()->settings()->saveAddress($address);
+        $this->user()->decrement('number_of_wishes');
 
         $this->user()->wishes()->create([
             'item' => $this->item,

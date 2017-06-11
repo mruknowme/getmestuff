@@ -25,6 +25,17 @@ class HomeController extends Controller
     public function index()
     {
         $random = Wish::getWishes(auth()->user()->id, 1);
-        return view('userpage', compact('random'));
+        $ref_count = \DB::table('users')
+            ->where([
+                ['ref_id', '=', auth()->user()->ref_link],
+                ['verified', '=', 1],
+                ['donated', '=', 1]
+            ])
+            ->count();
+
+        return view('userpage', [
+            'random' => $random,
+            'ref_count' => $ref_count
+        ]);
     }
 }
