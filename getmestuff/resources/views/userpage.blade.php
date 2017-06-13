@@ -21,7 +21,7 @@
                         <tab name="<i class='fa fa-lg fa-money' aria-hidden='true'></i>" title="Wallet">
                             <wallet user="{{ auth()->user()->email }}"></wallet>
                         </tab>
-                        <tab name="<i class='fa fa-lg fa-star' aria-hidden='true'></i>" title="Achievements">
+                        <tab name="<i class='fa fa-lg fa-trophy' aria-hidden='true'></i>" title="Achievements">
                             @include ('layouts.user.achievements')
                         </tab>
                         <tab name="<i class='fa fa-lg fa-pencil' aria-hidden='true'></i>" title="Make a Wish">
@@ -43,6 +43,8 @@
 @endsection
 
 @section ('script')
+    <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+{{--    <script src="{{ asset('js/sektor.js') }}"></script>--}}
     <script type="text/javascript">
         $(function() {
             $('.user-wishes').owlCarousel({

@@ -4,11 +4,11 @@
         <div class='donated'>
             <div>
                 <p>Donated:</p>
-                <p><span>1000</span>$</p>
+                <p><span>{{ auth()->user()->amount_donated }}</span>$</p>
             </div>
             <div>
                 <p>Recieved:</p>
-                <p><span>10000</span>$</p>
+                <p><span>{{ auth()->user()->amount_received }}</span>$</p>
             </div>
         </div>
         <div class="w8 achievements-info">
@@ -17,18 +17,14 @@
                     <p>Use points to get an extra <a>Wish</a> (200 points)</p>
                     <p>(Click on a badge for more info.)</p>
                 </div>
-                <p>123 <i class="currency fa fa-star" aria-hidden="true"></i></p>
+                <p>{{ auth()->user()->points }} <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
             </div>
-            <div>
-                <div class="badge">
-                    <div class="radial"></div>
-                    <img src="{{ asset('images/badge.svg') }}">
-                    <p>Donator(36%)</p>
-                    <div class="tool-tip" style="display: none">
-                        <h4>Donator - 20 <i class="fa fa-star" aria-hidden="true"></i></h4>
-                        <p>Donate 300$ - 108$/300$</p> 
-                    </div>
-                </div>
+            <div class="mw flex s-between wrap">
+                @foreach($achievements as $achievement)
+                    <badge image="{{ asset('images/badge.svg') }}"
+                           :achievement="{{ $achievement }}"
+                           :userinfo="{{ auth()->user()->achievements }}"></badge>
+                @endforeach
             </div>
         </div>
     </div>

@@ -28106,11 +28106,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -28544,55 +28539,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['amount', 'user'],
 
     data: function data() {
         return {
-            stripeEmail: '',
-            stripeToken: '',
-            value: ''
+            buffering: false,
+            token: ''
         };
     },
     created: function created() {
         var _this = this;
 
-        this.stripe = StripeCheckout.configure({
-            key: GetMeStuff.stripeKey,
-            image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-            locale: 'auto',
-            panelLabel: 'Top up',
-            email: this.user,
-            token: function token(_token) {
-                _this.stripeToken = _token.id;
-                _this.stripeEmail = _token.email;
-                _this.value = _this.amount;
+        axios.get('/braintree/token').then(function (response) {
+            _this.token = response.data.token;
 
-                axios.post('/topup', _this.$data).then(function () {
-                    window.events.$emit('increment', _this.amount);
+            braintree.setup(_this.token, 'dropin', {
+                container: 'dropin-container',
+                onPaymentMethodReceived: function onPaymentMethodReceived(response) {
+                    _this.buffering = true;
 
-                    flash(['All done!']);
-                }).catch(function (error) {
-                    var messages = [];
-                    for (var key in error.response.data) {
-                        messages.push(error.response.data[key][0]);
-                    }
-                    flash(messages, 'error');
-                });
-            }
-        });
-    },
+                    axios.post('/topup', {
+                        value: _this.amount,
+                        braintreeNonce: response.nonce
+                    }).then(function () {
+                        window.events.$emit('increment', _this.amount);
+                        _this.buffering = false;
 
+                        flash(['All Done!']);
+                    }).catch(function (error) {
+                        var messages = [];
+                        for (var key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+                        _this.buffering = false;
 
-    methods: {
-        topup: function topup() {
-            this.stripe.open({
-                name: 'Wallet',
-                description: 'Top up your wallet',
-                zipCode: true
+                        flash(messages, 'error');
+                    });
+                }
             });
-        }
+        });
     }
 });
 
@@ -28612,6 +28601,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Userwishes_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Userwishes_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Wishrandom_vue__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Wishrandom_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Wishrandom_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Badge_vue__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Badge_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__Badge_vue__);
+
 
 
 
@@ -28620,7 +28612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { Wallet: __WEBPACK_IMPORTED_MODULE_0__Wallet_vue___default.a, Settings: __WEBPACK_IMPORTED_MODULE_1__forms_Settings_vue___default.a, Make: __WEBPACK_IMPORTED_MODULE_2__forms_Make_vue___default.a, Userwishes: __WEBPACK_IMPORTED_MODULE_3__Userwishes_vue___default.a, Wishrandom: __WEBPACK_IMPORTED_MODULE_4__Wishrandom_vue___default.a }
+    components: { Wallet: __WEBPACK_IMPORTED_MODULE_0__Wallet_vue___default.a, Settings: __WEBPACK_IMPORTED_MODULE_1__forms_Settings_vue___default.a, Make: __WEBPACK_IMPORTED_MODULE_2__forms_Make_vue___default.a, Userwishes: __WEBPACK_IMPORTED_MODULE_3__Userwishes_vue___default.a, Wishrandom: __WEBPACK_IMPORTED_MODULE_4__Wishrandom_vue___default.a, Badge: __WEBPACK_IMPORTED_MODULE_5__Badge_vue___default.a }
 });
 
 /***/ }),
@@ -53824,17 +53816,19 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('form', {
     staticClass: "mw flex around vertical"
+  }, [_c('div', {
+    staticClass: "w95 topup-form",
+    attrs: {
+      "id": "dropin-container"
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "mw flex center topup-button"
   }, [_c('button', {
     attrs: {
+      "disabled": _vm.buffering,
       "type": "submit"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.topup($event)
-      }
     }
-  }, [_vm._v("Top Up")])])
+  }, [_vm._v("Top Up")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -54663,48 +54657,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h2', [_vm._v("Top Up Your Wallet")]), _vm._v(" "), _c('div', {
     staticClass: "mw"
   }, [_c('div', {
-    staticClass: "flex start select vertical"
-  }, [_c('div', {
-    staticClass: "flex start mw"
-  }, [_c('dropdown', {
-    attrs: {
-      "visible": _vm.visible
-    }
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        _vm.selectDropdown('credit', $event)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-credit-card",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }), _vm._v(" Credit Card")]), _vm._v(" "), _c('a', {
-    on: {
-      "click": function($event) {
-        _vm.selectDropdown('paypal', $event)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-paypal",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }), _vm._v(" PayPal")]), _vm._v(" "), _c('a', {
-    on: {
-      "click": function($event) {
-        _vm.selectDropdown('qiwi', $event)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-google-wallet",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }), _vm._v(" Qiwi")])]), _vm._v(" "), _c('form', {
-    staticClass: "pos-r w45 m-auto"
+    staticClass: "flex between select"
+  }, [_c('form', {
+    staticClass: "pos-r w48 m-auto"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -54730,8 +54685,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  })])], 1), _vm._v(" "), _c('input', {
-    staticClass: "m-auto w95 p-none",
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "w48 m-auto"
+  }, [_c('input', {
+    staticClass: "m-auto p-none",
     attrs: {
       "type": "text",
       "placeholder": "Amount +20%",
@@ -54740,7 +54697,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "value": _vm.amountWithInterest
     }
-  })]), _vm._v(" "), _c('topup', {
+  })])]), _vm._v(" "), _c('topup', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -64674,6 +64631,165 @@ module.exports = Vue$3;
 
 module.exports = __webpack_require__(128);
 
+
+/***/ }),
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['image', 'achievement', 'userinfo'],
+    data: function data() {
+        return {
+            tooltip: false,
+            userAchievement: '',
+            percentComplete: '',
+            has: '',
+            need: '',
+            svgDash: ''
+        };
+    },
+
+    methods: {
+        moreInfo: function moreInfo() {
+            this.tooltip = !this.tooltip;
+        }
+    },
+    created: function created() {
+        for (var key in this.userinfo) {
+            if (key == this.achievement.id) {
+                this.userAchievement = this.userinfo[key];
+                this.percentComplete = Math.round(this.userinfo[key].has / this.userinfo[key].need * 100);
+                this.has = this.userinfo[key].has;
+                this.need = this.userinfo[key].need;
+                this.svgDash = 103 - Math.round(this.userinfo[key].has * 103 / this.userinfo[key].need);
+            }
+        }
+    },
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(226),
+  /* template */
+  __webpack_require__(228),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/dan/code/getmestuff/resources/assets/js/components/user/Badge.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Badge.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2b127d8e", Component.options)
+  } else {
+    hotAPI.reload("data-v-2b127d8e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "badge",
+    on: {
+      "click": _vm.moreInfo
+    }
+  }, [_c('div', {
+    staticClass: "pos-r radial-wrapper"
+  }, [_c('svg', {
+    staticClass: "pos-a",
+    attrs: {
+      "width": "65",
+      "height": "65"
+    }
+  }, [_c('circle', {
+    staticClass: "pie",
+    style: ({
+      'stroke-dasharray': _vm.svgDash + ' 103'
+    }),
+    attrs: {
+      "r": "16.25",
+      "cx": "32.5",
+      "cy": "32.5"
+    }
+  })]), _vm._v(" "), _c('img', {
+    attrs: {
+      "src": _vm.image
+    }
+  })]), _vm._v(" "), _c('p', {
+    staticClass: "badge-title"
+  }, [_vm._v(_vm._s(_vm.achievement.title) + " (" + _vm._s(_vm.percentComplete) + "%)")]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.tooltip),
+      expression: "tooltip"
+    }],
+    staticClass: "tool-tip"
+  }, [_c('h4', {
+    domProps: {
+      "innerHTML": _vm._s(_vm.achievement.title + ' - ' + _vm.achievement.prize + ' ' + '<i class=\'fa fa-trophy\' aria-hidden=\'true\'></i>')
+    }
+  }), _vm._v(" "), _c('p', {
+    domProps: {
+      "textContent": _vm._s(_vm.achievement.description)
+    }
+  })])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2b127d8e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

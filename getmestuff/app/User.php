@@ -3,13 +3,23 @@
 namespace App;
 
 use App\Notifications\ResetPasswordNotification;
+use App\Traits\UserAchievements;
+use App\Traits\UserActions;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Billable;
+    use Notifiable, UserActions, UserAchievements;
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->achievements = Achievement::getAchievementsInfo();
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -50,14 +60,6 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    public function confirmEmail()
-    {
-        $this->verified = true;
-        $this->token = null;
-
-        $this->save();
-    }
-
     /**
      * @return Settings
      */
@@ -74,15 +76,8 @@ class User extends Authenticatable
         return $this->hasMany(Wish::class);
     }
 
-    public function topUp($amount)
+    public function payments()
     {
-        $this->increment('balance', $amount);
-    }
-
-    public function donate(Wish $wish, $amount)
-    {
-        $wish->recordDonation($this->id, $amount);
-
-        $this->decrement('balance', $amount);
+        return $this->hasMany(Payment::class);
     }
 }

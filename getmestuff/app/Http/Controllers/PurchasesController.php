@@ -21,4 +21,11 @@ class PurchasesController extends Controller
             'status' => 'Success'
         ];
     }
+
+    public function token()
+    {
+        return response()->json([
+            'token' => \Braintree_ClientToken::generate(),
+        ]);
+    }
 }

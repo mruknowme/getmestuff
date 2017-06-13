@@ -38,7 +38,7 @@ class WishesForm extends FormRequest
 
     public function save()
     {
-        if ($this->user()->wishes->count() == $this->user()->allowed_wishes || $this->user()->number_of_wishes == 0) {
+        if ($this->user()->wishes->where('completed', '==', 0)->count() == $this->user()->allowed_wishes || $this->user()->number_of_wishes == 0) {
             throw new \Exception('You have published a maximum amount of wishes');
         }
 
@@ -60,5 +60,16 @@ class WishesForm extends FormRequest
             'amount_needed' => $this->amount_needed,
             'address' => $address
         ]);
+
+        $temp = json_decode($this->user()->achievements, true);
+        if ($temp[3]['completed'] != 1) {
+            $temp[3]['has'] = 1;
+            $temp[3]['completed'] = 1;
+
+            $this->user()->increment('points', $temp[3]['prize']);
+
+            $this->user()->achievements = json_encode($temp);
+            $this->user()->save();
+        }
     }
 }

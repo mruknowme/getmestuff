@@ -1,39 +1,47 @@
 .badge
-    width: 80px
-    height: 80px
+    width: 90px
+    height: 100px
     position: relative
     display: flex
     flex-direction: column
-    justify-content: center
     align-items: center
+    margin-bottom: 10px
 
-    .radial
-        width: 56px
-        height: 56px
-        background-color: transparentize($white, 0.5)
-        position: absolute
+    .radial-wrapper
+        width: 65px
+        height: 65px
+
+    svg
+        background-color: transparent
         border-radius: 50%
-        left: 50%
-        margin-left: -28px
-        top: 0px
+        transform: rotate(90deg) rotateY(180deg)
+
+    circle
+        fill: transparent
+        stroke: transparentize($white, 0.3)
+        stroke-width: 32.5
+        stroke-dasharray: 103 103
+        transition: stroke-dasharray .3s ease
 
     img
-        width: 56px
-        height: 56px
+        width: 65px
+        height: 65px
 
-    p
+    .badge-title
         margin-top: 5px
-        font-size: 0.9rem
+        font-size: 0.7rem
+        text-align: center
 
     .tool-tip
         position: absolute
         background-color: transparentize($black, 0.3)
         z-index: 5
-        width: 150px
+        min-width: 150px
+        max-width: 200px
         padding: 10px
         top: 50%
         left: 50%
-        margin-left: -80px
+        transform: translateX(-52.5%)
 
         &:before
             position: absolute
@@ -51,7 +59,7 @@
             color: $white
 
         h4
-            font-size: 0.8rem
+            font-size: 0.7rem
 
         p
             font-size: 0.7rem

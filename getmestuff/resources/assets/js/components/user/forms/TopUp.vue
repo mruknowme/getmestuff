@@ -1,7 +1,9 @@
 <template>
     <form class="mw flex around vertical">
-        <!--<input type="hidden" name="amount" :value="amount" required>-->
-        <button type="submit" @click.prevent="topup">Top Up</button>
+        <div class="w95 topup-form" id="dropin-container"></div>
+        <div class="mw flex center topup-button">
+            <button :disabled="buffering" type="submit">Top Up</button>
+        </div>
     </form>
 </template>
 <script>
@@ -10,49 +12,41 @@
 
         data() {
             return {
-                stripeEmail: '',
-                stripeToken: '',
-                value: ''
+                buffering: false,
+                token: ''
             }
         },
 
         created() {
-            this.stripe = StripeCheckout.configure({
-                key: GetMeStuff.stripeKey,
-                image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-                locale: 'auto',
-                panelLabel: 'Top up',
-                email: this.user,
-                token: (token) => {
-                    this.stripeToken = token.id;
-                    this.stripeEmail = token.email;
-                    this.value = this.amount;
+            axios.get('/braintree/token')
+                .then((response) => {
+                    this.token = response.data.token;
 
-                    axios.post('/topup', this.$data)
-                        .then(() => {
-                            window.events.$emit('increment', this.amount);
+                    braintree.setup(this.token, 'dropin', {
+                        container: 'dropin-container',
+                        onPaymentMethodReceived: (response) => {
+                            this.buffering = true;
 
-                            flash(['All done!']);
-                        })
-                        .catch((error) => {
-                            let messages = [];
-                            for (let key in error.response.data) {
-                                messages.push(error.response.data[key][0]);
-                            }
-                            flash(messages, 'error');
-                        });
-                }
-            });
-        },
+                            axios.post('/topup', {
+                                value: this.amount,
+                                braintreeNonce: response.nonce
+                            }).then(() => {
+                                window.events.$emit('increment', this.amount);
+                                this.buffering = false;
 
-        methods: {
-            topup() {
-                this.stripe.open({
-                    name: 'Wallet',
-                    description: 'Top up your wallet',
-                    zipCode: true,
+                                flash(['All Done!']);
+                            }).catch((error) => {
+                                let messages = [];
+                                for (let key in error.response.data) {
+                                    messages.push(error.response.data[key][0]);
+                                }
+                                this.buffering = false;
+
+                                flash(messages, 'error');
+                            });
+                        }
+                    });
                 });
-            }
         }
     }
 </script>

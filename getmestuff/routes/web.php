@@ -24,6 +24,7 @@ Route::patch('/home/update', 'UserSettingsController@update');
 Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
 
 Route::post('/topup', 'PurchasesController@store');
+Route::get('/braintree/token', 'PurchasesController@token');
 
 Route::get('/wishes', 'WishesController@index');
 Route::post('/wishes/refresh', 'WishesController@show');
@@ -33,3 +34,5 @@ Route::patch('/wish/{wish}/donate', 'WishesController@update');
 Auth::routes();
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
 Route::get('/register/{ref}', 'Auth\RegisterController@showRegistrationFormWithRef');
+
+Route::get('/test', 'HomeController@test');

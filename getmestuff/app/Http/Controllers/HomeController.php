@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Achievement;
+use App\User;
 use App\Wish;
 use Illuminate\Http\Request;
 
@@ -32,10 +34,21 @@ class HomeController extends Controller
                 ['donated', '=', 1]
             ])
             ->count();
+        $achievements = Achievement::all();
 
         return view('userpage', [
             'random' => $random,
-            'ref_count' => $ref_count
+            'ref_count' => $ref_count,
+            'achievements' => $achievements
         ]);
+    }
+
+    public function test()
+    {
+        $user = User::find(1);
+
+        $temp = $user->recordAchievements(10);
+
+        dd($temp);
     }
 }
