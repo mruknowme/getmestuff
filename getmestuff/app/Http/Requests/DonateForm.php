@@ -41,7 +41,6 @@ class DonateForm extends FormRequest
 
         $wish->user->increment('amount_received', $this->amount);
 
-//        $this->user()->recordAchievements($this->amount);
         event(new UserHasDonated($this->user(), $this->amount));
         $this->user()->donate($wish, $this->amount);
     }

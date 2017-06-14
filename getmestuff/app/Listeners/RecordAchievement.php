@@ -26,8 +26,8 @@ class RecordAchievement
      */
     public function handle(UserHasDonated $event)
     {
-        $event->user->balance -= $amount;
-        $event->user->amount_donated += $amount;
+        $ref_id = null;
+        $event->user->amount_donated += $event->amount;
 
         if ($event->user->donated == 0) {
             $temp = json_decode($event->user->achievements, true);
@@ -35,13 +35,13 @@ class RecordAchievement
             $temp[1]['completed'] = 1;
 
             $event->user->points += $temp[1]['prize'];
-
             $event->user->achievements = json_encode($temp);
             $event->user->donated = 1;
+            $ref_id = $event->user->ref_id;
         }
 
         $event->user->save();
 
-        $event->user->recordAchievements($event->amount);
+        $event->user->recordAchievements($event->amount, $ref_id);
     }
 }

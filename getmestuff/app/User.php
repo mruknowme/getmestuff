@@ -5,6 +5,7 @@ namespace App;
 use App\Notifications\ResetPasswordNotification;
 use App\Traits\UserAchievements;
 use App\Traits\UserActions;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -79,5 +80,27 @@ class User extends Authenticatable
     public function payments()
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public static function getRefs()
+    {
+        return \DB::table('users')
+                    ->where([
+                        ['ref_id', '=', auth()->user()->ref_link],
+                        ['verified', '=', 1],
+                        ['donated', '=', 1]
+                    ])
+                    ->count();
+    }
+
+    public static function lastOnline()
+    {
+        $key = sprintf("user.%s", auth()->id());
+        return cache()->forever($key, Carbon::now());
+    }
+
+    public static function cacheKey()
+    {
+        return sprintf("user.%s", auth()->id());
     }
 }

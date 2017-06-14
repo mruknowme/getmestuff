@@ -3,65 +3,82 @@
 
 namespace App\Traits;
 
+use App\User;
+
 trait UserAchievements
 {
-    protected $ongoing = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-    protected $onetime = [15, 16, 17];
+    protected $prize = 0;
+    protected $ref_prize = 0;
 
-    public function recordAchievements($amount)
+    public function recordAchievements($amount, $ref = null)
     {
-        $achievements = json_decode($this->achievements, true);
-        $set_1 = array_intersect_key($achievements, array_flip($this->ongoing));
-        $set_2 = array_intersect_key($achievements, array_flip($this->onetime));
-        $points = 0;
+        $achievements = collect(json_decode($this->achievements, true));
 
-        list($set_2, $points) = $this->singleAchievements($amount, $set_2, $points);
-        list($set_1, $points) = $this->flowingAchievements($amount, $set_1, $points);
+        $achievements = $achievements->map(function ($item, $key) use ($amount) {
+            if (4 <= $key && $key <= 14) {
+                if ($item['completed'] == 1) {
+                    return $item;
+                } elseif ($item['has'] + $amount >= $item['need']) {
+                    $item['has'] = $item['need'];
+                    $item['completed'] = 1;
+                    $this->prize += $item['prize'];
+                } else {
+                    $item['has'] += $amount;
+                }
+            } elseif (15 <= $key && $key <= 17) {
+                if ($item['need'] <= $amount) {
+                    $item['has'] = 0;
+                    $this->prize += $item['prize'];
+                } elseif ($item['has'] < $amount && $item['need'] > $amount) {
+                    $item['has'] = $amount;
+                }
+            }
+            return $item;
+        })->toJson();
 
-        $achievements = $set_1 + $set_2 + $achievements;
+        if (!is_null($ref)) {
+            $referral = User::query()->where('ref_link', '=', $ref)->first();
 
-        $this->points += $points;
-        $this->achievements = json_encode($achievements);
+            $refAchievements = collect(json_decode($referral->achievements, true));
+
+            $refAchievements = $refAchievements->map(function ($item, $key) {
+                if ($key > 17) {
+                    if ($item['completed'] == 1) {
+                        return $item;
+                    } elseif ($item['has'] + 1 >= $item['need']) {
+                        $item['has'] = $item['need'];
+                        $item['completed'] = 1;
+                        $this->ref_prize += $item['prize'];
+                    } else {
+                        $item['has'] += 1;
+                    }
+                }
+                return $item;
+            })->toJson();
+
+            $referral->achievements = $refAchievements;
+            $referral->points += $this->ref_prize;
+            $referral->save();
+        }
+
+        $this->points += $this->prize;
+        $this->achievements = $achievements;
         $this->save();
     }
 
-    protected function singleAchievements($amount, $set_2, $points): array
+    public function clearAchievements()
     {
-        foreach ($set_2 as $var => $item) {
-            if ($item['need'] <= $item['has'] + $amount) {
+        $achievements = collect(json_decode($this->achievements, true));
+
+        $achievements = $achievements->map(function ($item) {
+            if ($item['renew'] == 1) {
                 $item['has'] = 0;
                 $item['completed'] = 0;
-                $set_2[$var] = $item;
-
-                $points += $item['prize'];
-                continue;
             }
+            return $item;
+        })->toJson();
 
-            if ($item['has'] >= $amount) continue;
-
-            $item['has'] = $amount;
-            $set_2[$var] = $item;
-        }
-
-        return array($set_2, $points);
-    }
-
-    protected function flowingAchievements($amount, $set_1, $points): array
-    {
-        foreach ($set_1 as $key => $data) {
-            if ($data['completed'] == 1) continue;
-            if ($data['need'] <= $data['has'] + $amount) {
-                $data['has'] = $data['need'];
-                $data['completed'] = 1;
-                $set_1[$key] = $data;
-
-                $points += $data['prize'];
-                continue;
-            }
-
-            $data['has'] += $amount;
-            $set_1[$key] = $data;
-        }
-        return array($set_1, $points);
+        $this->achievements = $achievements;
+        $this->save();
     }
 }

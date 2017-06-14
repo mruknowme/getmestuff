@@ -98,7 +98,7 @@ class WishesController extends Controller
             $form->save($wish);
         } catch (\Exception $e) {
             return response()->json(
-                ['amount' => [$e->getMessage()]], 422
+                ['message' => [$e->getMessage()]], 422
             );
         }
 

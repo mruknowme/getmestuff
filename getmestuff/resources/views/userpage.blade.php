@@ -12,7 +12,6 @@
             <user-info :user="{{ auth()->user() }}"></user-info>
 
             <div class="mw mh flex s-between main-wrapper">
-
                 <div class="main-content children">
                     <tabs>
                         <tab name="<i class='fa fa-lg fa-cog' aria-hidden='true'></i>" title="Settings" :selected="true">

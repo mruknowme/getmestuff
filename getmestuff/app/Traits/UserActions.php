@@ -14,6 +14,7 @@ trait UserActions
 
     public function donate(Wish $wish, $amount)
     {
+        $this->decrement('balance', $amount);
         $wish->recordDonation($this->id, $amount);
     }
 

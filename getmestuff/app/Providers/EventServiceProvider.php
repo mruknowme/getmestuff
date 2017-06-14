@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserHasDonated' => [
             'App\Listeners\RecordAchievement',
         ],
+        'App\Events\AchievementsOutdated' => [
+            'App\Listeners\ClearAchievement'
+        ]
     ];
 
     /**

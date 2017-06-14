@@ -14,7 +14,6 @@
     </head>
     
     <body class="@yield ('body-class')">
-
         <div id="app">
             @include ('layouts.header')
             
