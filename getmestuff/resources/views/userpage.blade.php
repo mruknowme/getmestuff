@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section ('title', ' | Userpage')
+@section ('title', ' | '.auth()->user()->first_name.' '.auth()->user()->last_name)
 
 @section ('html-class', 'overflow-visible user-bg userpage')
 

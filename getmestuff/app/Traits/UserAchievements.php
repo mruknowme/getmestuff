@@ -4,6 +4,7 @@
 namespace App\Traits;
 
 use App\User;
+use Carbon\Carbon;
 
 trait UserAchievements
 {
@@ -13,6 +14,17 @@ trait UserAchievements
     public function recordAchievements($amount, $ref = null)
     {
         $achievements = collect(json_decode($this->achievements, true));
+
+        // $refresh = cache(User::cacheKey());
+        // if (!is_null($refresh) && $refresh->lte(Carbon::now())) {
+        //     $achievements = $achievements->map(function ($item) {
+        //         if ($item['renew'] == 1) {
+        //             $item['has'] = 0;
+        //             $item['completed'] = 0;
+        //         }
+        //         return $item;
+        //     });
+        // }
 
         $achievements = $achievements->map(function ($item, $key) use ($amount) {
             if (4 <= $key && $key <= 14) {
@@ -27,6 +39,7 @@ trait UserAchievements
                 }
             } elseif (15 <= $key && $key <= 17) {
                 if ($item['need'] <= $amount) {
+                    $item['completed'] = 1;
                     $item['has'] = 0;
                     $this->prize += $item['prize'];
                 } elseif ($item['has'] < $amount && $item['need'] > $amount) {
@@ -36,6 +49,34 @@ trait UserAchievements
             return $item;
         })->toJson();
 
+        $this->recordRefAchievements($ref);
+
+        $this->points += $this->prize;
+        $this->achievements = $achievements;
+        $this->save();
+    }
+
+    public function clearAchievements()
+    {
+        $achievements = collect(json_decode($this->achievements, true));
+
+        $achievements = $achievements->map(function ($item) {
+            if ($item['renew'] == 1) {
+                $item['has'] = 0;
+                $item['completed'] = 0;
+            }
+            return $item;
+        })->toJson();
+
+        $this->achievements = $achievements;
+        $this->save();
+    }
+
+    /**
+     * @param $ref
+     */
+    protected function recordRefAchievements($ref): void
+    {
         if (!is_null($ref)) {
             $referral = User::query()->where('ref_link', '=', $ref)->first();
 
@@ -60,25 +101,5 @@ trait UserAchievements
             $referral->points += $this->ref_prize;
             $referral->save();
         }
-
-        $this->points += $this->prize;
-        $this->achievements = $achievements;
-        $this->save();
-    }
-
-    public function clearAchievements()
-    {
-        $achievements = collect(json_decode($this->achievements, true));
-
-        $achievements = $achievements->map(function ($item) {
-            if ($item['renew'] == 1) {
-                $item['has'] = 0;
-                $item['completed'] = 0;
-            }
-            return $item;
-        })->toJson();
-
-        $this->achievements = $achievements;
-        $this->save();
     }
 }

@@ -1,6 +1,9 @@
 <template>
     <section class="flex vertical start bg-white main-section" id="wish" v-if="allowed == 1">
-        <h2>Make a Wish</h2>
+        <div class="flex center wish-title">
+            <h2>Make a Wish</h2>
+            <span v-text="number_of_wishes"></span>
+        </div>
         <form class="vertical center mw" data-parsley-validate>
             <div class="vertical mw center">
                 <div class="mw pos-r">
@@ -103,6 +106,7 @@
                 post_code: (this.user.address != null) ? this.user.address.post_code : '',
                 country: (this.user.address != null) ? this.user.address.country : '',
                 allowed: this.user.donated,
+                number_of_wishes: this.user.number_of_wishes,
                 buffering: false
             }
         },
@@ -122,6 +126,7 @@
                         this.url = '';
                         this.current_amount = '';
                         this.amount_needed = '';
+                        this.number_of_wishes--;
 
                         this.buffering = false;
                         flash(['Your wish has been published!']);

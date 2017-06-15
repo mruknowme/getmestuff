@@ -37,6 +37,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+window.totalprize = 0;
 window.events = new Vue();
 
 window.flash = function (message, type = 'success') {

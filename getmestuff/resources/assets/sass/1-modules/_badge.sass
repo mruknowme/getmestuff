@@ -1,11 +1,9 @@
 .badge
-    width: 90px
-    height: 100px
     position: relative
     display: flex
-    flex-direction: column
-    align-items: center
     margin-bottom: 10px
+    border-bottom: 1px solid transparentize($soft-grey, 0.5);
+    padding-bottom: 10px
 
     .radial-wrapper
         width: 65px
@@ -21,45 +19,28 @@
         stroke: transparentize($white, 0.3)
         stroke-width: 32.5
         stroke-dasharray: 103 103
-        transition: stroke-dasharray .3s ease
+        transition: stroke-dasharray 1s ease 0.5s
 
     img
         width: 65px
         height: 65px
 
+    .badge-info
+        margin-left: 10px
+
     .badge-title
-        margin-top: 5px
         font-size: 0.7rem
-        text-align: center
 
     .tool-tip
-        position: absolute
-        background-color: transparentize($black, 0.3)
-        z-index: 5
-        min-width: 150px
-        max-width: 200px
-        padding: 10px
-        top: 50%
-        left: 50%
-        transform: translateX(-52.5%)
-
-        &:before
-            position: absolute
-            top: -20px
-            left: calc(50% - 5px)
-            width: 0
-            height: 0
-            content: ''
-            border-top: 10px solid transparent
-            border-right: 10px solid transparent
-            border-bottom: 10px solid rgba(0, 0, 0, 0.7)
-            border-left: 10px solid transparent
-
-        h4, p
-            color: $white
-
         h4
-            font-size: 0.7rem
+            font-size: 0.8rem
+            margin-bottom: 5px
 
         p
-            font-size: 0.7rem
+            font-size: 0.8rem
+
+    .completed
+        top: 10px
+        right: 0px
+        font-size: 1.5rem
+        color: $success

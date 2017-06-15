@@ -1,16 +1,18 @@
 <template>
-    <div class="badge" @click="moreInfo">
+    <div class="badge start-center mw pos-r">
         <div class="pos-r radial-wrapper">
             <svg width="65" height="65" class="pos-a">
                 <circle :style="{ 'stroke-dasharray': svgDash + ' 103' }" r="16.25" cx="32.5" cy="32.5" class="pie"/>
             </svg>
             <img :src="image">
         </div>
-        <p class="badge-title">{{ achievement.title }} ({{ percentComplete }}%)</p>
-        <div class="tool-tip" v-show="tooltip">
-            <h4 v-html="achievement.title + ' - ' + achievement.prize + ' ' + '<i class=\'fa fa-trophy\' aria-hidden=\'true\'></i>'"></h4>
-            <p v-text="achievement.description"></p>
+        <div class="flex vertical badge-info">
+            <div class="tool-tip">
+                <h4 v-html="achievement.title + ' - ' + achievement.prize + ' ' + '<i class=\'fa fa-trophy currency\' aria-hidden=\'true\'></i>'"></h4>
+                <p v-text="achievement.description + ' ' + '('+has+'/'+need+')'"></p>
+            </div>
         </div>
+        <i class="pos-a completed fa fa-check-circle" v-if="completed == 1" aria-hidden="true"></i>
     </div>
 </template>
 <script>
@@ -19,11 +21,9 @@
         data() {
             return {
                 tooltip: false,
-                userAchievement: '',
-                percentComplete: '',
                 has: '',
                 need: '',
-                svgDash: ''
+                completed: ''
             }
         },
         methods: {
@@ -34,16 +34,47 @@
         created() {
             for (let key in this.userinfo) {
                 if (key == this.achievement.id) {
-                    this.userAchievement = this.userinfo[key];
-                    this.percentComplete = Math.round(this.userinfo[key].has / this.userinfo[key].need * 100);
                     this.has = this.userinfo[key].has;
                     this.need = this.userinfo[key].need;
-                    this.svgDash = 103 - Math.round(this.userinfo[key].has * 103 / this.userinfo[key].need);
+                    this.completed = this.userinfo[key].completed;
                 }
             }
+            window.events.$on('achievements', (amount) => {
+                if (this.achievement.id == 1) {
+                    if (this.completed == 0) {
+                        window.totalprize += this.achievement.prize;
+                        this.has = 1;
+                        this.completed = 1;
+                    }
+                } else if (4 <= this.achievement.id && this.achievement.id <= 14) {
+                    if (this.completed == 1) {
+                        return;
+                    }
+                    else if (this.has + parseFloat(amount) >= this.need) {
+                        this.has = this.need;
+                        this.completed = 1;
+                        window.totalprize += this.achievement.prize;
+                    } else {
+                        this.has += parseFloat(amount);
+                    }
+                } else if (15 <= this.achievement.id && this.achievement.id <= 17) {
+                    if (this.need <= amount) {
+                        this.has = 0;
+                        this.completed = 1;
+                        window.totalprize += this.achievement.prize;
+                    } else if (this.has < amount && this.need > amount) {
+                        this.has = parseFloat(amount);
+                    }
+                }
+            });
         },
-        mounted() {
-
+        computed: {
+            percentComplete() {
+                return Math.round(this.has / this.need * 100);
+            },
+            svgDash() {
+                return (103 - Math.round(this.has * 103 / this.need));
+            }
         }
     }
 </script>

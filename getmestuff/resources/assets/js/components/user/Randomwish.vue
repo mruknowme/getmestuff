@@ -54,6 +54,7 @@
                     'amount': this.amount})
                     .then(() => {
                         window.events.$emit('decrement', this.amount);
+                        window.events.$emit('achievements', this.amount);
 
                         this.current += parseFloat(this.amount);
 
@@ -62,6 +63,7 @@
                         flash(['Thank you for donating!']);
                     })
                     .catch((error) => {
+                        this.buffering = false;
                         let messages = [];
                         for (let key in error.response.data) {
                             messages.push(error.response.data[key][0]);

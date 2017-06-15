@@ -96,7 +96,7 @@ class User extends Authenticatable
     public static function lastOnline()
     {
         $key = sprintf("user.%s", auth()->id());
-        return cache()->forever($key, Carbon::now());
+        cache()->add($key, Carbon::now()->addMonth(), Carbon::now()->addMonth()->addDay());
     }
 
     public static function cacheKey()

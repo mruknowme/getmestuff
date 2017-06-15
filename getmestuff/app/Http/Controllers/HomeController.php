@@ -28,8 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $last_online = cache(User::cacheKey())->addMonth();
-        if ($last_online->lt(Carbon::now())) {
+        $refresh = cache(User::cacheKey());
+        if (!is_null($refresh) && $refresh->lte(Carbon::now())) {
             event(new AchievementsOutdated(auth()->user()));
         }
 
