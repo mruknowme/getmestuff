@@ -21,6 +21,7 @@ Route::get('/about', function () {
 
 Route::get('/home', 'HomeController@index');
 Route::patch('/home/update', 'UserSettingsController@update');
+Route::post('/home/achievements', 'HomeController@prizes');
 Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
 
 Route::post('/topup', 'PurchasesController@store');

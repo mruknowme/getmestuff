@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Achievement;
 use App\Events\AchievementsOutdated;
+use App\Http\Requests\PrizesForm;
 use App\User;
 use App\Wish;
 use Carbon\Carbon;
@@ -44,8 +45,16 @@ class HomeController extends Controller
         ]);
     }
 
-    public function test()
+    public function prizes(PrizesForm $form)
     {
-        dd(User::clearAchievements(22));
+        try {
+            $form->save();
+        } catch (\Exception $e) {
+            return response()->json(
+                ['message' => [$e->getMessage()]], 422
+            );
+        }
+
+        return response(['status' => 'Points redeemed successfully']);
     }
 }

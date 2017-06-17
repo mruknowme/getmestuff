@@ -145,6 +145,9 @@
         created() {
             window.events.$on('decrement', () => {
                 this.allowed = 1;
+            });
+            window.events.$on('moreWishes', (quantity) => {
+                this.number_of_wishes += parseFloat(quantity);
             })
         }
     }

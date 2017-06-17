@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('ref_link', 5);
             $table->string('ref_id')->nullable();
             $table->json('achievements');
+            $table->integer('priority')->unsigned()->default(0);
             $table->unsignedBigInteger('amount_donated')->default(0);
             $table->unsignedBigInteger('amount_received')->default(0);
             $table->integer('points')->default(0);

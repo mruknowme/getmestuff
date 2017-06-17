@@ -1,6 +1,6 @@
 <template>
-    <div class="w45 dropdown m-auto" @click="toggle">
-        <a id="menutitle" v-html="this.visible"></a>
+    <div class="dropdown" @click="toggle">
+        <p id="menutitle" v-text="data"></p>
         <div id="paymentmethod" v-show="isVisible">
             <slot></slot>
         </div>
@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        props: [ 'visible' ],
+        props: ['data'],
         data() {
             return {
                 isVisible: false

@@ -51,7 +51,7 @@
             </div>
             <div class="self-start">
                 <button class="pos-r" :disabled="buffering" @click.prevent="updateSettings" type="submit">
-                    <i v-show="buffering" class="fa fa-cog fa-spin pos-a fa-lg" aria-hidden="true"></i>
+                    <i v-show="buffering" class="fa fa-cog fa-spin fa-lg" aria-hidden="true"></i>
                     Save Settings
                 </button>
             </div>
