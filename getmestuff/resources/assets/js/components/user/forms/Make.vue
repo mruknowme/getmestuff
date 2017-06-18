@@ -1,8 +1,13 @@
 <template>
     <section class="flex vertical start bg-white main-section" id="wish" v-if="allowed == 1">
-        <div class="flex center wish-title">
-            <h2>Make a Wish</h2>
-            <span v-text="number_of_wishes"></span>
+        <div class="flex between mw">
+             <div class="flex center wish-title">
+                <h2>Make a Wish</h2>
+                <span v-text="number_of_wishes"></span>
+            </div>
+            <div class="priority" v-if="priority > 0">
+                <p>This wish's priority will be higher.</p>
+            </div>
         </div>
         <form class="vertical center mw" data-parsley-validate>
             <div class="vertical mw center">
@@ -27,7 +32,7 @@
                     <input type="number"
                            name="current_amount"
                            v-model="current_amount"
-                           placeholder="Current Amount"
+                           placeholder="Current Amount (default: 0)"
                            required>
                 </div>
                 <div class="w48 pos-r">
@@ -107,7 +112,8 @@
                 country: (this.user.address != null) ? this.user.address.country : '',
                 allowed: this.user.donated,
                 number_of_wishes: this.user.number_of_wishes,
-                buffering: false
+                buffering: false,
+                priority: this.user.priority
             }
         },
         methods: {
@@ -118,7 +124,7 @@
                         window.events.$emit('newWish', {
                             'amount_needed': this.amount_needed,
                             'created_at': moment(),
-                            'current_amount': this.current_amount,
+                            'current_amount': (this.current_amount == '') ? 0 : this.current_amount,
                             'item': this.item
                         });
 
@@ -127,6 +133,10 @@
                         this.current_amount = '';
                         this.amount_needed = '';
                         this.number_of_wishes--;
+
+                        if (this.priority > 0) {
+                            this.priority--;
+                        }
 
                         this.buffering = false;
                         flash(['Your wish has been published!']);

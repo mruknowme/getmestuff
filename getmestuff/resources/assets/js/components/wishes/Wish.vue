@@ -38,7 +38,7 @@
                 current: this.data.current_amount,
                 needed: this.data.amount_needed,
                 date: '',
-                buffering: false
+                buffering: false,
             }
         },
         computed: {
@@ -52,7 +52,8 @@
                 this.buffering = true;
 
                 axios.patch('wish/'+this.id+'/donate', {
-                    'amount': this.amount})
+                    'amount': this.amount
+                })
                     .then(() => {
                         window.events.$emit('decrement', this.amount);
 

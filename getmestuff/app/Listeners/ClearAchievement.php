@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ClearAchievement
+class ClearAchievement implements ShouldQueue
 {
     /**
      * Create the event listener.

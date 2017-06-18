@@ -3,6 +3,7 @@
 namespace App;
 
 
+use App\Jobs\SendVerificationEmail;
 use App\Mail\EmailChange;
 use Carbon\Carbon;
 
@@ -26,7 +27,7 @@ class Settings
     {
         if (isset($attributes['email']))
         {
-            $this->sendVerification($attributes['email']);
+            dispatch(new SendVerificationEmail($this->user, $attributes['email']));
 
             unset($attributes['email']);
         }
@@ -35,24 +36,6 @@ class Settings
         {
             $this->user->update($attributes);
         }
-    }
-
-    /**
-     * @param $email
-     */
-    protected function sendVerification($email)
-    {
-        $token = str_random(30);
-
-        \DB::table('email_resets')
-            ->insert([
-                'user_id' => $this->user->id,
-                'new_email' => $email,
-                'token' => $token,
-                'created_at' => Carbon::now()
-            ]);
-
-        \Mail::to($email)->send(new EmailChange($token));
     }
 
     /**

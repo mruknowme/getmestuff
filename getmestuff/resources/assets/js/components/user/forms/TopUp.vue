@@ -1,7 +1,7 @@
 <template>
     <form class="mw flex around vertical">
         <div class="w95 topup-form" id="dropin-container"></div>
-        <div class="mw flex center topup-button">
+        <div class="w95 flex start topup-button">
             <button :disabled="buffering" type="submit">Top Up</button>
         </div>
     </form>

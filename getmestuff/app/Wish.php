@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wish extends Model
 {
     protected $fillable = [
-        'user_id', 'item', 'url', 'current_amount', 'amount_needed', 'address', 'donated', 'completed'
+        'user_id', 'item', 'url', 'current_amount', 'amount_needed', 'address', 'donated', 'completed', 'priority'
     ];
 
     protected $casts = [
@@ -69,22 +69,22 @@ class Wish extends Model
 
     public static function getWishes($id, $limit = 6)
     {
-        return static::inRandomOrder()
-                            ->where('user_id', '!=', $id)
-                            ->where('completed', "!=", 1)
-                            ->whereRaw("donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%'")
-                            ->limit($limit)
-                            ->get();
+        return static::orderBy(\DB::raw('-LOG(1.0 - RAND()) / `priority`'))
+            ->where('user_id', '!=', $id)
+            ->where('completed', "!=", 1)
+            ->whereRaw("donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%'")
+            ->limit($limit)
+            ->get();
     }
 
     public function getWish($id, $ids)
     {
-        return $this->inRandomOrder()
-                        ->where('user_id', '!=', $id)
-                        ->where('completed', "!=", 1)
-                        ->whereNotIn('id', $ids)
-                        ->whereRaw("donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%'")
-                        ->limit(1)
-                        ->get();
+        return $this->orderBy(\DB::raw('-LOG(1.0 - RAND()) / `priority`'))
+            ->where('user_id', '!=', $id)
+            ->where('completed', "!=", 1)
+            ->whereNotIn('id', $ids)
+            ->whereRaw("donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%'")
+            ->limit(1)
+            ->get();
     }
 }

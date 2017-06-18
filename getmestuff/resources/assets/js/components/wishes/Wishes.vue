@@ -4,9 +4,9 @@
             <div class="container" v-for="(wish, index) in items" :key="wish.id">
                 <wish :data="wish" :wait="disabled" @disable="disabled = true" @donated="refresh(index)"></wish>
             </div>
-            <div class="container"></div>
-            <div class="container"></div>
-            <div class="container"></div>
+            <div class="container" key="container1"></div>
+            <div class="container" key="container2"></div>
+            <div class="container" key="container3"></div>
         </div>
         <div class="mw flex center" v-else>
             <p>There are no relevant results at this point</p>
@@ -21,29 +21,27 @@
         data() {
             return {
                 items: this.data,
-                disabled: false
+                disabled: false,
             }
         },
         methods: {
             refresh(index) {
-                setTimeout(() => {
-                    let set = [];
+                let set = [];
 
-                    this.$children.forEach((wish) => {
-                        set.push(wish.id);
+                this.items.forEach((wish) => {
+                    set.push(wish.id);
+                });
+
+                axios.post('/wishes/refresh', {
+                    'set': set
+                }).then((response) => {
+                        if (response.data[0] == null) {
+                            this.items.splice(index, 1);
+                        } else {
+                            this.items.splice(index, 1, response.data[0])
+                        }
+                        this.disabled = false;
                     });
-
-                    axios.post('/wishes/refresh', {
-                        'set': set
-                    }).then((response) => {
-                            if (response.data[0] == null) {
-                                this.items.splice(index, 1);
-                            } else {
-                                this.items.splice(index, 1, response.data[0]);
-                            }
-                            this.disabled = false;
-                        });
-                }, 500)
             },
             arrayCheck(array) {
                 return (array.length > 0);
@@ -51,3 +49,8 @@
         }
     }
 </script>
+<style>
+    /*.container:nth-child(2) {
+        opacity: 0.5
+    }*/
+</style>

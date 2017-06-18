@@ -6,7 +6,7 @@ use App\Events\UserHasDonated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RecordAchievement
+class RecordAchievement implements ShouldQueue
 {
     /**
      * Create the event listener.

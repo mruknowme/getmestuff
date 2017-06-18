@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\SendVerificationEmail;
 use App\Mail\EmailConfirmation;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -54,6 +55,7 @@ class RegisterController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'ref' => 'sometimes|exists:users,ref_link',
             'terms' => 'required'
         ]);
     }
@@ -92,7 +94,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        \Mail::to($user->email)->send(new EmailConfirmation($user));
+        dispatch(new SendVerificationEmail($user, null, true));
 
         flash('Please confirm your email');
 
