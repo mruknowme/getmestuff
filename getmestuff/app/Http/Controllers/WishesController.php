@@ -63,13 +63,12 @@ class WishesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Wish $wish
      * @param Request $request
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|static[]
      */
-    public function show(Wish $wish, Request $request)
+    public function show(Request $request)
     {
-        return $wish->getWish($request->user()->id, $request->set);
+        return Wish::getWishes($request->user()->id, 1, $request->set);
     }
 
     /**
@@ -114,5 +113,19 @@ class WishesController extends Controller
     public function destroy(Wish $wish)
     {
         //
+    }
+
+    public function report(Wish $wish, Request $request)
+    {
+        $reports = collect(json_decode($wish->reported))->push(sprintf("user.%s.report", $request->user()->id));
+        $wish->reported = $reports->toJson();
+
+        if ($reports->count() >= 10) {
+            $wish->validated = 1;
+        }
+
+        $wish->save();
+
+        return response(['status' => 'Wish has been reported']); 
     }
 }

@@ -2,7 +2,9 @@
     <div class="mw">
         <div class="mw user-wishes owl-theme owl-carousel" v-if="arrayCheck(items)">
             <div class="mw item" v-for="wish in items" :key="wish.id">
-                <wish ref="list" :data="wish"></wish>
+                <wish :data="wish" :report="false" :displayForm="false">
+                    <h3 slot="header">Your Current Wish</h3>
+                </wish>
             </div>
         </div>
         <div class="wish mw" v-else>
@@ -14,7 +16,7 @@
     </div>
 </template>
 <script>
-    import Wish from './Wish.vue'
+    import Wish from '../wishes/Wish.vue'
 
     export default {
         components: { Wish },

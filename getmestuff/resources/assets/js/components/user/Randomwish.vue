@@ -1,75 +1,52 @@
 <template>
-    <div class="wish mw">
-        <h3>Random Wish</h3>
-        <div class="content">
-            <div class="header">
-                <h4 v-text="data.item"></h4>
-                <p v-text="when"></p>
+    <div class="mw">
+        <div class="mw" v-if="arrayCheck(items)">
+            <div class="mw item" v-for="(wish, index) in items" :key="wish.id">
+                <wish :data="wish" :wait="disabled" @disable="disabled = true" @donated="refresh(index)">
+                    <h3 slot="header">Random Wish</h3>
+                </wish>
             </div>
-            <div class="progress">
-                <p>Progress</p>
-                <div class="progress-bar">
-                    <div :style="{width: (current/needed * 100) + '%'}"></div>
+        </div>
+        <div class="mw" v-else>
+            <div class="wish mw">
+                <h3>Random Wish</h3>
+                <div class="flex center no-results bg-white">
+                    <p>There are no relevant results at this point</p>
                 </div>
-            </div>
-            <div class="footer">
-                <p :title="current + '/' + needed">
-                    Collected: {{ current }}/{{ needed }}
-                </p>
-                <form>
-                    <input type="number" name="amount" v-model="amount" required>
-                    <button :disabled="buffering" type="submit pos-r" @click.prevent="donate">
-                        <i v-show="buffering" class="fa fa-refresh fa-spin pos-a" aria-hidden="true"></i>
-                        Donate
-                    </button>
-                </form>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import moment from 'moment';
+    import Wish from '../wishes/Wish.vue';
 
     export default {
-        props: ['data'],
+        components: { Wish },
+        props: ['wishes'],
         data() {
             return {
-                id: this.data.id,
-                amount: '',
-                current: this.data.current_amount,
-                needed: this.data.amount_needed,
-                buffering: false
-            }
-        },
-        computed: {
-            when() {
-                return moment(this.data.created_at).fromNow();
+                items: this.wishes,
+                disabled: false
             }
         },
         methods: {
-            donate() {
-                this.buffering = true;
-                axios.patch('wish/'+this.id+'/donate', {
-                    'amount': this.amount})
-                    .then(() => {
-                        window.events.$emit('decrement', this.amount);
-                        window.events.$emit('achievements', this.amount);
-
-                        this.current += parseFloat(this.amount);
-
-                        this.$emit('donated', this.id);
-
-                        flash(['Thank you for donating!']);
-                    })
-                    .catch((error) => {
-                        this.buffering = false;
-                        let messages = [];
-                        for (let key in error.response.data) {
-                            messages.push(error.response.data[key][0]);
+            refresh(index) {
+                setTimeout(() => {
+                    axios.post('/wishes/refresh', {
+                        'set': [0]
+                    }).then((response) => {
+                        if (response.data[0] == null) {
+                            this.items.splice(index, 1);
+                        } else {
+                            this.items.splice(index, 1, response.data[0]);
                         }
-                        flash(messages, 'error');
+                        this.disabled = false;
                     });
+                }, 500)
+            },
+            arrayCheck(array) {
+                return (array.length > 0);
             }
         }
     }

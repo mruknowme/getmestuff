@@ -1,9 +1,11 @@
 <template>
     <div class="wish mw">
+        <slot name="header"></slot>
         <div class="content">
             <div class="header">
                 <h4 v-text="data.item"></h4>
-                <p v-text="date"></p>
+                <a v-if="report" @click="reportWish" :class="{ disabled: this.wait }">Report</a>
+                <p v-else v-text="when"></p>
             </div>
             <div class="progress">
                 <p>Progress</p>
@@ -15,7 +17,7 @@
                 <p :title="current + '/' + needed">
                     Collected: {{ current }}/{{ needed }}
                 </p>
-                <form>
+                <form v-if="displayForm">
                     <input type="number" name="amount" v-model="amount" required>
                     <button :disabled="this.wait" type="submit" class="pos-r" @click.prevent="donate">
                         <i v-show="buffering" class="fa fa-refresh fa-spin pos-a" aria-hidden="true"></i>
@@ -30,14 +32,19 @@
     import moment from 'moment';
 
     export default {
-        props: ['data', 'wait'],
+        // props: ['data', 'wait'],
+        props: {
+            data: { required: true },
+            wait: { default: false },
+            report: { default: true },
+            displayForm: { default: true }
+        },
         data() {
             return {
                 id: this.data.id,
                 amount: '',
                 current: this.data.current_amount,
                 needed: this.data.amount_needed,
-                date: '',
                 buffering: false,
             }
         },
@@ -69,6 +76,18 @@
                             messages.push(error.response.data[key][0]);
                         }
                         flash(messages, 'error');
+                    });
+            },
+            reportWish() {
+                this.$emit('disable');
+
+                axios.patch('wish/'+this.id+'/report')
+                    .then(() => {
+                        this.$emit('donated', this.id);
+                        flash(['Wish has been reported!']);
+                    })
+                    .catch((error) => {
+                        flash(['Something went wrong!'], 'error');
                     });
             }
         }

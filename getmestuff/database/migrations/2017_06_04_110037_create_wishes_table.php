@@ -25,6 +25,7 @@ class CreateWishesTable extends Migration
             $table->tinyInteger('validated')->unsigned()->default(0);
             $table->tinyInteger('completed')->unsigned()->default(0);
             $table->json('donated')->nullable();
+            $table->json('reported')->nullable();
             $table->timestamps();
         });
     }

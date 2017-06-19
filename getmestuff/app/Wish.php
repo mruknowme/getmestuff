@@ -67,14 +67,22 @@ class Wish extends Model
         $this->save();
     }
 
-    public static function getWishes($id, $limit = 6)
+    public static function getWishes($id, $limit = 6, $ids = false)
     {
-        return static::orderBy(\DB::raw('-LOG(1.0 - RAND()) / `priority`'))
+        $wishes = static::orderBy(\DB::raw('-LOG(1.0 - RAND()) / `priority`'))
             ->where('user_id', '!=', $id)
             ->where('completed', "!=", 1)
-            ->whereRaw("donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%'")
-            ->limit($limit)
-            ->get();
+            ->where('validated', '=', 0)
+            ->whereRaw(
+                "(reported IS NULL OR reported NOT LIKE '%user.$id.report%') AND 
+                (donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%')"
+            );
+
+        if ($ids) {
+            $wishes = $wishes->whereNotIn('id', $ids);
+        }
+        
+        return $wishes->limit($limit)->get();
     }
 
     public function getWish($id, $ids)
@@ -82,8 +90,9 @@ class Wish extends Model
         return $this->orderBy(\DB::raw('-LOG(1.0 - RAND()) / `priority`'))
             ->where('user_id', '!=', $id)
             ->where('completed', "!=", 1)
+            ->where('validated', '=', 0)
             ->whereNotIn('id', $ids)
-            ->whereRaw("donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%'")
+            ->whereRaw("donated NOT LIKE '%\"user_id\": $id%' OR donated IS NULL AND reported NOT LIKE '%user.$id.report%' OR reported IS NULL")
             ->limit(1)
             ->get();
     }

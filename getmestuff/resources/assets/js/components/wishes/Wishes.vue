@@ -1,12 +1,10 @@
 <template>
-    <section class="">
+    <section>
         <div class="mw flex wrap between" v-if="arrayCheck(items)">
             <div class="container" v-for="(wish, index) in items" :key="wish.id">
                 <wish :data="wish" :wait="disabled" @disable="disabled = true" @donated="refresh(index)"></wish>
             </div>
-            <div class="container" key="container1"></div>
-            <div class="container" key="container2"></div>
-            <div class="container" key="container3"></div>
+            <slot></slot>
         </div>
         <div class="mw flex center" v-else>
             <p>There are no relevant results at this point</p>

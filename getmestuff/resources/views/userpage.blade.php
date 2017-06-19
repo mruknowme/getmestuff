@@ -34,7 +34,7 @@
 
                 <div class="wishes vertical flex between w4 children">
                     <userwishes :wishes="{{ auth()->user()->wishes()->where('completed', 0)->get() }}"></userwishes>
-                    <wishrandom :wishes="{{ $random }}"></wishrandom>
+                    <randomwish :wishes="{{ $random }}"></randomwish>
                 </div>
             </div>
         </main>

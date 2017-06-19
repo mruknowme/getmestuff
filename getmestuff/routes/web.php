@@ -31,6 +31,7 @@ Route::get('/wishes', 'WishesController@index');
 Route::post('/wishes/refresh', 'WishesController@show');
 Route::post('/wishes', 'WishesController@store')->middleware('donated');
 Route::patch('/wish/{wish}/donate', 'WishesController@update');
+Route::patch('/wish/{wish}/report', 'WishesController@report');
 
 Auth::routes();
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');

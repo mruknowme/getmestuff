@@ -10,6 +10,10 @@
     <main class="col-12 mw m-auto main-fix">
         <user-info :user="{{ auth()->user() }}"></user-info>
 
-        <wishes :data="{{ $wishes }}"></wishes>
+        <wishes :data="{{ $wishes }}">
+            <div class="container"></div>
+            <div class="container"></div>
+            <div class="container"></div>
+        </wishes>
     </main>
 @endsection
