@@ -10,6 +10,10 @@ class Payment extends Model
         'user_id', 'braintree_id', 'successful', 'amount', 'interest'
     ];
 
+    protected $hidden = [
+        'braintree_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

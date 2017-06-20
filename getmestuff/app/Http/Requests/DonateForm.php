@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Events\UserHasDonated;
+use App\Jobs\NotifyUser;
 use App\Wish;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -39,9 +40,9 @@ class DonateForm extends FormRequest
             throw new \Exception('You cannot donate this amount');
         }
 
-        $wish->user->increment('amount_received', $this->amount);
-
         event(new UserHasDonated($this->user(), $this->amount));
+        dispatch(new NotifyUser($wish, $this->amount));
+
         $this->user()->donate($wish, $this->amount);
     }
 }

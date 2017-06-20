@@ -18,7 +18,7 @@ class UserSettingsController extends Controller
             $form->save();
         } catch (\Exception $e) {
             return response()->json(
-                ['message' => [$e->getMessage()]], 422
+                ['message' => [$e->getMessage()]], 401
             );
         }
 

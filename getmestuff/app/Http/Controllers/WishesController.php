@@ -86,7 +86,6 @@ class WishesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param $find
      * @param DonateForm $form
      * @param Wish $wish
      * @return \Illuminate\Http\RedirectResponse
