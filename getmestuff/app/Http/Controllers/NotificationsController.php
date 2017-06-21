@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use function foo\func;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class NotificationsController extends Controller
 {
@@ -30,16 +32,14 @@ class NotificationsController extends Controller
             });
         });
 
-        $notifications = $notifications->map(function ($item) {
+        $donated = $notifications->map(function ($item) {
             return $item->map(function ($item) {
-                return $item->map(function ($item) {
+                return $item->filter(function ($item) {
+                    return $item->type == 'App\Notifications\UserHasDonated';
+                })->map(function ($item) {
                     return $item->data['amount'];
                 });
-            });
-        });
-
-        $notifications = $notifications->map(function ($item) {
-            return $item->each(function ($item) {
+            })->each(function ($item) {
                 $item->prepend($item->sum(), 'total');
                 $item->prepend(($item->count() - 1), 'count');
             })->map(function ($item) {
@@ -47,8 +47,45 @@ class NotificationsController extends Controller
             });
         });
 
-        $topups = auth()->user()->payments;
+        $completed = $notifications->map(function ($item) {
+            return $item->map(function ($item) {
+                return $item->filter(function ($item) {
+                    return $item->type == 'App\Notifications\WishCompleted';
+                })->map(function () {
+                    return 'completed';
+                });
+            })->filter(function ($item) {
+                return $item->isNotEmpty();
+            });
+        })->filter(function ($item) {
+            return $item->isNotEmpty();
+        });
 
-        return view('notifications', compact('notifications', 'topups'));
+        $notifications = $donated->map(function ($item, $key) use ($completed) {
+            if (isset($completed[$key])) {
+                return $item->map(function ($item, $wish) use ($completed, $key) {
+                    if (isset($completed[$key][$wish])) {
+                        $item['completed'] = 1;
+                        return $item;
+                    } else {
+                        return $item;
+                    }
+                });
+            } else {
+                return $item;
+            }
+        });
+
+        $notifications = $this->paginate($notifications, 2)->setPath('notifications');
+
+        return $notifications;
+    }
+
+    protected function paginate($items, $perPage = 10)
+    {
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentPageItems = $items->slice(($currentPage - 1) * $perPage, $perPage);
+
+        return new LengthAwarePaginator($currentPageItems, count($items), $perPage);
     }
 }

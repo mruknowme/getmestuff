@@ -16,6 +16,11 @@ class PurchasesController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function index()
+    {
+        return auth()->user()->payments()->paginate(7);
+    }
     
     public function store(WalletForm $form)
     {

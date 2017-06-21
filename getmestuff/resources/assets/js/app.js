@@ -27,6 +27,9 @@ Vue.component('website-header', require('./components/WebsiteHeader.vue'));
 Vue.component('user-info', require('./components/user/Userinfo.vue'));
 Vue.component('wishes', require('./components/wishes/Wishes.vue'));
 Vue.component('user-page', require('./components/user/pages/Userpage.vue'));
+Vue.component('payments', require('./components/user/Payments.vue'));
+Vue.component('notifications', require('./components/user/Notifications.vue'));
+Vue.component('paginator', require('./components/Paginator.vue'))
 
 const app = new Vue({
     el: '#app'

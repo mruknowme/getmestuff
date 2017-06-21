@@ -37,6 +37,10 @@ Route::post('/wishes', 'WishesController@store')->middleware('donated');
 Route::patch('/wish/{wish}/donate', 'WishesController@update');
 Route::patch('/wish/{wish}/report', 'WishesController@report');
 
-Route::get('/notifications', 'NotificationsController@index');
+Route::get('/notifications', function () {
+    return view('notifications');
+})->middleware('auth');
+Route::get('/donations', 'NotificationsController@index');
+Route::get('/payments', 'PurchasesController@index');
 
 Route::get('/test', 'HomeController@test');
