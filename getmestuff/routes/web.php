@@ -24,23 +24,30 @@ Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
 Route::get('/register/{ref}', 'Auth\RegisterController@showRegistrationFormWithRef');
 
 Route::get('/home', 'HomeController@index');
-Route::patch('/home/update', 'UserSettingsController@update');
-Route::post('/home/achievements', 'HomeController@prizes');
 Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
 
-Route::post('/topup', 'PurchasesController@store');
-Route::get('/braintree/token', 'PurchasesController@token');
-
 Route::get('/wishes', 'WishesController@index');
-Route::post('/wishes/refresh', 'WishesController@show');
-Route::post('/wishes', 'WishesController@store')->middleware('donated');
-Route::patch('/wish/{wish}/donate', 'WishesController@update');
-Route::patch('/wish/{wish}/report', 'WishesController@report');
 
 Route::get('/notifications', function () {
     return view('notifications');
 })->middleware('auth');
-Route::get('/donations', 'NotificationsController@index');
-Route::get('/payments', 'PurchasesController@index');
+
+Route::middleware(['auth', 'ajax'])->group(function () {
+    Route::patch('/home/update', 'UserSettingsController@update');
+    Route::post('/home/achievements', 'HomeController@prizes');
+
+    Route::post('/topup', 'PurchasesController@store');
+    Route::get('/braintree/token', 'PurchasesController@token');
+
+    Route::post('/wishes/refresh', 'WishesController@show');
+    Route::post('/wishes', 'WishesController@store')->middleware('donated');
+    Route::patch('/wish/{wish}/donate', 'WishesController@update');
+    Route::patch('/wish/{wish}/report', 'WishesController@report');
+
+    Route::get('/unread', 'NotificationsController@show');
+    Route::get('/markasread', 'NotificationsController@destroy');
+    Route::get('/donations', 'NotificationsController@index');
+    Route::get('/payments', 'PurchasesController@index');
+});
 
 Route::get('/test', 'HomeController@test');

@@ -1,27 +1,11 @@
 <template>
     <form class="vertical mw start">
-        <div class="flex mw prize-option">
-            <input type="radio" name="prize" class="radio" value="1" v-model="selected" checked>
+        <div class="flex mw prize-option" v-for="prize in prizes" :class="{ disable : (prize.id == 3 && limit)}">
+            <input :disabled="(prize.id == 3 && limit)" type="radio" name="prize" class="radio" :value="prize.id" v-model="selected" checked>
             <div class="prize-info mw flex vertical start">
-                <h4>Extra Wish</h4>
-                <p>Increase your wishes amount by one (single use)</p>
-                <p class="self-end">200 <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
-            </div>
-        </div>
-        <div class="flex mw prize-option">
-            <input type="radio" name="prize" class="radio" value="2" v-model="selected">
-            <div class="prize-info mw flex vertical start">
-                <h4>Priority</h4>
-                <p>Increase next wish's priority (single use)</p>
-                <p class="self-end">300 <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
-            </div>
-        </div>
-        <div class="flex mw prize-option">
-            <input type="radio" name="prize" class="radio" value="3" v-model="selected" :disabled="limit">
-            <div class="prize-info vertical mw flex start" :class="{disable : limit}">
-                <h4>Limit</h4>
-                <p>Increase your wishes limit by one forever (single purchase) </p>
-                <p class="self-end">1000 <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
+                <h4 v-text="prize.item"></h4>
+                <p v-text="prize.body"></p>
+                <p class="self-end">{{ prize.price }} <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
             </div>
         </div>
         <div class="mw flex quantity">
@@ -37,23 +21,20 @@
 </template>
 <script>
     export default {
-        props: ['user'],
+        props: ['user', 'prizes'],
         data() {
             return {
                 selected: "1",
                 quantity: 1,
                 limit: '',
-                buffering: false
+                buffering: false,
+                items: ''
             }
         },
         computed: {
             price() {
-                if (this.selected == 1) {
-                    return 200 * this.quantity;
-                } else if (this.selected == 2) {
-                    return 300 * this.quantity;
-                } else if (this.selected == 3) {
-                    return 1000 * this.quantity;
+                if (this.selected > 0) {
+                    return this.prizes[this.selected - 1].price * this.quantity;
                 } else {
                     return 0;
                 }
@@ -65,7 +46,7 @@
                 } else {
                     return false;
                 }
-            }
+            },
         },
         methods: {
             setQuantity() {

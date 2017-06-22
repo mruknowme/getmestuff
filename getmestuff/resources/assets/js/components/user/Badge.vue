@@ -20,9 +20,8 @@
         props: ['image', 'achievement', 'userinfo'],
         data() {
             return {
-                tooltip: false,
                 has: '',
-                need: '',
+                need: this.achievement.need,
                 completed: ''
             }
         },
@@ -35,37 +34,12 @@
             for (let key in this.userinfo) {
                 if (key == this.achievement.id) {
                     this.has = this.userinfo[key].has;
-                    this.need = this.userinfo[key].need;
                     this.completed = this.userinfo[key].completed;
                 }
             }
-            window.events.$on('achievements', (amount) => {
-                if (this.achievement.id == 1) {
-                    if (this.completed == 0) {
-                        window.totalprize += this.achievement.prize;
-                        this.has = 1;
-                        this.completed = 1;
-                    }
-                } else if (4 <= this.achievement.id && this.achievement.id <= 14) {
-                    if (this.completed == 1) {
-                        return;
-                    }
-                    else if (this.has + parseFloat(amount) >= this.need) {
-                        this.has = this.need;
-                        this.completed = 1;
-                        window.totalprize += this.achievement.prize;
-                    } else {
-                        this.has += parseFloat(amount);
-                    }
-                } else if (15 <= this.achievement.id && this.achievement.id <= 17) {
-                    if (this.need <= amount) {
-                        this.has = 0;
-                        this.completed = 1;
-                        window.totalprize += this.achievement.prize;
-                    } else if (this.has < amount && this.need > amount) {
-                        this.has = parseFloat(amount);
-                    }
-                }
+            window.events.$on('achievements', ([amount, type]) => {
+                // console.log(type);
+                this.recordAchievements(amount, type);
             });
         },
         computed: {
@@ -74,6 +48,39 @@
             },
             svgDash() {
                 return (103 - Math.round(this.has * 103 / this.need));
+            }
+        },
+        methods: {
+            recordAchievements(amount, types) {
+                types.forEach((type) => {
+                    if (this.achievement.type == type) {
+                        if (this.achievement.renew == 2) {
+                            this.recordStaticAchievement(amount);
+                            return;
+                        } else {
+                            this.recordOngoingAchievement(amount);
+                        }
+                    }
+                });
+            },
+            recordStaticAchievement(amount) {
+                if (this.achievement.need <= amount) {
+                    this.completed = 1;
+                    window.totalprize += parseFloat(this.achievement.prize);
+                } else if (this.has < amount) {
+                    this.has = parseFloat(amount);
+                }
+            },
+            recordOngoingAchievement(amount) {
+                if (this.completed == 1) {
+                    return;
+                } else if (this.achievement.need <= amount) {
+                    this.has = this.achievement.need;
+                    this.completed = 1;
+                    window.totalprize += parseFloat(this.achievement.prize);
+                } else {
+                    this.has += parseFloat(amount);
+                }
             }
         }
     }

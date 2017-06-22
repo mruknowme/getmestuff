@@ -60,23 +60,23 @@
 
                 axios.patch('wish/'+this.id+'/donate', {
                     'amount': this.amount
+                }).then(() => {
+                    window.events.$emit('decrement', this.amount);
+                    window.events.$emit('achievements', [this.amount, [1, 4]]);
+
+                    this.current += parseFloat(this.amount);
+
+                    this.$emit('donated', this.id);
+
+                    flash(['Thank you for donating!']);
                 })
-                    .then(() => {
-                        window.events.$emit('decrement', this.amount);
-
-                        this.current += parseFloat(this.amount);
-
-                        this.$emit('donated', this.id);
-
-                        flash(['Thank you for donating!']);
-                    })
-                    .catch((error) => {
-                        let messages = [];
-                        for (let key in error.response.data) {
-                            messages.push(error.response.data[key][0]);
-                        }
-                        flash(messages, 'error');
-                    });
+                .catch((error) => {
+                    let messages = [];
+                    for (let key in error.response.data) {
+                        messages.push(error.response.data[key][0]);
+                    }
+                    flash(messages, 'error');
+                });
             },
             reportWish() {
                 this.$emit('disable');

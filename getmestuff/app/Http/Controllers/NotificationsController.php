@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use function foo\func;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -79,6 +80,23 @@ class NotificationsController extends Controller
         $notifications = $this->paginate($notifications, 2)->setPath('notifications');
 
         return $notifications;
+    }
+
+    public function show()
+    {
+        $notifications = $this->index();
+
+        $date = $notifications->keys()->first();
+        $notifications = $notifications->first();
+        
+        return compact('date', 'notifications');
+    }
+
+    public function destroy()
+    {
+        auth()->user()->unreadNotifications->markAsRead();
+
+        return response(['status' => 'Notifications Updated']);
     }
 
     protected function paginate($items, $perPage = 10)

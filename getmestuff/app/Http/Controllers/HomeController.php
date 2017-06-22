@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Achievement;
 use App\Events\AchievementsOutdated;
 use App\Http\Requests\PrizesForm;
+use App\Traits\UserAchievements;
 use App\User;
 use App\Wish;
+use App\Prize;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -37,11 +39,13 @@ class HomeController extends Controller
         $random = Wish::getWishes(auth()->user()->id, 1);
         $ref_count = User::getRefs();
         $achievements = Achievement::all();
+        $prizes = Prize::all();
 
         return view('userpage', [
             'random' => $random,
             'ref_count' => $ref_count,
             'achievements' => $achievements,
+            'prizes' => $prizes
         ]);
     }
 
@@ -56,5 +60,12 @@ class HomeController extends Controller
         }
 
         return response(['status' => 'Points redeemed successfully']);
+    }
+
+    public function test()
+    {
+        $user = User::find(1);
+//        return $user->clearAchievements();
+        return $user->recordAchievements(100, [1, 4]);
     }
 }

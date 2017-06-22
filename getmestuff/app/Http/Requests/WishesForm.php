@@ -64,14 +64,7 @@ class WishesForm extends FormRequest
         $this->user()->number_of_wishes--;
         $this->user()->wishes()->create($wish);
 
-        $temp = json_decode($this->user()->achievements, true);
-        if ($temp[3]['completed'] != 1) {
-            $temp[3]['has'] = 1;
-            $temp[3]['completed'] = 1;
-
-            $this->user()->points += $temp[3]['prize'];
-            $this->user()->achievements = json_encode($temp);
-        }
+        $this->user()->recordAchievements(1, [3]);
 
         $this->user()->save();
     }

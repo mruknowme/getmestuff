@@ -4,10 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Mockery\CountValidator\Exception;
+use App\Prize;
 
 class PrizesForm extends FormRequest
 {
-    protected $nominalPrice = [200, 300, 1000];
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -32,7 +32,7 @@ class PrizesForm extends FormRequest
     }
 
     public function save() {
-        $price = $this->nominalPrice[$this->selected - 1] * $this->quantity;
+        $price = Prize::find($this->selected)->price * $this->quantity;
 
         if ($price > $this->user()->points) {
             throw new Exception('You don\'t have enough points');

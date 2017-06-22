@@ -6,7 +6,7 @@ use App\Events\UserHasDonated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RecordAchievement implements ShouldQueue
+class RecordAchievement
 {
     /**
      * Create the event listener.
@@ -26,22 +26,15 @@ class RecordAchievement implements ShouldQueue
      */
     public function handle(UserHasDonated $event)
     {
-        $ref_id = null;
         $event->user->amount_donated += $event->amount;
 
         if ($event->user->donated == 0) {
-            $temp = json_decode($event->user->achievements, true);
-            $temp[1]['has'] = 1;
-            $temp[1]['completed'] = 1;
-
-            $event->user->points += $temp[1]['prize'];
-            $event->user->achievements = json_encode($temp);
+            $event->user->recordAchievements($event->amount, [1, 4], $event->user->ref_id);
             $event->user->donated = 1;
-            $ref_id = $event->user->ref_id;
+        } else {
+            $event->user->recordAchievements($event->amount, [4]);
         }
 
         $event->user->save();
-
-        $event->user->recordAchievements($event->amount, $ref_id);
     }
 }

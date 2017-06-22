@@ -8,7 +8,7 @@
 
 @section ('content')
     <main class="col-12 mw m-auto main-fix flex vertical center">
-        <user-info :user="{{ auth()->user() }}"></user-info>
+        <user-info :user="{{ auth()->user() }}" :notifications="{{ auth()->user()->unreadNotifications }}"></user-info>
         
         <div class="mw flex s-between">
             <notifications></notifications>

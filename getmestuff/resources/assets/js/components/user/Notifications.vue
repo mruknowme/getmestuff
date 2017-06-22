@@ -1,10 +1,10 @@
 <template>
     <div class="w48">
-        <div class="mw" v-if="dataSet">
+        <div class="mw" v-if="arrayCheck(dataSet.total)">
             <notification v-for="(notification, key) in items" :data="notification" :date="key" :key="key"></notification>
         </div>
 
-        <div class="mw flex center bg-white empty" v-else>
+        <div class="mw flex center bg-white empty border" v-else>
             <p>You don't have any notifications yet.</p>
         </div>
 
@@ -41,6 +41,9 @@
                 this.dataSet = data;
                 this.items = data.data;
             },
+            arrayCheck(temp) {
+                return (temp > 0);
+            }
         },
     }
 </script>

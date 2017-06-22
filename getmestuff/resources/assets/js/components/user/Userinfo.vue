@@ -1,18 +1,23 @@
 <template>
     <section class="mw flex between user-info">
-        <p>{{ first_name + ' ' + last_name }}</p>
+        <div class="user-info-wrapper flex start">
+            <p>{{ first_name + ' ' + last_name }}</p> <usernotification :data="notifications"></usernotification>
+        </div>
         <p>{{ balance + '$'}}</p>
     </section>
 </template>
 
 <script>
+    import Usernotification from './UserNotification.vue';
+
     export default {
-        props: ['user'],
+        components: { Usernotification },
+        props: ['user', 'notifications'],
         data() {
             return {
                 first_name: this.user.first_name,
                 last_name: this.user.last_name,
-                balance: this.user.balance
+                balance: this.user.balance,
             }
         },
         created() {

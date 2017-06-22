@@ -20,7 +20,7 @@
                     <p><span id="points-number" v-text="points"></span> <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
                 </div>
                 <div class="expandable mw" v-show="expanded">
-                    <redeem :user="{{ auth()->user()->allowed_wishes }}"></redeem>
+                    <redeem :user="{{ auth()->user()->allowed_wishes }}" :prizes="{{ $prizes }}"></redeem>
                 </div>
                 <div class="mw badges" v-show="!expanded">
                     @foreach($achievements as $achievement)

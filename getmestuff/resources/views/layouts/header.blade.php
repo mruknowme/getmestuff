@@ -14,7 +14,6 @@
                     @else
                         <li><a class="link" href="/home">Home</a></li>
                         <li><a class="link" href="/wishes">Wishes</a></li>
-                        <li><a class="link" href="/notifications">Notifications</a></li>
                         <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();

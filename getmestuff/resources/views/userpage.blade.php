@@ -9,7 +9,7 @@
 @section ('content')
     <user-page inline-template>
         <main class="col-12 mw mh m-auto main-fix">
-            <user-info :user="{{ auth()->user() }}"></user-info>
+            <user-info :user="{{ auth()->user() }}" :notifications="{{ auth()->user()->unreadNotifications }}"></user-info>
 
             <div class="mw mh flex s-between main-wrapper">
                 <div class="main-content children">
@@ -43,7 +43,6 @@
 
 @section ('script')
     <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
-{{--    <script src="{{ asset('js/sektor.js') }}"></script>--}}
     <script type="text/javascript">
         $(function() {
             $('.user-wishes').owlCarousel({

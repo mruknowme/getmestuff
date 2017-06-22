@@ -90,7 +90,7 @@
             </div>
         </form>
     </section>
-    <section class="flex center bg-white main-section" v-else>
+    <section class="flex center bg-white main-section empty" v-else>
         <p>Looks like you haven't donated yet. Please donate and come back to make your wish.</p>
     </section>
 </template>
@@ -127,6 +127,8 @@
                             'current_amount': (this.current_amount == '') ? 0 : this.current_amount,
                             'item': this.item
                         });
+
+                        window.events.$emit('achievements', [this.amount, [3]]);
 
                         this.item = '';
                         this.url = '';

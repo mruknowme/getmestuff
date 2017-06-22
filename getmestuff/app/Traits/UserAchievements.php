@@ -3,6 +3,7 @@
 
 namespace App\Traits;
 
+use App\Achievement;
 use App\User;
 use Carbon\Carbon;
 
@@ -11,95 +12,147 @@ trait UserAchievements
     protected $prize = 0;
     protected $ref_prize = 0;
 
-    public function recordAchievements($amount, $ref = null)
+    protected $allAchievements;
+
+    public function recordAchievements($amount, $types, $ref = false)
     {
-        $achievements = collect(json_decode($this->achievements, true));
+        $userAchievements = $this->checkAchievements();
 
-        // $refresh = cache(User::cacheKey());
-        // if (!is_null($refresh) && $refresh->lte(Carbon::now())) {
-        //     $achievements = $achievements->map(function ($item) {
-        //         if ($item['renew'] == 1) {
-        //             $item['has'] = 0;
-        //             $item['completed'] = 0;
-        //         }
-        //         return $item;
-        //     });
-        // }
+        $achievements = $this->getAchievementsInfo();
 
-        $achievements = $achievements->map(function ($item, $key) use ($amount) {
-            if (4 <= $key && $key <= 14) {
-                if ($item['completed'] == 1) {
-                    return $item;
-                } elseif ($item['has'] + $amount >= $item['need']) {
-                    $item['has'] = $item['need'];
-                    $item['completed'] = 1;
-                    $this->prize += $item['prize'];
-                } else {
-                    $item['has'] += $amount;
-                }
-            } elseif (15 <= $key && $key <= 17) {
-                if ($item['need'] <= $amount) {
-                    $item['completed'] = 1;
-                    $item['has'] = 0;
-                    $this->prize += $item['prize'];
-                } elseif ($item['has'] < $amount && $item['need'] > $amount) {
-                    $item['has'] = $amount;
-                }
-            }
-            return $item;
-        })->toJson();
+        foreach ($types as $type) {
+            $this->allAchievements = $achievements[$type];
+            $userAchievements = $this->overrideAchievements($amount, $userAchievements);
+        }
 
-        $this->recordRefAchievements($ref);
-
+        $this->achievements = $userAchievements;
         $this->points += $this->prize;
-        $this->achievements = $achievements;
         $this->save();
+
+        if ($ref) $this->recordRefAchievements($ref);
     }
 
     public function clearAchievements()
     {
-        $achievements = collect(json_decode($this->achievements, true));
+        $userAchievements = collect(json_decode($this->achievements, true));
 
-        $achievements = $achievements->map(function ($item) {
-            if ($item['renew'] == 1) {
-                $item['has'] = 0;
-                $item['completed'] = 0;
+        $this->allAchievements = $this->getAchievementsInfo(false)->keyBy(function ($item) {
+            return $item->id;
+        });
+
+        $userAchievements = $userAchievements->map(function ($item, $key) {
+            if ($checker = $this->checkKey($key)) {
+                if ($checker->renew == 1) {
+                    $item['has'] = 0;
+                    $item['completed'] = 0;
+                }
             }
             return $item;
-        })->toJson();
+        });
 
-        $this->achievements = $achievements;
+        $this->achievements = $userAchievements;
         $this->save();
     }
 
-    /**
-     * @param $ref
-     */
-    protected function recordRefAchievements($ref): void
+
+    protected function recordRefAchievements($ref)
     {
-        if (!is_null($ref)) {
-            $referral = User::query()->where('ref_link', '=', $ref)->first();
+        $referral = User::query()->where('ref_link', '=', $ref)->first();
 
-            $refAchievements = collect(json_decode($referral->achievements, true));
+        $refAchievements = collect(json_decode($referral->achievements, true));
 
-            $refAchievements = $refAchievements->map(function ($item, $key) {
-                if ($key > 17) {
-                    if ($item['completed'] == 1) {
-                        return $item;
-                    } elseif ($item['has'] + 1 >= $item['need']) {
-                        $item['has'] = $item['need'];
-                        $item['completed'] = 1;
-                        $this->ref_prize += $item['prize'];
-                    } else {
-                        $item['has'] += 1;
-                    }
-                }
-                return $item;
-            })->toJson();
+        $achievements = $this->getAchievementsInfo();
 
-            $referral->achievements = $refAchievements;
-            $referral->points += $this->ref_prize;
-            $referral->save();
+        $this->allAchievements = $achievements[6];
+        $this->prize = 0;
+
+        $refAchievements = $this->overrideAchievements(1, $refAchievements);
+
+        $referral->achievements = $refAchievements;
+        $referral->points += $this->prize;
+        $referral->save();
+    }
+
+    protected function checkKey($key)
+    {
+        $temp = collect($this->allAchievements)->filter(function ($item) use ($key) {
+            return ($item->id == $key);
+        });
+
+        if ($temp->isEmpty()) return false;
+
+        return $temp->first();
+    }
+
+    protected function recordStaticAchievements($checker, $item, $amount)
+    {
+        if ($checker->need <= $amount) {
+            $this->prize += $checker->prize;
+            $item['completed'] = 1;
+        } else if ($item['has'] >= $amount) {
+            return $item;
+        } else {
+            $item['has'] = $amount;
         }
+        return $item;
+    }
+
+    protected function recordOngoingAchievements($checker, $item, $amount)
+    {
+        if ($item['completed'] == 1) {
+            return $item;
+        } else if ($checker->need <= ($item['has'] + $amount)) {
+            $this->prize += $checker->prize;
+            $item['has'] = $checker->need;
+            $item['completed'] = 1;
+        } else {
+            $item['has'] += $amount;
+        }
+        return $item;
+    }
+
+    protected function overrideAchievements($amount, $achievements)
+    {
+        $achievements = $achievements->map(function ($item, $key) use ($amount) {
+            if ($checker = $this->checkKey($key)) {
+                if ($checker->renew == 2) return $this->recordStaticAchievements($checker, $item, $amount);
+                return $this->recordOngoingAchievements($checker, $item, $amount);
+            } else {
+                return $item;
+            }
+        });
+        return $achievements;
+    }
+
+    protected function getAchievementsInfo($group = true)
+    {
+        $achievements = Achievement::all();
+
+        if ($group) {
+            $achievements = $achievements->groupBy(function ($item) {
+                return $item->type;
+            });
+        }
+
+        return $achievements;
+    }
+
+    protected function checkAchievements()
+    {
+        $userAchievements = collect(json_decode($this->achievements, true));
+
+        $achievements = $this->getAchievementsInfo(false)->keyBy(function ($item) {
+            return $item->id;
+        });
+
+        $userAchievements->diffKeys($achievements)->keys()->each(function ($item) use ($userAchievements) {
+            $userAchievements->forget($item);
+        });
+
+        $achievements->diffKeys($userAchievements)->keys()->each(function ($item) use ($userAchievements) {
+            $userAchievements->put($item, ['has' => 0, 'completed' => 0]);
+        });
+
+        return $userAchievements;
     }
 }
