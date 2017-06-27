@@ -64,8 +64,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        $user = User::find(1);
-//        return $user->clearAchievements();
-        return $user->recordAchievements(100, [1, 4]);
+        breadcrumbs();
     }
 }

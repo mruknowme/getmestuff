@@ -18,9 +18,10 @@ class ResetPasswordNotification extends Notification
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token, $isAdmin)
     {
         $this->token = $token;
+        $this->isAdmin = $isAdmin;
     }
 
     /**
@@ -42,7 +43,11 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url(config('app,url').route('password.reset', $this->token, false));
+        if ($this->isAdmin) {
+            $url = url(config('app.url').route('password.reset.admin', $this->token, false));
+        } else {
+            $url = url(config('app.url').route('password.reset', $this->token, false));
+        }
         return (new MailMessage)->view('emails.reset', ['url' => $url]);
     }
 

@@ -3,13 +3,13 @@
         <h2>Your Achievements</h2>
         <div class="flex nc-between mw">
             <div class='donated'>
-                <div>
+                <div title="{{ auth()->user()->amount_donated }}$">
                     <p>Donated:</p>
-                    <p><span id="amount-donated" v-text="donated"></span>$</p>
+                    <p><span id="amount-donated" v-text="donatedShrt"></span>$</p>
                 </div>
-                <div>
+                <div :title="donated">
                     <p>Recieved:</p>
-                    <p><span>{{ auth()->user()->amount_received }}</span>$</p>
+                    <p><span>{{ shortenNum(auth()->user()->amount_received) }}</span>$</p>
                 </div>
             </div>
             <div class="w8 achievements-info">

@@ -11,7 +11,7 @@
     border: 1px solid transparent
     font-size: 0.9rem
 
-    h4
+    strong
         margin-bottom: 5px
 
     ul
@@ -21,6 +21,18 @@
         li
             list-style: disc
             margin-bottom: 2px
+
+    .close
+        top: 5px
+        right: 10px
+        font-size: 1.2rem
+        opacity: 0.5
+
+        &:hover
+            opacity: 1
+
+.alert.dismissible
+    min-width: 200px
 
 .alert.success
     background-color: darken(#dff0d8, 5%)

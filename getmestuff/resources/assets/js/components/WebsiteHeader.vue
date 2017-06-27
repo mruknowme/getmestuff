@@ -4,7 +4,9 @@
             return {
                 show: false,
                 position: '-150px',
-                color: '#000'
+                color: '#000',
+                unreadNotifications: false,
+                unreadCount: ''
             }
         },
         methods: {
@@ -18,6 +20,14 @@
                     this.color = '#FFF';
                     this.show = true;
                 }
+            },
+            fetch(page) {
+                axios.get('/unread').then(({data}) => {
+                    this.unreadNotifications = (data.length > 0);
+                    this.unreadCount = data.length;
+                }).catch(() => {
+                    return;
+                });
             }
         }
     }

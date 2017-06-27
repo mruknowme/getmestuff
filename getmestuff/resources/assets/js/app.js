@@ -21,6 +21,7 @@ require('owl.carousel');
 Vue.component('tabs', require('./components/Tabs.vue'));
 Vue.component('tab', require('./components/Tab.vue'));
 Vue.component('flash', require('./components/Flash.vue'));
+Vue.component('errors', require('./components/Errors.vue'));
 Vue.component('login', require('./components/auth/Login.vue'));
 Vue.component('register', require('./components/auth/Register.vue'));
 Vue.component('website-header', require('./components/WebsiteHeader.vue'));

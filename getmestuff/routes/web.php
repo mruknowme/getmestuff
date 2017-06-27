@@ -19,9 +19,33 @@ Route::get('/about', function () {
     return view('about');
 })->middleware('guest');
 
-Auth::routes();
-Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
-Route::get('/register/{ref}', 'Auth\RegisterController@showRegistrationFormWithRef');
+Route::namespace('Auth')->group(function () {
+    $this->get('login', 'LoginController@showLoginForm');
+    $this->post('login', 'LoginController@login')->name('login');
+    $this->post('logout', 'LoginController@logout')->name('logout');
+
+    $this->get('register', 'RegisterController@showRegistrationForm');
+    $this->post('register', 'RegisterController@register')->name('register');
+
+    $this->get('/register/confirm/{token}', 'RegisterController@confirmEmail');
+    $this->get('/register/{ref}', 'RegisterController@showRegistrationFormWithRef');
+
+    $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    $this->post('password/reset', 'ResetPasswordController@reset')->name('password.reset.post');
+});
+
+Route::namespace('Admin\Auth')->prefix('admin')->group(function () {
+    $this->get('/abc', 'LoginController@showLoginForm');
+
+    $this->post('/login', 'LoginController@login');
+    $this->post('/logout', 'LoginController@logout');
+
+    $this->post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
+
+    $this->get('password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset.admin');
+    $this->post('password/reset', 'ResetPasswordController@reset');
+});
 
 Route::get('/home', 'HomeController@index');
 Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
@@ -29,6 +53,8 @@ Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
 Route::get('/wishes', 'WishesController@index');
 
 Route::get('/notifications', function () {
+    auth()->user()->unreadNotifications->markAsRead();
+
     return view('notifications');
 })->middleware('auth');
 
@@ -45,9 +71,28 @@ Route::middleware(['auth', 'ajax'])->group(function () {
     Route::patch('/wish/{wish}/report', 'WishesController@report');
 
     Route::get('/unread', 'NotificationsController@show');
-    Route::get('/markasread', 'NotificationsController@destroy');
     Route::get('/donations', 'NotificationsController@index');
     Route::get('/payments', 'PurchasesController@index');
 });
 
-Route::get('/test', 'HomeController@test');
+Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group(function () {
+    Route::get('/dashboard', 'AdminsController@index');
+    Route::get('/settings', 'AdminsController@settings');
+    Route::get('/payment', 'AdminsController@payment');
+
+    Route::get('/wishes', 'WishesController@all');
+    Route::get('/wishes/reported', 'WishesController@reported');
+    Route::get('/wishes/settings', 'WishesController@settings');
+
+    Route::get('/users', 'UsersController@all');
+    Route::get('/users/active', 'UsersController@active');
+    Route::get('/users/settings', 'UsersController@settings');
+
+    Route::get('/achievements', 'AchievementsController@all');
+    Route::get('/achievements/new', 'AchievementsController@new');
+    Route::get('/achievements/settings', 'AchievementsController@settings');
+
+    Route::get('/tickets', 'TicketsController@all');
+    Route::get('/tickets/open', 'TicketsController@open');
+    Route::get('/tickets/create', 'TicketsController@create');
+});

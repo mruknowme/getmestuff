@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('amount_donated')->default(0);
             $table->unsignedBigInteger('amount_received')->default(0);
             $table->integer('points')->default(0);
+            $table->boolean('admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
 

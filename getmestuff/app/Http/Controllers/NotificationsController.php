@@ -84,12 +84,9 @@ class NotificationsController extends Controller
 
     public function show()
     {
-        $notifications = $this->index();
+        if (\Auth::check()) return auth()->user()->unreadNotifications;
 
-        $date = $notifications->keys()->first();
-        $notifications = $notifications->first();
-        
-        return compact('date', 'notifications');
+        return response(['message' => 'No user is logged in']);
     }
 
     public function destroy()

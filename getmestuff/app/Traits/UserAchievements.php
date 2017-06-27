@@ -63,7 +63,7 @@ trait UserAchievements
 
         $achievements = $this->getAchievementsInfo();
 
-        $this->allAchievements = $achievements[6];
+        $this->allAchievements = $achievements[5];
         $this->prize = 0;
 
         $refAchievements = $this->overrideAchievements(1, $refAchievements);

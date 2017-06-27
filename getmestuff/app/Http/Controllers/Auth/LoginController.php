@@ -48,7 +48,20 @@ class LoginController extends Controller
         return [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
-            'verified' => true
+            'verified' => true,
+            'admin' => false
         ];
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->isAdmin()) return redirect('admin/dashboard');
     }
 }

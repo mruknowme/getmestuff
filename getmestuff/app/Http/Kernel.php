@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'donated' => \App\Http\Middleware\HasDonated::class,
         'ajax' => \App\Http\Middleware\OnlyAjax::class,
+        'admin' => \App\Http\Middleware\Admin::class,
     ];
 }

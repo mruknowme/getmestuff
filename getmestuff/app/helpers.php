@@ -27,4 +27,37 @@ function shortenNum($number) {
             return number_format($display_num,$decimals) . $abbrev;
         }
     }
+
+    return $number;
+}
+
+function breadcrumbs($sep = '', $home = 'admin')
+{
+    $site = config('app.url');
+
+    $crumbs = explode('/', request()->path());
+
+    $bc = '<ol class="breadcrumb">';
+    $bc .= "<li><a href='$site/$home/dashboard'>".ucfirst($home)."</a>$sep</li>";
+
+    unset($crumbs[0]);
+
+    $i = 0;
+    $numOfCrumbs = count($crumbs);
+
+    foreach ($crumbs as $crumb) {
+        if (++$i === $numOfCrumbs) {
+            $bc .= '<li class="active">'.ucfirst($crumb).'</li>';
+        } else {
+            $bc .= "<li><a href='$site/$home/$crumb'>".ucfirst($crumb)."</a>$sep</li>";
+        }
+    }
+
+    $bc .= '</ol>';
+
+//    dd($bc);
+
+    echo $bc;
+
+    return;
 }

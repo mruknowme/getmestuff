@@ -42,4 +42,21 @@ window.events = new Vue();
 
 window.flash = function (message, type = 'success') {
     window.events.$emit('flash', [message, type]);
-}
+};
+
+window.shortenNum = function (number, abbrev = true) {
+    let abbrevs = ['T', 'B', 'M', 'K', ''];
+    let exponents = [12, 9, 6, 3, 0];
+
+    for (exp of exponents) {
+        if (number >= Math.pow(10, exp)) {
+            let display_num = number / Math.pow(10, exp);
+            let decimals = (exp >= 3 && Math.round(display_num) < 100) ? 1 : 0;
+
+            if (!abbrevs) return display_num.toFixed(decimals);
+            return display_num.toFixed(decimals) + abbrevs[exponents.indexOf(exp)];
+        }
+    }
+
+    return number;
+};

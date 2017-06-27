@@ -15,7 +15,7 @@
             </div>
             <div class="footer">
                 <p :title="current + '/' + needed">
-                    Collected: {{ current }}/{{ needed }}
+                    Collected: {{ currentShrt }}/{{ neededShrt }}
                 </p>
                 <form v-if="displayForm">
                     <input type="number" name="amount" v-model="amount" required>
@@ -51,6 +51,12 @@
         computed: {
             when() {
                 return moment(this.data.created_at).fromNow();
+            },
+            currentShrt() {
+                return window.shortenNum(this.data.current_amount);
+            },
+            neededShrt() {
+                return window.shortenNum(this.data.amount_needed);
             }
         },
         methods: {

@@ -51,7 +51,8 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'address' => 'json'
+        'address' => 'json',
+        'admin' => 'boolean',
     ];
 
     /**
@@ -59,7 +60,8 @@ class User extends Authenticatable
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new ResetPasswordNotification($token));
+        $isAdmin = $this->isAdmin();
+        $this->notify(new ResetPasswordNotification($token, $isAdmin));
     }
 
     /**
@@ -103,5 +105,10 @@ class User extends Authenticatable
     public static function cacheKey()
     {
         return sprintf("user.%s", auth()->id());
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin;
     }
 }

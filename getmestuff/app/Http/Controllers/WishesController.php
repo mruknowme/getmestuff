@@ -30,17 +30,6 @@ class WishesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-
-    /**
      * Stores wishes
      *
      * @param WishesForm $form
