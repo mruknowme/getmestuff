@@ -21,7 +21,7 @@
 
             @include ('layouts.footer')
 
-            <flash message="{{ session('message') }}"></flash>
+            <flash :message="{{ json_encode([session('message')]) }}"></flash>
 
             @if (count($errors) > 0)
                 <errors :errors="{{ json_encode($errors->all()) }}"></errors>

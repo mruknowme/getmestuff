@@ -2,5 +2,7 @@
   "/mix.js": "/mix.js",
   "/css/main.css": "/css/main.css",
   "/js/app.js": "/js/app.js",
-  "/js/plugins/skrollr.js": "/js/plugins/skrollr.js"
+  "/js/plugins/skrollr.js": "/js/plugins/skrollr.js",
+  "/admin/app.js": "/admin/app.js",
+  "/admin/admin.css": "/admin/admin.css"
 }

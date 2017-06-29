@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>GMS Admin | @yield('title')</title>
 
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/plugins/images/favicon.png') }}">
@@ -23,6 +25,7 @@
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{ asset('admin/css/colors/default.css') }}" id="theme" rel="stylesheet">
+    <link href="{{ asset('admin/admin.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -57,44 +60,46 @@
     @yield('header')
 </head>
 <body>
-@if (count($errors) > 0)
-    <div class="alert alert-danger alert-error-custom alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Error!</strong>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-    @if ((!strpos(request()->path(), 'abc')) && (!strpos(request()->path(), 'password')))
-
-        @include('admin.layouts.header')
-
-        @include('admin.layouts.sidebar_left')
-
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">@yield('page_title')</h4> </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        {{ breadcrumbs() }}
-                    </div>
-                </div>
-                @yield('content')
-                @include('admin.layouts.right-sidebar')
+    <div id="app">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger alert-error-custom alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            @include('admin.layouts.footer')
-        </div>
+        @endif
 
-    @else
+        @if ((!strpos(request()->path(), 'abc')) && (!strpos(request()->path(), 'password')))
 
-        @yield('login')
+            @include('admin.layouts.header')
 
-    @endif
+            @include('admin.layouts.sidebar_left')
 
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row bg-title">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <h4 class="page-title">@yield('page_title')</h4> </div>
+                        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                            {{ breadcrumbs() }}
+                        </div>
+                    </div>
+                    @yield('content')
+                    @include('admin.layouts.right-sidebar')
+                </div>
+                @include('admin.layouts.footer')
+            </div>
+
+        @else
+
+            @yield('login')
+
+        @endif
+    </div>
     <!-- jQuery -->
     <script src="{{ asset('admin/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -111,11 +116,11 @@
     <script src="{{ asset('admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
     <!--Style Switcher -->
     <script src="{{ asset('admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
-
     <script src="{{ asset('admin/js/custom.min.js') }}"></script>
 
     @yield('scripts')
 
+    <script src="{{ asset('admin/app.js') }}"></script>
 </body>
 
 </html>

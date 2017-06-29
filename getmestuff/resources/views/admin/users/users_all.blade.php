@@ -22,7 +22,7 @@
                 @else
                     <h3 class="box-title">Manage Most Active Users</h3>
                 @endif
-                <div id="basicgrid"></div>
+                <div id="exampleCustomGridField"></div>
             </div>
         </div>
     </div>

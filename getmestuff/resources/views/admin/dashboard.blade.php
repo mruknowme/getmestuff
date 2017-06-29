@@ -1,12 +1,12 @@
 @extends('admin.layouts.admin')
 
 @section('header')
-    <title>GMS Admin | Dashboard</title>
-
     <!-- vector map CSS -->
     <link href="{{ asset('admin/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/plugins/bower_components/css-chart/css-chart.css') }}" rel="stylesheet">
 @endsection
+
+@section('title', 'Dashboard')
 
 @section('page_title', 'Dashboard')
 

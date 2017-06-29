@@ -46,6 +46,6 @@ $factory->define(App\Wish::class, function (Faker\Generator $faker) {
             'country' => $faker->country
         ],
         'current_amount' => $faker->numberBetween(0, 4000),
-        'amount_needed' => 5000
+        'amount_needed' => 5000,
     ];
 });

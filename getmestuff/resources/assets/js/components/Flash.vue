@@ -1,6 +1,6 @@
 <template>
     <div class="alert" :class="classType" v-show="show">
-        <h4><strong>{{ type }}</strong></h4>
+        <strong>{{ type }}</strong>
         <ul>
             <li v-for="item in items" v-text="item"></li>
         </ul>
@@ -19,7 +19,7 @@
             }
         },
         created() {
-            if (this.message) {
+            if (this.message[0] != null) {
                 this.flash(this.message, 'success');
             } else if (this.error) {
                 this.flash(this.error, 'error');

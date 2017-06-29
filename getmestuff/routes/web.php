@@ -59,40 +59,50 @@ Route::get('/notifications', function () {
 })->middleware('auth');
 
 Route::middleware(['auth', 'ajax'])->group(function () {
-    Route::patch('/home/update', 'UserSettingsController@update');
-    Route::post('/home/achievements', 'HomeController@prizes');
+    $this->patch('/home/update', 'UserSettingsController@update');
+    $this->post('/home/achievements', 'HomeController@prizes');
 
-    Route::post('/topup', 'PurchasesController@store');
-    Route::get('/braintree/token', 'PurchasesController@token');
+    $this->post('/topup', 'PurchasesController@store');
+    $this->get('/braintree/token', 'PurchasesController@token');
 
-    Route::post('/wishes/refresh', 'WishesController@show');
-    Route::post('/wishes', 'WishesController@store')->middleware('donated');
-    Route::patch('/wish/{wish}/donate', 'WishesController@update');
-    Route::patch('/wish/{wish}/report', 'WishesController@report');
+    $this->post('/wishes/refresh', 'WishesController@show');
+    $this->post('/wishes', 'WishesController@store')->middleware('donated');
+    $this->patch('/wish/{wish}/donate', 'WishesController@update');
+    $this->patch('/wish/{wish}/report', 'WishesController@report');
 
-    Route::get('/unread', 'NotificationsController@show');
-    Route::get('/donations', 'NotificationsController@index');
-    Route::get('/payments', 'PurchasesController@index');
+    $this->get('/unread', 'NotificationsController@show');
+    $this->get('/donations', 'NotificationsController@index');
+    $this->get('/payments', 'PurchasesController@index');
 });
 
 Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group(function () {
-    Route::get('/dashboard', 'AdminsController@index');
-    Route::get('/settings', 'AdminsController@settings');
-    Route::get('/payment', 'AdminsController@payment');
+    $this->get('/dashboard', 'AdminsController@index');
+    $this->get('/settings', 'AdminsController@settings');
+    $this->get('/payment', 'AdminsController@payment');
 
-    Route::get('/wishes', 'WishesController@all');
-    Route::get('/wishes/reported', 'WishesController@reported');
-    Route::get('/wishes/settings', 'WishesController@settings');
+    $this->get('/wishes', function () {
+        return view('admin.wishes.wishes_all');
+    });
+    $this->get('/wishes/reported', 'WishesController@reported');
+    $this->get('/wishes/settings', 'WishesController@settings');
 
-    Route::get('/users', 'UsersController@all');
-    Route::get('/users/active', 'UsersController@active');
-    Route::get('/users/settings', 'UsersController@settings');
+    $this->get('/users', 'UsersController@all');
+    $this->get('/users/active', 'UsersController@active');
+    $this->get('/users/settings', 'UsersController@settings');
 
-    Route::get('/achievements', 'AchievementsController@all');
-    Route::get('/achievements/new', 'AchievementsController@new');
-    Route::get('/achievements/settings', 'AchievementsController@settings');
+    $this->get('/achievements', 'AchievementsController@all');
+    $this->get('/achievements/new', 'AchievementsController@new');
+    $this->get('/achievements/settings', 'AchievementsController@settings');
 
-    Route::get('/tickets', 'TicketsController@all');
-    Route::get('/tickets/open', 'TicketsController@open');
-    Route::get('/tickets/create', 'TicketsController@create');
+    $this->get('/tickets', 'TicketsController@all');
+    $this->get('/tickets/open', 'TicketsController@open');
+    $this->get('/tickets/create', 'TicketsController@create');
 });
+
+Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/api')->group(function () {
+    $this->get('/wishes', 'WishesController@all');
+    $this->post('/wishes/{wish}', 'WishesController@update');
+    $this->delete('/wishes/{wish}', 'WishesController@destroy');
+});
+
+Route::get('/test', 'Admin\WishesController@all');

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Wish extends Model
 {
     protected $fillable = [
-        'user_id', 'item', 'url', 'current_amount', 'amount_needed', 'address', 'donated', 'completed', 'priority'
+        'user_id', 'item', 'url', 'current_amount',
+        'amount_needed', 'address', 'donated', 'completed',
+        'priority', 'validated'
     ];
 
     protected $casts = [
@@ -95,5 +97,10 @@ class Wish extends Model
             ->whereRaw("donated NOT LIKE '%\"user_id\": $id%' OR donated IS NULL AND reported NOT LIKE '%user.$id.report%' OR reported IS NULL")
             ->limit(1)
             ->get();
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
     }
 }
