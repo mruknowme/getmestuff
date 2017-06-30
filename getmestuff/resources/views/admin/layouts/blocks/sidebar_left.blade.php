@@ -19,22 +19,24 @@
             <li class="nav-small-cap m-t-10">--- Main Menu</li>
             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-magic-wand"></i> <span class="hide-menu"> Wishes <span class="fa arrow"></span> <span class="label label-rouded label-red pull-right">4</span></span></a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/wishes">All</a> </li>
-                    <li> <a href="/admin/wishes/reported">Reported</a> </li>
+                    <li> <a href="/admin/wishes">All Wishes</a> </li>
+                    <li> <a href="/admin/wishes/reported">Reported Wishes</a> </li>
+                    <li> <a href="/admin/wishes/address">Wishes' Address</a> </li>
                     <li> <a href="/admin/wishes/settings">Settings</a> </li>
                 </ul>
             </li>
             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-people"></i> <span class="hide-menu"> Users <span class="fa arrow"></span> </span></a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/users">All</a> </li>
-                    <li> <a href="/admin/users/active">Most active</a> </li>
+                    <li> <a href="/admin/users">All Users</a> </li>
+                    <li> <a href="/admin/users/activity">User Activity</a> </li>
                     <li> <a href="/admin/users/settings">Settings</a> </li>
                 </ul>
             </li>
             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-badge"></i> <span class="hide-menu"> Achievements <span class="fa arrow"></span> </span></a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/achievements">All</a> </li>
-                    <li> <a href="/admin/achievements/new">New</a> </li>
+                    <li> <a href="/admin/achievements">All Achievements</a> </li>
+                    <li> <a href="/admin/achievements/prizes">All Prizes</a> </li>
+                    <li> <a href="/admin/achievements/new">New Achievement</a> </li>
                     <li> <a href="/admin/achievements/settings">Settings</a> </li>
                 </ul>
             </li>

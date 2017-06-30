@@ -13,7 +13,7 @@ class UpdateWishForm extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->isAdmin();
+        return ($this->user() && $this->user()->isAdmin());
     }
 
     /**

@@ -81,16 +81,30 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     $this->get('/payment', 'AdminsController@payment');
 
     $this->get('/wishes', function () {
-        return view('admin.wishes.wishes_all');
+        return view('admin.wishes.wishes_table');
     });
-    $this->get('/wishes/reported', 'WishesController@reported');
+    $this->get('/wishes/reported', function () {
+        return view('admin.wishes.wishes_table');
+    });
+    $this->get('/wishes/address', function () {
+        return view('admin.wishes.wishes_table');
+    });
     $this->get('/wishes/settings', 'WishesController@settings');
 
-    $this->get('/users', 'UsersController@all');
-    $this->get('/users/active', 'UsersController@active');
+    $this->get('/users', function () {
+        return view('admin.users.users_table');
+    });
+    $this->get('/users/activity', function () {
+        return view('admin.users.users_table');
+    });
     $this->get('/users/settings', 'UsersController@settings');
 
-    $this->get('/achievements', 'AchievementsController@all');
+    $this->get('/achievements', function () {
+        return view('admin.achievements.achievements_table');
+    });
+    $this->get('/achievements/prizes', function () {
+        return view('admin.achievements.achievements_table');
+    });
     $this->get('/achievements/new', 'AchievementsController@new');
     $this->get('/achievements/settings', 'AchievementsController@settings');
 
@@ -101,8 +115,25 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 
 Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/api')->group(function () {
     $this->get('/wishes', 'WishesController@all');
+    $this->get('/wishes/reported', 'WishesController@reported');
+    $this->get('/wishes/address', 'WishesController@address');
+
     $this->post('/wishes/{wish}', 'WishesController@update');
     $this->delete('/wishes/{wish}', 'WishesController@destroy');
+    $this->delete('/wishes/address/{wish}', 'WishesController@destroy');
+    $this->post('/wishes/address/{wish}', 'WishesController@updateAddress');
+
+    $this->get('/users', 'UsersController@all');
+    $this->get('/users/activity', 'UsersController@activity');
+
+    $this->post('/users/{user}', 'UsersController@update');
+    $this->delete('/users/{user}', 'UsersController@destroy');
+    $this->post('/users/activity/{user}', 'UsersController@updateActivity');
+    $this->delete('/users/activity/{user}', 'UsersController@destroy');
+
+    $this->get('/achievements', 'AchievementsController@all');
+    $this->post('/achievements/{achievement}', 'AchievementsController@update');
+    $this->delete('/achievements/{achievement}', 'AchievementsController@destroy');
 });
 
-Route::get('/test', 'Admin\WishesController@all');
+Route::get('/test', 'Admin\AchievementsController@all');

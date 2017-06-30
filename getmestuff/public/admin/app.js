@@ -534,6 +534,27 @@ module.exports = function dispatchRequest(config) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -568,7 +589,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['isEditing', 'dataSet', 'url'],
+    props: {
+        isEditing: {
+            default: false
+        },
+        dataSet: {
+            default: false
+        },
+        url: {
+            default: ''
+        },
+        radio: {
+            default: function _default() {
+                return [];
+            },
+            required: false
+        },
+        skip: {
+            default: function _default() {
+                return [];
+            },
+            required: false
+        },
+        textarea: {
+            default: function _default() {
+                return [];
+            },
+            required: false
+        },
+        select: {
+            default: function _default() {
+                return [];
+            },
+            required: false
+        }
+    },
     data: function data() {
         return {
             items: this.dataSet,
@@ -597,6 +652,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(this.url + '/' + this.dataSet.id, this.formData).then(function () {
                 _this.$emit('updated', _this.formData);
             });
+        },
+        checkRadio: function checkRadio(key) {
+            return !(this.radio.indexOf(key) >= 0);
+        },
+        checkTextarea: function checkTextarea(key) {
+            return !(this.textarea.indexOf(key) >= 0);
+        },
+        skipTheseFields: function skipTheseFields(key) {
+            return !(this.skip.indexOf(key) >= 0);
+        },
+        checkIfObject: function checkIfObject(key) {
+            return this.items[key] !== null && _typeof(this.items[key]) === 'object';
+        },
+        checkSelect: function checkSelect(key) {
+            return key in this.select;
+        },
+        checkFields: function checkFields(key) {
+            return this.checkRadio(key) && !this.checkIfObject(key) && this.checkTextarea(key) && !this.checkSelect(key);
         }
     }
 });
@@ -628,12 +701,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { Editor: __WEBPACK_IMPORTED_MODULE_0__Editor_vue___default.a },
-    props: ['url', 'columns'],
+    props: {
+        get: {
+            defualt: '',
+            required: true
+        },
+        post: {
+            defualt: '',
+            reuired: true
+        },
+        columns: {
+            defualt: function defualt() {
+                return [];
+            },
+            reqired: true
+        },
+        checkboxes: {
+            default: function _default() {
+                return [];
+            },
+            required: false
+        },
+        radio: {
+            default: function _default() {
+                return [];
+            },
+            required: false
+        },
+        skip: {
+            default: function _default() {
+                return [];
+            },
+            required: false
+        },
+        textarea: {
+            defualt: function defualt() {
+                return [];
+            },
+            required: false
+        },
+        select: {
+            defualt: function defualt() {
+                return [];
+            },
+            required: false
+        }
+    },
     data: function data() {
         return {
             items: false,
@@ -641,8 +763,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             table: '',
             tableData: false,
             anySelected: false,
-            editing: false
+            editing: false,
+            renderColumns: []
         };
+    },
+    created: function created() {
+        var _this = this;
+
+        this.columns.forEach(function (value) {
+            if (_this.checkboxes.indexOf(value.data) >= 0) {
+                value.render = function (data) {
+                    return _this.checkbox(data);
+                };
+            }
+            _this.renderColumns.push(value);
+        });
     },
     mounted: function mounted() {
         this.createTable();
@@ -650,24 +785,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         createTable: function createTable() {
-            var _this = this;
+            var _this2 = this;
 
             this.table = $('#table').DataTable({
                 processing: true,
                 serverSide: true,
                 lengthChange: false,
-                ajax: this.url,
+                ajax: this.get,
                 rowId: 'id',
-                columns: this.columns,
+                colReorder: true,
+                columns: this.renderColumns,
                 select: true
             });
 
             this.table.on('select', function () {
-                _this.anySelected = true;
+                _this2.anySelected = true;
             });
 
             this.table.on('deselect', function () {
-                _this.anySelected = false;
+                _this2.anySelected = false;
             });
         },
         editRow: function editRow() {
@@ -683,14 +819,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.editing = false;
         },
         deleteRow: function deleteRow() {
-            var _this2 = this;
+            var _this3 = this;
 
             var id = this.table.row({ selected: true }).id();
             if (confirm('Are you sure you want to delete this row?')) {
-                axios.delete(this.url + '/' + id).then(function () {
-                    _this2.table.row({ rowId: id }).remove().draw();
-                    _this2.anySelected = false;
+                axios.delete(this.post + '/' + id).then(function () {
+                    _this3.table.row({ rowId: id }).remove().draw();
+                    _this3.anySelected = false;
                 });
+            }
+        },
+        checkbox: function checkbox(data) {
+            if (data == 0) {
+                return "<input type='checkbox' class='gms-checkbox' disabled/>";
+            } else {
+                return "<input type='checkbox' class='gms-checkbox' checked disabled/>";
             }
         }
     }
@@ -1383,7 +1526,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "form"
     }
   }, _vm._l((_vm.items), function(item, key) {
-    return (key != 'id' && key != 'created_at') ? _c('div', [(key != 'validated' && key != 'completed') ? _c('div', {
+    return (_vm.skipTheseFields(key)) ? _c('div', [(_vm.checkFields(key)) ? _c('div', {
       staticClass: "form-group"
     }, [_c('label', {
       attrs: {
@@ -1418,11 +1561,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }
-    })]) : _c('div', {
+    })]) : (!_vm.checkRadio(key)) ? _c('div', {
       staticClass: "form-group"
     }, [_c('label', {
       domProps: {
-        "textContent": _vm._s(key)
+        "textContent": _vm._s(_vm.formatString(key))
       }
     }), _vm._v(" "), _c('div', [_c('label', {
       staticClass: "radio-inline"
@@ -1482,7 +1625,124 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }
-    }), _vm._v("\n                            False\n                        ")])])])]) : _vm._e()
+    }), _vm._v("\n                            False\n                        ")])])]) : (_vm.checkIfObject(key)) ? _c('div', {
+      staticClass: "address"
+    }, _vm._l((item), function(address, name) {
+      return _c('div', {
+        staticClass: "form-group"
+      }, [_c('label', {
+        attrs: {
+          "for": name
+        },
+        domProps: {
+          "textContent": _vm._s(_vm.formatString(name))
+        }
+      }), _vm._v(" "), _c('input', {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: (_vm.formData[key][name]),
+          expression: "formData[key][name]"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          "name": name
+        },
+        domProps: {
+          "value": (_vm.formData[key][name])
+        },
+        on: {
+          "input": function($event) {
+            if ($event.target.composing) { return; }
+            var $$exp = _vm.formData[key],
+              $$idx = name;
+            if (!Array.isArray($$exp)) {
+              _vm.formData[key][name] = $event.target.value
+            } else {
+              $$exp.splice($$idx, 1, $event.target.value)
+            }
+          }
+        }
+      })])
+    })) : (!_vm.checkTextarea(key)) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('label', {
+      attrs: {
+        "for": key
+      },
+      domProps: {
+        "textContent": _vm._s(_vm.formatString(key))
+      }
+    }), _vm._v(" "), _c('textarea', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.formData[key]),
+        expression: "formData[key]"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        "name": key,
+        "rows": "2"
+      },
+      domProps: {
+        "value": (_vm.formData[key])
+      },
+      on: {
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          var $$exp = _vm.formData,
+            $$idx = key;
+          if (!Array.isArray($$exp)) {
+            _vm.formData[key] = $event.target.value
+          } else {
+            $$exp.splice($$idx, 1, $event.target.value)
+          }
+        }
+      }
+    })]) : (_vm.checkSelect(key)) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('lable', {
+      attrs: {
+        "for": key
+      },
+      domProps: {
+        "textContent": _vm._s(_vm.formatString(key))
+      }
+    }), _vm._v(" "), _c('select', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.formData[key]),
+        expression: "formData[key]"
+      }],
+      staticClass: "form-control",
+      on: {
+        "change": function($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+            return o.selected
+          }).map(function(o) {
+            var val = "_value" in o ? o._value : o.value;
+            return val
+          });
+          var $$exp = _vm.formData,
+            $$idx = key;
+          if (!Array.isArray($$exp)) {
+            _vm.formData[key] = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+          } else {
+            $$exp.splice($$idx, 1, $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+          }
+        }
+      }
+    }, _vm._l((_vm.select[key]), function(slug, option) {
+      return _c('option', {
+        domProps: {
+          "selected": item == option,
+          "value": option,
+          "textContent": _vm._s(slug)
+        }
+      })
+    }))], 1) : _vm._e()]) : _vm._e()
   }))]), _vm._v(" "), _c('div', {
     staticClass: "panel-footer"
   }, [_c('button', {
@@ -1611,7 +1871,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "isEditing": _vm.editing,
       "dataSet": _vm.tableData,
-      "url": _vm.url
+      "url": _vm.post,
+      "radio": _vm.radio,
+      "skip": _vm.skip,
+      "textarea": _vm.textarea,
+      "select": _vm.select
     },
     on: {
       "updated": _vm.updateRow,
@@ -1640,7 +1904,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "table"
     }
-  }, [_c('thead', [_vm._t("table_head")], 2)])], 1)
+  }, [_c('thead', [_vm._t("header")], 2)])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

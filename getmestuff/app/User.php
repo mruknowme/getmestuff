@@ -29,16 +29,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-        'token',
-        'ip_address',
-        'address',
-        'number_of_wishes',
-        'ref_link',
-        'ref_id'
+        'first_name', 'last_name', 'email', 'password', 'token',
+        'verified', 'balance', 'status', 'address', 'ip_address',
+        'donated', 'allowed_wishes', 'number_of_wishes', 'ref_link', 'ref_id',
+        'priority', 'amount_donated', 'amount_received', 'points', 'admin'
     ];
 
     /**

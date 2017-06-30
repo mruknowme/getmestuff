@@ -64,6 +64,9 @@ class HomeController extends Controller
 
     public function test()
     {
-        breadcrumbs();
+        $table = explode('/', request()->path());
+
+        $table = end($table);
+        return $table;
     }
 }

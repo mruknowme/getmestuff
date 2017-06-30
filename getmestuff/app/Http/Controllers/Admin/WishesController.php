@@ -2,31 +2,47 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Filters\WishesFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UpdateWishAddressFrom;
 use App\Http\Requests\Admin\UpdateWishForm;
 use App\Wish;
 use Yajra\Datatables\Facades\Datatables;
 
 class WishesController extends Controller
 {
+    protected $visibleForAdmins = [
+        'user_id', 'url', 'address', 'priority', 'validated', 'completed', 'donated', 'updated_at'
+    ];
+
     public function all(Wish $wish)
     {
-        $wish = $wish->newQuery()
-            ->select(
-                'id', 'item', 'current_amount', 'amount_needed', 'validated', 'completed', 'created_at'
-            )->get();
-
-        $wish = $this->refactorData($wish);
-
-        $wish = Datatables::of($wish)->make(true);
-
-        return $wish;
+        return Datatables::of(
+            $this->refactorData(
+                $this->getWishes($wish, [
+                    'id', 'item', 'current_amount', 'amount_needed', 'validated', 'completed', 'created_at'
+                ])
+            )
+        )->make(true);
     }
 
-    public function reported()
+    public function reported(Wish $wish)
     {
-        return view('admin.wishes.wishes_all');
+        return Datatables::of(
+            $this->refactorData(
+                $this->getWishes(
+                    $wish, ['id', 'user_id', 'item', 'validated', 'created_at'], false, ['validated', false]
+                )
+            )
+        )->make(true);
+    }
+
+    public function address(Wish $wish)
+    {
+        return Datatables::of(
+            $this->refactorAddressData(
+                $this->getWishes($wish, ['id', 'item', 'user_id', 'address', 'created_at'], ['id', 'email'])
+            )
+        )->make(true);
     }
 
     public function settings()
@@ -39,6 +55,13 @@ class WishesController extends Controller
         $form->save($wish);
     }
 
+    public function updateAddress(Wish $wish, UpdateWishAddressFrom $form)
+    {
+        $form->save($wish);
+
+        return response(['status' => 'Information has been saved']);
+    }
+
     public function destroy(Wish $wish)
     {
         $wish->delete();
@@ -48,15 +71,44 @@ class WishesController extends Controller
 
     protected function refactorData($wish)
     {
-        $wish = $wish->makeVisible([
-            'user_id', 'url', 'address', 'priority', 'validated', 'completed', 'donated', 'updated_at'
-        ])->map(function ($item) {
-            return collect($item)->map(function ($attr, $key) use ($item) {
-                if ($key == 'created_at') return $item->created_at->format('d-m-Y');
-                elseif ($key == 'updated_at') return $item->updated_at->format('d-m-Y');
-                return $attr;
-            });
+        return $wish->map(function ($item) {
+            $data = collect($item);
+            if (isset($data['created_at'])) $data['created_at'] = $item->created_at->format('d-m-Y');
+            if (isset($data['updated_at'])) $data['updated_at'] = $item->updated_at->format('d-m-Y');
+            return $data;
         });
-        return $wish;
+    }
+
+    protected function refactorAddressData($wish)
+    {
+        return $wish->map(function ($item) {
+            $data = collect($item);
+            $data['user'] = $data['user']['email'];
+            $data['created_at'] = $item->created_at->format('d-m-Y');
+
+            if (is_null($data['address']['address_two'])) {
+                $address = $data['address']['address_one'];
+            } else {
+                $address = $data['address']['address_one'] . ' ' . $data['address']['address_two'];
+            }
+
+            $data['address'] = array_add($data['address'], 'address_line', $address);
+
+            return $data;
+        });
+    }
+
+    protected function getWishes(Wish $wish, $select, $with = false, $where = false)
+    {
+        if ($with) {
+            return $wish->select($select)->with(['user' => function ($query) use ($with) {
+                $query->select($with);
+            }])->get()->makeVisible($this->visibleForAdmins);
+        }
+
+        if ($where) {
+            return $wish->select($select)->where([$where])->get()->makeVisible($this->visibleForAdmins);
+        }
+        return $wish->select($select)->get()->makeVisible($this->visibleForAdmins);
     }
 }

@@ -2,7 +2,11 @@
     <div>
         <editor :isEditing="editing"
                 :dataSet="tableData"
-                :url="url"
+                :url="post"
+                :radio="radio"
+                :skip="skip"
+                :textarea="textarea"
+                :select="select"
                 @updated="updateRow"
                 @cancel="closeEditor"></editor>
         <div class="button-group">
@@ -11,7 +15,7 @@
         </div>
         <table id="table" class="table table-bordered">
             <thead>
-            <slot name="table_head"></slot>
+                <slot name="header"></slot>
             </thead>
         </table>
     </div>
@@ -21,7 +25,52 @@
 
     export default {
         components: { Editor },
-        props: ['url', 'columns'],
+        props: {
+            get: {
+                defualt: '',
+                required: true
+            },
+            post: {
+                defualt: '',
+                reuired: true
+            },
+            columns: {
+                defualt: () => {
+                    return [];
+                },
+                reqired: true
+            },
+            checkboxes: {
+                default: () => {
+                    return [];
+                },
+                required: false
+            },
+            radio: {
+                default: () => {
+                    return [];
+                },
+                required: false
+            },
+            skip: {
+                default: () => {
+                    return [];
+                },
+                required: false
+            },
+            textarea: {
+                defualt: () => {
+                    return [];
+                },
+                required: false
+            },
+            select: {
+                defualt: () => {
+                    return [];
+                },
+                required: false
+            }
+        },
         data() {
             return {
                 items: false,
@@ -29,8 +78,19 @@
                 table: '',
                 tableData: false,
                 anySelected: false,
-                editing: false
+                editing: false,
+                renderColumns: []
             }
+        },
+        created() {
+            this.columns.forEach((value) => {
+                if (this.checkboxes.indexOf(value.data) >= 0) {
+                    value.render = (data) => {
+                        return this.checkbox(data);
+                    };
+                }
+                this.renderColumns.push(value);
+            });
         },
         mounted() {
             this.createTable();
@@ -41,10 +101,11 @@
                      processing: true,
                      serverSide: true,
                      lengthChange: false,
-                     ajax: this.url,
+                     ajax: this.get,
                      rowId: 'id',
-                     columns: this.columns,
-                    select: true,
+                     colReorder: true,
+                     columns: this.renderColumns,
+                     select: true,
                  });
 
                  this.table.on('select', () => {
@@ -70,10 +131,17 @@
             deleteRow() {
                 let id = this.table.row({selected:true}).id();
                 if (confirm('Are you sure you want to delete this row?')) {
-                    axios.delete(this.url+'/'+id).then(() => {
+                    axios.delete(this.post+'/'+id).then(() => {
                         this.table.row({rowId:id}).remove().draw();
                         this.anySelected = false;
                     });
+                }
+            },
+            checkbox(data) {
+                if (data == 0) {
+                    return "<input type='checkbox' class='gms-checkbox' disabled/>";
+                } else {
+                    return "<input type='checkbox' class='gms-checkbox' checked disabled/>";
                 }
             }
         }
