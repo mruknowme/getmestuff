@@ -17,6 +17,8 @@ window.flash = function (message, type = 'success') {
 };
 
 Vue.component('my-table', require('./components/MyTable.vue'));
+Vue.component('settings', require('./components/settings/Settings.vue'));
+// Vue.component('search-array', require('./components/settings/SearchArray.vue'));
 
 const app = new Vue({
     el: '#app'

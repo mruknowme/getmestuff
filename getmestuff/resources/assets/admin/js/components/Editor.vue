@@ -5,21 +5,21 @@
             <span @click="closeEditor">&#10006;</span>
         </div>
         <div class="panel-body">
-            <form id="form">
+            <form id="form" @keydown.13="submitForm">
                 <div v-for="(item, key) in items" v-if="skipTheseFields(key)">
                     <div class="form-group" v-if="checkFields(key)">
                         <label :for="key" v-text="formatString(key)"></label>
-                        <input :name="key" class="form-control" v-model="formData[key]">
+                        <input :name="key" class="form-control" v-model="items[key]" autocomplete="off">
                     </div>
                     <div class="form-group" v-else-if="!checkRadio(key)">
                         <label v-text="formatString(key)"></label>
                         <div>
                             <label class="radio-inline">
-                                <input type="radio" :name="key" value="1" :checked="item" v-model="formData[key]">
+                                <input type="radio" :name="key" value="1" :checked="item" v-model="items[key]">
                                 True
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" :name="key" value="0" :checked="!item" v-model="formData[key]">
+                                <input type="radio" :name="key" value="0" :checked="!item" v-model="items[key]">
                                 False
                             </label>
                         </div>
@@ -27,16 +27,16 @@
                     <div class="address" v-else-if="checkIfObject(key)">
                         <div class="form-group" v-for="(address, name) in item">
                             <label :for="name" v-text="formatString(name)"></label>
-                            <input :name="name" class="form-control" v-model="formData[key][name]">
+                            <input :name="name" class="form-control" v-model="items[key][name]">
                         </div>
                     </div>
                     <div class="form-group" v-else-if="!checkTextarea(key)">
                         <label :for="key" v-text="formatString(key)"></label>
-                        <textarea :name="key" rows="2" class="form-control" v-model="formData[key]"></textarea>
+                        <textarea :name="key" rows="2" class="form-control" v-model="items[key]"></textarea>
                     </div>
                     <div class="form-group" v-else-if="checkSelect(key)">
-                        <lable :for="key" v-text="formatString(key)"></lable>
-                        <select class="form-control" v-model="formData[key]">
+                        <label :for="key" v-text="formatString(key)"></label>
+                        <select class="form-control" v-model="items[key]">
                             <option v-for="(slug, option) in select[key]"
                                     :selected="item == option"
                                     :value="option"
@@ -89,14 +89,10 @@
         data() {
             return {
                 items: this.dataSet,
-                formData: {}
             }
         },
         watch: {
             dataSet() {
-                for (let item in this.dataSet) {
-                    this.formData[item] = this.dataSet[item];
-                }
                 this.items = this.dataSet;
             }
         },
@@ -108,8 +104,8 @@
                 this.$emit('cancel');
             },
             submitForm() {
-                axios.post(this.url +'/'+ this.dataSet.id, this.formData).then(() => {
-                    this.$emit('updated', this.formData);
+                axios.post(this.url +'/'+ this.dataSet.id, this.items).then(() => {
+                    this.$emit('updated', this.items);
                 });
             },
             checkRadio(key) {
@@ -132,7 +128,7 @@
                         && !this.checkIfObject(key)
                         && this.checkTextarea(key)
                         && !this.checkSelect(key));
-            }
+            },
         }
     }
 </script>

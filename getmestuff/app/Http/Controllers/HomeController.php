@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Achievement;
 use App\Events\AchievementsOutdated;
+use App\GlobalSettings;
 use App\Http\Requests\PrizesForm;
-use App\Traits\UserAchievements;
+use App\Inspections\BannedWords;
+use App\Rules\MaxWish;
 use App\User;
 use App\Wish;
 use App\Prize;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -64,9 +65,14 @@ class HomeController extends Controller
 
     public function test()
     {
-        $table = explode('/', request()->path());
+        $search = array_search('iPhone', GlobalSettings::getSettings('word_replacements')->data);
 
-        $table = end($table);
-        return $table;
+        dd($search);
+
+        return $search;
+//        GlobalSettings::create([
+//            'setting' => 'wish_replace',
+//            'data' => ['iPhone', 'iPad', 'iPod']
+//        ]);
     }
 }

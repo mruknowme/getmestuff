@@ -7,9 +7,11 @@
                         { data: 'need' },
                         { data: 'prize' },
                         { data: 'renew_slug' },
-                        { data: 'type' }
+                        { data: 'type' },
+                        { data: 'updated_at' },
+                        { data: 'created_at'}
                      ]"
-          :skip="['id', 'renew_slug']"
+          :skip="['id', 'renew_slug', 'updated_at', 'created_at']"
           :select="{ 'renew' : {0:'None', 1:'Monthly', 2:'Instant'} }"
           :textarea="['description']">
     <template slot="header">
@@ -20,6 +22,8 @@
             <th>Points</th>
             <th>Renew</th>
             <th>Type</th>
+            <th>Updated</th>
+            <th>Created</th>
         </tr>
     </template>
 </my-table>

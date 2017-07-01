@@ -123,6 +123,10 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->delete('/wishes/address/{wish}', 'WishesController@destroy');
     $this->post('/wishes/address/{wish}', 'WishesController@updateAddress');
 
+    $this->post('/replacement', 'GlobalSettingsController@searchReplacementWords');
+    $this->delete('/replacement/{key}', 'GlobalSettingsController@deleteReplacementWord');
+    $this->patch('/replacement', 'GlobalSettingsController@addReplacementWord');
+
     $this->get('/users', 'UsersController@all');
     $this->get('/users/activity', 'UsersController@activity');
 
@@ -131,9 +135,15 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->post('/users/activity/{user}', 'UsersController@updateActivity');
     $this->delete('/users/activity/{user}', 'UsersController@destroy');
 
-    $this->get('/achievements', 'AchievementsController@all');
-    $this->post('/achievements/{achievement}', 'AchievementsController@update');
-    $this->delete('/achievements/{achievement}', 'AchievementsController@destroy');
+    $this->get('/achievements', 'AchievementsController@allAchievements');
+    $this->post('/achievements/{achievement}', 'AchievementsController@updateAchievement');
+    $this->delete('/achievements/{achievement}', 'AchievementsController@destroyAchievement');
+
+    $this->get('/achievements/prizes', 'AchievementsController@allPrizes');
+    $this->post('/achievements/prizes/{prize}', 'AchievementsController@updatePrize');
+    $this->delete('/achievements/prizes/{prize}', 'AchievementsController@destroyPrize');
+
+    $this->post('/banned/search', 'GlobalSettingsController@searchBannedWords');
 });
 
-Route::get('/test', 'Admin\AchievementsController@all');
+Route::get('/test', 'HomeController@test');

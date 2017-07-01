@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrizesTable extends Migration
+class CreateGlobalSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePrizesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prizes', function (Blueprint $table) {
+        Schema::create('global_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('item');
-            $table->string('body');
-            $table->integer('price');
-            $table->integer('bought');
+            $table->string('setting');
+            $table->json('data');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +28,6 @@ class CreatePrizesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prizes');
+        Schema::dropIfExists('global_settings');
     }
 }

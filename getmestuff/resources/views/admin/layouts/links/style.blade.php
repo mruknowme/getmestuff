@@ -49,15 +49,13 @@
 
     .panel {
         position: absolute;
-        top: 20px;
+        top: -70px;
         right: 5%;
         z-index: 100;
         width: 50%;
         margin: 70px auto;
         border: 1px solid #000;
         box-shadow: 20px 20px rgba(100, 100, 100, 0.3);
-        max-height: 750px;
-        overflow: scroll;
     }
 
     .panel-heading {
@@ -72,6 +70,11 @@
         cursor: pointer;
     }
 
+    .panel-body {
+        max-height: 300px;
+        overflow: scroll;
+    }
+
     .panel-heading span:hover {
         opacity: 1;
     }
@@ -81,7 +84,41 @@
         margin: 0 auto;
     }
 
-    th, td {
-        max-width: 300px;
+    .flex {
+        display: flex;
+    }
+
+    .start {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .wrap {
+        flex-wrap: wrap;
+    }
+
+    .search-list .label {
+        font-size: 1.5rem;
+        margin: 0 5px 5px 0;
+    }
+
+    .delete {
+        cursor: pointer;
+        opacity: 0.5;
+        font-size: 1.2rem;
+        margin-left: 5px;
+    }
+
+    .delete:hover {
+        opacity: 1;
+    }
+
+    .between {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .a-end {
+        align-items: flex-end;
     }
 </style>

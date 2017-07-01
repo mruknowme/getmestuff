@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GlobalSettings;
 use App\Http\Requests\DonateForm;
 use App\Http\Requests\WishesForm;
 use App\Wish;
@@ -108,8 +109,8 @@ class WishesController extends Controller
         $reports = collect(json_decode($wish->reported))->push(sprintf("user.%s.report", $request->user()->id));
         $wish->reported = $reports->toJson();
 
-        if ($reports->count() >= 10) {
-            $wish->validated = 1;
+        if ($reports->count() >= GlobalSettings::getSettings('number_of_reports_before_notifications')->data[0]) {
+            $wish->validated = 0;
         }
 
         $wish->save();

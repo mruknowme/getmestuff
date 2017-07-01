@@ -22,7 +22,7 @@ class CreateWishesTable extends Migration
             $table->integer('amount_needed')->unsigned();
             $table->integer('current_amount')->unsigned()->default(0);
             $table->tinyInteger('priority')->unsigned()->default(1);
-            $table->boolean('validated')->unsigned()->default(0);
+            $table->boolean('validated')->unsigned()->default(1);
             $table->boolean('completed')->unsigned()->default(0);
             $table->json('donated')->nullable();
             $table->json('reported')->nullable();

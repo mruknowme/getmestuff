@@ -87,6 +87,9 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    'spamfree'             => 'The :attribute contains banned words or spam.',
+    'maxwish'              => 'The :attribute field may contain only :num_words.',
+    'uniquearray'          => 'This value already exists.',
 
     /*
     |--------------------------------------------------------------------------
@@ -116,6 +119,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'item' => 'wish',
+    ],
 
 ];

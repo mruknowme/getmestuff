@@ -15,62 +15,12 @@
 @section('page_title', 'Wishes Settings')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-6 col-xs-6">
-            <div class="white-box">
-                <div class="form-group">
-                    <label class="control-label">Max number of words in title</label>
-                    <input id="tch3_22" type="text" value="5" name="tch3_22" data-bts-button-down-class="btn btn-default btn-outline" data-bts-button-up-class="btn btn-default btn-outline">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-6">
-            <div class="white-box">
-                <div class="form-group">
-                    <label class="control-label">Default wishes allowance</label>
-                    <input id="tch3_22" type="text" value="2" name="tch3_22" data-bts-button-down-class="btn btn-default btn-outline" data-bts-button-up-class="btn btn-default btn-outline">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="white-box">
-                <h3 class="box-title m-b-0">Banned words</h3>
-                <select multiple data-role="tagsinput">
-                    <option value="Word">Word</option>
-                    <option value="Word2">Word2</option>
-                    <option value="Word3">Word3</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="white-box">
-                <h3 class="box-title m-b-0">Word replacements</h3>
-                <select multiple data-role="tagsinput">
-                    <option value="iPhone">iPhone</option>
-                    <option value="iPad">iPad</option>
-                    <option value="iPod">iPod</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="white-box">
-                <div class="form-group">
-                    <label class="control-label">Notify about donations above</label>
-                    <input type="checkbox" checked class="js-switch" data-color="#99d683" data-size="small" />
-                    <input id="tch3_22" type="text" value="100" name="tch3_22" data-bts-button-down-class="btn btn-default btn-outline" data-bts-button-up-class="btn btn-default btn-outline">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <div class="white-box">
-                <div class="form-group">
-                    <label class="control-label">Number of reports before notification</label>
-                    <input type="checkbox" checked class="js-switch" data-color="#99d683" data-size="small" />
-                    <input id="tch3_22" type="text" value="5" name="tch3_22" data-bts-button-down-class="btn btn-default btn-outline" data-bts-button-up-class="btn btn-default btn-outline">
-                </div>
-            </div>
-        </div>
-    </div>
+    <settings :data="{{ $settings }}"
+              :checkboxes="['number_of_reports_before_notifications']"
+              :search="{
+              'word_replacements' : {'id':5,'post':'/admin/api/replacement'}
+              }"
+              post="/admin/api/wishes/settings"></settings>
 @endsection
 
 @section('scripts')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\GlobalSettings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateWishAddressFrom;
 use App\Http\Requests\Admin\UpdateWishForm;
@@ -47,7 +48,10 @@ class WishesController extends Controller
 
     public function settings()
     {
-        return view('admin.wishes.wishes_settings');
+        $settings = GlobalSettings::getSettingsGroup([
+            'max_number_of_words_in_title', 'default_wishes_allowance', 'number_of_reports_before_notifications'
+        ]);
+        return view('admin.wishes.wishes_settings', compact('settings'));
     }
 
     public function update(Wish $wish, UpdateWishForm $form)

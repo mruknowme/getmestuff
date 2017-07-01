@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 248);
+/******/ 	return __webpack_require__(__webpack_require__.s = 257);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -434,7 +434,9 @@ window.flash = function (message) {
     window.events.$emit('flash', [message, type]);
 };
 
-Vue.component('my-table', __webpack_require__(194));
+Vue.component('my-table', __webpack_require__(197));
+Vue.component('settings', __webpack_require__(200));
+// Vue.component('search-array', require('./components/settings/SearchArray.vue'));
 
 var app = new Vue({
     el: '#app'
@@ -626,16 +628,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     },
     data: function data() {
         return {
-            items: this.dataSet,
-            formData: {}
+            items: this.dataSet
         };
     },
 
     watch: {
         dataSet: function dataSet() {
-            for (var item in this.dataSet) {
-                this.formData[item] = this.dataSet[item];
-            }
             this.items = this.dataSet;
         }
     },
@@ -649,8 +647,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         submitForm: function submitForm() {
             var _this = this;
 
-            axios.post(this.url + '/' + this.dataSet.id, this.formData).then(function () {
-                _this.$emit('updated', _this.formData);
+            axios.post(this.url + '/' + this.dataSet.id, this.items).then(function () {
+                _this.$emit('updated', _this.items);
             });
         },
         checkRadio: function checkRadio(key) {
@@ -681,7 +679,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Editor_vue__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Editor_vue__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Editor_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Editor_vue__);
 //
 //
@@ -841,6 +839,217 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ 156:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['isCheckbox', 'data', 'post'],
+    data: function data() {
+        return {
+            value: this.data.data
+        };
+    },
+
+    methods: {
+        formatString: function formatString(str) {
+            return str.replace(/_/g, ' ');
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 157:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['label', 'data'],
+    data: function data() {
+        return {
+            searchItem: '',
+            items: false,
+            add: false
+        };
+    },
+
+    methods: {
+        formatString: function formatString(str) {
+            return str.replace(/_/g, ' ');
+        },
+        searchArray: function searchArray() {
+            var _this = this;
+
+            if (this.searchItem != '') {
+                axios.post(this.data.post, {
+                    search: this.searchItem
+                }).then(function (_ref) {
+                    var data = _ref.data;
+
+                    if (data.length > 0) {
+                        _this.items = data;
+                        _this.add = false;
+                    } else {
+                        _this.add = true;
+                        _this.items = false;
+                    }
+                });
+            } else {
+                this.items = false;
+                this.add = false;
+            }
+        },
+        deleteItem: function deleteItem(item, key) {
+            var _this2 = this;
+
+            console.log(key);
+            if (confirm('Are you sure you want to delete this item?')) {
+                axios.delete(this.data.post + '/' + item).then(function () {
+                    _this2.items.splice(key, 1);
+                    if (_this2.items.length == 0) {
+                        _this2.searchItem = '';
+                    }
+                });
+            }
+        },
+        checkItems: function checkItems() {
+            if (this.searchItem == '') {
+                this.items = false;
+                this.add = false;
+            }
+        },
+        addItem: function addItem() {
+            var _this3 = this;
+
+            if (confirm('Are you sure you want to add this item?')) {
+                axios.patch(this.data.post, {
+                    item: this.searchItem
+                }).then(function () {
+                    _this3.items = [_this3.searchItem];
+                    _this3.add = false;
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NumberInput_vue__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NumberInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NumberInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchArray_vue__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchArray_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SearchArray_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: { NumberInput: __WEBPACK_IMPORTED_MODULE_0__NumberInput_vue___default.a, SearchArray: __WEBPACK_IMPORTED_MODULE_1__SearchArray_vue___default.a },
+    props: ['data', 'checkboxes', 'post', 'search']
+});
+
+/***/ }),
+
 /***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -973,14 +1182,14 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 193:
+/***/ 196:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(154),
   /* template */
-  __webpack_require__(228),
+  __webpack_require__(236),
   /* scopeId */
   null,
   /* cssModules */
@@ -1008,14 +1217,14 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 194:
+/***/ 197:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(155),
   /* template */
-  __webpack_require__(241),
+  __webpack_require__(249),
   /* scopeId */
   null,
   /* cssModules */
@@ -1035,6 +1244,76 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-c2b75e50", Component.options)
   } else {
     hotAPI.reload("data-v-c2b75e50", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 198:
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(156),
+  /* template */
+  __webpack_require__(251),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/dan/code/getmestuff/resources/assets/admin/js/components/settings/NumberInput.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] NumberInput.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f8223e22", Component.options)
+  } else {
+    hotAPI.reload("data-v-f8223e22", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 199:
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(157),
+  /* template */
+  __webpack_require__(226),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/dan/code/getmestuff/resources/assets/admin/js/components/settings/SearchArray.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SearchArray.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-04fccc7f", Component.options)
+  } else {
+    hotAPI.reload("data-v-04fccc7f", Component.options)
   }
 })()}
 
@@ -1426,6 +1705,41 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
+/***/ 200:
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(158),
+  /* template */
+  __webpack_require__(230),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/dan/code/getmestuff/resources/assets/admin/js/components/settings/Settings.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Settings.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-19bfe025", Component.options)
+  } else {
+    hotAPI.reload("data-v-19bfe025", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1507,259 +1821,95 @@ module.exports = (
 
 /***/ }),
 
-/***/ 228:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.isEditing) ? _c('div', {
-    staticClass: "panel panel-info"
+  return _c('div', {
+    staticClass: "col-md-6 col-xs-12"
   }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_c('h3', [_vm._v("Edit Row")]), _vm._v(" "), _c('span', {
-    on: {
-      "click": _vm.closeEditor
-    }
-  }, [_vm._v("✖")])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
+    staticClass: "white-box"
   }, [_c('form', {
-    attrs: {
-      "id": "form"
+    staticClass: "form",
+    on: {
+      "keydown": function($event) {
+        if (!('button' in $event) && $event.keyCode !== 13) { return null; }
+        $event.preventDefault();
+        _vm.searchArray($event)
+      }
     }
-  }, _vm._l((_vm.items), function(item, key) {
-    return (_vm.skipTheseFields(key)) ? _c('div', [(_vm.checkFields(key)) ? _c('div', {
-      staticClass: "form-group"
-    }, [_c('label', {
-      attrs: {
-        "for": key
-      },
-      domProps: {
-        "textContent": _vm._s(_vm.formatString(key))
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label",
+    domProps: {
+      "textContent": _vm._s(_vm.formatString(_vm.label))
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "input-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.searchItem),
+      expression: "searchItem"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "placeholder": "Search..."
+    },
+    domProps: {
+      "value": (_vm.searchItem)
+    },
+    on: {
+      "blur": _vm.checkItems,
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.searchItem = $event.target.value
       }
-    }), _vm._v(" "), _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.formData[key]),
-        expression: "formData[key]"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        "name": key
-      },
-      domProps: {
-        "value": (_vm.formData[key])
-      },
-      on: {
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          var $$exp = _vm.formData,
-            $$idx = key;
-          if (!Array.isArray($$exp)) {
-            _vm.formData[key] = $event.target.value
-          } else {
-            $$exp.splice($$idx, 1, $event.target.value)
-          }
-        }
-      }
-    })]) : (!_vm.checkRadio(key)) ? _c('div', {
-      staticClass: "form-group"
-    }, [_c('label', {
-      domProps: {
-        "textContent": _vm._s(_vm.formatString(key))
-      }
-    }), _vm._v(" "), _c('div', [_c('label', {
-      staticClass: "radio-inline"
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.formData[key]),
-        expression: "formData[key]"
-      }],
-      attrs: {
-        "type": "radio",
-        "name": key,
-        "value": "1"
-      },
-      domProps: {
-        "checked": item,
-        "checked": _vm._q(_vm.formData[key], "1")
-      },
-      on: {
-        "__c": function($event) {
-          var $$exp = _vm.formData,
-            $$idx = key;
-          if (!Array.isArray($$exp)) {
-            _vm.formData[key] = "1"
-          } else {
-            $$exp.splice($$idx, 1, "1")
-          }
-        }
-      }
-    }), _vm._v("\n                            True\n                        ")]), _vm._v(" "), _c('label', {
-      staticClass: "radio-inline"
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.formData[key]),
-        expression: "formData[key]"
-      }],
-      attrs: {
-        "type": "radio",
-        "name": key,
-        "value": "0"
-      },
-      domProps: {
-        "checked": !item,
-        "checked": _vm._q(_vm.formData[key], "0")
-      },
-      on: {
-        "__c": function($event) {
-          var $$exp = _vm.formData,
-            $$idx = key;
-          if (!Array.isArray($$exp)) {
-            _vm.formData[key] = "0"
-          } else {
-            $$exp.splice($$idx, 1, "0")
-          }
-        }
-      }
-    }), _vm._v("\n                            False\n                        ")])])]) : (_vm.checkIfObject(key)) ? _c('div', {
-      staticClass: "address"
-    }, _vm._l((item), function(address, name) {
-      return _c('div', {
-        staticClass: "form-group"
-      }, [_c('label', {
-        attrs: {
-          "for": name
-        },
-        domProps: {
-          "textContent": _vm._s(_vm.formatString(name))
-        }
-      }), _vm._v(" "), _c('input', {
-        directives: [{
-          name: "model",
-          rawName: "v-model",
-          value: (_vm.formData[key][name]),
-          expression: "formData[key][name]"
-        }],
-        staticClass: "form-control",
-        attrs: {
-          "name": name
-        },
-        domProps: {
-          "value": (_vm.formData[key][name])
-        },
-        on: {
-          "input": function($event) {
-            if ($event.target.composing) { return; }
-            var $$exp = _vm.formData[key],
-              $$idx = name;
-            if (!Array.isArray($$exp)) {
-              _vm.formData[key][name] = $event.target.value
-            } else {
-              $$exp.splice($$idx, 1, $event.target.value)
-            }
-          }
-        }
-      })])
-    })) : (!_vm.checkTextarea(key)) ? _c('div', {
-      staticClass: "form-group"
-    }, [_c('label', {
-      attrs: {
-        "for": key
-      },
-      domProps: {
-        "textContent": _vm._s(_vm.formatString(key))
-      }
-    }), _vm._v(" "), _c('textarea', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.formData[key]),
-        expression: "formData[key]"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        "name": key,
-        "rows": "2"
-      },
-      domProps: {
-        "value": (_vm.formData[key])
-      },
-      on: {
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          var $$exp = _vm.formData,
-            $$idx = key;
-          if (!Array.isArray($$exp)) {
-            _vm.formData[key] = $event.target.value
-          } else {
-            $$exp.splice($$idx, 1, $event.target.value)
-          }
-        }
-      }
-    })]) : (_vm.checkSelect(key)) ? _c('div', {
-      staticClass: "form-group"
-    }, [_c('lable', {
-      attrs: {
-        "for": key
-      },
-      domProps: {
-        "textContent": _vm._s(_vm.formatString(key))
-      }
-    }), _vm._v(" "), _c('select', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.formData[key]),
-        expression: "formData[key]"
-      }],
-      staticClass: "form-control",
-      on: {
-        "change": function($event) {
-          var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-            return o.selected
-          }).map(function(o) {
-            var val = "_value" in o ? o._value : o.value;
-            return val
-          });
-          var $$exp = _vm.formData,
-            $$idx = key;
-          if (!Array.isArray($$exp)) {
-            _vm.formData[key] = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-          } else {
-            $$exp.splice($$idx, 1, $event.target.multiple ? $$selectedVal : $$selectedVal[0])
-          }
-        }
-      }
-    }, _vm._l((_vm.select[key]), function(slug, option) {
-      return _c('option', {
-        domProps: {
-          "selected": item == option,
-          "value": option,
-          "textContent": _vm._s(slug)
-        }
-      })
-    }))], 1) : _vm._e()]) : _vm._e()
-  }))]), _vm._v(" "), _c('div', {
-    staticClass: "panel-footer"
+    }
+  }), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.add),
+      expression: "add"
+    }],
+    staticClass: "input-group-btn"
   }, [_c('button', {
-    staticClass: "btn btn-primary",
+    staticClass: "btn btn-success",
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.submitForm($event)
+        _vm.addItem($event)
       }
     }
-  }, [_vm._v("Submit")])])]) : _vm._e()
+  }, [_vm._v("Add")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "flex start wrap search-list"
+  }, _vm._l((_vm.items), function(item, key) {
+    return _c('span', {
+      key: key,
+      staticClass: "item label label-info flex between"
+    }, [_c('span', {
+      domProps: {
+        "textContent": _vm._s(item)
+      }
+    }), _vm._v(" "), _c('span', {
+      staticClass: "delete",
+      on: {
+        "click": function($event) {
+          _vm.deleteItem(item, key)
+        }
+      }
+    }, [_vm._v("✖")])])
+  }))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-398f3ff2", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-04fccc7f", module.exports)
   }
 }
 
@@ -1784,6 +1934,306 @@ module.exports = function isAbsoluteURL(url) {
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
 };
 
+
+/***/ }),
+
+/***/ 230:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._l((_vm.data), function(item, key) {
+    return _c('number-input', {
+      key: item.id,
+      attrs: {
+        "data": item,
+        "isCheckbox": _vm.checkboxes.indexOf(key) >= 0,
+        "post": _vm.post
+      }
+    })
+  }), _vm._v(" "), _vm._l((_vm.search), function(item, key) {
+    return _c('search-array', {
+      key: item.id,
+      attrs: {
+        "label": key,
+        "data": item
+      }
+    })
+  })], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-19bfe025", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 236:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return (_vm.isEditing) ? _c('div', {
+    staticClass: "panel panel-info"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_c('h3', [_vm._v("Edit Row")]), _vm._v(" "), _c('span', {
+    on: {
+      "click": _vm.closeEditor
+    }
+  }, [_vm._v("✖")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('form', {
+    attrs: {
+      "id": "form"
+    },
+    on: {
+      "keydown": function($event) {
+        if (!('button' in $event) && $event.keyCode !== 13) { return null; }
+        _vm.submitForm($event)
+      }
+    }
+  }, _vm._l((_vm.items), function(item, key) {
+    return (_vm.skipTheseFields(key)) ? _c('div', [(_vm.checkFields(key)) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('label', {
+      attrs: {
+        "for": key
+      },
+      domProps: {
+        "textContent": _vm._s(_vm.formatString(key))
+      }
+    }), _vm._v(" "), _c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.items[key]),
+        expression: "items[key]"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        "name": key,
+        "autocomplete": "off"
+      },
+      domProps: {
+        "value": (_vm.items[key])
+      },
+      on: {
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          var $$exp = _vm.items,
+            $$idx = key;
+          if (!Array.isArray($$exp)) {
+            _vm.items[key] = $event.target.value
+          } else {
+            $$exp.splice($$idx, 1, $event.target.value)
+          }
+        }
+      }
+    })]) : (!_vm.checkRadio(key)) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('label', {
+      domProps: {
+        "textContent": _vm._s(_vm.formatString(key))
+      }
+    }), _vm._v(" "), _c('div', [_c('label', {
+      staticClass: "radio-inline"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.items[key]),
+        expression: "items[key]"
+      }],
+      attrs: {
+        "type": "radio",
+        "name": key,
+        "value": "1"
+      },
+      domProps: {
+        "checked": item,
+        "checked": _vm._q(_vm.items[key], "1")
+      },
+      on: {
+        "__c": function($event) {
+          var $$exp = _vm.items,
+            $$idx = key;
+          if (!Array.isArray($$exp)) {
+            _vm.items[key] = "1"
+          } else {
+            $$exp.splice($$idx, 1, "1")
+          }
+        }
+      }
+    }), _vm._v("\n                            True\n                        ")]), _vm._v(" "), _c('label', {
+      staticClass: "radio-inline"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.items[key]),
+        expression: "items[key]"
+      }],
+      attrs: {
+        "type": "radio",
+        "name": key,
+        "value": "0"
+      },
+      domProps: {
+        "checked": !item,
+        "checked": _vm._q(_vm.items[key], "0")
+      },
+      on: {
+        "__c": function($event) {
+          var $$exp = _vm.items,
+            $$idx = key;
+          if (!Array.isArray($$exp)) {
+            _vm.items[key] = "0"
+          } else {
+            $$exp.splice($$idx, 1, "0")
+          }
+        }
+      }
+    }), _vm._v("\n                            False\n                        ")])])]) : (_vm.checkIfObject(key)) ? _c('div', {
+      staticClass: "address"
+    }, _vm._l((item), function(address, name) {
+      return _c('div', {
+        staticClass: "form-group"
+      }, [_c('label', {
+        attrs: {
+          "for": name
+        },
+        domProps: {
+          "textContent": _vm._s(_vm.formatString(name))
+        }
+      }), _vm._v(" "), _c('input', {
+        directives: [{
+          name: "model",
+          rawName: "v-model",
+          value: (_vm.items[key][name]),
+          expression: "items[key][name]"
+        }],
+        staticClass: "form-control",
+        attrs: {
+          "name": name
+        },
+        domProps: {
+          "value": (_vm.items[key][name])
+        },
+        on: {
+          "input": function($event) {
+            if ($event.target.composing) { return; }
+            var $$exp = _vm.items[key],
+              $$idx = name;
+            if (!Array.isArray($$exp)) {
+              _vm.items[key][name] = $event.target.value
+            } else {
+              $$exp.splice($$idx, 1, $event.target.value)
+            }
+          }
+        }
+      })])
+    })) : (!_vm.checkTextarea(key)) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('label', {
+      attrs: {
+        "for": key
+      },
+      domProps: {
+        "textContent": _vm._s(_vm.formatString(key))
+      }
+    }), _vm._v(" "), _c('textarea', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.items[key]),
+        expression: "items[key]"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        "name": key,
+        "rows": "2"
+      },
+      domProps: {
+        "value": (_vm.items[key])
+      },
+      on: {
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          var $$exp = _vm.items,
+            $$idx = key;
+          if (!Array.isArray($$exp)) {
+            _vm.items[key] = $event.target.value
+          } else {
+            $$exp.splice($$idx, 1, $event.target.value)
+          }
+        }
+      }
+    })]) : (_vm.checkSelect(key)) ? _c('div', {
+      staticClass: "form-group"
+    }, [_c('label', {
+      attrs: {
+        "for": key
+      },
+      domProps: {
+        "textContent": _vm._s(_vm.formatString(key))
+      }
+    }), _vm._v(" "), _c('select', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.items[key]),
+        expression: "items[key]"
+      }],
+      staticClass: "form-control",
+      on: {
+        "change": function($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+            return o.selected
+          }).map(function(o) {
+            var val = "_value" in o ? o._value : o.value;
+            return val
+          });
+          var $$exp = _vm.items,
+            $$idx = key;
+          if (!Array.isArray($$exp)) {
+            _vm.items[key] = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+          } else {
+            $$exp.splice($$idx, 1, $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+          }
+        }
+      }
+    }, _vm._l((_vm.select[key]), function(slug, option) {
+      return _c('option', {
+        domProps: {
+          "selected": item == option,
+          "value": option,
+          "textContent": _vm._s(slug)
+        }
+      })
+    }))]) : _vm._e()]) : _vm._e()
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "panel-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.submitForm($event)
+      }
+    }
+  }, [_vm._v("Submit")])])]) : _vm._e()
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-398f3ff2", module.exports)
+  }
+}
 
 /***/ }),
 
@@ -1863,7 +2313,7 @@ module.exports = (
 
 /***/ }),
 
-/***/ 241:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1916,14 +2366,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 248:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(149);
-
-
-/***/ }),
-
 /***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1940,6 +2382,72 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
     }
   });
 };
+
+
+/***/ }),
+
+/***/ 251:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-6 col-xs-12"
+  }, [_c('div', {
+    staticClass: "white-box"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label",
+    domProps: {
+      "textContent": _vm._s(_vm.formatString(_vm.data.setting))
+    }
+  }, [_vm._v("Notify about donations above")]), _vm._v(" "), (_vm.isCheckbox) ? _c('input', {
+    staticClass: "js-switch",
+    attrs: {
+      "type": "checkbox",
+      "checked": "",
+      "data-color": "#99d683",
+      "data-size": "small"
+    }
+  }) : _vm._e(), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.value),
+      expression: "value"
+    }],
+    attrs: {
+      "id": "tch3_22",
+      "type": "text",
+      "name": "tch3_22",
+      "data-bts-button-down-class": "btn btn-default btn-outline",
+      "data-bts-button-up-class": "btn btn-default btn-outline"
+    },
+    domProps: {
+      "value": (_vm.value)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.value = $event.target.value
+      }
+    }
+  })])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-f8223e22", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 257:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(149);
 
 
 /***/ }),

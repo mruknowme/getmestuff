@@ -74,7 +74,7 @@ class Wish extends Model
         $wishes = static::orderBy(\DB::raw('-LOG(1.0 - RAND()) / `priority`'))
             ->where('user_id', '!=', $id)
             ->where('completed', "!=", 1)
-            ->where('validated', '=', 0)
+            ->where('validated', '=', 1)
             ->whereRaw(
                 "(reported IS NULL OR reported NOT LIKE '%user.$id.report%') AND 
                 (donated IS NULL OR donated NOT LIKE '%\"user_id\": $id%')"
