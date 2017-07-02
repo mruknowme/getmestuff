@@ -109,7 +109,7 @@ class WishesController extends Controller
         $reports = collect(json_decode($wish->reported))->push(sprintf("user.%s.report", $request->user()->id));
         $wish->reported = $reports->toJson();
 
-        if ($reports->count() >= GlobalSettings::getSettings('number_of_reports_before_notifications')->data[0]) {
+        if ($reports->count() >= GlobalSettings::getSettings('number_of_reports_before_notifications')->data['value']) {
             $wish->validated = 0;
         }
 

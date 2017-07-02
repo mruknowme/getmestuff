@@ -17,7 +17,15 @@
         </div>
         <ul class="nav" id="side-menu">
             <li class="nav-small-cap m-t-10">--- Main Menu</li>
-            <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-magic-wand"></i> <span class="hide-menu"> Wishes <span class="fa arrow"></span> <span class="label label-rouded label-red pull-right">4</span></span></a>
+            <li>
+                <a href="javascript:void(0);" class="waves-effect">
+                    <i class="icon-magic-wand"></i>
+                    <span class="hide-menu">Wishes<span class="fa arrow"></span>
+                        @if ($reported > 0)
+                            <span class="label label-rouded label-red pull-right">{{ $reported }}</span>
+                        @endif
+                    </span>
+                </a>
                 <ul class="nav nav-second-level">
                     <li> <a href="/admin/wishes">All Wishes</a> </li>
                     <li> <a href="/admin/wishes/reported">Reported Wishes</a> </li>

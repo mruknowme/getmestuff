@@ -26,13 +26,6 @@ class GlobalSettings extends Model
 
         $settingsGroup = $settingsGroup->get();
 
-        $settingsGroup = collect($settingsGroup)->map(function ($item) {
-            return collect($item)->only('id', 'data', 'setting')->map(function ($data, $key) {
-                if ($key == 'data') return $data[0];
-                return $data;
-            });
-        })->keyBy('setting');
-
         return $settingsGroup;
     }
 }

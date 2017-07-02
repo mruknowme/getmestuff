@@ -49,7 +49,8 @@ class WishesController extends Controller
     public function settings()
     {
         $settings = GlobalSettings::getSettingsGroup([
-            'max_number_of_words_in_title', 'default_wishes_allowance', 'number_of_reports_before_notifications'
+            'max_number_of_words_in_title', 'default_wishes_allowance', 'number_of_reports_before_notifications',
+            'word_replacements'
         ]);
         return view('admin.wishes.wishes_settings', compact('settings'));
     }

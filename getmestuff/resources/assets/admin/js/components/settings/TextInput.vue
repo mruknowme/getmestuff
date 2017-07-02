@@ -8,13 +8,8 @@
                    :checked="checkboxValue"
             />
             <div class="input-group">
-                <span class="input-group-btn">
-                    <button @click="changeValue(true)" class="btn btn-default btn-outline" type="button">-</button>
-                </span>
-                <input type="text" class="form-control" v-model="value" @keydown.13="enterChangeValue">
-                <span class="input-group-btn">
-                    <button @click="changeValue(false)" class="btn btn-default btn-outline" type="button">+</button>
-                </span>
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-font"></i></span>
+                <input @keydown.13="enterChangeValue" type="text" class="form-control" placeholder="Reason" v-model="value" aria-describedby="basic-addon1">
             </div>
         </div>
     </div>
@@ -26,7 +21,6 @@
             return {
                 value: this.data.data.value,
                 checkboxValue: this.data.data.on,
-                timeout: null
             }
         },
         mounted() {
@@ -52,21 +46,6 @@
                 axios.patch('/admin/api/settings/switch/'+this.data.setting, {
                     state: this.checkboxValue
                 });
-            },
-            changeValue(decrementValue) {
-                if (decrementValue) {
-                    if (this.value > 1) this.value--;
-                } else {
-                    this.value++;
-                }
-
-                clearTimeout(this.timeout);
-
-                this.timeout = setTimeout(() => {
-                    axios.patch('/admin/api/settings/'+this.data.setting, {
-                        value: this.value
-                    });
-                }, 800);
             },
             enterChangeValue() {
                 axios.patch('/admin/api/settings/'+this.data.setting, {

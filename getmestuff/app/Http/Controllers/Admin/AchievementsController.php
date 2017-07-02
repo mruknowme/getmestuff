@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Achievement;
+use App\GlobalSettings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateAchievementForm;
 use App\Http\Requests\Admin\UpdatePrizeForm;
@@ -40,7 +41,10 @@ class AchievementsController extends Controller
     }
 
     public function settings() {
-        return view('admin.achievements.achievements_settings');
+        $settings = GlobalSettings::getSettingsGroup([
+            'disable_achievements'
+        ]);
+        return view('admin.achievements.achievements_settings', compact('settings'));
     }
 
     public function updateAchievement(Achievement $achievement, UpdateAchievementForm $form)

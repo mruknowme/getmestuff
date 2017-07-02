@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\GlobalSettings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateUserActivityFrom;
 use App\Http\Requests\Admin\UpdateUserFrom;
@@ -41,7 +42,11 @@ class UsersController extends Controller
 
     public function settings()
     {
-        return view('admin.users.users_settings');
+        $settings = GlobalSettings::getSettingsGroup([
+            'banned_emails', 'min_length', 'weak_passwords',
+            'number_of_points_to_be_added'
+        ]);
+        return view('admin.users.users_settings', compact('settings'));
     }
 
     public function update(User $user, UpdateUserFrom $form)

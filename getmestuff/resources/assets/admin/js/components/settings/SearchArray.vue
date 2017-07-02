@@ -1,29 +1,27 @@
 <template>
-    <div class="col-md-6 col-xs-12">
-        <div class="white-box">
-            <form class="form" @keydown.prevent.13="searchArray">
-                <div class="form-group">
-                    <label class="control-label" v-text="formatString(label)"></label>
-                    <div class="input-group">
-                        <input @blur="checkItems" v-model="searchItem" type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn" v-show="add">
-                            <button @click.prevent="addItem" class="btn btn-success">Add</button>
-                        </span>
-                    </div>
+    <div class="white-box">
+        <form class="form" @keydown.prevent.13="searchArray">
+            <div class="form-group">
+                <label class="control-label" v-text="formatString(label)"></label>
+                <div class="input-group">
+                    <input @blur="checkItems" v-model="searchItem" type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn" v-show="add">
+                        <button @click.prevent="addItem" class="btn btn-success">Add</button>
+                    </span>
                 </div>
-            </form>
-            <div class="flex start wrap search-list">
-                <span v-for="(item, key) in items" class="item label label-info flex between" :key="key">
-                    <span v-text="item"></span>
-                    <span @click="deleteItem(item, key)" class="delete">&#10006;</span>
-                </span>
             </div>
+        </form>
+        <div class="flex start wrap search-list">
+            <span v-for="(item, key) in items" class="item label label-info flex between" :key="key">
+                <span v-text="item"></span>
+                <span @click="deleteItem(item, key)" class="delete">&#10006;</span>
+            </span>
         </div>
     </div>
 </template>
 <script>
     export default {
-        props: ['label', 'data'],
+        props: ['label'],
         data() {
             return {
                 searchItem: '',
@@ -37,7 +35,7 @@
             },
             searchArray() {
                 if (this.searchItem != '') {
-                    axios.post(this.data.post, {
+                    axios.post('/admin/api/search/'+this.label, {
                         search: this.searchItem
                     }).then(({data}) => {
                         if (data.length > 0) {
@@ -56,7 +54,7 @@
             deleteItem(item, key) {
                 console.log(key);
                 if (confirm('Are you sure you want to delete this item?')) {
-                    axios.delete(this.data.post+'/'+item).then(() => {
+                    axios.delete('/admin/api/search/'+this.label+'/'+item).then(() => {
                         this.items.splice(key, 1);
                         if (this.items.length == 0) {
                             this.searchItem = '';
@@ -72,7 +70,7 @@
             },
             addItem() {
                 if (confirm('Are you sure you want to add this item?')) {
-                    axios.patch(this.data.post, {
+                    axios.patch('/admin/api/search/'+this.label, {
                         item: this.searchItem
                     }).then(() => {
                         this.items = [this.searchItem];

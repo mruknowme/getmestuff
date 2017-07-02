@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Wish;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
 
@@ -25,6 +26,13 @@ class AppServiceProvider extends ServiceProvider
             $table = end($table);
 
             $view->with('table', $table);
+        });
+
+        view()->composer([
+            'admin.layouts.blocks.sidebar_left'
+        ], function ($view) {
+            $count = Wish::query()->where('validated', false)->count();
+            $view->with('reported', $count);
         });
 
         \Validator::extend('spamfree', '\App\Rules\SpamFree@passes');

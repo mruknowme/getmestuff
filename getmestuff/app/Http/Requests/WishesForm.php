@@ -57,7 +57,7 @@ class WishesForm extends FormRequest
 
     protected function canRequestWish()
     {
-        $allowed_wishes = GlobalSettings::getSettings('default_wishes_allowance')->data[0] + $this->user()->allowed_wishes;
+        $allowed_wishes = GlobalSettings::getSettings('default_wishes_allowance')->data['value'] + $this->user()->allowed_wishes;
         return ($this->user()->wishes->where('completed', '==', 0)->count() == $allowed_wishes
             || $this->user()->number_of_wishes == 0);
     }

@@ -855,18 +855,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['isCheckbox', 'data', 'post'],
+    props: ['data'],
     data: function data() {
         return {
-            value: this.data.data
+            value: this.data.data.value,
+            checkboxValue: this.data.data.on,
+            timeout: null
         };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.data.data.checkbox) {
+            var elem = this.$el.querySelector('.js-switch');
+            var init = new Switchery(elem, {
+                color: "#99d683",
+                size: "small",
+                disabled: false
+            });
+
+            this.$el.querySelector('.switchery').onclick = function () {
+                _this.checkboxValue = elem.checked;
+                _this.switcher();
+            };
+        }
     },
 
     methods: {
         formatString: function formatString(str) {
             return str.replace(/_/g, ' ');
+        },
+        switcher: function switcher() {
+            axios.patch('/admin/api/settings/switch/' + this.data.setting, {
+                state: this.checkboxValue
+            });
+        },
+        changeValue: function changeValue(decrementValue) {
+            var _this2 = this;
+
+            if (decrementValue) {
+                if (this.value > 1) this.value--;
+            } else {
+                this.value++;
+            }
+
+            clearTimeout(this.timeout);
+
+            this.timeout = setTimeout(function () {
+                axios.patch('/admin/api/settings/' + _this2.data.setting, {
+                    value: _this2.value
+                });
+            }, 800);
+        },
+        enterChangeValue: function enterChangeValue() {
+            axios.patch('/admin/api/settings/' + this.data.setting, {
+                value: this.value
+            });
         }
     }
 });
@@ -899,11 +955,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['label', 'data'],
+    props: ['label'],
     data: function data() {
         return {
             searchItem: '',
@@ -920,7 +974,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             if (this.searchItem != '') {
-                axios.post(this.data.post, {
+                axios.post('/admin/api/search/' + this.label, {
                     search: this.searchItem
                 }).then(function (_ref) {
                     var data = _ref.data;
@@ -943,7 +997,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             console.log(key);
             if (confirm('Are you sure you want to delete this item?')) {
-                axios.delete(this.data.post + '/' + item).then(function () {
+                axios.delete('/admin/api/search/' + this.label + '/' + item).then(function () {
                     _this2.items.splice(key, 1);
                     if (_this2.items.length == 0) {
                         _this2.searchItem = '';
@@ -961,7 +1015,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('Are you sure you want to add this item?')) {
-                axios.patch(this.data.post, {
+                axios.patch('/admin/api/search/' + this.label, {
                     item: this.searchItem
                 }).then(function () {
                     _this3.items = [_this3.searchItem];
@@ -983,6 +1037,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NumberInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NumberInput_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchArray_vue__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchArray_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SearchArray_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TextInput_vue__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TextInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__TextInput_vue__);
 //
 //
 //
@@ -1026,26 +1082,75 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { NumberInput: __WEBPACK_IMPORTED_MODULE_0__NumberInput_vue___default.a, SearchArray: __WEBPACK_IMPORTED_MODULE_1__SearchArray_vue___default.a },
-    props: ['data', 'checkboxes', 'post', 'search']
+    components: { NumberInput: __WEBPACK_IMPORTED_MODULE_0__NumberInput_vue___default.a, SearchArray: __WEBPACK_IMPORTED_MODULE_1__SearchArray_vue___default.a, TextInput: __WEBPACK_IMPORTED_MODULE_2__TextInput_vue___default.a },
+    props: {
+        data: {
+            required: true
+        },
+        search: {
+            required: false,
+            default: function _default() {
+                return [];
+            }
+        },
+        group: {
+            required: false,
+            default: function _default() {
+                return [];
+            }
+        },
+        text: {
+            required: false,
+            default: function _default() {
+                return [];
+            }
+        }
+    },
+    data: function data() {
+        return {
+            grouped: false,
+            items: this.data
+        };
+    },
+    created: function created() {
+        if (this.isGroup()) {
+            this.sortArray();
+        }
+    },
+
+    methods: {
+        checkSearch: function checkSearch(item) {
+            return this.search.indexOf(item) >= 0;
+        },
+        checkText: function checkText(item) {
+            return this.text.indexOf(item) >= 0;
+        },
+        sortArray: function sortArray() {
+            this.grouped = this.group;
+            this.sortItems();
+        },
+        addItemsToGroup: function addItemsToGroup(number) {
+            return this.items.splice(0, number);
+        },
+        sortItems: function sortItems() {
+            for (var item in this.group) {
+                if (this.items.length > 0) {
+                    this.grouped[item].items = this.addItemsToGroup(this.group[item].items);
+                }
+            }
+        },
+        isGroup: function isGroup() {
+            return this.group.length > 0;
+        },
+        largeOrSmall: function largeOrSmall(groupedItems, key) {
+            return groupedItems.length % 2 != 0 && key == 0;
+        }
+    }
 });
 
 /***/ }),
@@ -1826,8 +1931,6 @@ module.exports = (
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "col-md-6 col-xs-12"
-  }, [_c('div', {
     staticClass: "white-box"
   }, [_c('form', {
     staticClass: "form",
@@ -1903,7 +2006,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v("✖")])])
-  }))])])
+  }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -1941,26 +2044,65 @@ module.exports = function isAbsoluteURL(url) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return (!this.isGroup()) ? _c('div', {
     staticClass: "row"
-  }, [_vm._l((_vm.data), function(item, key) {
-    return _c('number-input', {
-      key: item.id,
-      attrs: {
-        "data": item,
-        "isCheckbox": _vm.checkboxes.indexOf(key) >= 0,
-        "post": _vm.post
+  }, _vm._l((_vm.data), function(item, key) {
+    return _c('div', {
+      staticClass: "col-xs-12",
+      class: {
+        'col-md-12': _vm.largeOrSmall(_vm.data, key), 'col-md-6': !_vm.largeOrSmall(_vm.data, key)
       }
-    })
-  }), _vm._v(" "), _vm._l((_vm.search), function(item, key) {
-    return _c('search-array', {
+    }, [(!_vm.checkSearch(item.setting) && !_vm.checkText(item.setting)) ? _c('number-input', {
       key: item.id,
       attrs: {
-        "label": key,
         "data": item
       }
-    })
-  })], 2)
+    }) : (_vm.checkSearch(item.setting)) ? _c('search-array', {
+      key: item.id,
+      attrs: {
+        "label": item.setting
+      }
+    }) : (_vm.checkText(item.setting)) ? _c('text-input', {
+      key: item.id,
+      attrs: {
+        "data": item
+      }
+    }) : _vm._e()], 1)
+  })) : _c('div', {
+    staticClass: "row"
+  }, _vm._l((_vm.grouped), function(item, key) {
+    return _c('div', {
+      staticClass: "col-md-12 col-xs-12"
+    }, [_c('div', {
+      staticClass: "col-md-12 col-xs-12"
+    }, [_c('h3', {
+      domProps: {
+        "textContent": _vm._s(item.title)
+      }
+    })]), _vm._v(" "), _vm._l((item.items), function(itemData, dataKey) {
+      return _c('div', {
+        staticClass: "col-xs-12",
+        class: {
+          'col-md-12': _vm.largeOrSmall(item.items, dataKey), 'col-md-6': !_vm.largeOrSmall(item.items, dataKey)
+        }
+      }, [(!_vm.checkSearch(itemData.setting) && !_vm.checkText(item.setting)) ? _c('number-input', {
+        key: itemData.id,
+        attrs: {
+          "data": itemData
+        }
+      }) : (_vm.checkSearch(itemData.setting)) ? _c('search-array', {
+        key: itemData.id,
+        attrs: {
+          "label": itemData.setting
+        }
+      }) : (_vm.checkText(item.setting)) ? _c('text-input', {
+        key: item.id,
+        attrs: {
+          "data": item
+        }
+      }) : _vm._e()], 1)
+    })], 2)
+  }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -2391,8 +2533,6 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "col-md-6 col-xs-12"
-  }, [_c('div', {
     staticClass: "white-box"
   }, [_c('div', {
     staticClass: "form-group"
@@ -2401,38 +2541,65 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.formatString(_vm.data.setting))
     }
-  }, [_vm._v("Notify about donations above")]), _vm._v(" "), (_vm.isCheckbox) ? _c('input', {
+  }, [_vm._v("Notify about donations above")]), _vm._v(" "), (_vm.data.data.checkbox) ? _c('input', {
     staticClass: "js-switch",
     attrs: {
-      "type": "checkbox",
-      "checked": "",
-      "data-color": "#99d683",
-      "data-size": "small"
+      "type": "checkbox"
+    },
+    domProps: {
+      "checked": _vm.checkboxValue
     }
-  }) : _vm._e(), _vm._v(" "), _c('input', {
+  }) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "input-group"
+  }, [_c('span', {
+    staticClass: "input-group-btn"
+  }, [_c('button', {
+    staticClass: "btn btn-default btn-outline",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.changeValue(true)
+      }
+    }
+  }, [_vm._v("-")])]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.value),
       expression: "value"
     }],
+    staticClass: "form-control",
     attrs: {
-      "id": "tch3_22",
-      "type": "text",
-      "name": "tch3_22",
-      "data-bts-button-down-class": "btn btn-default btn-outline",
-      "data-bts-button-up-class": "btn btn-default btn-outline"
+      "type": "text"
     },
     domProps: {
       "value": (_vm.value)
     },
     on: {
+      "keydown": function($event) {
+        if (!('button' in $event) && $event.keyCode !== 13) { return null; }
+        _vm.enterChangeValue($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.value = $event.target.value
       }
     }
-  })])])])
+  }), _vm._v(" "), _c('span', {
+    staticClass: "input-group-btn"
+  }, [_c('button', {
+    staticClass: "btn btn-default btn-outline",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.changeValue(false)
+      }
+    }
+  }, [_vm._v("+")])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -2529,6 +2696,178 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+
+/***/ 270:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['data'],
+    data: function data() {
+        return {
+            value: this.data.data.value,
+            checkboxValue: this.data.data.on
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        if (this.data.data.checkbox) {
+            var elem = this.$el.querySelector('.js-switch');
+            var init = new Switchery(elem, {
+                color: "#99d683",
+                size: "small",
+                disabled: false
+            });
+
+            this.$el.querySelector('.switchery').onclick = function () {
+                _this.checkboxValue = elem.checked;
+                _this.switcher();
+            };
+        }
+    },
+
+    methods: {
+        formatString: function formatString(str) {
+            return str.replace(/_/g, ' ');
+        },
+        switcher: function switcher() {
+            axios.patch('/admin/api/settings/switch/' + this.data.setting, {
+                state: this.checkboxValue
+            });
+        },
+        enterChangeValue: function enterChangeValue() {
+            axios.patch('/admin/api/settings/' + this.data.setting, {
+                value: this.value
+            });
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 271:
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(270),
+  /* template */
+  __webpack_require__(272),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/dan/code/getmestuff/resources/assets/admin/js/components/settings/TextInput.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] TextInput.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8a00d5ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-8a00d5ea", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 272:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "white-box"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label",
+    domProps: {
+      "textContent": _vm._s(_vm.formatString(_vm.data.setting))
+    }
+  }, [_vm._v("Notify about donations above")]), _vm._v(" "), (_vm.data.data.checkbox) ? _c('input', {
+    staticClass: "js-switch",
+    attrs: {
+      "type": "checkbox"
+    },
+    domProps: {
+      "checked": _vm.checkboxValue
+    }
+  }) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "input-group"
+  }, [_vm._m(0), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.value),
+      expression: "value"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "placeholder": "Reason",
+      "aria-describedby": "basic-addon1"
+    },
+    domProps: {
+      "value": (_vm.value)
+    },
+    on: {
+      "keydown": function($event) {
+        if (!('button' in $event) && $event.keyCode !== 13) { return null; }
+        _vm.enterChangeValue($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.value = $event.target.value
+      }
+    }
+  })])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "input-group-addon",
+    attrs: {
+      "id": "basic-addon1"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-font"
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-8a00d5ea", module.exports)
+  }
+}
 
 /***/ }),
 

@@ -11,7 +11,7 @@ class MaxWish
 
     public function __construct()
     {
-        $this->max_words = GlobalSettings::getSettings('max_number_of_words_in_title')->data[0];
+        $this->max_words = GlobalSettings::getSettings('max_number_of_words_in_title')->data['value'];
     }
 
     public function passes($attribute, $value)

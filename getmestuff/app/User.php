@@ -105,4 +105,14 @@ class User extends Authenticatable
     {
         return $this->admin;
     }
+
+    public static function ban($email)
+    {
+        static::query()->where('email', $email)->update(['status' => 0]);
+    }
+
+    public static function unban($email)
+    {
+        static::query()->where('email', $email)->update(['status' => 1]);
+    }
 }

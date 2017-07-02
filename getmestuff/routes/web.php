@@ -123,10 +123,6 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->delete('/wishes/address/{wish}', 'WishesController@destroy');
     $this->post('/wishes/address/{wish}', 'WishesController@updateAddress');
 
-    $this->post('/replacement', 'GlobalSettingsController@searchReplacementWords');
-    $this->delete('/replacement/{key}', 'GlobalSettingsController@deleteReplacementWord');
-    $this->patch('/replacement', 'GlobalSettingsController@addReplacementWord');
-
     $this->get('/users', 'UsersController@all');
     $this->get('/users/activity', 'UsersController@activity');
 
@@ -134,6 +130,8 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->delete('/users/{user}', 'UsersController@destroy');
     $this->post('/users/activity/{user}', 'UsersController@updateActivity');
     $this->delete('/users/activity/{user}', 'UsersController@destroy');
+    $this->patch('/users/settings', 'GlobalSettingsController@changeState');
+    $this->patch('/users/settings/{setting}', 'GlobalSettingsController@changeValue');
 
     $this->get('/achievements', 'AchievementsController@allAchievements');
     $this->post('/achievements/{achievement}', 'AchievementsController@updateAchievement');
@@ -143,7 +141,12 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->post('/achievements/prizes/{prize}', 'AchievementsController@updatePrize');
     $this->delete('/achievements/prizes/{prize}', 'AchievementsController@destroyPrize');
 
-    $this->post('/banned/search', 'GlobalSettingsController@searchBannedWords');
+    $this->post('/search/{setting}', 'GlobalSettingsController@search');
+    $this->delete('/search/{setting}/{key}', 'GlobalSettingsController@destroy');
+    $this->patch('/search/{setting}', 'GlobalSettingsController@update');
+
+    $this->patch('/settings/switch/{setting}', 'GlobalSettingsController@changeState');
+    $this->patch('/settings/{setting}', 'GlobalSettingsController@changeValue');
 });
 
 Route::get('/test', 'HomeController@test');
