@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Achievement;
 use App\GlobalSettings;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\NewAchievementForm;
+use App\Http\Requests\Admin\NewPrizeForm;
 use App\Http\Requests\Admin\UpdateAchievementForm;
 use App\Http\Requests\Admin\UpdatePrizeForm;
 use App\Prize;
@@ -36,8 +38,16 @@ class AchievementsController extends Controller
         )->make(true);
     }
 
-    public function create() {
-        return view('admin.achievements.achievements_new');
+    public function newAchievement(NewAchievementForm $form) {
+        $form->save();
+
+        return response(['status' => 'Achievement created']);
+    }
+
+    public function newPrize(NewPrizeForm $form) {
+        $form->save();
+
+        return response(['status' => 'Prize created']);
     }
 
     public function settings() {

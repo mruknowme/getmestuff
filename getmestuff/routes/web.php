@@ -77,6 +77,7 @@ Route::middleware(['auth', 'ajax'])->group(function () {
 
 Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group(function () {
     $this->get('/dashboard', 'AdminsController@index');
+
     $this->get('/settings', 'AdminsController@settings');
     $this->get('/payment', 'AdminsController@payment');
 
@@ -105,7 +106,9 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     $this->get('/achievements/prizes', function () {
         return view('admin.achievements.achievements_table');
     });
-    $this->get('/achievements/new', 'AchievementsController@new');
+    $this->get('/achievements/new', function () {
+        return view('admin.achievements.achievements_new');
+    });
     $this->get('/achievements/settings', 'AchievementsController@settings');
 
     $this->get('/tickets', 'TicketsController@all');
@@ -137,12 +140,15 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->post('/achievements/{achievement}', 'AchievementsController@updateAchievement');
     $this->delete('/achievements/{achievement}', 'AchievementsController@destroyAchievement');
 
+    $this->post('/achievement/create', 'AchievementsController@newAchievement');
+    $this->post('/prize/create', 'AchievementsController@newPrize');
+
     $this->get('/achievements/prizes', 'AchievementsController@allPrizes');
     $this->post('/achievements/prizes/{prize}', 'AchievementsController@updatePrize');
     $this->delete('/achievements/prizes/{prize}', 'AchievementsController@destroyPrize');
 
     $this->post('/search/{setting}', 'GlobalSettingsController@search');
-    $this->delete('/search/{setting}/{key}', 'GlobalSettingsController@destroy');
+    $this->delete('/search/{setting}', 'GlobalSettingsController@destroy');
     $this->patch('/search/{setting}', 'GlobalSettingsController@update');
 
     $this->patch('/settings/switch/{setting}', 'GlobalSettingsController@changeState');

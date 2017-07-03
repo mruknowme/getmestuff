@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\GlobalSettings;
 use App\Http\Controllers\Controller;
 
 class AdminsController extends Controller
@@ -13,7 +14,9 @@ class AdminsController extends Controller
 
     public function settings()
     {
-        return view('admin.settings');
+        $settings = GlobalSettings::getGeneralSetting();
+
+        return view('admin.settings', compact('settings'));
     }
 
     public function payment()

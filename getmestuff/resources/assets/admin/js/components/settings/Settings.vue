@@ -8,7 +8,7 @@
                           v-if="!checkSearch(item.setting) && !checkText(item.setting)">
             </number-input>
             <search-array v-else-if="checkSearch(item.setting)"
-                          :label="item.setting"
+                          :data="item"
                           :key="item.id">
             </search-array>
             <text-input v-else-if="checkText(item.setting)"
@@ -24,19 +24,28 @@
             </div>
             <div class="col-xs-12"
                  :class="{'col-md-12' : largeOrSmall(item.items, dataKey), 'col-md-6' : !largeOrSmall(item.items, dataKey)}"
-                 v-for="(itemData, dataKey) in item.items">
+                 v-for="(itemData, dataKey) in item.items"
+                 v-if="!checkIfArray(itemData.data.value)"
+                 >
                 <number-input :key="itemData.id"
                               :data="itemData"
-                              v-if="!checkSearch(itemData.setting) && !checkText(item.setting)">
+                              v-if="!checkSearch(itemData.setting) && !checkText(itemData.setting)">
                 </number-input>
                 <search-array v-else-if="checkSearch(itemData.setting)"
-                              :label="itemData.setting"
+                              :data="itemData"
                               :key="itemData.id">
                 </search-array>
-                <text-input v-else-if="checkText(item.setting)"
-                            :data="item"
-                            :key="item.id">
+                <text-input v-else-if="checkText(itemData.setting)"
+                            :data="itemData"
+                            :key="itemData.id">
                 </text-input>
+            </div>
+            <div v-for="(itemData, dataKey) in item.items"
+                 v-else-if="checkIfArray(itemData.data.value)">
+                <array-value :data="itemData"
+                             :icons="icons[itemData.setting]"
+                             :key="itemData.id">
+                </array-value>
             </div>
         </div>
     </div>
@@ -45,8 +54,9 @@
     import NumberInput from './NumberInput.vue';
     import SearchArray from './SearchArray.vue';
     import TextInput from './TextInput.vue';
+    import ArrayValue from './ArrayValue.vue';
     export default {
-        components: { NumberInput, SearchArray, TextInput },
+        components: { NumberInput, SearchArray, TextInput, ArrayValue },
         props: {
             data: {
                 required: true
@@ -64,6 +74,12 @@
                 }
             },
             text: {
+                required: false,
+                default: () => {
+                    return [];
+                }
+            },
+            icons: {
                 required: false,
                 default: () => {
                     return [];
@@ -88,6 +104,9 @@
             checkText(item) {
                 return (this.text.indexOf(item) >= 0);
             },
+            checkIfArray(item) {
+                return (item instanceof Array);
+            },
             sortArray() {
                 this.grouped = this.group;
                 this.sortItems();
@@ -107,6 +126,9 @@
             },
             largeOrSmall(groupedItems, key) {
                 return (((groupedItems.length % 2) != 0) && key == 0);
+            },
+            test(test) {
+                console.log(test);
             }
         }
     }

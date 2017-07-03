@@ -44,7 +44,7 @@
                 <ul class="nav nav-second-level">
                     <li> <a href="/admin/achievements">All Achievements</a> </li>
                     <li> <a href="/admin/achievements/prizes">All Prizes</a> </li>
-                    <li> <a href="/admin/achievements/new">New Achievement</a> </li>
+                    <li> <a href="/admin/achievements/new">Create</a> </li>
                     <li> <a href="/admin/achievements/settings">Settings</a> </li>
                 </ul>
             </li>

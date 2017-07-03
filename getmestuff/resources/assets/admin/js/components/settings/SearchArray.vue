@@ -2,7 +2,7 @@
     <div class="white-box">
         <form class="form" @keydown.prevent.13="searchArray">
             <div class="form-group">
-                <label class="control-label" v-text="formatString(label)"></label>
+                <label class="control-label" v-text="formatString(data.setting)"></label>
                 <div class="input-group">
                     <input @blur="checkItems" v-model="searchItem" type="text" class="form-control" placeholder="Search...">
                     <span class="input-group-btn" v-show="add">
@@ -21,7 +21,7 @@
 </template>
 <script>
     export default {
-        props: ['label'],
+        props: ['data'],
         data() {
             return {
                 searchItem: '',
@@ -35,7 +35,7 @@
             },
             searchArray() {
                 if (this.searchItem != '') {
-                    axios.post('/admin/api/search/'+this.label, {
+                    axios.post('/admin/api/search/'+this.data.id, {
                         search: this.searchItem
                     }).then(({data}) => {
                         if (data.length > 0) {
@@ -54,7 +54,11 @@
             deleteItem(item, key) {
                 console.log(key);
                 if (confirm('Are you sure you want to delete this item?')) {
-                    axios.delete('/admin/api/search/'+this.label+'/'+item).then(() => {
+                    axios.delete('/admin/api/search/'+this.data.id, {
+                        params: {
+                            item: item
+                        }
+                    }).then(() => {
                         this.items.splice(key, 1);
                         if (this.items.length == 0) {
                             this.searchItem = '';
@@ -70,7 +74,7 @@
             },
             addItem() {
                 if (confirm('Are you sure you want to add this item?')) {
-                    axios.patch('/admin/api/search/'+this.label, {
+                    axios.patch('/admin/api/search/'+this.data.id, {
                         item: this.searchItem
                     }).then(() => {
                         this.items = [this.searchItem];

@@ -14,14 +14,16 @@
                     <div class="form-group" v-else-if="!checkRadio(key)">
                         <label v-text="formatString(key)"></label>
                         <div>
-                            <label class="radio-inline">
-                                <input type="radio" :name="key" value="1" :checked="item" v-model="items[key]">
-                                True
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" :name="key" value="0" :checked="!item" v-model="items[key]">
-                                False
-                            </label>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-secondary" :class="{ active: item }" @click="items[key] = 1">
+                                    <input type="radio" :name="key" value="1" :checked="item" v-model="items[key]">
+                                    True
+                                </label>
+                                <label class="btn btn-secondary" :class="{ active: !item }" @click="items[key] = 0">
+                                    <input type="radio" :name="key" value="0" :checked="!item" v-model="items[key]">
+                                    False
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="address" v-else-if="checkIfObject(key)">

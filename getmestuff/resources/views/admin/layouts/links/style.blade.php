@@ -92,6 +92,11 @@
         align-items: flex-start;
     }
 
+    .center {
+        align-items: center;
+        justify-content: center;
+    }
+
     .wrap {
         flex-wrap: wrap;
     }
@@ -117,7 +122,16 @@
         justify-content: space-between;
     }
 
+    .end {
+        align-items: center;
+        justify-content: flex-end;
+    }
+
     .a-end {
         align-items: flex-end;
+    }
+
+    .nav-pills a {
+        cursor: pointer;
     }
 </style>

@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Users Settings')
+@section('title', 'Create Prize')
 
 @section('header')
     <link href="{{ asset('admin/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
@@ -12,18 +12,20 @@
     <link href="{{ asset('admin/plugins/bower_components/multiselect/css/multi-select.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
-@section('page_title', 'Users Settings')
+@section('page_title', 'Create Prize')
 
 @section('content')
-    <settings :data="{{ $settings }}"
-              :search="['banned_emails','weak_passwords']"
-              post="/admin/api/users/settings"
-              :group="[
-              {'items':1, 'title':'Banned User Emails'},
-              {'items':2, 'title':'Passwords'},
-              {'items':1, 'title':'Birthday Gifts'}
-              ]">
-    </settings>
+    <create post="/admin/api/prize/create"
+            :data="{
+                together: [
+                    { name: 'item', type: 'text' },
+                    { name: 'description', type: 'textarea' },
+                ],
+                line: [
+                    { name: 'price', type: 'number' },
+                    { name: 'user_column', type: 'text' },
+                ]
+            }"></create>
 @endsection
 
 @section('scripts')

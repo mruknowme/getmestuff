@@ -43,12 +43,12 @@
                 return str.replace(/_/g, ' ');
             },
             switcher() {
-                axios.patch('/admin/api/settings/switch/'+this.data.setting, {
+                axios.patch('/admin/api/settings/switch/'+this.data.id, {
                     state: this.checkboxValue
                 });
             },
             enterChangeValue() {
-                axios.patch('/admin/api/settings/'+this.data.setting, {
+                axios.patch('/admin/api/settings/'+this.data.id, {
                     value: this.value
                 });
             }

@@ -49,7 +49,7 @@
                 return str.replace(/_/g, ' ');
             },
             switcher() {
-                axios.patch('/admin/api/settings/switch/'+this.data.setting, {
+                axios.patch('/admin/api/settings/switch/'+this.data.id, {
                     state: this.checkboxValue
                 });
             },
@@ -63,13 +63,13 @@
                 clearTimeout(this.timeout);
 
                 this.timeout = setTimeout(() => {
-                    axios.patch('/admin/api/settings/'+this.data.setting, {
+                    axios.patch('/admin/api/settings/'+this.data.id, {
                         value: this.value
                     });
                 }, 800);
             },
             enterChangeValue() {
-                axios.patch('/admin/api/settings/'+this.data.setting, {
+                axios.patch('/admin/api/settings/'+this.data.id, {
                     value: this.value
                 });
             }

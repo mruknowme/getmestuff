@@ -9,99 +9,80 @@ use App\Http\Controllers\Controller;
 
 class GlobalSettingsController extends Controller
 {
-    public function search($setting, Request $request)
+    public function search(GlobalSettings $setting, Request $request)
     {
-        return $this->searchArray($request->search, $setting);
+        return collect(
+            preg_grep("/{$request->search}/i", $setting->data)
+        )->flatten();
     }
 
-    public function destroy($setting, $item)
+    public function destroy(GlobalSettings $setting, Request $request)
     {
-        if ($setting == 'banned_emails') {
-            User::unban($item);
-        }
+        if ($setting->id == 6) User::unban($request->item);
 
-        $this->alterArrayValue($item, $setting, true);
+        $data = $setting->data;
+        $key = array_search($request->item, $data);
+        array_forget($data, $key);
+        $setting->data = $data;
+        $setting->save();
 
         return response(['status' => 'Item deleted successfully']);
     }
 
-    public function update($setting, Request $request)
+    public function update(GlobalSettings $setting, Request $request)
     {
         $this->validate($request, [
             'item' => 'required|string|uniquearray:5'
         ]);
 
-        if ($setting == 'banned_emails') {
-            User::ban($request->item);
-        }
+        if ($setting->id == 6) User::ban($request->item);
 
-        $this->alterArrayValue($request->item, $setting);
+        $data = $setting->data;
+        array_push($data, $request->item);
+        $setting->data = $data;
+        $setting->save();
 
         return response(['status' => 'Item added successfully']);
     }
 
-    public function changeState($setting, Request $request)
+    public function changeState(GlobalSettings $setting, Request $request)
     {
-        $this->switcher($setting, $request->state);
+        $data = $setting->data;
+
+        $data['on'] = $request->state;
+
+        $setting->data = $data;
+        $setting->save();
 
         return response(['status' => 'State updated']);
     }
 
-    public function changeValue($setting, Request $request)
+    public function changeValue(GlobalSettings $setting, Request $request)
     {
-        $validation = '';
-        if (is_int($request->value)) {
-            $validation = 'required|numeric|min:1';
-        } else {
-            $validation = 'required|string|min:1';
-        }
-
         $this->validate($request, [
-            'value' => $validation
+            'value' => $this->condValidation($request->value)
         ]);
 
-        $settings = GlobalSettings::getSettings($setting);
-        $replacement = $settings->data;
+        $data = $setting->data;
 
-        $replacement['value'] = $request->value;
+        if (is_null($request->key)) {
+            $data['value'] = $request->value;
+        } else {
+            $data['value'][$request->key] = $request->value;
+        }
 
-        $settings->data = $replacement;
-        $settings->save();
+        $setting->data = $data;
+        $setting->save();
 
         return response(['status' => 'Value has been updated']);
     }
 
-    protected function searchArray($searchItem, $setting)
+    public function condValidation($value)
     {
-        return collect(
-            preg_grep("/{$searchItem}/i", GlobalSettings::getSettings($setting)->data)
-        )->flatten();
-    }
-
-    protected function alterArrayValue($item, $setting, $delete = false)
-    {
-        $settings = GlobalSettings::getSettings($setting);
-        $replacement = $settings->data;
-
-        if ($delete) {
-            $key = array_search($item, $replacement);
-            array_forget($replacement, $key);
+        if (is_numeric($value)) {
+            return 'required|numeric|min:1';
         } else {
-            array_push($replacement, $item);
+            return'required|string|min:1';
         }
-
-        $settings->data = $replacement;
-        $settings->save();
-    }
-
-    protected function switcher($setting, $state)
-    {
-        $settings = GlobalSettings::getSettings($setting);
-        $replacement = $settings->data;
-
-        $replacement['on'] = $state;
-
-        $settings->data = $replacement;
-        $settings->save();
     }
 }
