@@ -29,7 +29,7 @@
                  >
                 <number-input :key="itemData.id"
                               :data="itemData"
-                              v-if="!checkSearch(itemData.setting) && !checkText(itemData.setting)">
+                              v-if="!checkSearch(itemData.setting) && !checkText(itemData.setting) && !checkSelect(itemData.setting)">
                 </number-input>
                 <search-array v-else-if="checkSearch(itemData.setting)"
                               :data="itemData"
@@ -39,11 +39,21 @@
                             :data="itemData"
                             :key="itemData.id">
                 </text-input>
+                <text-input v-else-if="checkText(itemData.setting)"
+                            :data="itemData"
+                            :key="itemData.id">
+                </text-input>
+                <select-value v-else-if="checkSelect(itemData.setting)"
+                              :data="itemData"
+                              :options="select[itemData.setting]"
+                              :key="itemData.id">
+                </select-value>
             </div>
             <div v-for="(itemData, dataKey) in item.items"
                  v-else-if="checkIfArray(itemData.data.value)">
                 <array-value :data="itemData"
                              :icons="icons[itemData.setting]"
+                             :text="checkText(itemData.setting)"
                              :key="itemData.id">
                 </array-value>
             </div>
@@ -55,8 +65,9 @@
     import SearchArray from './SearchArray.vue';
     import TextInput from './TextInput.vue';
     import ArrayValue from './ArrayValue.vue';
+    import SelectValue from './SelectValue.vue';
     export default {
-        components: { NumberInput, SearchArray, TextInput, ArrayValue },
+        components: { NumberInput, SearchArray, TextInput, ArrayValue, SelectValue },
         props: {
             data: {
                 required: true
@@ -74,6 +85,12 @@
                 }
             },
             text: {
+                required: false,
+                default: () => {
+                    return [];
+                }
+            },
+            select: {
                 required: false,
                 default: () => {
                     return [];
@@ -104,8 +121,11 @@
             checkText(item) {
                 return (this.text.indexOf(item) >= 0);
             },
+            checkSelect(item) {
+                return (item in this.select);
+            },
             checkIfArray(item) {
-                return (item instanceof Array);
+                return (item instanceof Array || (item !== null && typeof item === 'object'));
             },
             sortArray() {
                 this.grouped = this.group;

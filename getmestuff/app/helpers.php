@@ -46,7 +46,9 @@ function breadcrumbs($sep = '', $home = 'admin')
     $numOfCrumbs = count($crumbs);
 
     foreach ($crumbs as $crumb) {
-        if (++$i === $numOfCrumbs) {
+        if (is_numeric($crumb)) {
+            $bc .= '<li class="active">Reply</li>';
+        } elseif (++$i === $numOfCrumbs) {
             $bc .= '<li class="active">'.ucfirst($crumb).'</li>';
         } else {
             $bc .= "<li><a href='$site/$home/$crumb'>".ucfirst($crumb)."</a>$sep</li>";
@@ -54,8 +56,6 @@ function breadcrumbs($sep = '', $home = 'admin')
     }
 
     $bc .= '</ol>';
-
-//    dd($bc);
 
     echo $bc;
 

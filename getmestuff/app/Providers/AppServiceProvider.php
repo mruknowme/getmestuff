@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         \Validator::extend('spamfree', '\App\Rules\SpamFree@passes');
         \Validator::extend('maxwish', '\App\Rules\MaxWish@passes');
         \Validator::extend('uniquearray', '\App\Rules\UniqueArray@passes');
+        \Validator::extend('alpha_num_s', '\App\Rules\AlphaNumS@passes');
 
         \Validator::replacer('maxwish', '\App\Rules\MaxWish@replaceWords');
     }

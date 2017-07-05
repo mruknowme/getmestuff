@@ -1,7 +1,9 @@
 <template>
-    <div class="panel panel-info" v-if="isEditing">
+    <div class="custom panel panel-info" v-if="isEditing">
         <div class="panel-heading">
-            <h3>Edit Row</h3>
+            <div class="panel-title">
+                Edit Row
+            </div>
             <span @click="closeEditor">&#10006;</span>
         </div>
         <div class="panel-body">
@@ -106,7 +108,7 @@
                 this.$emit('cancel');
             },
             submitForm() {
-                axios.post(this.url +'/'+ this.dataSet.id, this.items).then(() => {
+                axios.patch(this.url +'/'+ this.dataSet.id, this.items).then(() => {
                     this.$emit('updated', this.items);
                 });
             },

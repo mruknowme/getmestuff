@@ -21,6 +21,8 @@ class AdminsController extends Controller
 
     public function payment()
     {
-        return view('admin.payment');
+        $settings = GlobalSettings::getSettingsGroup(['commissions', 'turn_on/of_payment_systems']);
+
+        return view('admin.payment', compact('settings'));
     }
 }

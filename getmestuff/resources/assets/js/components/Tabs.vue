@@ -1,11 +1,11 @@
 <template>
     <div class="mw">
         <ul class="tabs">
-            <li v-for="tab in tabs" 
+            <li v-for="tab in tabs"
                 :class="{ 'active' : tab.isActive }"
                 @click="selectTab(tab)"
                 :title="tab.title"
-                v-html="tab.name"> 
+                v-html="tab.name">
             </li>
         </ul>
         <slot></slot>

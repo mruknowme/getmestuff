@@ -46,7 +46,7 @@
         text-transform: capitalize;
     }
 
-    .panel {
+    .custom.panel {
         position: absolute;
         top: -70px;
         right: 5%;
@@ -57,25 +57,30 @@
         box-shadow: 20px 20px rgba(100, 100, 100, 0.3);
     }
 
-    .panel-heading {
+    .custom .panel-heading {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
     }
 
-    .panel-heading span {
+    .custom .panel-heading span {
         font-size: 2rem;
         opacity: 0.5;
         cursor: pointer;
     }
 
-    .panel-body {
+    .custom .panel-body {
         max-height: 300px;
         overflow: scroll;
     }
 
     .panel-heading span:hover {
         opacity: 1;
+    }
+
+    .custom.card {
+        background-color: #fff;
+        margin-bottom: 20px;
     }
 
     input[type=checkbox].gms-checkbox {

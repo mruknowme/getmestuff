@@ -58,13 +58,15 @@ class WishesController extends Controller
     public function update(Wish $wish, UpdateWishForm $form)
     {
         $form->save($wish);
+
+        return response(['status' => 'Row has been updated successfully']);
     }
 
     public function updateAddress(Wish $wish, UpdateWishAddressFrom $form)
     {
         $form->save($wish);
 
-        return response(['status' => 'Information has been saved']);
+        return response(['status' => 'Row has been updated successfully']);
     }
 
     public function destroy(Wish $wish)

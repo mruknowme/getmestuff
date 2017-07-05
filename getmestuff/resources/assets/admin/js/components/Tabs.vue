@@ -1,14 +1,18 @@
 <template>
     <div class="mw">
-        <ul class="nav nav-pills">
-            <li v-for="tab in tabs" 
-                :class="{ 'active' : tab.isActive }"
-                @click="selectTab(tab)"
-                :title="tab.title"
-                >
-                <a v-html="tab.name"></a>
-            </li>
-        </ul>
+        <div class="sttabs tabs-style-bar">
+            <nav>
+                <ul class="">
+                    <li v-for="tab in tabs"
+                        :class="{ 'tab-current' : tab.isActive }"
+                        @click="selectTab(tab)"
+                        :title="tab.title"
+                    >
+                        <a v-html="tab.name"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
         <slot></slot>
     </div>
 </template>

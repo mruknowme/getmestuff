@@ -58,7 +58,7 @@
             <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="Y"></i> <span class="hide-menu"> Settings <span class="fa arrow"></span> </span></a>
                 <ul class="nav nav-second-level">
                     <li> <a href="/admin/settings">General</a> </li>
-                    <li> <a href="admin/payment">Payment</a> </li>
+                    <li> <a href="/admin/payment">Payment</a> </li>
                 </ul>
             </li>
             <li>

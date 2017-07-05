@@ -79,6 +79,11 @@ class User extends Authenticatable
         return $this->hasMany(Payment::class);
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     public static function getRefs()
     {
         return \DB::table('users')

@@ -28,7 +28,7 @@ class WishesForm extends FormRequest
     public function rules()
     {
         return [
-            'item' => 'required|string|spamfree|maxwish',
+            'item' => 'required|string|spamfree|maxwish|alpha_num_s',
             'url' => 'required|url',
             'current_amount' => 'nullable|numeric|min:0',
             'amount_needed' => 'required|numeric|min:1',

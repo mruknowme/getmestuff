@@ -13,10 +13,10 @@ class GlobalSettings extends Model
         'data' => 'json',
     ];
 
-//    public static function getSettings($setting)
-//    {
-//        return static::query()->where('setting', $setting)->firstOrFail();
-//    }
+    public static function getSettings($setting)
+    {
+        return static::query()->where('setting', $setting)->firstOrFail();
+    }
 
     public static function getSettingsGroup($setting)
     {

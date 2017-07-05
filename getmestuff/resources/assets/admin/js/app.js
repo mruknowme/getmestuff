@@ -19,9 +19,13 @@ window.flash = function (message, type = 'success') {
 Vue.component('my-table', require('./components/MyTable.vue'));
 Vue.component('settings', require('./components/settings/Settings.vue'));
 Vue.component('create', require('./components/forms/Create.vue'));
+Vue.component('new-ticket', require('./components/forms/NewTicket.vue'));
 Vue.component('tabs', require('./components/Tabs.vue'));
 Vue.component('tab', require('./components/Tab.vue'));
+Vue.component('reply-to-ticket', require('./components/forms/ReplyToTicket.vue'));
 
-const app = new Vue({
+window.app = new Vue({
     el: '#app'
 });
+
+window.events = new Vue();

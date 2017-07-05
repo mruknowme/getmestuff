@@ -113,7 +113,11 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 
     $this->get('/tickets', 'TicketsController@all');
     $this->get('/tickets/open', 'TicketsController@open');
-    $this->get('/tickets/create', 'TicketsController@create');
+    $this->get('/tickets/create', function () {
+        return view('admin.tickets.tickets_new');
+    });
+
+    $this->get('/tickets/{ticket}', 'TicketsController@show');
 });
 
 Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/api')->group(function () {
@@ -121,31 +125,35 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->get('/wishes/reported', 'WishesController@reported');
     $this->get('/wishes/address', 'WishesController@address');
 
-    $this->post('/wishes/{wish}', 'WishesController@update');
+    $this->patch('/wishes/{wish}', 'WishesController@update');
     $this->delete('/wishes/{wish}', 'WishesController@destroy');
     $this->delete('/wishes/address/{wish}', 'WishesController@destroy');
-    $this->post('/wishes/address/{wish}', 'WishesController@updateAddress');
+    $this->patch('/wishes/address/{wish}', 'WishesController@updateAddress');
 
     $this->get('/users', 'UsersController@all');
     $this->get('/users/activity', 'UsersController@activity');
+    $this->get('/users/emails', 'TicketsController@emails');
 
-    $this->post('/users/{user}', 'UsersController@update');
+    $this->patch('/users/{user}', 'UsersController@update');
     $this->delete('/users/{user}', 'UsersController@destroy');
-    $this->post('/users/activity/{user}', 'UsersController@updateActivity');
+    $this->patch('/users/activity/{user}', 'UsersController@updateActivity');
     $this->delete('/users/activity/{user}', 'UsersController@destroy');
+
     $this->patch('/users/settings', 'GlobalSettingsController@changeState');
     $this->patch('/users/settings/{setting}', 'GlobalSettingsController@changeValue');
 
     $this->get('/achievements', 'AchievementsController@allAchievements');
-    $this->post('/achievements/{achievement}', 'AchievementsController@updateAchievement');
+    $this->patch('/achievements/{achievement}', 'AchievementsController@updateAchievement');
     $this->delete('/achievements/{achievement}', 'AchievementsController@destroyAchievement');
 
     $this->post('/achievement/create', 'AchievementsController@newAchievement');
     $this->post('/prize/create', 'AchievementsController@newPrize');
 
     $this->get('/achievements/prizes', 'AchievementsController@allPrizes');
-    $this->post('/achievements/prizes/{prize}', 'AchievementsController@updatePrize');
+    $this->patch('/achievements/prizes/{prize}', 'AchievementsController@updatePrize');
     $this->delete('/achievements/prizes/{prize}', 'AchievementsController@destroyPrize');
+
+    $this->post('/tickets/create', 'TicketsController@new');
 
     $this->post('/search/{setting}', 'GlobalSettingsController@search');
     $this->delete('/search/{setting}', 'GlobalSettingsController@destroy');
@@ -155,4 +163,4 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->patch('/settings/{setting}', 'GlobalSettingsController@changeValue');
 });
 
-Route::get('/test', 'HomeController@test');
+Route::get('/test', 'Admin\TicketsController@getEmails');
