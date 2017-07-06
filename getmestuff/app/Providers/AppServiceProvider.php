@@ -20,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer([
-            'admin.wishes.wishes_table', 'admin.users.users_table', 'admin.achievements.achievements_table'
+            'admin.wishes.wishes_table', 'admin.users.users_table',
+            'admin.achievements.achievements_table', 'admin.tickets.tickets_table'
         ], function ($view) {
             $table = explode('/', request()->path());
             $table = end($table);

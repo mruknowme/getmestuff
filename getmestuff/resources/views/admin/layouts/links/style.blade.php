@@ -79,8 +79,15 @@
     }
 
     .custom.card {
-        background-color: #fff;
         margin-bottom: 20px;
+    }
+
+    .custom.text-dark {
+        background-color: #fff;
+    }
+
+    .custom .card-block p {
+        margin-bottom: 0;
     }
 
     input[type=checkbox].gms-checkbox {

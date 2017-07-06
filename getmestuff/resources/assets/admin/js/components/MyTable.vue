@@ -9,7 +9,8 @@
                 :select="select"
                 @updated="updateRow"
                 @cancel="closeEditor"></editor>
-        <div class="button-group">
+        <div class="">
+            <button class="btn btn-warning" :disabled="!anySelected" @click="answerTicket" v-if="answer">Answer</button>
             <button class="btn btn-info" :disabled="!anySelected" @click="editRow">Edit</button>
             <button class="btn btn-danger" :disabled="!anySelected" @click="deleteRow">Delete</button>
         </div>
@@ -68,6 +69,10 @@
                 defualt: () => {
                     return [];
                 },
+                required: false
+            },
+            answer: {
+                default: false,
                 required: false
             }
         },
@@ -142,6 +147,12 @@
                     return "<input type='checkbox' class='gms-checkbox' disabled/>";
                 } else {
                     return "<input type='checkbox' class='gms-checkbox' checked disabled/>";
+                }
+            },
+            answerTicket() {
+                let data = this.table.row({selected:true}).data();
+                if (data.type != 2) {
+                    window.location.href = ('/admin/tickets/'+data.unique_id);
                 }
             }
         }

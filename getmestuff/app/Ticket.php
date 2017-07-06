@@ -10,7 +10,7 @@ class Ticket extends Model
     protected $emails = [];
 
     protected $fillable = [
-        'unique_id', 'email', 'subject', 'body', 'priority', 'type', 'user_id'
+        'unique_id', 'email', 'subject', 'body', 'priority', 'type', 'user_id', 'is_admin'
     ];
 
     public function checkEmails()
@@ -39,12 +39,15 @@ class Ticket extends Model
     {
         $data = [];
 
-        preg_match('/\d+/', $email->subject, $unique_id);
-        preg_match('/[\pL\s]+/', $email->subject, $subject);
+        list($subject, $unique_id) = getUniqueId($email->subject);
 
-        $data['unique_id'] = (int) (collect($unique_id)->first() ?? rand(100000, 999999));
+        if (!$unique_id) {
+            $unique_id = getRandomString();
+        }
+
+        $data['unique_id'] = $unique_id;
         $data['email'] = $email->fromAddress;
-        $data['subject'] = trim(implode(', ', $subject));
+        $data['subject'] = $subject;
         $data['body'] = $email->textPlain;
 
         return $data;

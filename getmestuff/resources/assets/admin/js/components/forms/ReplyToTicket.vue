@@ -14,7 +14,10 @@
         props: ['tickets', 'user'],
         methods: {
             checkIfAnswer(key) {
-                return ((this.tickets.length - 1) == key) && this.tickets[key].reply == null;
+                return (
+                    (this.tickets.length - 1) == key) &&
+                    this.tickets[key].reply == null &&
+                    !this.tickets[key].is_admin;
             }
         }
     }

@@ -61,3 +61,20 @@ function breadcrumbs($sep = '', $home = 'admin')
 
     return;
 }
+
+function getRandomString($length = 6) {
+    $str = str_shuffle(time() . str_random(20));
+
+    return substr($str, -$length);
+}
+
+function getUniqueId($str) {
+    preg_match('/\(Ref: (.*?)\)/i', $str, $matches);
+    $str = trim(preg_replace('/\(Ref: (.*?)\)/i', '', $str));
+
+    if (isset($matches[1])) {
+        return [$str, $matches[1]];
+    }
+
+    return [$str, false];
+}

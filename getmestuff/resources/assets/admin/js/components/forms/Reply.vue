@@ -1,9 +1,11 @@
 <template>
     <div class="col-md-12 col-xs-12">
-        <div class="custom card card-outline-info text-dark">
+        <div class="custom card"
+             :class="{ 'card-inverse card-secondary text-white': ticket.is_admin,
+                        'card-outline-info text-dark' : !ticket.is_admin }">
             <div class="card-block">
                 <h4 class="card-title" v-text="ticket.subject"></h4>
-                <p class="card-text" v-text="ticket.body"></p>
+                <p class="card-text" v-html="ticket.body"></p>
             </div>
             <div class="card-footer">
                 <small v-text="formatDate(ticket.created_at)"></small>
@@ -12,7 +14,7 @@
         <div class="custom card card-outline-success text-dark" v-if="!showForm && ticket.reply != null">
             <div class="card-block">
                 <h4 class="card-title" v-text="ticket.subject"></h4>
-                <p class="card-text" v-html="ticket.reply.body"></p>
+                <article class="card-text" v-html="ticket.reply.body"></article>
             </div>
             <div class="card-footer flex between">
                 <small v-text="ticket.reply.user.first_name +' '+ ticket.reply.user.last_name"></small>
@@ -55,13 +57,23 @@
                 reply.user.first_name = this.user.first_name;
                 reply.user.last_name = this.user.last_name;
                 reply.created_at = moment();
-                $('.textarea_editor').data('wysihtml5').editor.composer.hide();
-                $('.textarea_editor').data('wysihtml5').editor.toolbar.hide();
                 this.ticket.reply = reply;
-                this.showForm = false;
+
+                this.sendData();
             },
             formatDate(date) {
                 return moment(date, 'YYYY-MM-DD, HH:mm:ss').format('DD-MM-YYYY HH:mm');
+            },
+            sendData() {
+                axios.post('/admin/api/tickets/reply/'+this.ticket.id, {
+                    body: this.ticket.reply.body,
+                    subject: this.ticket.subject
+                })
+                    .then(() => {
+                        $('.textarea_editor').data('wysihtml5').editor.composer.hide();
+                        $('.textarea_editor').data('wysihtml5').editor.toolbar.hide();
+                        this.showForm = false;
+                    })
             }
         },
     }

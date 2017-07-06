@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Jobs\SendMessage;
+use App\Mail\Message;
 use App\Ticket;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -39,7 +41,9 @@ class NewTicketForm extends FormRequest
 
         $users->each(function ($user) {
             $data = $this->only('priority', 'subject', 'body');
-            $unique_id = rand(100000, 999999);
+            $unique_id = getRandomString();
+
+            $subject = "{$data['subject']} (Ref: {$unique_id})";
 
             $data['unique_id'] = $unique_id;
             $data['email'] = $user->email;
@@ -47,6 +51,8 @@ class NewTicketForm extends FormRequest
             $data['is_admin'] = true;
 
             Ticket::create($data);
+
+            dispatch(new SendMessage($this->user(), $data['body'], $subject, $user));
         });
     }
 }
