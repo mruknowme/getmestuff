@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Country;
 use App\GlobalSettings;
 use App\Http\Controllers\Controller;
 
@@ -9,7 +10,15 @@ class AdminsController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $visits = Country::getVisits();
+        $colors = [
+            'info', 'success', 'danger', 'warning', 'primary', 'inverse'
+        ];
+
+        return view('admin.dashboard', [
+            'visits' => $visits,
+            'colors' => $colors
+        ]);
     }
 
     public function settings()

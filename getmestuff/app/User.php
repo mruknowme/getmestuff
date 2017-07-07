@@ -21,6 +21,10 @@ class User extends Authenticatable
         static::creating(function ($user) {
             $user->achievements = Achievement::getAchievementsInfo();
         });
+
+        static::created(function ($user) {
+            Country::updateCountry($user->id);
+        });
     }
 
     /**

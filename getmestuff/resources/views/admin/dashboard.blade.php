@@ -2,8 +2,9 @@
 
 @section('header')
     <!-- vector map CSS -->
-    <link href="{{ asset('admin/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
-    <link href="{{ asset('admin/plugins/bower_components/css-chart/css-chart.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/vector/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('admin/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />--}}
+{{--    <link href="{{ asset('admin/plugins/bower_components/css-chart/css-chart.css') }}" rel="stylesheet">--}}
 @endsection
 
 @section('title', 'Dashboard')
@@ -67,185 +68,41 @@
             <div class="white-box">
                 <h3 class="box-title">Site Visits</h3>
                 <div class="row">
-                    <div class="col-md-12 col-lg-8">
-                        <div id="world-map-marker" style="height: 490px;"></div>
-                    </div>
-                    <div class="col-md-12 col-lg-4">
-                        <ul class="country-state slimscrollcountry">
-                            <li>
-                                <h2>6350</h2> <small>From India</small>
-                                <div class="pull-right">48% <i class="fa fa-level-up text-success"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:48%;"> <span class="sr-only">48% Complete</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <h2>3250</h2> <small>From UAE</small>
-                                <div class="pull-right">98% <i class="fa fa-level-up text-success"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:98%;"> <span class="sr-only">98% Complete</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <h2>1250</h2> <small>From Australia</small>
-                                <div class="pull-right">75% <i class="fa fa-level-down text-danger"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:75%;"> <span class="sr-only">75% Complete</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <h2>1350</h2> <small>From USA</small>
-                                <div class="pull-right">48% <i class="fa fa-level-up text-success"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:48%;"> <span class="sr-only">48% Complete</span></div>
-                                </div>
-                            </li>
-                            <li>
-                                <h2>350</h2> <small>From UK</small>
-                                <div class="pull-right">68% <i class="fa fa-level-down text-danger"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:68%;"> <span class="sr-only">48% Complete</span></div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-12 m-t-20 text-center">
-                                <div class="chart easy-pie-chart-2" data-percent="75"> <span class="percent">75</span>
-                                    <br/>
-                                    <h4>New Users</h4>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 m-t-20 text-center">
-                                <div class="chart easy-pie-chart-1" data-percent="25"> <span class="percent">25</span>
-                                    <br/>
-                                    <h4>Returning Users</h4>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-12 col-lg-12">
+                        <my-map></my-map>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--row -->
     <div class="row">
-        <div class="col-md-12 col-lg-6 col-sm-12">
-            <div class="white-box">
-                <h3 class="box-title">Recent Wishes</h3>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Wish</th>
-                            <th>Progress</th>
-                            <th>Date</th>
-                            <th class="text-nowrap">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Lunar probe project</td>
-                            <td>
-                                <div class="progress progress-xs margin-vertical-10 ">
-                                    <div class="progress-bar progress-bar-danger" style="width: 35%"></div>
+        @foreach($visits as $group => $visit)
+        <div class="col-md-6">
+            <div class="white-box countries-list">
+                <h3 class="box-title">{{ $group }}</h3>
+                <div class="row">
+                    <ul class="country-state slimscrollcountry col-md-12">
+                        @foreach($visit as $country => $data)
+                            <li>
+                                <h2>{{ $data['count'] }}</h2> <small>From {{ $country }}</small>
+                                <div class="pull-right">{{ calculatePercent($data['count'], $data['total']) }}%</div>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-{{ $colors[rand(0, 5)] }}"
+                                         role="progressbar"
+                                         aria-valuenow="{{ calculatePercent($data['count'], $data['total']) }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style="width:{{ calculatePercent($data['count'], $data['total']) }}%;">
+                                        <span class="sr-only">{{ calculatePercent($data['count'], $data['total']) }}% Complete</span>
+                                    </div>
                                 </div>
-                                <h6 class="text-center">35/100</h6>
-                            </td>
-                            <td>May 15, 2015</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dream successful plan</td>
-                            <td>
-                                <div class="progress progress-xs margin-vertical-10 ">
-                                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                                </div>
-                            </td>
-                            <td>July 1, 2015</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Office automatization</td>
-                            <td>
-                                <div class="progress progress-xs margin-vertical-10 ">
-                                    <div class="progress-bar progress-bar-success" style="width: 100%"></div>
-                                </div>
-                            </td>
-                            <td>Apr 12, 2015</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>The sun climbing plan</td>
-                            <td>
-                                <div class="progress progress-xs margin-vertical-10 ">
-                                    <div class="progress-bar progress-bar-primary" style="width: 70%"></div>
-                                </div>
-                            </td>
-                            <td>Aug 9, 2015</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Open strategy</td>
-                            <td>
-                                <div class="progress progress-xs margin-vertical-10 ">
-                                    <div class="progress-bar progress-bar-primary" style="width: 85%"></div>
-                                </div>
-                            </td>
-                            <td>Apr 2, 2015</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tantas earum numeris</td>
-                            <td>
-                                <div class="progress progress-xs margin-vertical-10 ">
-                                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                                </div>
-                            </td>
-                            <td>July 11, 2015</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-md-12 col-xs-12">
-            <div class="white-box">
-                <h3 class="box-title">Feeds</h3>
-                <ul class="feeds">
-                    <li>
-                        <div class="bg-info"><i class="fa fa-bell-o text-white"></i></div> You have 4 pending tasks. <span class="text-muted">Just Now</span></li>
-                    <li>
-                        <div class="bg-success"><i class="ti-server text-white"></i></div> Server #1 overloaded.<span class="text-muted">2 Hours ago</span></li>
-                    <li>
-                        <div class="bg-warning"><i class="ti-shopping-cart text-white"></i></div> New order received.<span class="text-muted">31 May</span></li>
-                    <li>
-                        <div class="bg-danger"><i class="ti-user text-white"></i></div> New user registered.<span class="text-muted">30 May</span></li>
-                    <li>
-                        <div class="bg-inverse"><i class="fa fa-bell-o text-white"></i></div> New Version just arrived. <span class="text-muted">27 May</span></li>
-                    <li>
-                        <div class="bg-purple"><i class="ti-settings text-white"></i></div> You have 4 pending tasks. <span class="text-muted">27 May</span></li>
-                </ul>
-            </div>
-        </div>
+        @endforeach
     </div>
 @endsection
 
@@ -254,8 +111,10 @@
     <script src="{{ asset('admin/plugins/bower_components/flot/jquery.flot.js') }}"></script>
     <script src="{{ asset('admin/plugins/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <!-- google maps api -->
-    <script src="{{ asset('admin/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/bower_components/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+    {{--<script src="{{ asset('admin/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>--}}
+{{--    <script src="{{ asset('admin/plugins/bower_components/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>--}}
+    <script src="{{ asset('admin/vector/jquery-jvectormap-2.0.3.min.js') }}"></script>
+    <script src="{{ asset('admin/vector/jquery-jvectormap-world-mill-en.js') }}"></script>
     <!-- Sparkline charts -->
     <script src="{{ asset('admin/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
     <!-- EASY PIE CHART JS -->
@@ -263,4 +122,35 @@
     <script src="{{ asset('admin/plugins/bower_components/jquery.easy-pie-chart/easy-pie-chart.init.js') }}"></script>
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('admin/js/dashboard2.js') }}"></script>
+    <script>
+//        $(function(){
+//            $('#visits-map').vectorMap({
+//                map: 'world_mill_en',
+//                backgroundColor: '#FFFFFF',
+//                regionStyle: {
+//                    initial: {
+//                        fill: '#FFCA4A',
+//                        'fill-opacity': 1,
+//                        stroke: 'none'
+//                    },
+//                    hover: {
+//                        "fill-opacity": 0.8,
+//                        cursor: 'pointer'
+//                    },
+//                },
+//                series: {
+//                    regions: [{
+//                        values: {
+//                            AF:123
+//                        },
+//                        scale: ['#C8EEFF', '#0071A4'],
+//                        normalizeFunction: 'polynomial'
+//                    }]
+//                },
+//                onRegionTipShow: function(e, el, code){
+//                    el.html(el.html()+' (GDP - '+gdpData[code]+')');
+//                }
+//            });
+//        });
+    </script>
 @endsection

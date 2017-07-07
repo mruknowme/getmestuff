@@ -49,3 +49,11 @@ $factory->define(App\Wish::class, function (Faker\Generator $faker) {
         'amount_needed' => 5000,
     ];
 });
+
+$factory->define(App\Country::class, function (Faker\Generator $faker) {
+   return [
+       'ip_address' => $faker->ipv4,
+       'country' => $faker->country,
+       'remember_key' => str_random()
+   ];
+});

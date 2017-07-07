@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Country;
 use App\Jobs\SendVerificationEmail;
 use App\Mail\EmailConfirmation;
 use App\User;

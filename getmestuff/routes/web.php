@@ -169,6 +169,8 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
 
     $this->patch('/settings/switch/{setting}', 'GlobalSettingsController@changeState');
     $this->patch('/settings/{setting}', 'GlobalSettingsController@changeValue');
+
+    $this->get('/countries/visits', 'CountriesController@visits');
 });
 
-Route::get('/test', 'Admin\TicketsController@getEmails');
+Route::get('/test', 'Admin\CountriesController@visits');

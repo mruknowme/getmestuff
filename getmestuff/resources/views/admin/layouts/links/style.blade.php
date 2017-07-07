@@ -146,4 +146,9 @@
     .nav-pills a {
         cursor: pointer;
     }
+
+    .countries-list {
+        max-height: 608px;
+        overflow: scroll;
+    }
 </style>
