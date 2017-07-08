@@ -5,18 +5,36 @@ namespace App\Http\Controllers\Admin;
 use App\Country;
 use App\GlobalSettings;
 use App\Http\Controllers\Controller;
+use App\Payment;
+use App\Wish;
 
 class AdminsController extends Controller
 {
-    public function index()
+    public function index(Country $country, Wish $wish, Payment $payment)
     {
-        $visits = Country::getVisits();
         $colors = [
             'info', 'success', 'danger', 'warning', 'primary', 'inverse'
         ];
 
+        $wishes_data = $wish->getData();
+        $payment_data = $payment->getData();
+
+        $cash_flow = [
+            'inflow' => $payment_data['this_month'],
+            'outflow' => $wishes_data['outflow'],
+            'new_flow' => number_format(
+                100 - ($wishes_data['outflow'] * 100 / $payment_data['this_month']), 2
+            ),
+            'change' => $payment_data['change']
+        ];
+
+        unset($wishes_data['outflow']);
+
         return view('admin.dashboard', [
-            'visits' => $visits,
+            'country_data' => $country->getVisits(),
+            'wishes_data' => $wishes_data,
+            'profits_data' => $payment_data,
+            'cash_flow' => $cash_flow,
             'colors' => $colors
         ]);
     }

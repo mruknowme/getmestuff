@@ -5,15 +5,6 @@
                 <select name="users" class="form-control" id="users" multiple="multiple" data-placeholder="Select Users"></select>
             </div>
         </div>
-        <!--<div class="col-md-6 col-xs-12">-->
-            <!--<div class="white-box">-->
-                <!--<select name="type" class="form-control select2 single" data-placeholder="Select ticket status">-->
-                    <!--<option value="0" selected>Open</option>-->
-                    <!--<option value="1">In process</option>-->
-                    <!--<option value="2">Closed</option>-->
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="col-md-12 col-xs-12">
             <div class="white-box">
                 <select name="priority" class="form-control select2 single" data-placeholder="Select importance status">
@@ -48,7 +39,6 @@
         data() {
             return {
                 users: [],
-//                type: 0,
                 priority: 0,
                 subject: '',
                 body: ''
@@ -130,7 +120,24 @@
             },
             sendContent() {
                 this.body = tinymce.activeEditor.getContent();
-                axios.post('/admin/api/tickets/create', this.$data);
+                axios.post('/admin/api/tickets/create', this.$data)
+                    .then(() => {
+                        this.priority = 0;
+                        this.subject = '';
+                        this.body = '';
+
+                        tinymce.activeEditor.setContent('');
+
+                        flash(['Message has been sent']);
+                    }).catch((error) => {
+                        let messages = [];
+                        for (let key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+
+                        this.buffering = false;
+                        flash(messages, 'alert-danger');
+                    });
             }
         }
     }

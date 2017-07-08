@@ -139,6 +139,16 @@
                     axios.delete(this.post+'/'+id).then(() => {
                         this.table.row({rowId:id}).remove().draw();
                         this.anySelected = false;
+                    }).then(() => {
+                        flash(['Item has been deleted']);
+                    }).catch((error) => {
+                        let messages = [];
+                        for (let key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+
+                        this.buffering = false;
+                        flash(messages, 'alert-danger');
                     });
                 }
             },

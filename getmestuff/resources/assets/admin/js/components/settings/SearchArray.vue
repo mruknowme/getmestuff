@@ -52,7 +52,6 @@
                 }
             },
             deleteItem(item, key) {
-                console.log(key);
                 if (confirm('Are you sure you want to delete this item?')) {
                     axios.delete('/admin/api/search/'+this.data.id, {
                         params: {
@@ -63,6 +62,15 @@
                         if (this.items.length == 0) {
                             this.searchItem = '';
                         }
+                        flash(['Item has been deleted']);
+                    }).catch((error) => {
+                        let messages = [];
+                        for (let key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+
+                        this.buffering = false;
+                        flash(messages, 'alert-danger');
                     });
                 }
             },
@@ -79,6 +87,15 @@
                     }).then(() => {
                         this.items = [this.searchItem];
                         this.add = false;
+                        flash(['Item has been added']);
+                    }).catch((error) => {
+                        let messages = [];
+                        for (let key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+
+                        this.buffering = false;
+                        flash(messages, 'alert-danger');
                     });
                 }
             }

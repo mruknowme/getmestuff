@@ -54,6 +54,7 @@
         @else
             @yield('login')
         @endif
+        <flash :message="{{ json_encode([session('message')]) }}"></flash>
     </div>
 
     @include('admin.layouts.links.script')

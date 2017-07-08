@@ -38,6 +38,16 @@
                 axios.patch('/admin/api/settings/'+this.data.id, {
                     value: this.value[key],
                     key: key
+                }).then(() => {
+                    flash(['Information has been updated']);
+                }).catch((error) => {
+                    let messages = [];
+                    for (let key in error.response.data) {
+                        messages.push(error.response.data[key][0]);
+                    }
+
+                    this.buffering = false;
+                    flash(messages, 'alert-danger');
                 });
             },
             formatString(str) {

@@ -15,50 +15,99 @@
     <div class="row">
         <div class="col-lg-4 col-md-12">
             <div class="white-box">
-                <h3 class="box-title"><small class="pull-right m-t-10 text-success"><i class="fa fa-sort-asc"></i> 18% &gt; last month</small> Wishes</h3>
+                <h3 class="box-title">
+                    Wishes
+                    @if ($wishes_data['change'] > 0)
+                        <small class="pull-right m-t-10 text-success">
+                            <i class="fa fa-sort-asc"></i> {{ abs($wishes_data['change']) }}% &gt; last month
+                        </small>
+                    @elseif ($wishes_data['change'] < 0)
+                        <small class="pull-right m-t-10 text-danger">
+                            <i class="fa fa-sort-desc"></i> {{ abs($wishes_data['change']) }}% &gt; last month
+                        </small>
+                    @else
+                        <small class="pull-right m-t-10 text-warning">
+                            <i class="fa fa-minus"></i> {{ abs($wishes_data['change']) }}% &gt; last month
+                        </small>
+                    @endif
+                </h3>
                 <div class="stats-row">
                     <div class="stat-item">
-                        <h6>Total</h6> <b>1 357</b>
+                        <h6>Total</h6> <b>{{ $wishes_data['total'] }}</b>
                     </div>
                     <div class="stat-item">
-                        <h6>Completed</h6> <b>854</b>
+                        <h6>Completed</h6> <b>{{ $wishes_data['completed'] }}</b>
                     </div>
                     <div class="stat-item">
-                        <h6>In progress</h6> <b>503</b>
+                        <h6>In progress</h6> <b>{{ $wishes_data['in_progress'] }}</b>
                     </div>
                 </div>
-                <div id="sparkline8"></div>
             </div>
         </div>
         <div class="col-lg-4 col-md-12">
             <div class="white-box">
-                <h3 class="box-title"><small class="pull-right m-t-10 text-danger"><i class="fa fa-sort-desc"></i> 18% &gt; last month</small>Cashflow</h3>
+                <h3 class="box-title">
+                    Cash Flow
+                    @if ($cash_flow['change'] > 0)
+                        <small class="pull-right m-t-10 text-success">
+                            <i class="fa fa-sort-asc"></i> {{ abs($cash_flow['change']) }}% &gt; last month
+                        </small>
+                    @elseif ($cash_flow['change'] < 0)
+                        <small class="pull-right m-t-10 text-danger">
+                            <i class="fa fa-sort-desc"></i> {{ abs($cash_flow['change']) }}% &gt; last month
+                        </small>
+                    @else
+                        <small class="pull-right m-t-10 text-warning">
+                            <i class="fa fa-minus"></i> {{ abs($cash_flow['change']) }}% &gt; last month
+                        </small>
+                    @endif
+                </h3>
                 <div class="stats-row">
                     <div class="stat-item">
-                        <h6>Volume</h6> <b>X</b>
+                        <h6>Inflow</h6> <b>{{ $cash_flow['inflow'] }}</b>
                     </div>
                     <div class="stat-item">
-                        <h6>Inflows</h6> <b>X</b>
+                        <h6>Outflow</h6> <b>{{ $cash_flow['outflow'] }}</b>
                     </div>
                     <div class="stat-item">
-                        <h6>Payables</h6> <b>X</b>
+                        <h6>Net Flow</h6>
+                        @if ($cash_flow['new_flow'] > 0)
+                            <b class="text-success">{{ abs($cash_flow['new_flow']) }}%</b>
+                        @elseif ($cash_flow['new_flow'] < 0)
+                            <b class="text-danger">{{ abs($cash_flow['new_flow']) }}%</b>
+                        @else
+                            <b class="text-warning">{{ abs($cash_flow['new_flow']) }}%</b>
+                        @endif
                     </div>
                 </div>
-                <div id="sparkline9"></div>
             </div>
         </div>
         <div class="col-lg-4 col-md-12">
             <div class="white-box">
-                <h3 class="box-title"><small class="pull-right m-t-10 text-success"><i class="fa fa-sort-asc"></i> 18% &gt; last month</small>Profit</h3>
+                <h3 class="box-title">
+                    Profit
+                    @if ($profits_data['change'] > 0)
+                        <small class="pull-right m-t-10 text-success">
+                            <i class="fa fa-sort-asc"></i> {{ abs($profits_data['change']) }}% &gt; last month
+                        </small>
+                    @elseif ($profits_data['change'] < 0)
+                        <small class="pull-right m-t-10 text-danger">
+                            <i class="fa fa-sort-desc"></i> {{ abs($profits_data['change']) }}% &gt; last month
+                        </small>
+                    @else
+                        <small class="pull-right m-t-10 text-warning">
+                            <i class="fa fa-minus"></i> {{ abs($profits_data['change']) }}% &gt; last month
+                        </small>
+                    @endif
+                </h3>
                 <div class="stats-row">
                     <div class="stat-item">
-                        <h6>Total</h6> <b>1 254 632.44</b></div>
+                        <h6>Total</h6> <b>{{ $profits_data['total'] }}</b></div>
                     <div class="stat-item">
-                        <h6>This month</h6> <b>X</b></div>
+                        <h6>This month</h6> <b>{{ $profits_data['this_month'] }}</b></div>
                     <div class="stat-item">
-                        <h6>Today</h6> <b>X</b></div>
+                        <h6>Today</h6> <b>{{ $profits_data['today'] }}</b></div>
                 </div>
-                <div id="sparkline10"></div>
             </div>
         </div>
     </div>
@@ -69,36 +118,39 @@
                 <h3 class="box-title">Site Visits</h3>
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
-                        <my-map></my-map>
+                        <my-map :map="{{ $country_data['map_data'] }}"
+                                :info="{{ json_encode($country_data['map_info']) }}"></my-map>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        @foreach($visits as $group => $visit)
+        @foreach($country_data['visits'] as $group => $visit)
         <div class="col-md-6">
-            <div class="white-box countries-list">
-                <h3 class="box-title">{{ $group }}</h3>
-                <div class="row">
-                    <ul class="country-state slimscrollcountry col-md-12">
-                        @foreach($visit as $country => $data)
-                            <li>
-                                <h2>{{ $data['count'] }}</h2> <small>From {{ $country }}</small>
-                                <div class="pull-right">{{ calculatePercent($data['count'], $data['total']) }}%</div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-{{ $colors[rand(0, 5)] }}"
-                                         role="progressbar"
-                                         aria-valuenow="{{ calculatePercent($data['count'], $data['total']) }}"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:{{ calculatePercent($data['count'], $data['total']) }}%;">
-                                        <span class="sr-only">{{ calculatePercent($data['count'], $data['total']) }}% Complete</span>
+            <div class="card countries-list">
+                <div class="card-block">
+                    <h3 class="card-title">{{ $group }}</h3>
+                    <div class="card-text">
+                        <ul class="country-state slimscrollcountry col-md-12">
+                            @foreach($visit as $country => $data)
+                                <li>
+                                    <h2>{{ $data['count'] }}</h2> <small>From {{ $country }}</small>
+                                    <div class="pull-right">{{ calculatePercent($data['count'], $data['total']) }}%</div>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-{{ $colors[rand(0, 5)] }}"
+                                             role="progressbar"
+                                             aria-valuenow="{{ calculatePercent($data['count'], $data['total']) }}"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"
+                                             style="width:{{ calculatePercent($data['count'], $data['total']) }}%;">
+                                            <span class="sr-only">{{ calculatePercent($data['count'], $data['total']) }}% Complete</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

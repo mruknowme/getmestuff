@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Ticket;
 use App\Wish;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
@@ -21,7 +22,8 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer([
             'admin.wishes.wishes_table', 'admin.users.users_table',
-            'admin.achievements.achievements_table', 'admin.tickets.tickets_table'
+            'admin.achievements.achievements_table', 'admin.tickets.tickets_table',
+            'admin.payments.payments_table'
         ], function ($view) {
             $table = explode('/', request()->path());
             $table = end($table);
@@ -32,8 +34,15 @@ class AppServiceProvider extends ServiceProvider
         view()->composer([
             'admin.layouts.blocks.sidebar_left'
         ], function ($view) {
-            $count = Wish::query()->where('validated', false)->count();
-            $view->with('reported', $count);
+            $wishes = Wish::query()->where('validated', false)->count();
+            $tickets = Ticket::query()->where([
+                ['type', '!=', 3],
+                ['is_admin', '=', 0]
+            ])->count();
+            $view->with([
+                'reported' => $wishes,
+                'open' => $tickets
+            ]);
         });
 
         \Validator::extend('spamfree', '\App\Rules\SpamFree@passes');

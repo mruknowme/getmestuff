@@ -51,7 +51,17 @@
             switcher() {
                 axios.patch('/admin/api/settings/switch/'+this.data.id, {
                     state: this.checkboxValue
-                });
+                }).then(() => {
+                    flash(['Information has been updated']);
+                }).catch((error) => {
+                    let messages = [];
+                    for (let key in error.response.data) {
+                        messages.push(error.response.data[key][0]);
+                    }
+
+                    this.buffering = false;
+                    flash(messages, 'alert-danger');
+                });;
             },
             changeValue(decrementValue) {
                 if (decrementValue) {

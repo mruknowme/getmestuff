@@ -12,7 +12,7 @@ if (token) {
 
 window.events = new Vue();
 
-window.flash = function (message, type = 'success') {
+window.flash = function (message, type = 'alert-success') {
     window.events.$emit('flash', [message, type]);
 };
 
@@ -24,9 +24,8 @@ Vue.component('my-table', require('./components/MyTable.vue'));
 Vue.component('tabs', require('./components/Tabs.vue'));
 Vue.component('tab', require('./components/Tab.vue'));
 Vue.component('my-map', require('./components/Map.vue'));
+Vue.component('flash', require('./components/Flash.vue'));
 
 window.app = new Vue({
     el: '#app'
 });
-
-window.events = new Vue();

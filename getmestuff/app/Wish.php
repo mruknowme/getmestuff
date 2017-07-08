@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Wish extends Model
@@ -102,5 +103,46 @@ class Wish extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
+    }
+
+    public function getData()
+    {
+        $wishes = $this->where('validated', '=', 1)->get();
+
+        list($total, $completed, $in_progress) = $this->countWishes($wishes);
+        $change = getPercentageChange($wishes);
+        $outflow = $this->countOutflow($wishes);
+
+        return [
+            'total' => $total,
+            'completed' => $completed,
+            'in_progress' => $in_progress,
+            'change' => $change,
+            'outflow' => $outflow
+        ];
+    }
+
+    protected function countWishes($wishes)
+    {
+        $total = $wishes->count();
+
+        $completed = $wishes->filter(function ($item) {
+            return $item->completed == 1;
+        })->count();
+
+        $in_progress = $wishes->filter(function ($item) {
+            return $item->completed == 0;
+        })->count();
+
+        return [$total, $completed, $in_progress];
+    }
+
+    protected function countOutflow($wishes)
+    {
+        return $wishes->filter(function ($item) {
+            return $item->completed == 1 && $item->created_at->format('m-Y') == Carbon::now()->format('m-Y');
+        })->sum(function ($item) {
+            return $item->amount_needed;
+        });
     }
 }

@@ -87,7 +87,18 @@
                 }
             },
             submitForm() {
-                axios.post(this.post, this.values);
+                axios.post(this.post, this.values)
+                    .then(() => {
+                        flash(['Information has been updated']);
+                    }).catch((error) => {
+                        let messages = [];
+                        for (let key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+
+                        this.buffering = false;
+                        flash(messages, 'alert-danger');
+                    });
             },
             makeUpper(str) {
                 let string =  str.charAt(0).toUpperCase() + str.slice(1);

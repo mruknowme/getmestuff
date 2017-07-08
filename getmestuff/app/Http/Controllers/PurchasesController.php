@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\WalletForm;
+use App\Payment;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class PurchasesController extends Controller
 {

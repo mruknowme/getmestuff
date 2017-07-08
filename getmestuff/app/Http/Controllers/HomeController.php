@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Achievement;
 use App\Events\AchievementsOutdated;
-use App\GlobalSettings;
 use App\Http\Requests\PrizesForm;
-use App\Inspections\BannedWords;
-use App\Rules\MaxWish;
+use App\Payment;
 use App\User;
 use App\Wish;
 use App\Prize;
@@ -63,16 +61,8 @@ class HomeController extends Controller
         return response(['status' => 'Points redeemed successfully']);
     }
 
-    public function test()
+    public function test(Wish $wish)
     {
-        $search = array_search('iPhone', GlobalSettings::getSettings('word_replacements')->data);
-
-        dd($search);
-
-        return $search;
-//        GlobalSettings::create([
-//            'setting' => 'wish_replace',
-//            'data' => ['iPhone', 'iPad', 'iPod']
-//        ]);
+        $wish->getData();
     }
 }

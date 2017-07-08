@@ -78,33 +78,56 @@ class Country extends Model
         }
     }
 
-    public static function getVisits()
+    public function getVisits()
     {
-        $countries = static::query()->select('country', 'user_id')->orderBy('country')->get();
-        $totalUsers = Country::query()->whereNotNull('user_id')->count();
-        $totalVisitors = Country::query()->whereNull('user_id')->count();
+        $countries = $this->newQuery()->select('country', 'user_id', 'country_code')
+            ->orderBy('country')->get();
 
-        return $countries->groupBy(function ($item) {
-            if (!is_null($item->user_id)) return 'Users';
-            else return 'Visitors';
-        })->map(function ($item) {
-            return $item->groupBy('country')->map(function ($item) {
-                return [
-                    'count' => $item->count(),
-                ];
-            });
-        })->map(function ($item, $key) use ($totalVisitors, $totalUsers) {
-            if ($key == 'Visitors') {
-                return $item->map(function ($item) use ($totalVisitors) {
-                    $item['total'] = $totalVisitors;
-                    return $item;
-                });
-            } else {
-                return $item->map(function ($item) use ($totalUsers) {
-                    $item['total'] = $totalUsers;
-                    return $item;
-                });
-            }
+        list($visitors, $visitorCountryName, $visitorCountryCode) = $this->getCountries($countries, 'visitor');
+        list($users, $userCountryName, $userCountryCode) = $this->getCountries($countries, 'user');
+        list($total, $countryNames, $countryCodes) = $this->getCountries($countries);
+
+        $nameList['users'] = $userCountryName->map(function ($item) use ($users) {
+            return ['count' => $item, 'total' => $users];
         });
+        $nameList['visitors'] = $visitorCountryName->map(function ($item) use ($visitors) {
+            return ['count' => $item, 'total' => $visitors];
+        });;
+
+        $codeList['users'] = $userCountryCode;
+        $codeList['visitors'] = $visitorCountryCode;
+
+
+        return [
+            'visits' => $nameList,
+            'map_info' => $codeList,
+            'map_data' => $countryCodes
+        ];
+    }
+
+    protected function getCountries($countries, $group = false)
+    {
+        if ($group) {
+            $countries = $countries->filter(function ($item) use ($group) {
+                if ($group == 'user') return !is_null($item->user_id);
+                return is_null($item->user_id);
+            });
+        }
+
+        $total = $countries->count();
+
+        $countryNames = $countries->groupBy(function ($item) {
+            return $item->country;
+        })->map(function ($item) {
+            return $item->count();
+        });
+
+        $countryCodes = $countries->groupBy(function ($item) {
+            return $item->country_code;
+        })->map(function ($item) {
+            return $item->count();
+        });
+
+        return [$total, $countryNames, $countryCodes];
     }
 }

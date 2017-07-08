@@ -68,12 +68,20 @@
                 axios.post('/admin/api/tickets/reply/'+this.ticket.id, {
                     body: this.ticket.reply.body,
                     subject: this.ticket.subject
-                })
-                    .then(() => {
-                        $('.textarea_editor').data('wysihtml5').editor.composer.hide();
-                        $('.textarea_editor').data('wysihtml5').editor.toolbar.hide();
-                        this.showForm = false;
-                    })
+                }).then(() => {
+                    $('.textarea_editor').data('wysihtml5').editor.composer.hide();
+                    $('.textarea_editor').data('wysihtml5').editor.toolbar.hide();
+                    this.showForm = false;
+                    flash(['Message has been sent']);
+                }).catch((error) => {
+                    let messages = [];
+                    for (let key in error.response.data) {
+                        messages.push(error.response.data[key][0]);
+                    }
+
+                    this.buffering = false;
+                    flash(messages, 'alert-danger');
+                });
             }
         },
     }

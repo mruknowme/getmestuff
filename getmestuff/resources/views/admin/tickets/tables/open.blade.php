@@ -1,4 +1,4 @@
-<h3 class="box-title">Manage All Tickets</h3>
+<h3 class="box-title">Manage Open Tickets</h3>
 <my-table get="/admin/api/tickets/open"
           post="/admin/api/tickets"
           answer="true"

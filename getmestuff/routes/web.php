@@ -121,6 +121,13 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
         return view('admin.tickets.tickets_new');
     });
 
+    $this->get('/payments', function () {
+        return view('admin.payments.payments_table');
+    });
+    $this->get('/payments/failed', function () {
+        return view('admin.payments.payments_table');
+    });
+
     $this->get('/tickets/{ticket}', 'TicketsController@show');
 });
 
@@ -163,6 +170,11 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->post('/tickets/create', 'TicketsController@new');
     $this->post('/tickets/reply/{ticket}', 'TicketsController@reply');
 
+    $this->get('/payments', 'TransactionsController@all');
+    $this->get('/payments/failed', 'TransactionsController@failed');
+    $this->patch('/payments/{payment}', 'TransactionsController@update');
+    $this->delete('/payments/{payment}', 'TransactionsController@destroy');
+
     $this->post('/search/{setting}', 'GlobalSettingsController@search');
     $this->delete('/search/{setting}', 'GlobalSettingsController@destroy');
     $this->patch('/search/{setting}', 'GlobalSettingsController@update');
@@ -173,4 +185,4 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->get('/countries/visits', 'CountriesController@visits');
 });
 
-Route::get('/test', 'Admin\CountriesController@visits');
+Route::get('/test', 'Admin\TransactionsController@failed');

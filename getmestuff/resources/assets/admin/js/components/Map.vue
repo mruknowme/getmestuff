@@ -3,13 +3,14 @@
 </template>
 <script>
     export default {
+        props: ['map', 'info'],
         data() {
             return {
-                countries: {}
+                countries: this.map
             }
         },
         mounted() {
-            this.fetch();
+            this.makeMap();
         },
         methods: {
             fetch() {
@@ -25,7 +26,7 @@
                     backgroundColor: '#FFFFFF',
                     regionStyle: {
                         initial: {
-                            fill: '#56cbf9',
+                            fill: '#f4ebc9',
                             'fill-opacity': 1,
                             stroke: 'none'
                         },
@@ -37,15 +38,22 @@
                     series: {
                         regions: [{
                             values: this.countries,
-                            scale: ['#90d3ea', '#5da0b7'],
+                            scale: ['#ffa1a1', '#e04747'],
                             normalizeFunction: 'polynomial'
                         }]
                     },
                     onRegionTipShow: (e, el, code) => {
                         if (this.countries.hasOwnProperty(code)) {
-                            el.html(el.html()+' ('+this.countries[code]+' visits)');
+                            let user = this.info.users[code];
+                            if (user > 1) {
+                                el.html(el.html()+' - '+this.countries[code]+' visits ('+user+' users)');
+                            } else if (user == 1) {
+                                el.html(el.html()+' - '+this.countries[code]+' visits ('+user+' user)');
+                            } else {
+                                el.html(el.html()+' - '+this.countries[code]+' visits');
+                            }
                         } else {
-                            el.html(el.html()+' (0 visits)');
+                            el.html(el.html()+' - 0 visits');
                         }
                     }
                 });

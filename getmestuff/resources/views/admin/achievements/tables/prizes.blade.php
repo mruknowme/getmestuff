@@ -1,4 +1,4 @@
-<h3 class="box-title">Manage All Achievements</h3>
+<h3 class="box-title">Manage All Prizes</h3>
 <my-table get="/admin/api/achievements/prizes"
           post="/admin/api/achievements/prizes"
           :columns="[

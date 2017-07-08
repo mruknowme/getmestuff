@@ -1,4 +1,4 @@
-<h3 class="box-title">Manage All Users</h3>
+<h3 class="box-title">Manage Users' Activity</h3>
 <my-table get="/admin/api/users/activity"
           post="/admin/api/users/activity"
           :columns="[

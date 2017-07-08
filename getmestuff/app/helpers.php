@@ -11,11 +11,6 @@ function error ($message) {
     session()->flash('error', $message);
 }
 
-
-/**
- * @param $number
- * @return string
- */
 function shortenNum($number) {
     $abbrevs = array(12 => "T", 9 => "B", 6 => "M", 3 => "K", 0 => "");
 
@@ -152,4 +147,21 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE) {
 
 function calculatePercent($a, $b) {
     return round($a / $b * 100);
+}
+
+function getPercentageChange($data) {
+    $data = $data->groupBy(function ($item) {
+        return $item->created_at->format('m-Y');
+    })->slice(0, 2)->map(function ($item) {
+        return $item->count();
+    });
+
+    $this_month = $data->slice(0, 1)->first();
+    $last_month = $data->slice(1, 1)->first();
+
+    if (is_null($last_month)) return 0;
+
+    $change = round(($this_month * 100 / $last_month) - 100);
+
+    return $change;
 }

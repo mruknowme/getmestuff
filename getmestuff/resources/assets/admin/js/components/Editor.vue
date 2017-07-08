@@ -110,6 +110,15 @@
             submitForm() {
                 axios.patch(this.url +'/'+ this.dataSet.id, this.items).then(() => {
                     this.$emit('updated', this.items);
+                    flash(['Row has been updated']);
+                }).catch((error) => {
+                    let messages = [];
+                    for (let key in error.response.data) {
+                        messages.push(error.response.data[key][0]);
+                    }
+
+                    this.buffering = false;
+                    flash(messages, 'alert-danger');
                 });
             },
             checkRadio(key) {

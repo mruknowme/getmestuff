@@ -1,4 +1,4 @@
-<h3 class="box-title">Manage Wish's Address</h3>
+<h3 class="box-title">Manage Wishes' Address</h3>
 <my-table get="/admin/api/wishes/address"
           post="/admin/api/wishes/address"
           :columns="[
