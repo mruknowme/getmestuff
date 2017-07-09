@@ -35,18 +35,6 @@ Route::namespace('Auth')->group(function () {
     $this->post('password/reset', 'ResetPasswordController@reset')->name('password.reset.post');
 });
 
-Route::namespace('Admin\Auth')->prefix('admin')->group(function () {
-    $this->get('/abc', 'LoginController@showLoginForm');
-
-    $this->post('/login', 'LoginController@login');
-    $this->post('/logout', 'LoginController@logout');
-
-    $this->post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
-
-    $this->get('password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset.admin');
-    $this->post('password/reset', 'ResetPasswordController@reset');
-});
-
 Route::get('/home', 'HomeController@index');
 Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
 
@@ -73,6 +61,18 @@ Route::middleware(['auth', 'ajax'])->group(function () {
     $this->get('/unread', 'NotificationsController@show');
     $this->get('/donations', 'NotificationsController@index');
     $this->get('/payments', 'PurchasesController@index');
+});
+
+Route::namespace('Admin\Auth')->prefix('admin')->group(function () {
+    $this->get('/abc', 'LoginController@showLoginForm');
+
+    $this->post('/login', 'LoginController@login');
+    $this->post('/logout', 'LoginController@logout');
+
+    $this->post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
+
+    $this->get('password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset.admin');
+    $this->post('password/reset', 'ResetPasswordController@reset');
 });
 
 Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group(function () {
@@ -185,4 +185,4 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->get('/countries/visits', 'CountriesController@visits');
 });
 
-Route::get('/test', 'Admin\TransactionsController@failed');
+Route::get('/test', 'HomeController@test');

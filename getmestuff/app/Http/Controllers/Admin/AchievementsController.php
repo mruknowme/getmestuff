@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Achievement;
 use App\GlobalSettings;
+use App\Http\Controllers\Admin\Traits\RefactorData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewAchievementForm;
 use App\Http\Requests\Admin\NewPrizeForm;
@@ -14,6 +15,8 @@ use Yajra\Datatables\Facades\Datatables;
 
 class AchievementsController extends Controller
 {
+    use RefactorData;
+
     protected $visibleForAdmins = [];
 
     public function allAchievements(Achievement $achievement) {
@@ -83,28 +86,6 @@ class AchievementsController extends Controller
         $prize->delete();
 
         return response(['status' => 'Row deleted successfully']);
-    }
-
-    protected function refactorData($achievements)
-    {
-        return $achievements->map(function ($item) {
-            $data = collect($item);
-
-            if (isset($data['created_at'])) $data['created_at'] = $item->created_at->format('d-m-Y');
-            if (isset($data['updated_at'])) $data['updated_at'] = $item->updated_at->format('d-m-Y');
-
-            if (isset($data['renew'])) {
-                if ($data['renew'] == 0) {
-                    $data['renew_slug'] = 'None';
-                } elseif ($data['renew'] == 1) {
-                    $data['renew_slug'] = 'Monthly';
-                } else {
-                    $data['renew_slug'] = 'Instant';
-                }
-            }
-
-            return $data;
-        });
     }
 
     protected function getData($data, $select, $where = false)

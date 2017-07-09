@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Traits\RefactorData;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,6 +10,8 @@ use Yajra\Datatables\Datatables;
 
 class TransactionsController extends Controller
 {
+    use RefactorData;
+
     protected $visibleForAdmins = [
         'braintree_id'
     ];
@@ -49,16 +52,6 @@ class TransactionsController extends Controller
         $payment->delete();
 
         return response(['status' => 'Row has been deleted']);
-    }
-
-    protected function refactorData($payment)
-    {
-        return $payment->map(function ($item) {
-            $data = collect($item);
-            if (isset($data['created_at'])) $data['created_at'] = $item->created_at->format('d-m-Y');
-            if (isset($data['updated_at'])) $data['updated_at'] = $item->updated_at->format('d-m-Y');
-            return $data;
-        });
     }
 
     protected function getPayments($payment, $select, $where = false)

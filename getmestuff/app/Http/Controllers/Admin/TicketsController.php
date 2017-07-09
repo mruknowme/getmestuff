@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Traits\RefactorData;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Admin\NewTicketForm;
@@ -13,6 +14,8 @@ use Yajra\Datatables\Datatables;
 
 class TicketsController extends Controller
 {
+    use RefactorData;
+
     public function all(Ticket $ticket)
     {
         return Datatables::of(
@@ -115,37 +118,5 @@ class TicketsController extends Controller
             return $ticket->select($select)->where($where)->get();
         }
         return $ticket->select($select)->get();
-    }
-
-    protected function refactorData($ticket)
-    {
-        return $ticket->map(function ($item) {
-            $data = collect($item);
-
-            if (isset($data['created_at'])) $data['created_at'] = $item->created_at->format('d-m-Y');
-            if (isset($data['updated_at'])) $data['updated_at'] = $item->updated_at->format('d-m-Y');
-
-            if (isset($data['type'])) {
-                if ($data['type'] == 0) {
-                    $data['type_slug'] = 'Open';
-                } elseif ($data['type'] == 1) {
-                    $data['type_slug'] = 'In Progress';
-                } else {
-                    $data['type_slug'] = 'Closed';
-                }
-            }
-
-            if (isset($data['priority'])) {
-                if ($data['priority'] == 0) {
-                    $data['priority_slug'] = 'Green';
-                } elseif ($data['priority'] == 1) {
-                    $data['priority_slug'] = 'Yellow';
-                } else {
-                    $data['priority_slug'] = 'Red';
-                }
-            }
-
-            return $data;
-        });
     }
 }

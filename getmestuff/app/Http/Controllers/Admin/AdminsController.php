@@ -19,12 +19,18 @@ class AdminsController extends Controller
         $wishes_data = $wish->getData();
         $payment_data = $payment->getData();
 
+        if ($payment_data['this_month'] == 0) {
+            $net_flow = 0;
+        } else {
+            $net_flow = number_format(
+                100 - ($wishes_data['outflow'] * 100 / $payment_data['this_month']), 2
+            );
+        }
+
         $cash_flow = [
             'inflow' => $payment_data['this_month'],
             'outflow' => $wishes_data['outflow'],
-            'new_flow' => number_format(
-                100 - ($wishes_data['outflow'] * 100 / $payment_data['this_month']), 2
-            ),
+            'new_flow' => $net_flow,
             'change' => $payment_data['change']
         ];
 

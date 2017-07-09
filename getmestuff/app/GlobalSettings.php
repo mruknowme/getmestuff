@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GlobalSettings extends Model
 {
+    public $timestamps = true;
+
     protected $fillable = ['setting', 'data'];
 
     protected $casts = [
@@ -27,12 +29,6 @@ class GlobalSettings extends Model
     {
         return static::query()->whereIn('setting', [
             'emails', 'social_media', 'banned_words', 'state'
-        ])->orderBy(\DB::raw(
-            'CASE setting
-		            WHEN \'emails\' THEN 1
-		            WHEN \'social_media\' THEN 2
-		            WHEN \'banned_words\' THEN 3
-		            WHEN \'state\' THEN 4
-	               END'))->get();
+        ])->get();
     }
 }

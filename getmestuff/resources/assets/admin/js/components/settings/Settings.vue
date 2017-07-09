@@ -146,9 +146,6 @@
             },
             largeOrSmall(groupedItems, key) {
                 return (((groupedItems.length % 2) != 0) && key == 0);
-            },
-            test(test) {
-                console.log(test);
             }
         }
     }

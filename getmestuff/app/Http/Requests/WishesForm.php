@@ -47,7 +47,7 @@ class WishesForm extends FormRequest
         }
 
         list($wish, $address) = $this->getWishFields();
-
+        
         $this->saveUserData($address);
 
         $this->user()->wishes()->create($wish);
@@ -84,9 +84,19 @@ class WishesForm extends FormRequest
 
         $items['item'] = ucfirst($items['item']);
 
-        foreach ($patterns as $pattern) {
-            $items['item'] = preg_replace("/$pattern/i", $pattern, $items['item']);
+        if (in_array($items['item'], $patterns)) {
+            foreach ($patterns as $pattern) {
+                $item = preg_replace("/$pattern/i", $pattern, $items['item']);
+                $items['en'] = ['item' => $item];
+                $items['ru'] = ['item' => $item];
+            }
+        } else {
+            $data = translate($items['item']);
+            $items['en'] = ['item' => $data['en']];
+            $items['ru'] = ['item' => $data['ru']];
         }
+
+        unset($items['item']);
 
         $items['address'] = $address;
 

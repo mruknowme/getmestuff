@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Achievement;
 use App\Events\AchievementsOutdated;
 use App\Http\Requests\PrizesForm;
-use App\Payment;
 use App\User;
 use App\Wish;
 use App\Prize;
@@ -63,6 +62,9 @@ class HomeController extends Controller
 
     public function test(Wish $wish)
     {
-        $wish->getData();
+        $wish = $wish->first();
+        $wish->translate('en')->item = 'Cat';
+        $wish->translate('ru')->item = 'Кот';
+        $wish->save();
     }
 }

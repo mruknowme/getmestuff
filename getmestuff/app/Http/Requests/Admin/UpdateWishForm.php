@@ -28,17 +28,22 @@ class UpdateWishForm extends FormRequest
             'current_amount' => 'nullable|integer',
             'amount_needed' => 'nullable|integer',
             'validated' => 'nullable',
-            'completed' => 'nullable'
+            'completed' => 'nullable',
+            'translations.ru.item' => 'required',
+            'translations.en.item' => 'required',
         ];
     }
 
     public function save($wish)
     {
-        $params = $this->intersect(['item', 'current_amount', 'amount_needed']);
+        $params = $this->intersect(['item', 'current_amount', 'amount_needed', 'translations']);
+
         $bool = collect($this->only(['validated', 'completed']))->map(function ($item) {
             if ($item == '0') return false;
             else return true;
         })->toArray();
+
+        $params = setTranslations($params);
 
         $data = array_merge($params, $bool);
 

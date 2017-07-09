@@ -3,12 +3,17 @@
 namespace App;
 
 use Carbon\Carbon;
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Wish extends Model
 {
+    use Translatable;
+
+    public $translatedAttributes = ['item'];
+
     protected $fillable = [
-        'user_id', 'item', 'url', 'current_amount',
+        'user_id', 'url', 'current_amount',
         'amount_needed', 'address', 'donated', 'completed',
         'priority', 'validated'
     ];

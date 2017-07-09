@@ -29,9 +29,22 @@
                         </div>
                     </div>
                     <div class="address" v-else-if="checkIfObject(key)">
-                        <div class="form-group" v-for="(address, name) in item">
-                            <label :for="name" v-text="formatString(name)"></label>
-                            <input :name="name" class="form-control" v-model="items[key][name]">
+                        <div class="form-group" v-for="(data, name) in item">
+                            <div v-if="!checkIfObject(data, true)">
+                                <label :for="name" v-text="formatString(name)"></label>
+                                <input :name="name"
+                                       class="form-control"
+                                       v-model="items[key][name]">
+                            </div>
+                            <div v-else>
+                                <h4 v-text="name"></h4>
+                                <div class="form-group" v-for="translation, label in data">
+                                    <label :for="label" v-text="formatString(label)"></label>
+                                    <input :name="label"
+                                           class="form-control"
+                                           v-model="items[key][name][label]">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" v-else-if="!checkTextarea(key)">
@@ -130,7 +143,10 @@
             skipTheseFields(key) {
                 return !(this.skip.indexOf(key) >= 0);
             },
-            checkIfObject(key) {
+            checkIfObject(key, second = false) {
+                if (second) {
+                    return (key !== null && typeof key === 'object');
+                }
                 return (this.items[key] !== null && typeof this.items[key] === 'object');
             },
             checkSelect(key) {

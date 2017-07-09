@@ -39486,6 +39486,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
+var locale = document.head.querySelector('meta[name="locale"]');
+
+window.axios.defaults.baseURL = '/' + locale.content;
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;

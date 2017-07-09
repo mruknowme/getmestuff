@@ -27488,6 +27488,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -27569,6 +27582,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return !(this.skip.indexOf(key) >= 0);
         },
         checkIfObject: function checkIfObject(key) {
+            var second = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+            if (second) {
+                return key !== null && (typeof key === 'undefined' ? 'undefined' : _typeof(key)) === 'object';
+            }
             return this.items[key] !== null && _typeof(this.items[key]) === 'object';
         },
         checkSelect: function checkSelect(key) {
@@ -28963,9 +28981,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         },
         largeOrSmall: function largeOrSmall(groupedItems, key) {
             return groupedItems.length % 2 != 0 && key == 0;
-        },
-        test: function test(_test) {
-            console.log(_test);
         }
     }
 });
@@ -30489,10 +30504,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }), _vm._v("\n                                False\n                            ")])])])]) : (_vm.checkIfObject(key)) ? _c('div', {
       staticClass: "address"
-    }, _vm._l((item), function(address, name) {
+    }, _vm._l((item), function(data, name) {
       return _c('div', {
         staticClass: "form-group"
-      }, [_c('label', {
+      }, [(!_vm.checkIfObject(data, true)) ? _c('div', [_c('label', {
         attrs: {
           "for": name
         },
@@ -30525,7 +30540,48 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
             }
           }
         }
-      })])
+      })]) : _c('div', [_c('h4', {
+        domProps: {
+          "textContent": _vm._s(name)
+        }
+      }), _vm._v(" "), _vm._l((data), function(translation, label) {
+        return _c('div', {
+          staticClass: "form-group"
+        }, [_c('label', {
+          attrs: {
+            "for": label
+          },
+          domProps: {
+            "textContent": _vm._s(_vm.formatString(label))
+          }
+        }), _vm._v(" "), _c('input', {
+          directives: [{
+            name: "model",
+            rawName: "v-model",
+            value: (_vm.items[key][name][label]),
+            expression: "items[key][name][label]"
+          }],
+          staticClass: "form-control",
+          attrs: {
+            "name": label
+          },
+          domProps: {
+            "value": (_vm.items[key][name][label])
+          },
+          on: {
+            "input": function($event) {
+              if ($event.target.composing) { return; }
+              var $$exp = _vm.items[key][name],
+                $$idx = label;
+              if (!Array.isArray($$exp)) {
+                _vm.items[key][name][label] = $event.target.value
+              } else {
+                $$exp.splice($$idx, 1, $event.target.value)
+              }
+            }
+          }
+        })])
+      })], 2)])
     })) : (!_vm.checkTextarea(key)) ? _c('div', {
       staticClass: "form-group"
     }, [_c('label', {

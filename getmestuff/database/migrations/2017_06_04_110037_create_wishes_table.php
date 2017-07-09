@@ -16,7 +16,6 @@ class CreateWishesTable extends Migration
         Schema::create('wishes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('item', 255);
             $table->string('url', 255);
             $table->json('address');
             $table->integer('amount_needed')->unsigned();
@@ -27,6 +26,17 @@ class CreateWishesTable extends Migration
             $table->json('donated')->nullable();
             $table->json('reported')->nullable();
             $table->timestamps();
+        });
+
+        Schema::create('wish_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('wish_id')->unsigned();
+            $table->string('locale')->index();
+
+            $table->string('item', 255);
+
+            $table->unique(['wish_id', 'locale']);
+            $table->foreign('wish_id')->references('id')->on('wishes')->onDelete('cascade');
         });
     }
 

@@ -32,10 +32,11 @@ function breadcrumbs($sep = '', $home = 'admin')
 
     $crumbs = explode('/', request()->path());
 
-    $bc = '<ol class="breadcrumb">';
-    $bc .= "<li><a href='$site/$home/dashboard'>".ucfirst($home)."</a>$sep</li>";
-
     unset($crumbs[0]);
+    unset($crumbs[1]);
+
+    $bc = '<ol class="breadcrumb">';
+    $bc .= "<li><a href='/$home/dashboard'>".ucfirst($home)."</a>$sep</li>";
 
     $i = 0;
     $numOfCrumbs = count($crumbs);
@@ -46,7 +47,7 @@ function breadcrumbs($sep = '', $home = 'admin')
         } elseif (++$i === $numOfCrumbs) {
             $bc .= '<li class="active">'.ucfirst($crumb).'</li>';
         } else {
-            $bc .= "<li><a href='$site/$home/$crumb'>".ucfirst($crumb)."</a>$sep</li>";
+            $bc .= "<li><a href='/$home/$crumb'>".ucfirst($crumb)."</a>$sep</li>";
         }
     }
 
@@ -164,4 +165,34 @@ function getPercentageChange($data) {
     $change = round(($this_month * 100 / $last_month) - 100);
 
     return $change;
+}
+
+function translate($item) {
+    $key = 'trnsl.1.1.20170709T154025Z.462aef53a8177144.3cf52c7026eb9ad1409c137882ab820db60c4201';
+    $lang = getLanguage();
+    $current = app()->getLocale();
+
+    $data = file_get_contents(
+        "https://translate.yandex.net/api/v1.5/tr.json/translate?key=$key&text=$item&lang=$current-$lang"
+    );
+
+    $data = json_decode($data)->text[0];
+
+    return [
+        $current => $item,
+        $lang => $data
+    ];
+}
+
+function getLanguage() {
+    if (app()->getLocale() == 'en') return 'ru';
+    return 'en';
+}
+
+function setTranslations($params) {
+    $params = array_add($params, 'en', $params['translations']['en']);
+    $params = array_add($params, 'ru', $params['translations']['ru']);
+    unset($params['translations']);
+
+    return $params;
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\GlobalSettings;
+use App\Http\Controllers\Admin\Traits\RefactorData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateWishAddressFrom;
 use App\Http\Requests\Admin\UpdateWishForm;
@@ -11,16 +12,20 @@ use Yajra\Datatables\Facades\Datatables;
 
 class WishesController extends Controller
 {
+    use RefactorData;
+
     protected $visibleForAdmins = [
         'user_id', 'url', 'address', 'priority', 'validated', 'completed', 'donated', 'updated_at'
     ];
+
+    protected $translatedFields = ['item'];
 
     public function all(Wish $wish)
     {
         return Datatables::of(
             $this->refactorData(
                 $this->getWishes($wish, [
-                    'id', 'item', 'current_amount', 'amount_needed', 'validated', 'completed', 'created_at'
+                    'id', 'current_amount', 'amount_needed', 'validated', 'completed', 'created_at'
                 ])
             )
         )->make(true);
@@ -31,7 +36,7 @@ class WishesController extends Controller
         return Datatables::of(
             $this->refactorData(
                 $this->getWishes(
-                    $wish, ['id', 'user_id', 'item', 'validated', 'created_at'], false, ['validated', false]
+                    $wish, ['id', 'user_id', 'validated', 'created_at'], false, ['validated', false]
                 )
             )
         )->make(true);
@@ -40,8 +45,8 @@ class WishesController extends Controller
     public function address(Wish $wish)
     {
         return Datatables::of(
-            $this->refactorAddressData(
-                $this->getWishes($wish, ['id', 'item', 'user_id', 'address', 'created_at'], ['id', 'email'])
+            $this->refactorData(
+                $this->getWishes($wish, ['id', 'user_id', 'address', 'created_at'], ['id', 'email'])
             )
         )->make(true);
     }
@@ -76,46 +81,20 @@ class WishesController extends Controller
         return response(['status' => 'Wish has been deleted']);
     }
 
-    protected function refactorData($wish)
-    {
-        return $wish->map(function ($item) {
-            $data = collect($item);
-            if (isset($data['created_at'])) $data['created_at'] = $item->created_at->format('d-m-Y');
-            if (isset($data['updated_at'])) $data['updated_at'] = $item->updated_at->format('d-m-Y');
-            return $data;
-        });
-    }
-
-    protected function refactorAddressData($wish)
-    {
-        return $wish->map(function ($item) {
-            $data = collect($item);
-            $data['user'] = $data['user']['email'];
-            $data['created_at'] = $item->created_at->format('d-m-Y');
-
-            if (is_null($data['address']['address_two'])) {
-                $address = $data['address']['address_one'];
-            } else {
-                $address = $data['address']['address_one'] . ' ' . $data['address']['address_two'];
-            }
-
-            $data['address'] = array_add($data['address'], 'address_line', $address);
-
-            return $data;
-        });
-    }
-
     protected function getWishes(Wish $wish, $select, $with = false, $where = false)
     {
+        $wish = $wish->select($select)->with('translations');
+
         if ($with) {
-            return $wish->select($select)->with(['user' => function ($query) use ($with) {
+            $wish = $wish->with(['user' => function ($query) use ($with) {
                 $query->select($with);
-            }])->get()->makeVisible($this->visibleForAdmins);
+            }]);
         }
 
         if ($where) {
-            return $wish->select($select)->where([$where])->get()->makeVisible($this->visibleForAdmins);
+            $wish = $wish->where([$where]);
         }
-        return $wish->select($select)->get()->makeVisible($this->visibleForAdmins);
+
+        return $wish->get()->makeVisible($this->visibleForAdmins);
     }
 }
