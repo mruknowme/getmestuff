@@ -10,10 +10,13 @@
                         <li><a class="link" href="/about">About Us</a></li>
                         <li><a class="link" href="/login">Log In</a></li>
                         <li><a class="link" href="/register">Sign Up</a></li>
-                        <li><a class="">EN</a> | <a class="">RU</a></li>
+                        <li><a class="">EN</a> | <a class="">РУ</a></li>
                     @else
                         <li><a class="user-link" href="/home">Home</a></li>
                         <li><a class="user-link" href="/wishes">Wishes</a></li>
+                        @if (auth()->user()->isAdmin())
+                            <li><a class="user-link" target="_blank" href="/admin/dashboard">Dashboard</a></li>
+                        @endif
                         <li class="notification-link pos-r flex center">
                             <a class="user-link" href="/notifications">Notifications</a>
                             <div class="unread flex center" v-if="unreadNotifications">

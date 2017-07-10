@@ -47,6 +47,7 @@ class CreateWishesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('wish_translations');
         Schema::dropIfExists('wishes');
     }
 }

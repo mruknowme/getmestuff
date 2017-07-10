@@ -12,7 +12,7 @@
                 points: this.user.points,
                 donated: this.user.amount_donated,
                 expanded: false,
-                currentText: 'Click here to redeem points for prizes'
+                currentText: 'redeem'
             }
         },
         created() {
@@ -39,10 +39,10 @@
             changeClass() {
                 if (!this.expanded) {
                     this.expanded = true;
-                    this.currentText = 'Click here to go back';
+                    this.currentText = 'not-redeem';
                 } else {
                     this.expanded = false;
-                    this.currentText = 'Click here to redeem points for prizes';
+                    this.currentText = 'redeem';
                 }
             }
         },

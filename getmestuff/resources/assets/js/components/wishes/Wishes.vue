@@ -7,7 +7,7 @@
             <slot></slot>
         </div>
         <div class="mw flex center" v-else>
-            <p>There are no relevant results at this point</p>
+            <p>{{ $t('no-relevant-results') }}</p>
         </div>
     </section>
 </template>

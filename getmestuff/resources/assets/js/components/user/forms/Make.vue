@@ -2,11 +2,11 @@
     <section class="flex vertical start bg-white main-section" id="wish" v-if="allowed == 1">
         <div class="flex between mw">
              <div class="flex center wish-title">
-                <h2>Make a Wish</h2>
+                <h2 v-text="$t('wish')"></h2>
                 <span v-text="number_of_wishes"></span>
             </div>
             <div class="priority" v-if="priority > 0">
-                <p>This wish's priority will be higher.</p>
+                <p v-text="$t('priority')"></p>
             </div>
         </div>
         <form class="vertical center mw" data-parsley-validate>
@@ -15,7 +15,7 @@
                     <input type="text"
                            name="item"
                            v-model="item"
-                           placeholder="What is Your Wish?"
+                           :placeholder="$t('item')"
                            required>
                 </div>
                 <div class="mw pos-r">
@@ -23,7 +23,7 @@
                            data-parsley-trigger="change"
                            name="url"
                            v-model="url"
-                           placeholder="Link to your desired product..."
+                           :placeholder="$t('link')"
                            required>
                 </div>
             </div>
@@ -32,52 +32,52 @@
                     <input type="number"
                            name="current_amount"
                            v-model="current_amount"
-                           placeholder="Current Amount (default: 0)"
+                           :placeholder="$t('current')"
                            required>
                 </div>
                 <div class="w48 pos-r">
                     <input type="number"
                            name="amount_needed"
                            v-model="amount_needed"
-                           placeholder="Amount Needed"
+                           :placeholder="$t('needed')"
                            required>
                 </div>
             </div>
             <div class="mw divisor divisor-bg">
-                <p><i class="fa fa-address-card-o" aria-hidden="true"></i><span>Please provide your full address:</span></p>
+                <p><i class="fa fa-address-card-o" aria-hidden="true"></i><span v-text="$t('address')"></span></p>
                 <div class="mw pos-r">
                     <input type="text"
                            name="address_one"
                            v-model="address_one"
-                           placeholder="Address 1"
+                           :placeholder="$t('address1')"
                            required>
                 </div>
                 <div class="mw pos-r">
                     <input type="text"
                            name="address_two"
                            v-model="address_two"
-                           placeholder="Address 2 (optional)">
+                           :placeholder="$t('address2')">
                 </div>
                 <div class="mw flex between">
                     <div class="w3 pos-r">
                         <input type="text"
                                name="city"
                                v-model="city"
-                               placeholder="City"
+                               :placeholder="$t('city')"
                                required>
                     </div>
                     <div class="w3 pos-r">
                         <input type="text"
                                name="post_code"
                                v-model="post_code"
-                               placeholder="Post Code"
+                               :placeholder="$t('zip')"
                                required>
                     </div>
                     <div class="w3 pos-r">
                         <input type="text"
                                name="country"
                                v-model="country"
-                               placeholder="Country"
+                               :placeholder="$t('country')"
                                required>
                     </div>
                 </div>
@@ -85,13 +85,13 @@
             <div class="self-start">
                 <button :disabled="buffering" @click.prevent="postWish" type="submit">
                     <i v-show="buffering" class="fa fa-refresh fa-spin pos-a fa-lg" aria-hidden="true"></i>
-                    Make Your Wish
+                    {{ $t('request') }}
                 </button>
             </div>
         </form>
     </section>
     <section class="flex center bg-white main-section empty" v-else>
-        <p>Looks like you haven't donated yet. Please donate and come back to make your wish.</p>
+        <p v-text="$t('not-donated')"></p>
     </section>
 </template>
 <script>

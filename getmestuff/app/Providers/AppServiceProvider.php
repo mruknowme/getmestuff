@@ -16,10 +16,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (strlen(request()->segment(1)) == 2) app()->setLocale(request()->segment(1));
+        app()->setLocale(request()->segment(1));
 
         view()->composer('*', function ($view) {
             $view->with('refresh', \App\User::lastOnline());
+        });
+
+        view()->composer('*', function ($view) {
+            $view->with('lang', app()->getLocale());
         });
 
         view()->composer([

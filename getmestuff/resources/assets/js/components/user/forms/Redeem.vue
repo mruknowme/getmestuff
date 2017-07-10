@@ -4,13 +4,13 @@
             <input :disabled="(prize.id == 3 && limit)" type="radio" name="prize" class="radio" :value="prize.id" v-model="selected" checked>
             <div class="prize-info mw flex vertical start">
                 <h4 v-text="prize.item"></h4>
-                <p v-text="prize.body"></p>
+                <p v-text="prize.description"></p>
                 <p class="self-end">{{ prize.price }} <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
             </div>
         </div>
         <div class="mw flex quantity">
             <div>
-                <p>Total: {{ price }} <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
+                <p>{{ $t('total') }}: {{ price }} <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
             </div>
             <div class="flex start form">
                 <input @blur="setQuantity" name="quantity" type="text" value="1" v-model="quantity" :disabled="isLimit">

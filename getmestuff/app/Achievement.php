@@ -2,12 +2,17 @@
 
 namespace App;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Achievement extends Model
 {
+    use Translatable;
+
+    public $translatedAttributes = ['title', 'description'];
+
     protected $fillable = [
-        'title', 'description', 'need', 'prize', 'renew', 'type'
+        'need', 'prize', 'renew', 'type'
     ];
 
     public static function getAchievementsInfo ()

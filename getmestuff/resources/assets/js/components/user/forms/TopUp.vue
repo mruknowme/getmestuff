@@ -2,7 +2,7 @@
     <form class="mw flex around vertical">
         <div class="w95 topup-form" id="dropin-container"></div>
         <div class="w95 flex start topup-button">
-            <button :disabled="buffering" type="submit">Top Up</button>
+            <button :disabled="buffering" type="submit">{{ $t('top-up') }}</button>
         </div>
     </form>
 </template>

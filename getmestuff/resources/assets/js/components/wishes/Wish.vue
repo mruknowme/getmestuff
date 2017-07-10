@@ -4,24 +4,24 @@
         <div class="content">
             <div class="header">
                 <h4 v-text="data.item"></h4>
-                <a v-if="report" @click="reportWish" :class="{ disabled: this.wait }">Report</a>
+                <a v-if="report" @click="reportWish" :class="{ disabled: this.wait }">{{ $t('report') }}</a>
                 <p v-else v-text="when"></p>
             </div>
             <div class="progress">
-                <p>Progress</p>
+                <p>{{ $t('progress') }}</p>
                 <div class="progress-bar">
                     <div :style="{width: (current/needed * 100) + '%'}"></div>
                 </div>
             </div>
             <div class="footer">
                 <p :title="current + '/' + needed">
-                    Collected: {{ currentShrt }}/{{ neededShrt }}
+                    {{ $t('collected') }}: {{ currentShrt }}/{{ neededShrt }}
                 </p>
                 <form v-if="displayForm">
                     <input type="number" name="amount" v-model="amount" required>
                     <button :disabled="this.wait" type="submit" class="pos-r" @click.prevent="donate">
                         <i v-show="buffering" class="fa fa-refresh fa-spin pos-a" aria-hidden="true"></i>
-                        Donate
+                        {{ $t('donate') }}
                     </button>
                 </form>
             </div>

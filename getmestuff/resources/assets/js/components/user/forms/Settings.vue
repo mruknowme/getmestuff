@@ -1,13 +1,13 @@
 <template>
     <section class="flex vertical start bg-white main-section" id="settings">
-        <h2>Edit Profile</h2>
+        <h2>{{ $t('edit') }}</h2>
         <form class="mw vertical center" action="/home/update" method="POST" data-parsley-validate>
             <div class="mw">
                 <div class="mw pos-r">
                     <input type="text"
                            id="first_name"
                            name="first_name"
-                           placeholder="Your Name"
+                           :placeholder="$t('first_name')"
                            v-model="first_name"
                            autocomplete="off">
                 </div>
@@ -15,7 +15,7 @@
                     <input type="text"
                            id="last_name"
                            name="last_name"
-                           placeholder="Your Last Name"
+                           :placeholder="$t('last_name')"
                            v-model="last_name"
                            autocomplete="off">
                 </div>
@@ -24,7 +24,7 @@
                            type="email"
                            id="email"
                            name="email"
-                           placeholder="Your Email"
+                           :placeholder="$t('email')"
                            v-model="email"
                            autocomplete="off">
                 </div>
@@ -35,16 +35,16 @@
                            id="password"
                            name="password"
                            v-model="password"
-                           placeholder="Edit Password">
+                           :placeholder="$t('edit_password')">
                 </div>
             </div>
             <div class="divisor divisor-bg mw">
-                <p><i class="fa fa-key" aria-hidden="true"></i><span>Please enter your current password to confirm changes:</span></p>
+                <p><i class="fa fa-key" aria-hidden="true"></i><span>{{ $t('confirm') }}:</span></p>
                 <div class="mw pos-r">
                     <input type="password"
                            id="current_password"
                            name="current_password"
-                           placeholder="Your Current Password"
+                           :placeholder="$t('current_password')"
                            v-model="current_password"
                            autocomplete="off" required>
                 </div>
@@ -52,7 +52,7 @@
             <div class="self-start">
                 <button class="pos-r" :disabled="buffering" @click.prevent="updateSettings" type="submit">
                     <i v-show="buffering" class="fa fa-cog fa-spin fa-lg" aria-hidden="true"></i>
-                    Save Settings
+                    {{ $t('save') }}
                 </button>
             </div>
         </form>

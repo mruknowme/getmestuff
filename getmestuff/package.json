@@ -23,6 +23,7 @@
     "moment": "^2.18.1",
     "owl.carousel": "^2.2.0",
     "pagepiling.js": "^1.5.4",
-    "parsleyjs": "^2.7.2"
+    "parsleyjs": "^2.7.2",
+    "vuex": "^2.3.1"
   }
 }

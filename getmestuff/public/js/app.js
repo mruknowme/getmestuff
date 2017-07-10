@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 291);
+/******/ 	return __webpack_require__(__webpack_require__.s = 293);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -37711,18 +37711,18 @@ module.exports = Component.exports
 /***/ }),
 /* 150 */,
 /* 151 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 window.Vue = __webpack_require__(148);
 
 __webpack_require__(198);
+__webpack_require__(305);
 __webpack_require__(206);
 __webpack_require__(199);
 __webpack_require__(204);
@@ -38750,7 +38750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             points: this.user.points,
             donated: this.user.amount_donated,
             expanded: false,
-            currentText: 'Click here to redeem points for prizes'
+            currentText: 'redeem'
         };
     },
     created: function created() {
@@ -38780,10 +38780,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         changeClass: function changeClass() {
             if (!this.expanded) {
                 this.expanded = true;
-                this.currentText = 'Click here to go back';
+                this.currentText = 'not-redeem';
             } else {
                 this.expanded = false;
-                this.currentText = 'Click here to redeem points for prizes';
+                this.currentText = 'redeem';
             }
         }
     },
@@ -39453,7 +39453,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ }),
 /* 198 */
 /***/ (function(module, exports, __webpack_require__) {
-
 
 window._ = __webpack_require__(203);
 
@@ -64577,7 +64576,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "disabled": _vm.buffering,
       "type": "submit"
     }
-  }, [_vm._v("Top Up")])])])
+  }, [_vm._v(_vm._s(_vm.$t('top-up')))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -64672,7 +64671,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "settings"
     }
-  }, [_c('h2', [_vm._v("Edit Profile")]), _vm._v(" "), _c('form', {
+  }, [_c('h2', [_vm._v(_vm._s(_vm.$t('edit')))]), _vm._v(" "), _c('form', {
     staticClass: "mw vertical center",
     attrs: {
       "action": "/home/update",
@@ -64694,7 +64693,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text",
       "id": "first_name",
       "name": "first_name",
-      "placeholder": "Your Name",
+      "placeholder": _vm.$t('first_name'),
       "autocomplete": "off"
     },
     domProps: {
@@ -64719,7 +64718,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text",
       "id": "last_name",
       "name": "last_name",
-      "placeholder": "Your Last Name",
+      "placeholder": _vm.$t('last_name'),
       "autocomplete": "off"
     },
     domProps: {
@@ -64745,7 +64744,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "email",
       "id": "email",
       "name": "email",
-      "placeholder": "Your Email",
+      "placeholder": _vm.$t('email'),
       "autocomplete": "off"
     },
     domProps: {
@@ -64772,7 +64771,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "password",
       "id": "password",
       "name": "password",
-      "placeholder": "Edit Password"
+      "placeholder": _vm.$t('edit_password')
     },
     domProps: {
       "value": (_vm.password)
@@ -64785,7 +64784,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])]), _vm._v(" "), _c('div', {
     staticClass: "divisor divisor-bg mw"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('p', [_c('i', {
+    staticClass: "fa fa-key",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _c('span', [_vm._v(_vm._s(_vm.$t('confirm')) + ":")])]), _vm._v(" "), _c('div', {
     staticClass: "mw pos-r"
   }, [_c('input', {
     directives: [{
@@ -64798,7 +64802,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "password",
       "id": "current_password",
       "name": "current_password",
-      "placeholder": "Your Current Password",
+      "placeholder": _vm.$t('current_password'),
       "autocomplete": "off",
       "required": ""
     },
@@ -64836,15 +64840,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v("\n                Save Settings\n            ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('i', {
-    staticClass: "fa fa-key",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }), _c('span', [_vm._v("Please enter your current password to confirm changes:")])])
-}]}
+  }), _vm._v("\n                " + _vm._s(_vm.$t('save')) + "\n            ")])])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -64908,13 +64905,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "flex between mw"
   }, [_c('div', {
     staticClass: "flex center wish-title"
-  }, [_c('h2', [_vm._v("Make a Wish")]), _vm._v(" "), _c('span', {
+  }, [_c('h2', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('wish'))
+    }
+  }), _vm._v(" "), _c('span', {
     domProps: {
       "textContent": _vm._s(_vm.number_of_wishes)
     }
   })]), _vm._v(" "), (_vm.priority > 0) ? _c('div', {
     staticClass: "priority"
-  }, [_c('p', [_vm._v("This wish's priority will be higher.")])]) : _vm._e()]), _vm._v(" "), _c('form', {
+  }, [_c('p', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('priority'))
+    }
+  })]) : _vm._e()]), _vm._v(" "), _c('form', {
     staticClass: "vertical center mw",
     attrs: {
       "data-parsley-validate": ""
@@ -64933,7 +64938,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "text",
       "name": "item",
-      "placeholder": "What is Your Wish?",
+      "placeholder": _vm.$t('item'),
       "required": ""
     },
     domProps: {
@@ -64958,7 +64963,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "url",
       "data-parsley-trigger": "change",
       "name": "url",
-      "placeholder": "Link to your desired product...",
+      "placeholder": _vm.$t('link'),
       "required": ""
     },
     domProps: {
@@ -64984,7 +64989,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "number",
       "name": "current_amount",
-      "placeholder": "Current Amount (default: 0)",
+      "placeholder": _vm.$t('current'),
       "required": ""
     },
     domProps: {
@@ -65011,7 +65016,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "number",
       "name": "amount_needed",
-      "placeholder": "Amount Needed",
+      "placeholder": _vm.$t('needed'),
       "required": ""
     },
     domProps: {
@@ -65028,7 +65033,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])]), _vm._v(" "), _c('div', {
     staticClass: "mw divisor divisor-bg"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('p', [_c('i', {
+    staticClass: "fa fa-address-card-o",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('address'))
+    }
+  })]), _vm._v(" "), _c('div', {
     staticClass: "mw pos-r"
   }, [_c('input', {
     directives: [{
@@ -65040,7 +65054,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "text",
       "name": "address_one",
-      "placeholder": "Address 1",
+      "placeholder": _vm.$t('address1'),
       "required": ""
     },
     domProps: {
@@ -65064,7 +65078,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "text",
       "name": "address_two",
-      "placeholder": "Address 2 (optional)"
+      "placeholder": _vm.$t('address2')
     },
     domProps: {
       "value": (_vm.address_two)
@@ -65089,7 +65103,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "text",
       "name": "city",
-      "placeholder": "City",
+      "placeholder": _vm.$t('city'),
       "required": ""
     },
     domProps: {
@@ -65113,7 +65127,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "text",
       "name": "post_code",
-      "placeholder": "Post Code",
+      "placeholder": _vm.$t('zip'),
       "required": ""
     },
     domProps: {
@@ -65137,7 +65151,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "text",
       "name": "country",
-      "placeholder": "Country",
+      "placeholder": _vm.$t('country'),
       "required": ""
     },
     domProps: {
@@ -65173,17 +65187,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v("\n                Make Your Wish\n            ")])])])]) : _c('section', {
+  }), _vm._v("\n                " + _vm._s(_vm.$t('request')) + "\n            ")])])])]) : _c('section', {
     staticClass: "flex center bg-white main-section empty"
-  }, [_c('p', [_vm._v("Looks like you haven't donated yet. Please donate and come back to make your wish.")])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('i', {
-    staticClass: "fa fa-address-card-o",
-    attrs: {
-      "aria-hidden": "true"
+  }, [_c('p', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('not-donated'))
     }
-  }), _c('span', [_vm._v("Please provide your full address:")])])
-}]}
+  })])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -65352,13 +65363,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "displayForm": false
       }
     }, [_c('h3', {
+      domProps: {
+        "textContent": _vm._s(_vm.$t('user'))
+      },
       slot: "header"
-    }, [_vm._v("Your Current Wish")])])], 1)
+    })])], 1)
   })) : _c('div', {
     staticClass: "wish mw"
-  }, [_c('h3', [_vm._v("Your Current Wish")]), _vm._v(" "), _c('div', {
+  }, [_c('h3', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('user'))
+    }
+  }, [_vm._v("Your Current Wish")]), _vm._v(" "), _c('div', {
     staticClass: "flex center no-results bg-white"
-  }, [_c('p', [_vm._v("You don't have any wishes yet")])])])])
+  }, [_c('p', {
+    staticClass: "w8 t-align",
+    domProps: {
+      "textContent": _vm._s(_vm.$t('no-wishes'))
+    }
+  })])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -65391,13 +65414,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.reportWish
     }
-  }, [_vm._v("Report")]) : _c('p', {
+  }, [_vm._v(_vm._s(_vm.$t('report')))]) : _c('p', {
     domProps: {
       "textContent": _vm._s(_vm.when)
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "progress"
-  }, [_c('p', [_vm._v("Progress")]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v(_vm._s(_vm.$t('progress')))]), _vm._v(" "), _c('div', {
     staticClass: "progress-bar"
   }, [_c('div', {
     style: ({
@@ -65409,7 +65432,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "title": _vm.current + '/' + _vm.needed
     }
-  }, [_vm._v("\n                Collected: " + _vm._s(_vm.currentShrt) + "/" + _vm._s(_vm.neededShrt) + "\n            ")]), _vm._v(" "), (_vm.displayForm) ? _c('form', [_c('input', {
+  }, [_vm._v("\n                " + _vm._s(_vm.$t('collected')) + ": " + _vm._s(_vm.currentShrt) + "/" + _vm._s(_vm.neededShrt) + "\n            ")]), _vm._v(" "), (_vm.displayForm) ? _c('form', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -65456,7 +65479,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v("\n                    Donate\n                ")])]) : _vm._e()])])], 2)
+  }), _vm._v("\n                    " + _vm._s(_vm.$t('donate')) + "\n                ")])]) : _vm._e()])])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -65584,7 +65607,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })], 1)
   }), _vm._v(" "), _vm._t("default")], 2) : _c('div', {
     staticClass: "mw flex center"
-  }, [_c('p', [_vm._v("There are no relevant results at this point")])])])
+  }, [_c('p', [_vm._v(_vm._s(_vm.$t('no-relevant-results')))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -65605,7 +65628,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "money"
     }
-  }, [_c('h2', [_vm._v("Top Up Your Wallet")]), _vm._v(" "), _c('div', {
+  }, [_c('h2', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('wallet'))
+    }
+  }), _vm._v(" "), _c('div', {
     staticClass: "mw"
   }, [_c('div', {
     staticClass: "flex between select"
@@ -65619,7 +65646,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "amount"
     }],
     attrs: {
-      "placeholder": "Amount"
+      "placeholder": _vm.$t('amount')
     },
     domProps: {
       "value": (_vm.amount)
@@ -65642,7 +65669,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "m-auto p-none",
     attrs: {
       "type": "text",
-      "placeholder": "Amount +20%",
+      "placeholder": _vm.$t('interest'),
       "disabled": ""
     },
     domProps: {
@@ -65659,90 +65686,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "user": _vm.user,
       "amount": _vm.amount
     }
-  }), _vm._v(" "), _c('form', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.current == 'paypal'),
-      expression: "current == 'paypal'"
-    }],
-    staticClass: "vertical center"
-  }, [_c('input', {
-    attrs: {
-      "type": "hidden"
-    },
-    domProps: {
-      "value": _vm.amount
-    }
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('form', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.current == 'qiwi'),
-      expression: "current == 'qiwi'"
-    }],
-    staticClass: "vertical center"
-  }, [_c('input', {
-    attrs: {
-      "type": "hidden"
-    },
-    domProps: {
-      "value": _vm.amount
-    }
-  }), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5)])], 1)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "w5"
-  }, [_c('input', {
-    attrs: {
-      "type": "text",
-      "placeholder": "PayPal Login",
-      "required": ""
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "w5"
-  }, [_c('input', {
-    attrs: {
-      "type": "password",
-      "placeholder": "Password",
-      "required": ""
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('button', {
-    attrs: {
-      "type": "submit"
-    }
-  }, [_vm._v("Top Up")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "w5"
-  }, [_c('input', {
-    attrs: {
-      "type": "text",
-      "placeholder": "Qiwi Login",
-      "required": ""
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "w5"
-  }, [_c('input', {
-    attrs: {
-      "type": "password",
-      "placeholder": "Password",
-      "required": ""
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('button', {
-    attrs: {
-      "type": "submit"
-    }
-  }, [_vm._v("Top Up")])])
-}]}
+  })], 1)])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -65780,15 +65725,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_c('h3', {
+      domProps: {
+        "textContent": _vm._s(_vm.$t('random'))
+      },
       slot: "header"
-    }, [_vm._v("Random Wish")])])], 1)
+    })])], 1)
   })) : _c('div', {
     staticClass: "mw"
   }, [_c('div', {
     staticClass: "wish mw"
-  }, [_c('h3', [_vm._v("Random Wish")]), _vm._v(" "), _c('div', {
+  }, [_c('h3', {
+    domProps: {
+      "textContent": _vm._s(_vm.$t('random'))
+    }
+  }), _vm._v(" "), _c('div', {
     staticClass: "flex center no-results bg-white"
-  }, [_c('p', [_vm._v("There are no relevant results at this point")])])])])])
+  }, [_c('p', {
+    staticClass: "w8 t-align",
+    domProps: {
+      "textContent": _vm._s(_vm.$t('no-relevant-results'))
+    }
+  })])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -65843,7 +65800,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }), _vm._v(" "), _c('p', {
       domProps: {
-        "textContent": _vm._s(prize.body)
+        "textContent": _vm._s(prize.description)
       }
     }), _vm._v(" "), _c('p', {
       staticClass: "self-end"
@@ -65855,7 +65812,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })])])])
   }), _vm._v(" "), _c('div', {
     staticClass: "mw flex quantity"
-  }, [_c('div', [_c('p', [_vm._v("Total: " + _vm._s(_vm.price) + " "), _c('i', {
+  }, [_c('div', [_c('p', [_vm._v(_vm._s(_vm.$t('total')) + ": " + _vm._s(_vm.price) + " "), _c('i', {
     staticClass: "currency fa fa-trophy",
     attrs: {
       "aria-hidden": "true"
@@ -66224,13 +66181,1450 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 289 */,
-/* 290 */,
-/* 291 */
+/* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.vuexI18n = factory());
+}(this, (function () { 'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+/* vuex-i18n-store defines a vuex module to store locale translations. Make sure
+** to also include the file vuex-i18n.js to enable easy access to localized
+** strings in your vue components.
+*/
+
+// define a simple vuex module to handle locale translations
+var i18nVuexModule = {
+	state: {
+		locale: null,
+		fallback: null,
+		translations: {}
+	},
+	mutations: {
+
+		// set the current locale
+		SET_LOCALE: function SET_LOCALE(state, payload) {
+			state.locale = payload.locale;
+		},
+
+
+		// add a new locale
+		ADD_LOCALE: function ADD_LOCALE(state, payload) {
+			// reduce the given translations to a single-depth tree
+			var translations = flattenTranslations(payload.translations);
+			state.translations[payload.locale] = translations;
+
+			// make sure to notify vue of changes (this might break with new vue versions)
+			state.translations.__ob__.dep.notify();
+		},
+
+
+		// remove a new locale
+		REMOVE_LOCALE: function REMOVE_LOCALE(state, payload) {
+
+			// check if the given locale is present in the state
+			if (state.translations.hasOwnProperty(payload.locale)) {
+
+				// check if the current locale is the given locale to remvoe
+				if (state.locale === payload.locale) {
+					// reset the current locale
+					state.locale = null;
+				}
+
+				// create a copy of the translations object
+				var translationCopy = Object.assign({}, state.translations);
+
+				// remove the given locale
+				delete translationCopy[payload.locale];
+
+				// set the state to the new object
+				state.translations = translationCopy;
+			}
+		},
+		SET_FALLBACK_LOCALE: function SET_FALLBACK_LOCALE(state, payload) {
+			state.fallback = payload.locale;
+		}
+	},
+	actions: {
+
+		// set the current locale
+		setLocale: function setLocale(context, payload) {
+			context.commit({
+				type: 'SET_LOCALE',
+				locale: payload.locale
+			});
+		},
+
+
+		// add a new locale with translations
+		addLocale: function addLocale(context, payload) {
+			context.commit({
+				type: 'ADD_LOCALE',
+				locale: payload.locale,
+				translations: payload.translations
+			});
+		},
+
+
+		// remove the given locale translations
+		removeLocale: function removeLocale(context, payload) {
+			context.commit({
+				type: 'REMOVE_LOCALE',
+				locale: payload.locale,
+				translations: payload.translations
+			});
+		},
+		setFallbackLocale: function setFallbackLocale(context, payload) {
+			context.commit({
+				type: 'SET_FALLBACK_LOCALE',
+				locale: payload.locale
+			});
+		}
+	}
+};
+
+// flattenTranslations will convert object trees for translations into a
+// single-depth object tree
+var flattenTranslations = function flattenTranslations(translations) {
+
+	var toReturn = {};
+
+	for (var i in translations) {
+
+		// check if the property is present
+		if (!translations.hasOwnProperty(i)) {
+			continue;
+		}
+
+		// get the type of the property
+		var objType = _typeof(translations[i]);
+
+		// allow unflattened array of strings
+		if (isArray(translations[i])) {
+
+			var count = translations[i].length;
+
+			for (var index = 0; index < count; index++) {
+				var itemType = _typeof(translations[i][index]);
+
+				if (itemType !== 'string') {
+					console.warn('vuex-i18n:', 'currently only arrays of strings are fully supported', translations[i]);
+					break;
+				}
+			}
+
+			toReturn[i] = translations[i];
+		} else if (objType == 'object' && objType !== null) {
+
+			var flatObject = flattenTranslations(translations[i]);
+
+			for (var x in flatObject) {
+				if (!flatObject.hasOwnProperty(x)) continue;
+
+				toReturn[i + '.' + x] = flatObject[x];
+			}
+		} else {
+			toReturn[i] = translations[i];
+		}
+	}
+	return toReturn;
+};
+
+// check if the given object is an array
+function isArray(obj) {
+	return !!obj && Array === obj.constructor;
+}
+
+/* vuex-i18n defines the Vuexi18nPlugin to enable localization using a vuex
+** module to store the translation information. Make sure to also include the
+** file vuex-i18n-store.js to include a respective vuex module.
+*/
+
+// initialize the plugin object
+var VuexI18nPlugin = {};
+
+// internationalization plugin for vue js using vuex
+VuexI18nPlugin.install = function install(Vue, store) {
+	var moduleName = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'i18n';
+	var identifiers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ['{', '}'];
+
+
+	store.registerModule(moduleName, i18nVuexModule);
+
+	// check if the plugin was correctly initialized
+	if (store.state.hasOwnProperty(moduleName) === false) {
+		console.error('i18n vuex module is not correctly initialized. Please check the module name:', moduleName);
+
+		// always return the key if module is not initialized correctly
+		Vue.prototype.$i18n = function (key) {
+			return key;
+		};
+
+		Vue.prototype.$getLanguage = function () {
+			return null;
+		};
+
+		Vue.prototype.$setLanguage = function () {
+			console.error('i18n vuex module is not correctly initialized');
+		};
+
+		return;
+	}
+
+	// initialize the replacement function
+	var render = renderFn(identifiers);
+
+	// get localized string from store
+	var translate = function $t(key, options, pluralization) {
+
+		// get the current language from the store
+		var locale = store.state[moduleName].locale;
+
+		return translateInLanguage(locale, key, options, pluralization);
+	};
+
+	// get localized string from store in a given language if available
+	var translateInLanguage = function translateInLanguage(locale, key, options, pluralization) {
+
+		// get the current language from the store
+		var fallback = store.state[moduleName].fallback;
+		var translations = store.state[moduleName].translations;
+
+		// flag for translation to exist or not
+		var translationExist = true;
+
+		// check if the language exists in the store. return the key if not
+		if (translations.hasOwnProperty(locale) === false) {
+			translationExist = false;
+
+			// check if the key exists in the store. return the key if not
+		} else if (translations[locale].hasOwnProperty(key) === false) {
+			translationExist = false;
+		}
+
+		// return the value from the store
+		if (translationExist === true) {
+			return render(translations[locale][key], options, pluralization);
+		}
+
+		// check if a vaild fallback exists in the store. return the key if not
+		if (translations.hasOwnProperty(fallback) === false) {
+			return render(key, options, pluralization);
+		}
+
+		// check if the key exists in the fallback in the store. return the key if not
+		if (translations[fallback].hasOwnProperty(key) === false) {
+			return render(key, options, pluralization);
+		}
+
+		return render(translations[fallback][key], options, pluralization);
+	};
+
+	// check if the given key exists in the current locale
+	var checkKeyExists = function checkKeyExists(key) {
+
+		// get the current language from the store
+		var locale = store.state[moduleName].locale;
+		var fallback = store.state[moduleName].fallback;
+		var translations = store.state[moduleName].translations;
+
+		// check if the language exists in the store.
+		if (translations.hasOwnProperty(locale) === false) {
+
+			// check if a fallback locale exists
+			if (translations.hasOwnProperty(fallback) === false) {
+				return false;
+			}
+
+			// check the fallback locale for the key
+			return translations[fallback].hasOwnProperty(key);
+		}
+
+		// check if the key exists in the store
+		return translations[locale].hasOwnProperty(key);
+	};
+
+	// set fallback locale
+	var setFallbackLocale = function setFallbackLocale(locale) {
+		store.dispatch({
+			type: 'setFallbackLocale',
+			locale: locale
+		});
+	};
+
+	// set the current locale
+	var setLocale = function setLocale(locale) {
+		store.dispatch({
+			type: 'setLocale',
+			locale: locale
+		});
+	};
+
+	// get the current locale
+	var getLocale = function getLocale() {
+		return store.state[moduleName].locale;
+	};
+
+	// add predefined translations to the store
+	var addLocale = function addLocale(locale, translations) {
+		return store.dispatch({
+			type: 'addLocale',
+			locale: locale,
+			translations: translations
+		});
+	};
+
+	// remove the givne locale from the store
+	var removeLocale = function removeLocale(locale) {
+		if (store.state[moduleName].translations.hasOwnProperty(locale)) {
+			store.dispatch({
+				type: 'removeLocale',
+				locale: locale
+			});
+		}
+	};
+
+	// we are phasing out the exists function
+	var phaseOutExistsFn = function phaseOutExistsFn(locale) {
+		console.warn('$i18n.exists is depreceated. Please use $i18n.localeExists instead. It provides exatly the same functionality.');
+		return checkLocaleExists(locale);
+	};
+
+	// check if the given locale is already loaded
+	var checkLocaleExists = function checkLocaleExists(locale) {
+		return store.state[moduleName].translations.hasOwnProperty(locale);
+	};
+
+	// register vue prototype methods
+	Vue.prototype.$i18n = {
+		locale: getLocale,
+		set: setLocale,
+		add: addLocale,
+		remove: removeLocale,
+		fallback: setFallbackLocale,
+		localeExists: checkLocaleExists,
+		keyExists: checkKeyExists,
+
+		exists: phaseOutExistsFn
+	};
+
+	// register global methods
+	Vue.i18n = {
+		locale: getLocale,
+		set: setLocale,
+		add: addLocale,
+		remove: removeLocale,
+		fallback: setFallbackLocale,
+		translate: translate,
+		translateIn: translateInLanguage,
+		localeExists: checkLocaleExists,
+		keyExists: checkKeyExists,
+
+		exists: phaseOutExistsFn
+	};
+
+	// register the translation function on the vue instance
+	Vue.prototype.$t = translate;
+
+	// register the specific language translation function on the vue instance
+	Vue.prototype.$tlang = translateInLanguage;
+
+	// register a filter function for translations
+	Vue.filter('translate', translate);
+};
+
+// renderFn will initialize a function to render the variable substitutions in
+// the translation string. identifiers specify the tags will be used to find
+// variable substitutions, i.e. {test} or {{test}}, note that we are using a
+// closure to avoid recompilation of the regular expression to match tags on
+// every render cycle.
+var renderFn = function renderFn(identifiers) {
+
+	if (identifiers == null || identifiers.length != 2) {
+		console.warn('You must specify the start and end character identifying variable substitutions');
+	}
+
+	// construct a regular expression ot find variable substitutions, i.e. {test}
+	var matcher = new RegExp('' + identifiers[0] + '\\w+' + identifiers[1], 'g');
+
+	// define the replacement function
+	var replace = function replace(translation, replacements) {
+		var warn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+
+		// check if the object has a replace property
+		if (!translation.replace) {
+			return translation;
+		}
+
+		return translation.replace(matcher, function (placeholder) {
+
+			// remove the identifiers (can be set on the module level)
+			var key = placeholder.replace(identifiers[0], '').replace(identifiers[1], '');
+
+			if (replacements[key] !== undefined) {
+				return replacements[key];
+			}
+
+			// warn user that the placeholder has not been found
+			if (warn === true) {
+				console.group('Not all placeholders found');
+				console.warn('Text:', translation);
+				console.warn('Placeholder:', placeholder);
+				console.groupEnd();
+			}
+
+			// return the original placeholder
+			return placeholder;
+		});
+	};
+
+	// the render function will replace variable substitutions and prepare the
+	// translations for rendering
+	var render = function render(translation) {
+		var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+		var pluralization = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+
+		// get the type of the property
+		var objType = typeof translation === 'undefined' ? 'undefined' : _typeof(translation);
+		var pluralizationType = typeof pluralization === 'undefined' ? 'undefined' : _typeof(pluralization);
+
+		var replacedText = function replacedText() {
+
+			if (isArray$1(translation)) {
+
+				// replace the placeholder elements in all sub-items
+				return translation.map(function (item) {
+					return replace(item, replacements, false);
+				});
+			} else if (objType === 'string') {
+				return replace(translation, replacements);
+			}
+		};
+
+		// return translation item directly
+		if (pluralization === null) {
+			return replacedText();
+		}
+
+		// check if pluralization value is countable
+		if (pluralizationType !== 'number') {
+			console.warn('pluralization is not a number');
+			return replacedText();
+		}
+
+		// check for pluralization and return the correct part of the string
+		var translatedText = replacedText().split(':::');
+
+		// return the left side on singular, the right side for plural
+		// 0 has plural notation
+		if (pluralization === 1) {
+			return translatedText[0].trim();
+		}
+
+		// use singular version for -1 as well
+		if (pluralization === -1) {
+			return translatedText[0].trim();
+		}
+
+		if (translatedText.length > 1) {
+			return translatedText[1].trim();
+		}
+
+		console.warn('no pluralized translation provided in ', translation);
+		return translatedText[0].trim();
+	};
+
+	// return the render function to the caller
+	return render;
+};
+
+// check if the given object is an array
+function isArray$1(obj) {
+	return !!obj && Array === obj.constructor;
+}
+
+// import the vuex module for localization
+// import the corresponding plugin for vue
+// export both modules as one file
+var index = {
+	store: i18nVuexModule,
+	plugin: VuexI18nPlugin
+};
+
+return index;
+
+})));
+
+
+/***/ }),
+/* 290 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export Store */
+/* unused harmony export mapState */
+/* unused harmony export mapMutations */
+/* unused harmony export mapGetters */
+/* unused harmony export mapActions */
+/**
+ * vuex v2.3.0
+ * (c) 2017 Evan You
+ * @license MIT
+ */
+var applyMixin = function (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    var usesInit = Vue.config._lifecycleHooks.indexOf('init') > -1;
+    Vue.mixin(usesInit ? { init: vuexInit } : { beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+};
+
+var devtoolHook =
+  typeof window !== 'undefined' &&
+  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  this._children = Object.create(null);
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors$1 = { namespaced: {} };
+
+prototypeAccessors$1.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors$1 );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  var this$1 = this;
+
+  // register root module (Vuex.Store options)
+  this.root = new Module(rawRootModule, false);
+
+  // register all nested modules
+  if (rawRootModule.modules) {
+    forEachValue(rawRootModule.modules, function (rawModule, key) {
+      this$1.register([key], rawModule, false);
+    });
+  }
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update(this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  var parent = this.get(path.slice(0, -1));
+  var newModule = new Module(rawModule, runtime);
+  parent.addChild(path[path.length - 1], newModule);
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (targetModule, newModule) {
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        console.warn(
+          "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+          'manual reload is needed'
+        );
+        return
+      }
+      update(targetModule.getChild(key), newModule.modules[key]);
+    }
+  }
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+  assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+
+  var state = options.state; if ( state === void 0 ) state = {};
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.concat(devtoolPlugin).forEach(function (plugin) { return plugin(this$1); });
+};
+
+var prototypeAccessors = { state: {} };
+
+prototypeAccessors.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors.state.set = function (v) {
+  assert(false, "Use store.replaceState() to explicit replace store state.");
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    console.error(("[vuex] unknown mutation type: " + type));
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (options && options.silent) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var entry = this._actions[type];
+  if (!entry) {
+    console.error(("[vuex] unknown action type: " + type));
+    return
+  }
+  return entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload)
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  var subs = this._subscribers;
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  assert(typeof getter === 'function', "store.watch only accepts a function.");
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule) {
+  if (typeof path === 'string') { path = [path]; }
+  assert(Array.isArray(path), "module path must be a string or an Array.");
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path));
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+  assert(Array.isArray(path), "module path must be a string or an Array.");
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors );
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    computed[key] = function () { return fn(store); };
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var namespacedType = namespace + key;
+    registerAction(store, namespacedType, action, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if (!store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if (!store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  var gettersProxy = {};
+
+  var splitPos = namespace.length;
+  Object.keys(store.getters).forEach(function (type) {
+    // skip if the target getter is not match this namespace
+    if (type.slice(0, splitPos) !== namespace) { return }
+
+    // extract local getter type
+    var localType = type.slice(splitPos);
+
+    // Add a port to the getters proxy.
+    // Define as getter property because
+    // we do not want to evaluate the getters in this time.
+    Object.defineProperty(gettersProxy, localType, {
+      get: function () { return store.getters[type]; },
+      enumerable: true
+    });
+  });
+
+  return gettersProxy
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler(local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload, cb) {
+    var res = handler({
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload, cb);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    console.error(("[vuex] duplicate getter key: " + type));
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue) {
+    console.error(
+      '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+    );
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+// auto install in dist mode
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+}
+
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    val = namespace + val;
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      if (namespace && !getModuleByNamespace(this.$store, 'mapMutations', namespace)) {
+        return
+      }
+      return this.$store.commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if (!(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    val = namespace + val;
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      if (namespace && !getModuleByNamespace(this.$store, 'mapActions', namespace)) {
+        return
+      }
+      return this.$store.dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+function normalizeMap (map) {
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if (!module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '2.3.0',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (index_esm);
+
+
+/***/ }),
+/* 291 */,
+/* 292 */,
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(151);
 
+
+/***/ }),
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex_i18n__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex_i18n___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuex_i18n__);
+
+
+
+var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store();
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_vuex_i18n___default.a.plugin, store);
+
+var translationsEn = {
+    'no-relevant-results': 'There are no relevant results at this point',
+
+    /* Wish */
+    total: "Total",
+    progress: 'Progress',
+    collected: 'Collected',
+    donate: 'Donate',
+    report: 'Report',
+
+    /* Achievements */
+    redeem: 'Redeem points for prizes',
+    'not-redeem': 'Go back',
+
+    /* Profile Settings */
+    edit: 'Edit Profile',
+    'first_name': 'Your First Name',
+    'last_name': 'Your Last Name',
+    email: 'Your Email',
+    'edit_password': 'Edit Password',
+    'current_password': 'Current Password',
+    confirm: 'Please enter your password to confirm changes',
+    save: 'Save Settings',
+
+    /* Top Up */
+    wallet: 'Wallet Top Up',
+    amount: 'Amount',
+    interest: 'Amount with Interes',
+    'top-up': 'Top Up',
+
+    /* Make a Wish */
+    wish: 'Make a Wish',
+    priority: 'This wish\'s priority will be higher.',
+    item: 'What is Your Wish?',
+    link: 'Link to your desired product...',
+    current: 'Current Amount (default: 0)',
+    needed: 'Amount Needed',
+    address: 'Please provide your full address\:',
+    address1: 'Address 1',
+    address2: 'Address 2 (optional)',
+    city: 'City',
+    zip: 'Post Code',
+    country: 'Country',
+    request: 'Make Your Wish',
+    'not-donated': 'Looks like you haven\'t donated yet. Please donate and come back to make your wish.',
+
+    /* Random Wish */
+    random: 'Random Wish',
+
+    /* User Wishes */
+    user: 'Your Current Wish',
+    'no-wishes': 'You don\'t have any wishes yet.'
+};
+
+var translationsRu = {
+    'no-relevant-results': 'На данный момент нет соответствующих результатов',
+
+    /* Wish */
+    total: "Всего",
+    progress: 'Прогресс',
+    collected: 'Собрано',
+    donate: 'Дать',
+    report: 'Пожаловаться',
+
+    /* Achievements */
+    redeem: 'Обменять очки на призы',
+    'not-redeem': 'Вернутся назад',
+
+    /* Profile Settings */
+    edit: 'Настроить Профиль',
+    'first_name': 'Ваше Имя',
+    'last_name': 'Ваша Фамилия',
+    email: 'Ваш Email',
+    'edit_password': 'Изменить Пароль',
+    'current_password': 'Текущий Пароль',
+    confirm: 'Введите пароль что бы подтвердить изменения',
+    save: 'Сохранить',
+
+    /* Top Up */
+    wallet: 'Пополнить Кошелек',
+    amount: 'Сумма',
+    interest: 'Сумма с Комиссией',
+    'top-up': 'Пополнить',
+
+    /* Make a Wish */
+    wish: 'Создать Желание',
+    priority: 'Приоритет этого желания будет выше.',
+    item: 'Чего бы вы хотели?',
+    link: 'Ссылка на ваш продукт...',
+    current: 'Текущая Сумма (0)',
+    needed: 'Необхадимая Сумма',
+    address: 'Пожалуйста, укажите свой полный адрес\:',
+    address1: 'Адрес 1',
+    address2: 'Адрес 2 (необязательно)',
+    city: 'Город',
+    zip: 'Индекс',
+    country: 'Страна',
+    request: 'Загрузить',
+    'not-donated': 'Похоже вы еще не пожертвовали. Пожалуйста, пожертвуйте и возращайтесь сюда.',
+
+    /* Random Wish */
+    random: 'Случайное Желание',
+
+    /* User Wishes */
+    user: 'Ваше Текущее Желание',
+    'no-wishes': 'У вас пока нет желаний.'
+};
+
+Vue.i18n.add('en', translationsEn);
+Vue.i18n.add('ru', translationsRu);
 
 /***/ })
 /******/ ]);

@@ -1,6 +1,6 @@
 <achievements :user="{{ auth()->user() }}" inline-template>
     <section class="flex vertical pos-r start bg-white main-section achievements">
-        <h2>Your Achievements</h2>
+        <h2>Achievements</h2>
         <div class="flex nc-between mw">
             <div class='donated'>
                 <div title="{{ auth()->user()->amount_donated }}$">
@@ -15,7 +15,7 @@
             <div class="w8 achievements-info">
                 <div class="pos-r stars flex nc-between">
                     <div class="w8">
-                        <p class="redeem-toggle" @click="changeClass" v-text="currentText"></p>
+                        <p class="redeem-toggle" @click="changeClass" v-text="$t(currentText)"></p>
                     </div>
                     <p><span id="points-number" v-text="points"></span> <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
                 </div>

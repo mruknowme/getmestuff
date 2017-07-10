@@ -15,12 +15,22 @@ class CreatePrizesTable extends Migration
     {
         Schema::create('prizes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('item');
-            $table->string('description');
             $table->integer('price');
             $table->integer('bought');
             $table->string('user_column');
             $table->timestamps();
+        });
+
+        Schema::create('prize_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('prize_id')->unsigned();
+            $table->string('locale')->index();
+
+            $table->string('item');
+            $table->string('description');
+
+            $table->unique(['prize_id', 'locale']);
+            $table->foreign('prize_id')->references('id')->on('prizes')->onDelete('cascade');
         });
     }
 
@@ -31,6 +41,7 @@ class CreatePrizesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('prize_translations');
         Schema::dropIfExists('prizes');
     }
 }

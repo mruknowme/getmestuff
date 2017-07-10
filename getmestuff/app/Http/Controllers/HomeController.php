@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Achievement;
 use App\Events\AchievementsOutdated;
+use App\GlobalSettings;
 use App\Http\Requests\PrizesForm;
 use App\User;
 use App\Wish;
@@ -60,11 +61,13 @@ class HomeController extends Controller
         return response(['status' => 'Points redeemed successfully']);
     }
 
-    public function test(Wish $wish)
+    public function test(Achievement $achievement)
     {
-        $wish = $wish->first();
-        $wish->translate('en')->item = 'Cat';
-        $wish->translate('ru')->item = 'Кот';
-        $wish->save();
+        return $achievement->all();
+//        $data = ['on' => true, 'value' => null, 'checkbox' => true];
+//        $settings->create([
+//            'setting' => 'turn_on/of_payment_systems',
+//            'data' => $data
+//        ]);
     }
 }

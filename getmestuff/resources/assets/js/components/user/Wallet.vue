@@ -1,41 +1,41 @@
 <template>
     <section class="flex vertical start bg-white main-section" id="money">
-        <h2>Top Up Your Wallet</h2>
+        <h2 v-text="$t('wallet')"></h2>
         <div class="mw">
             <div class="flex between select">
                 <form class="pos-r w48 m-auto">
-                    <input placeholder="Amount" v-model="amount" @blur="twoDeciamls">
+                    <input :placeholder="$t('amount')" v-model="amount" @blur="twoDeciamls">
                     <i class="icn-pos fa fa-usd" aria-hidden="true"></i>
                 </form>
                 <div class="w48 m-auto">
-                    <input class="m-auto p-none" :value="amountWithInterest" type="text" placeholder="Amount +20%" disabled>
+                    <input class="m-auto p-none" :value="amountWithInterest" type="text" :placeholder="$t('interest')" disabled>
                 </div>
             </div>
             <topup v-show="current == 'credit'" :user="user" :amount="amount"></topup>
-            <form class="vertical center" v-show="current == 'paypal'">
-                <input type="hidden" :value="amount">
-                <div class="w5">
-                    <input type="text" placeholder="PayPal Login" required>
-                </div>
-                <div class="w5">
-                    <input type="password" placeholder="Password" required>
-                </div>
-                <div>
-                    <button type="submit">Top Up</button>
-                </div>
-            </form>
-            <form class="vertical center" v-show="current == 'qiwi'">
-                <input type="hidden" :value="amount">
-                <div class="w5">  
-                    <input type="text" placeholder="Qiwi Login" required>
-                </div>
-                <div class="w5">
-                    <input type="password" placeholder="Password" required>
-                </div>
-                <div>
-                    <button type="submit">Top Up</button>
-                </div>
-            </form>
+            <!--<form class="vertical center" v-show="current == 'paypal'">-->
+                <!--<input type="hidden" :value="amount">-->
+                <!--<div class="w5">-->
+                    <!--<input type="text" placeholder="PayPal Login" required>-->
+                <!--</div>-->
+                <!--<div class="w5">-->
+                    <!--<input type="password" placeholder="Password" required>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<button type="submit">Top Up</button>-->
+                <!--</div>-->
+            <!--</form>-->
+            <!--<form class="vertical center" v-show="current == 'qiwi'">-->
+                <!--<input type="hidden" :value="amount">-->
+                <!--<div class="w5">  -->
+                    <!--<input type="text" placeholder="Qiwi Login" required>-->
+                <!--</div>-->
+                <!--<div class="w5">-->
+                    <!--<input type="password" placeholder="Password" required>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<button type="submit">Top Up</button>-->
+                <!--</div>-->
+            <!--</form>-->
         </div>
     </section>
 </template>

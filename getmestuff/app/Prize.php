@@ -2,11 +2,15 @@
 
 namespace App;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Prize extends Model
 {
+    use Translatable;
+
+    public $translatedAttributes = ['item', 'description'];
     protected $fillable = [
-        'item', 'description', 'price', 'bought', 'user_column'
+        'price', 'bought', 'user_column'
     ];
 }

@@ -3,15 +3,15 @@
         <div class="mw" v-if="arrayCheck(items)">
             <div class="mw item" v-for="(wish, index) in items" :key="wish.id">
                 <wish :data="wish" :wait="disabled" @disable="disabled = true" @donated="refresh(index)">
-                    <h3 slot="header">Random Wish</h3>
+                    <h3 slot="header" v-text="$t('random')"></h3>
                 </wish>
             </div>
         </div>
         <div class="mw" v-else>
             <div class="wish mw">
-                <h3>Random Wish</h3>
+                <h3 v-text="$t('random')"></h3>
                 <div class="flex center no-results bg-white">
-                    <p>There are no relevant results at this point</p>
+                    <p class="w8 t-align" v-text="$t('no-relevant-results')"></p>
                 </div>
             </div>
         </div>

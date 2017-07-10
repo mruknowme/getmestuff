@@ -25,11 +25,11 @@
     
     <body class="@yield ('body-class')">
         <div id="app">
-            @include ('layouts.header')
+            @include ("layouts.$lang.header")
             
             @yield ('content')
 
-            @include ('layouts.footer')
+            @include ("layouts.$lang.footer")
 
             <flash :message="{{ json_encode([session('message')]) }}"></flash>
 
@@ -39,6 +39,9 @@
         </div>
 
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script>
+            Vue.i18n.set('{!! app()->getLocale() !!}');
+        </script>
         
         @yield ('script')
    
