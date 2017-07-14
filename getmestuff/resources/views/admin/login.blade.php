@@ -9,7 +9,7 @@
     <section id="wrapper" class="login-register">
         <div class="login-box login-sidebar">
             <div class="white-box">
-                <form class="form-horizontal form-material" id="loginform" method="POST" action="/admin/login">
+                <form class="form-horizontal form-material" id="loginform" method="POST" action="/{{ $lang }}/admin/login">
                     {{ csrf_field() }}
                     <a href="javascript:void(0)" class="text-center db"><img src="{{ asset('admin/plugins/images/eliteadmin-logo-dark.png') }}" alt="Home" /><br/><img src="{{ asset('admin/plugins/images/eliteadmin-text-dark.png') }}" alt="Home" /></a>
 

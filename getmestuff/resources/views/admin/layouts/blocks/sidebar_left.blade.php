@@ -36,10 +36,10 @@
                     </span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/wishes">All Wishes</a> </li>
-                    <li> <a href="/admin/wishes/reported">Reported Wishes</a> </li>
-                    <li> <a href="/admin/wishes/address">Wishes' Address</a> </li>
-                    <li> <a href="/admin/wishes/settings">Settings</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/wishes">All Wishes</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/wishes/reported">Reported Wishes</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/wishes/address">Wishes' Address</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/wishes/settings">Settings</a> </li>
                 </ul>
             </li>
             <li>
@@ -51,9 +51,9 @@
                     </span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/users">All Users</a> </li>
-                    <li> <a href="/admin/users/activity">User Activity</a> </li>
-                    <li> <a href="/admin/users/settings">Settings</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/users">All Users</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/users/activity">User Activity</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/users/settings">Settings</a> </li>
                 </ul>
             </li>
             <li>
@@ -65,10 +65,10 @@
                     </span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/achievements">All Achievements</a> </li>
-                    <li> <a href="/admin/achievements/prizes">All Prizes</a> </li>
-                    <li> <a href="/admin/achievements/new">Create</a> </li>
-                    <li> <a href="/admin/achievements/settings">Settings</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/achievements">All Achievements</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/achievements/prizes">All Prizes</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/achievements/new">Create</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/achievements/settings">Settings</a> </li>
                 </ul>
             </li>
             <li>
@@ -83,9 +83,9 @@
                     </span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/tickets">All Tickets</a> </li>
-                    <li> <a href="/admin/tickets/open">Open Tickets</a> </li>
-                    <li> <a href="/admin/tickets/create">Create Ticket</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/tickets">All Tickets</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/tickets/open">Open Tickets</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/tickets/create">Create Ticket</a> </li>
                 </ul>
             </li>
             <li>
@@ -97,8 +97,8 @@
                     </span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/payments">All Payments</a> </li>
-                    <li> <a href="/admin/payments/failed">Failed Payments</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/payments">All Payments</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/payments/failed">Failed Payments</a> </li>
                 </ul>
             </li>
             <li>
@@ -110,8 +110,8 @@
                     </span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li> <a href="/admin/settings">General</a> </li>
-                    <li> <a href="/admin/payment">Payment</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/settings">General</a> </li>
+                    <li> <a href="/{{ $lang }}/admin/payment">Payment</a> </li>
                 </ul>
             </li>
             <li>
@@ -121,7 +121,7 @@
                     <i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span>
                 </a>
 
-                <form id="logout-form" action="/admin/logout" method="POST" style="display: none;">
+                <form id="logout-form" action="/{{ $lang }}/admin/logout" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
             </li>

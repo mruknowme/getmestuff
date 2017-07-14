@@ -97,7 +97,8 @@ class RegisterController extends Controller
 
         dispatch(new SendVerificationEmail($user, null, true));
 
-        flash('Please confirm your email');
+        if (app()->getLocale() == 'en') flash('Please confirm your email');
+        else flash('Пожалуйста подтвердите ваш email');
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

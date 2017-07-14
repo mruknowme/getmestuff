@@ -9,7 +9,8 @@
         props: {
             'name': {required: true},
             'selected': {default: false},
-            'title': {default: ''}
+            'title': {default: ''},
+            'form': {required: false}
         },
         data() {
             return {

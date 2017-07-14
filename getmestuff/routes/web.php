@@ -19,6 +19,8 @@ Route::get('/about', function () {
     return view('about');
 })->middleware('guest');
 
+Route::get('/lang/{language}', 'LanguagesController@switchLang');
+
 Route::namespace('Auth')->group(function () {
     $this->get('login', 'LoginController@showLoginForm');
     $this->post('login', 'LoginController@login')->name('login');
@@ -61,6 +63,9 @@ Route::middleware(['auth', 'ajax'])->group(function () {
     $this->get('/unread', 'NotificationsController@show');
     $this->get('/donations', 'NotificationsController@index');
     $this->get('/payments', 'PurchasesController@index');
+
+    $this->get('/subscribe', 'HomeController@subscribed');
+    $this->get('/convert', 'WishesController@getCurrency');
 });
 
 Route::namespace('Admin\Auth')->prefix('admin')->group(function () {
@@ -71,8 +76,8 @@ Route::namespace('Admin\Auth')->prefix('admin')->group(function () {
 
     $this->post('/password/email', 'ForgotPasswordController@sendResetLinkEmail');
 
-    $this->get('password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset.admin');
-    $this->post('password/reset', 'ResetPasswordController@reset');
+    $this->get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset.admin');
+    $this->post('/password/reset', 'ResetPasswordController@reset');
 });
 
 Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group(function () {

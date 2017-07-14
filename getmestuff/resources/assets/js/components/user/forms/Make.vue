@@ -27,6 +27,20 @@
                            required>
                 </div>
             </div>
+            <div class="radio-group flex mw">
+                <label :class="{ active: currency == 'usd' }">
+                    <input type="radio" name="currency" value="usd" v-model="currency" checked/> USD
+                </label>
+                <label :class="{ active: currency == 'rub' }">
+                    <input type="radio" name="currency" v-model="currency" value="rub"/> RUB
+                </label>
+                <label :class="{ active: currency == 'eur' }">
+                    <input type="radio" name="currency" v-model="currency" value="eur"/> EUR
+                </label>
+                <label :class="{ active: currency == 'gbp' }">
+                    <input type="radio" name="currency" v-model="currency" value="gbp"/> GBP
+                </label>
+            </div>
             <div class="flex between mw">
                 <div class="w48 pos-r">
                     <input type="number"
@@ -98,11 +112,12 @@
     import moment from 'moment';
 
     export default {
-        props: ['user'],
+        props: ['user', 'last_currency'],
         data() {
             return {
                 item: '',
                 url: '',
+                currency: 'usd',
                 current_amount: '',
                 amount_needed: '',
                 address_one: (this.user.address != null) ? this.user.address.address_one : '',
@@ -113,18 +128,20 @@
                 allowed: this.user.donated,
                 number_of_wishes: this.user.number_of_wishes,
                 buffering: false,
-                priority: this.user.priority
+                priority: this.user.priority,
+                converted: ''
             }
         },
         methods: {
             postWish() {
+                this.convertCurrency();
                 this.buffering = true;
                 axios.post('/wishes', this.$data)
                     .then(() => {
                         window.events.$emit('newWish', {
-                            'amount_needed': this.amount_needed,
+                            'amount_needed': this.converted[1],
                             'created_at': moment(),
-                            'current_amount': (this.current_amount == '') ? 0 : this.current_amount,
+                            'current_amount': this.converted[0],
                             'item': this.item
                         });
 
@@ -141,7 +158,9 @@
                         }
 
                         this.buffering = false;
-                        flash(['Your wish has been published!']);
+                        let message = window.flashMessages[window.App.locale]['published-wish'];
+
+                        flash([message]);
                     })
                     .catch((error) => {
                         let messages = [];
@@ -152,6 +171,16 @@
                         this.buffering = false;
                         flash(messages, 'error');
                     });
+            },
+            convertCurrency() {
+                axios.get('/convert', {
+                    params: {
+                        currency: this.currency,
+                        amount: [(this.current_amount != '') ? this.current_amount : 0, this.amount_needed]
+                    }
+                }).then(({data}) => {
+                    this.converted = data;
+                });
             }
         },
         created() {
@@ -160,7 +189,9 @@
             });
             window.events.$on('moreWishes', (quantity) => {
                 this.number_of_wishes += parseFloat(quantity);
-            })
+            });
+
+            if (this.last_currency != undefined) this.currency = this.last_currency;
         }
     }
 </script>

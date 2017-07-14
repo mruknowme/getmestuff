@@ -24,17 +24,26 @@ class UpdateAchievementForm extends FormRequest
     public function rules()
     {
         return [
-            //
+            'need' => 'numeric|nullable',
+            'prize' => 'numeric|nullable',
+            'type' => 'numeric|nullable',
+            'renew' => 'numeric|nullable',
+            'translations.ru.title' => 'required',
+            'translations.en.title' => 'required',
+            'translations.ru.description' => 'required',
+            'translations.en.description' => 'required',
         ];
     }
 
     public function save($achievement)
     {
-        $info = $this->intersect(['title', 'description', 'need', 'prize', 'type']);
+        $info = $this->intersect(['translations', 'need', 'prize', 'type']);
 
         $renew = collect($this->only('renew'))->filter(function ($item) {
             return !is_null($item);
         })->toArray();
+
+        $info = setTranslations($info);
 
         $dataSet = array_merge($info, $renew);
 

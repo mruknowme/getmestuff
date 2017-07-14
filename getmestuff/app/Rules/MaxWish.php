@@ -14,9 +14,13 @@ class MaxWish
         $this->max_words = GlobalSettings::getSettings(['max_number_of_words_in_title'])->data['value'];
     }
 
-    public function passes($attribute, $value)
+    public function passes($attribute, $value, $params, $validator)
     {
         $string = explode(' ', $value);
+
+        $validator->addReplacer('less_than', function($message, $attribute, $rule, $parameters){
+            $this->replaceWords($message);
+        });
 
         return ! (count($string) > $this->max_words);
     }

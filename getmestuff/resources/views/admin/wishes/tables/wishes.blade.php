@@ -21,17 +21,10 @@
             <th rowspan="2">Validated</th>
             <th rowspan="2">Completed</th>
             <th rowspan="2">Created At</th>
-            {{--<th rowspan="2">User Email</th>--}}
-            {{--<th colspan="6">Full Address</th>--}}
         </tr>
         <tr>
             <th>EN</th>
             <th>RU</th>
-            {{--<th>Current Amount</th>--}}
-            {{--<th>Amount Needed</th>--}}
-            {{--<th>Validated</th>--}}
-            {{--<th>Completed</th>--}}
-            {{--<th>Created At</th>--}}
         </tr>
     </template>
 </my-table>

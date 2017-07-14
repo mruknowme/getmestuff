@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Achievement;
 use App\Events\AchievementsOutdated;
-use App\GlobalSettings;
+use Illuminate\Http\Request;
 use App\Http\Requests\PrizesForm;
 use App\User;
 use App\Wish;
@@ -39,12 +39,14 @@ class HomeController extends Controller
         $ref_count = User::getRefs();
         $achievements = Achievement::all();
         $prizes = Prize::all();
+        $wishes = $this->getUserWishes();
 
         return view('userpage', [
             'random' => $random,
             'ref_count' => $ref_count,
             'achievements' => $achievements,
-            'prizes' => $prizes
+            'prizes' => $prizes,
+            'wishes' => $wishes
         ]);
     }
 
@@ -61,13 +63,22 @@ class HomeController extends Controller
         return response(['status' => 'Points redeemed successfully']);
     }
 
-    public function test(Achievement $achievement)
+    public function subscribed(Request $request)
     {
-        return $achievement->all();
-//        $data = ['on' => true, 'value' => null, 'checkbox' => true];
-//        $settings->create([
-//            'setting' => 'turn_on/of_payment_systems',
-//            'data' => $data
-//        ]);
+        $request->user()->recordAchievements(1, [2]);
+
+        return response(['status' => 'Thanks for subsciption']);
+    }
+
+    protected function getUserWishes()
+    {
+        return auth()->user()->wishes()->where('completed', 0)->get();
+    }
+
+    public function test()
+    {
+        $wishes =  auth()->user()->wishes()->where('completed', 0)->get();
+
+        dd($wishes);
     }
 }

@@ -77,6 +77,7 @@ $(document).ready(function () {
                     $("#page-wrapper").css("min-height", (height) + "px");
                 }
             },
+            locale = document.head.querySelector('meta[name="locale"]').content,
             url = window.location,
             element = $('ul.nav a').filter(function () {
                 return this.href === url.href || url.href.indexOf(this.href) === 0;

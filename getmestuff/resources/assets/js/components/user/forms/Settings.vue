@@ -81,11 +81,11 @@
                         this.password = '';
                         this.current_password = '';
 
-                        let messages = ['Profile updated.'];
+                        let messages = [window.flashMessages[window.App.locale]['profile-updated']];
 
                         if ((this.email != this.user.email) && (this.email != '')) {
                             this.email = this.user.email;
-                            messages.push('Please verify your new email.');
+                            messages.push(window.flashMessages[window.App.locale]['verify-email']);
                         }
 
                         window.events.$emit('profileUpdate', {

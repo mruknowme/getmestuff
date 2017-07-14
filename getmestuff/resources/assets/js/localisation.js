@@ -1,12 +1,13 @@
 import Vuex from 'vuex';
 import vuexI18n from 'vuex-i18n';
+import moment from 'moment';
 
 const store = new Vuex.Store();
 
 Vue.use(vuexI18n.plugin, store);
 
 const translationsEn = {
-    'no-relevant-results': 'There are no relevant results at this point',
+    'no-relevant-results': 'There are no relevant results at this moment.',
 
     /* Wish */
     total: "Total",
@@ -24,7 +25,7 @@ const translationsEn = {
     'first_name': 'Your First Name',
     'last_name': 'Your Last Name',
     email: 'Your Email',
-    'edit_password': 'Edit Password',
+    'edit_password': 'Change Password',
     'current_password': 'Current Password',
     confirm: 'Please enter your password to confirm changes',
     save: 'Save Settings',
@@ -32,7 +33,7 @@ const translationsEn = {
     /* Top Up */
     wallet: 'Wallet Top Up',
     amount: 'Amount',
-    interest: 'Amount with Interes',
+    interest: 'Amount with Interest',
     'top-up': 'Top Up',
 
     /* Make a Wish */
@@ -49,14 +50,34 @@ const translationsEn = {
     zip: 'Post Code',
     country: 'Country',
     request: 'Make Your Wish',
-    'not-donated': 'Looks like you haven\'t donated yet. Please donate and come back to make your wish.',
+    'not-donated': 'Looks like you haven\'t donated yet. Please make a donation of any amount first.',
 
     /* Random Wish */
     random: 'Random Wish',
 
     /* User Wishes */
     user: 'Your Current Wish',
-    'no-wishes': 'You don\'t have any wishes yet.'
+    'no-wishes': 'You don\'t have any wishes yet.',
+
+    /* Notification */
+    today: 'Today',
+    yesterday: 'Yesterday',
+    'no-notifications': 'No current notifications.',
+
+     /* Transaction */
+    transactions: 'Transactions',
+    'no-transactions': 'You haven\'t made any transactions yet.',
+
+    /* Paginator */
+    next: 'Next',
+    prev: 'Prev',
+
+    /* Payments */
+    'wallet-top-up': 'Wallet Top Up',
+
+    /* Flash */
+    success: 'Success',
+    error: 'Error',
 };
 
 const translationsRu = {
@@ -92,8 +113,8 @@ const translationsRu = {
     /* Make a Wish */
     wish: 'Создать Желание',
     priority: 'Приоритет этого желания будет выше.',
-    item: 'Чего бы вы хотели?',
-    link: 'Ссылка на ваш продукт...',
+    item: 'Что бы вы хотели?',
+    link: 'Ссылка на желаемый продукт...',
     current: 'Текущая Сумма (0)',
     needed: 'Необхадимая Сумма',
     address: 'Пожалуйста, укажите свой полный адрес\:',
@@ -103,15 +124,60 @@ const translationsRu = {
     zip: 'Индекс',
     country: 'Страна',
     request: 'Загрузить',
-    'not-donated': 'Похоже вы еще не пожертвовали. Пожалуйста, пожертвуйте и возращайтесь сюда.',
+    'not-donated': 'Похоже вы еще не пожертвовали. Пожалуйста, пожертвуйте любую сумму.',
 
     /* Random Wish */
     random: 'Случайное Желание',
 
     /* User Wishes */
     user: 'Ваше Текущее Желание',
-    'no-wishes': 'У вас пока нет желаний.'
+    'no-wishes': 'У вас пока нет желаний.',
+
+    /* Notification */
+    today: 'Сегодня',
+    yesterday: 'Вчера',
+    'no-notifications': 'У вас пока нет уведомлений.',
+
+    /* Transaction */
+    transactions: 'Операции',
+    'no-transactions': 'Вы еще не осуществаляли никаких операций.',
+
+    /* Paginator */
+    next: 'След.',
+    prev: 'Пред.',
+
+    /* Payments */
+    'wallet-top-up': 'Пополнение Кошелька',
+
+    /* Flash */
+    success: 'Удачно',
+    error: 'Ошибка',
 };
 
 Vue.i18n.add('en', translationsEn);
 Vue.i18n.add('ru', translationsRu);
+
+let locale = document.head.querySelector('meta[name="locale"]');
+
+moment.locale(locale.content);
+
+window.flashMessages = {
+    en: {
+        'for-donating': 'Thank you for donating.',
+        'for-reporting': 'The wish has been reported.',
+        'for-reporting-fail': 'Something went wrong!',
+        'published-wish': 'Your wish has been published.',
+        redeemed: 'All done.',
+        'profile-updated': 'Profile updated.',
+        'verify-email': 'Please verify your new email.',
+    },
+    ru: {
+        'for-donating': 'Благодарим за пожертвование.',
+        'for-reporting': 'Вы успешно сообщили о нарушении.',
+        'for-reporting-fail': 'Что-то пошло не так!',
+        'published-wish': 'Ваше желание опубликовано.',
+        redeemed: 'Все успешно.',
+        'profile-updated': 'Информация обнавленна.',
+        'verify-email': 'Пожалуйста, подтвердите ваш новый email.'
+    }
+};

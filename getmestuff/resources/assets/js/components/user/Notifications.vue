@@ -5,7 +5,7 @@
         </div>
 
         <div class="mw flex center bg-white empty border" v-else>
-            <p>You don't have any notifications yet.</p>
+            <p v-text="$t('no-notifications')"></p>
         </div>
 
         <paginator :dataSet="dataSet" @updated="fetch" endpoint="donations" other="transactions"></paginator>

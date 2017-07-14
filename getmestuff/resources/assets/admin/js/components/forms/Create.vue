@@ -4,25 +4,42 @@
             <div class="col-md-12 col-xs-12"
                  v-if="key == 'together'">
                 <div class="white-box">
-                    <div class="form-group" v-for="input in item">
-                        <label class="control-label" v-text="makeUpper(input.name)"></label>
-                        <div class="input-group" v-if="input.type == 'text'">
-                            <span class="input-group-addon"><i class="fa fa-font"></i></span>
-                            <input type="text" class="form-control"
-                                   :placeholder="makeUpper(input.name)"
-                                   v-model="values[input.name]">
+                    <div class="row" v-for="input in item">
+                        <div class="form-group" v-if="!input.lang">
+                            <label class="control-label" v-text="makeUpper(input.name)"></label>
+                            <div class="input-group" v-if="input.type == 'text'">
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                                <input type="text" class="form-control"
+                                       :placeholder="makeUpper(input.name)"
+                                       v-model="values[input.name]">
+                            </div>
+                            <select class="form-control" v-if="input.type == 'select'" v-model="values[input.name]">
+                                <option v-for="(value, option) in input.options"
+                                        :value="value"
+                                        v-text="makeUpper(option)"></option>
+                            </select>
+                            <input type="number" class="form-control" v-model="values[input.name]" v-if="input.type == 'number'">
+                            <div class="input-group" v-if="input.type == 'textarea'">
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                                <textarea class="form-control"
+                                          :placeholder="makeUpper(input.name)"
+                                          v-model="values[input.name]"></textarea>
+                            </div>
                         </div>
-                        <select class="form-control" v-if="input.type == 'select'" v-model="values[input.name]">
-                            <option v-for="(value, option) in input.options"
-                                    :value="value"
-                                    v-text="makeUpper(option)"></option>
-                        </select>
-                        <input type="number" class="form-control" v-model="values[input.name]" v-if="input.type == 'number'">
-                        <div class="input-group" v-if="input.type == 'textarea'">
-                            <span class="input-group-addon"><i class="fa fa-font"></i></span>
-                            <textarea class="form-control"
-                                      :placeholder="makeUpper(input.name)"
-                                      v-model="values[input.name]"></textarea>
+                        <div class="form-group col-md-6" v-for="lang in langs" v-else-if="input.lang">
+                            <label class="control-label" v-text="makeUpper(input.name)"></label>
+                            <div class="input-group" v-if="input.type == 'text'">
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                                <input type="text" class="form-control"
+                                       :placeholder="makeUpper(input.name) + ' - '+lang"
+                                       v-model="values[lang][input.name]">
+                            </div>
+                            <div class="input-group" v-if="input.type == 'textarea'">
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                                <textarea class="form-control"
+                                          :placeholder="makeUpper(input.name) + ' - '+lang"
+                                          v-model="values[lang][input.name]"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +85,11 @@
         props: ['post', 'data'],
         data() {
             return {
-                values: {}
+                values: {
+                    en: {},
+                    ru: {}
+                },
+                langs: ['en', 'ru']
             }
         },
         created() {
@@ -79,9 +100,7 @@
         methods: {
             makeModel(item) {
                 for (let input in item) {
-                    if (item[input].type != 'number' && item[input].type != 'select') {
-                        this.values[item[input].name] = '';
-                    } else {
+                    if (item[input].type == 'number' || item[input].type == 'select') {
                         this.values[item[input].name] = 0;
                     }
                 }

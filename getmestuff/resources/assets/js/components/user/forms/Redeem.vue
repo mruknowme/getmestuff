@@ -61,11 +61,12 @@
                     'quantity': this.quantity
                 })
                     .then(() => {
-                        if (this.selected == 3) {
-                            this.limit = true;
-                        }
+                        if (this.selected == 3) this.limit = true;
                         this.buffering = false;
-                        flash(['All Done!']);
+
+                        let message = window.flashMessages[window.App.locale]['redeemed'];
+                        flash([message]);
+
                         window.events.$emit('pointsDown', this.price);
                         if (this.selected == 1) {
                             window.events.$emit('moreWishes', this.quantity);
@@ -84,11 +85,7 @@
             }
         },
         created() {
-            if (this.user == 3) {
-                this.limit = true;
-            } else {
-                this.limit = false;
-            }
+            this.limit = (this.user == 1);
         }
     }
 </script>

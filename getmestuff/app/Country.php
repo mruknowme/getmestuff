@@ -30,8 +30,6 @@ class Country extends Model
 
     public static function updateCountry($id)
     {
-        static::deleteRepeatingResult();
-
         $remember_key = request()->cookie('visited');
 
         if(!is_null($remember_key)) {

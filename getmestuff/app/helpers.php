@@ -76,9 +76,18 @@ function getUniqueId($str) {
 }
 
 function getLanguagePref() {
-    $data = explode(';', request()->server('HTTP_ACCEPT_LANGUAGE'))[0];
-    preg_match('/[a-z]{2}/', $data, $matches);
-    return $matches[0];
+    $matches = collect([]);
+    $data = explode(';', request()->server('HTTP_ACCEPT_LANGUAGE'));
+
+    collect($data)->each(function ($item) use ($matches) {
+        if(preg_match('/[a-z]{2}/', $item, $m)) $matches->push($m[0]);
+    });
+
+    foreach ($matches as $match) {
+        if ($match == 'ru') return 'ru';
+        elseif ($match == 'en') return 'en';
+        return 'en';
+    }
 }
 
 function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE) {
@@ -195,4 +204,70 @@ function setTranslations($params) {
     unset($params['translations']);
 
     return $params;
+}
+
+function getErrorMessage($eng, $rus) {
+    if (app()->getLocale() == 'en') return $eng;
+    return $rus;
+}
+
+function getConvertedValue($amount, $currency) {
+    if (cache('currency')) {
+        $data = cache('currency');
+        $data = \Carbon\Carbon::parse($data['usd'][0]['date']);
+        $now = \Carbon\Carbon::now();
+
+        if ($data->lt($now)) {
+            cacheCurrency();
+        }
+
+        return convertCurrency($amount, $currency);
+    } else {
+        cacheCurrency();
+        return convertCurrency($amount, $currency);
+    }
+}
+
+function convertCurrency($amount, $currency) {
+    $data = collect([]);
+    if ($currency == 'usd') {
+        return $amount;
+    } else if ($currency == 'rub') {
+        ['usd' => $usd] = cache('currency');
+
+        collect($amount)->each(function ($item) use ($data, $usd) {
+            $data->push(round($item / ($usd[1]['value']), 2));
+        });
+
+        return $data;
+    } else {
+        ['usd' => $usd] =  cache('currency');
+        [$currency => $currency] = cache('currency');
+
+        collect($amount)->each(function ($item) use ($data, $usd, $currency) {
+            $data->push(round(($item * $currency[0]['value']) / ($usd[1]['value']), 2));
+        });
+
+        return $data;
+    }
+}
+
+function cacheCurrency() {
+    $new_data = json_decode(file_get_contents('https://alfabank.ru/ext-json/0.2/exchange/cash'), true);
+    $new_data =  $new_data['response']['data'];
+    $new_date = \Carbon\Carbon::parse($new_data['usd'][0]['date']);
+    
+    $old_data = cache('currency');
+    $old_date = \Carbon\Carbon::parse($old_data['usd'][0]['date']);
+
+    $now = \Carbon\Carbon::now(+3);
+
+    if ($old_date->lt($new_date) && $new_date->gte($now)) \Cache::forever('currency', $data);
+}
+
+function getTimeZone($time) {
+    $timezone = 'GMT';
+    $time = (-$time/60);
+    if ($time < 0) return "$timezone-$time";
+    return "$timezone+$time";
 }

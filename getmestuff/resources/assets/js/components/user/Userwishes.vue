@@ -28,7 +28,7 @@
         },
         methods: {
             arrayCheck(array) {
-                return (array.length > 0);
+                return (Object.keys(array).length > 0);
             }
         },
         created() {

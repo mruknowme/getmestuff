@@ -33,7 +33,7 @@
         mounted() {
             if (this.form) {
                 this.tabs.forEach(tab => {
-                    tab.isActive = (tab.name == this.form);
+                    tab.isActive = (tab.form == this.form);
                 });
             }
         }

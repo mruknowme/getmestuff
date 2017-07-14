@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="locale" content="{{ app()->getLocale() }}">
 
     <title>GMS Admin | @yield('title')</title>
 

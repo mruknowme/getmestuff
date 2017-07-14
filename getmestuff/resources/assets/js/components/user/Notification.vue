@@ -4,7 +4,12 @@
 
         <div class="notification-info mw" v-for="(item, key) in data">
             <h4>{{ key }} <i class="fa fa-check-circle" aria-hidden="true" v-if="'completed' in item"></i></h4>
-            <p>Donated: {{ item['total'] }}$ by {{ item['count'] }} {{ item['count'] > 1 ? 'users' : 'user' }}.</p>
+            <p v-if="window.App.locale == 'en'">
+                Donated: {{ item['total'] }}$ by {{ item['count'] }} {{ item['count'] > 1 ? 'users' : 'user' }}.
+            </p>
+            <p v-else>
+                Дано: {{ item['total'] }}$ {{ item['count'] }} {{ item['count'] > 1 ? 'пользователями' : 'пользователем' }}.
+            </p>
         </div>
     </div>
 </template>
@@ -18,9 +23,9 @@
                 let check = moment();
                 let date = moment(this.date, "YY-MM-DD");
                 if (check.diff(date, 'days') == 0) {
-                    return 'Today';
+                    return $t('today');
                 } else if (check.diff(date, 'days') == 1) {
-                    return 'Yesterday'
+                    return $t('yesterday');
                 }
                 return date.format('DD-MM-YYYY');
             }

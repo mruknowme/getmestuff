@@ -1,10 +1,10 @@
 <template>
     <ul class="paginator mw center" v-if="shouldPaginate">
         <li class="bg-white" :class="{disabled : !prevUrl}">
-            <a @click.prevent="page--"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Prev</a>
+            <a @click.prevent="page--"><i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ $t('prev') }}</a>
         </li>
         <li class="bg-white" :class="{disabled : !nextUrl}">
-            <a @click.prevent="page++">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            <a @click.prevent="page++">{{ $t('next') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
         </li>
     </ul>
 </template>

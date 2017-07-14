@@ -25,8 +25,10 @@ class NewAchievementForm extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:1|unique:achievements,title',
-            'description' => 'required|string|min:1',
+            'en.title' => 'required|string|min:1',
+            'en.description' => 'required|string|min:1',
+            'ru.title' => 'required|string|min:1',
+            'ru.description' => 'required|string|min:1',
             'need' => 'required|numeric|min:1',
             'reward' => 'required|numeric|min:1',
             'refresh' => 'required|numeric',
@@ -37,10 +39,12 @@ class NewAchievementForm extends FormRequest
     public function save()
     {
         $set = [];
-        $data = $this->only(['title', 'description', 'need', 'reward', 'refresh', 'type']);
+        $data = $this->only(['en', 'ru', 'need', 'reward', 'refresh', 'type']);
 
-        $set['title'] = $data['title'];
-        $set['description'] = $data['description'];
+        $set['en']['title'] = $data['en']['title'];
+        $set['ru']['title'] = $data['ru']['title'];
+        $set['en']['description'] = $data['en']['description'];
+        $set['ru']['description'] = $data['ru']['description'];
         $set['need'] = $data['need'];
         $set['prize'] = $data['reward'];
         $set['renew'] = $data['refresh'];

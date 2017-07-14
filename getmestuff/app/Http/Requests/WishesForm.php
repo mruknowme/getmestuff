@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class WishesForm extends FormRequest
 {
-    protected $wishFields = ['item', 'url', 'current_amount', 'amount_needed'];
+    protected $wishFields = ['item', 'url', 'current_amount', 'amount_needed', 'currency'];
     protected $addressFields = ['address_one', 'address_two', 'city', 'post_code', 'country'];
 
     /**
@@ -30,20 +30,22 @@ class WishesForm extends FormRequest
         return [
             'item' => 'required|string|spamfree|maxwish|alpha_num_s',
             'url' => 'required|url',
-            'current_amount' => 'nullable|numeric|min:0',
+            'current_amount' => 'nullable|numeric|min:0|less_than:amount_needed',
             'amount_needed' => 'required|numeric|min:1',
             'address_one' => 'required|string',
             'address_two' => 'nullable|string',
             'city' => 'required|alpha_num',
             'post_code' => 'required|alpha_num',
-            'country' => 'required|alpha_num'
+            'country' => 'required|alpha_num',
+            'currency' => 'required'
         ];
     }
 
     public function save()
     {
         if ($this->canRequestWish()) {
-            throw new \Exception('You have published a maximum amount of wishes');
+            $message = getErrorMessage('You have published a maximum amount of wishes.', 'Вы достигли лимита желаний.');
+            throw new \Exception($message);
         }
 
         list($wish, $address) = $this->getWishFields();
@@ -83,6 +85,12 @@ class WishesForm extends FormRequest
             ->toArray();
 
         $items['item'] = ucfirst($items['item']);
+
+        if (!isset($items['current_amount'])) $items['current_amount'] = 0;
+
+        [$items['current_amount'], $items['amount_needed']] = getConvertedValue([
+            $items['current_amount'], $items['amount_needed']
+        ], $items['currency']);
 
         if (in_array($items['item'], $patterns)) {
             foreach ($patterns as $pattern) {

@@ -18,13 +18,13 @@ class AchievementsController extends Controller
     use RefactorData;
 
     protected $visibleForAdmins = [];
+    protected $translatedFields = ['item', 'title', 'description'];
 
     public function allAchievements(Achievement $achievement) {
         return Datatables::of(
             $this->refactorData(
                 $this->getData($achievement, [
-                    'id', 'title', 'description', 'need', 'prize',
-                    'renew', 'type', 'updated_at', 'created_at'
+                    'id', 'need', 'prize', 'renew', 'type', 'updated_at', 'created_at'
                 ])
             )
         )->make(true);
@@ -34,8 +34,7 @@ class AchievementsController extends Controller
         return Datatables::of(
             $this->refactorData(
                 $this->getData($prize, [
-                    'id', 'item', 'description', 'price', 'bought',
-                    'user_column', 'updated_at', 'created_at'
+                    'id', 'price', 'bought', 'user_column', 'updated_at', 'created_at'
                 ])
             )
         )->make(true);
@@ -90,9 +89,12 @@ class AchievementsController extends Controller
 
     protected function getData($data, $select, $where = false)
     {
+        $data = $data->select($select)->with('translations');
+
         if ($where) {
-            return $data->select($select)->where([$where])->get()->makeVisible($this->visibleForAdmins);
+            $data = $data->where([$where]);
         }
-        return $data->select($select)->get()->makeVisible($this->visibleForAdmins);
+
+        return $data->get()->makeVisible($this->visibleForAdmins);
     }
 }

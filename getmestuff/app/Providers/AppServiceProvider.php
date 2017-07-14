@@ -55,8 +55,9 @@ class AppServiceProvider extends ServiceProvider
         \Validator::extend('maxwish', '\App\Rules\MaxWish@passes');
         \Validator::extend('uniquearray', '\App\Rules\UniqueArray@passes');
         \Validator::extend('alpha_num_s', '\App\Rules\AlphaNumS@passes');
+        \Validator::extend('less_than', '\App\Rules\LessThan@passes');
 
-        \Validator::replacer('maxwish', '\App\Rules\MaxWish@replaceWords');
+//        \Validator::replacer('maxwish', '\App\Rules\MaxWish@replaceWords');
     }
 
     /**

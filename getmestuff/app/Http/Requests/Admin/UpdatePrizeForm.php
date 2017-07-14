@@ -24,13 +24,20 @@ class UpdatePrizeForm extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_column' => 'nullable',
+            'price' => 'numeric|nullable',
+            'translations.ru.item' => 'required',
+            'translations.en.item' => 'required',
+            'translations.ru.description' => 'required',
+            'translations.en.description' => 'required',
         ];
     }
 
     public function save($prize)
     {
-        $data = $this->intersect('item', 'description', 'user_column', 'price');
+        $data = $this->intersect('translations', 'user_column', 'price');
+
+        $data = setTranslations($data);
 
         $prize->update($data);
     }

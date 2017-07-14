@@ -18,8 +18,8 @@ class CreateWishesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('url', 255);
             $table->json('address');
-            $table->integer('amount_needed')->unsigned();
-            $table->integer('current_amount')->unsigned()->default(0);
+            $table->float('amount_needed')->unsigned();
+            $table->float('current_amount')->unsigned()->default(0);
             $table->tinyInteger('priority')->unsigned()->default(1);
             $table->boolean('validated')->unsigned()->default(1);
             $table->boolean('completed')->unsigned()->default(0);

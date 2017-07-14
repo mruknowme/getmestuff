@@ -5,8 +5,9 @@
     import Achievements from '../forms/Achievements.vue';
     import Userwishes from '../Userwishes.vue';
     import Randomwish from '../Randomwish.vue';
+    import SocialWidgets from '../forms/SocialWidgets.vue';
 
     export default {
-        components: { Wallet, Settings, Make, Userwishes, Randomwish, Achievements }
+        components: { Wallet, Settings, Make, Userwishes, Randomwish, Achievements, SocialWidgets }
     }
 </script>

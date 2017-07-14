@@ -27,17 +27,24 @@ class DonateForm extends FormRequest
     public function rules()
     {
         return [
-            'amount' => 'required|numeric|min:1'
+            'amount' => 'required|numeric|min:0.01'
         ];
     }
 
-    public function save(Wish $wish)
+    public function save($wish)
     {
+        if ($wish->completed = 1) {
+            $message = getErrorMessage(
+                'This wish is already completed, please choose another or refresh the page.',
+                'Это желание уже исполнено, пожалуйста выберете другое или перезагрузить страницу.');
+            throw new \Exception($message);
+        }
         $diff = ($wish->amount_needed) - ($wish->current_amount);
 
         if (($this->amount > $this->user()->balance) || ($this->amount > $diff))
         {
-            throw new \Exception('You cannot donate this amount');
+            $message = getErrorMessage('You cannot donate this amount.', 'Вы не можете пожертвовать эту сумму.');
+            throw new \Exception($message);
         }
 
         event(new UserHasDonated($this->user(), $this->amount));

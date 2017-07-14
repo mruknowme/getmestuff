@@ -20,28 +20,28 @@
             <create post="/admin/api/achievement/create"
                     :data="{
                 together: [
-                    { name: 'title', type: 'text' },
-                    { name: 'description', type: 'textarea' },
+                    { name: 'title', type: 'text', lang: true },
+                    { name: 'description', type: 'textarea', lang: true },
                 ],
                 line: [
                     { name: 'refresh', type: 'select', options: {none: 0, monthly: 1, instant: 2} },
                     { name: 'type', type: 'text' },
                     { name: 'need', type: 'number' },
                     { name: 'reward', type: 'number' }
-                ]
+                ],
             }"></create>
         </tab>
         <tab name="New Prize">
             <create post="/admin/api/prize/create"
                     :data="{
                 together: [
-                    { name: 'item', type: 'text' },
-                    { name: 'description', type: 'textarea' },
+                    { name: 'item', type: 'text', lang: true },
+                    { name: 'description', type: 'textarea', lang: true },
                 ],
                 line: [
                     { name: 'price', type: 'number' },
                     { name: 'user_column', type: 'text' },
-                ]
+                ],
             }"></create>
         </tab>
     </tabs>

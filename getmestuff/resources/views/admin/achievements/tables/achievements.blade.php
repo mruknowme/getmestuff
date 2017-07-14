@@ -2,28 +2,31 @@
 <my-table get="/admin/api/achievements"
           post="/admin/api/achievements"
           :columns="[
-                        { data: 'title' },
-                        { data: 'description' },
+                        { data: 'translations.en.title' },
+                        { data: 'translations.ru.title' },
+                        { data: 'translations.en.description' },
+                        { data: 'translations.ru.description' },
                         { data: 'need' },
                         { data: 'prize' },
                         { data: 'renew_slug' },
                         { data: 'type' },
-                        { data: 'updated_at' },
-                        { data: 'created_at'}
                      ]"
-          :skip="['id', 'renew_slug', 'updated_at', 'created_at']"
-          :select="{ 'renew' : {0:'None', 1:'Monthly', 2:'Instant'} }"
-          :textarea="['description']">
+          :skip="['id', 'renew_slug', 'type_slug', 'updated_at', 'created_at', 'title', 'description']"
+          :select="{ 'renew' : {0:'None', 1:'Monthly', 2:'Instant'} }">
     <template slot="header">
         <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Amount Needed</th>
-            <th>Points</th>
-            <th>Renew</th>
-            <th>Type</th>
-            <th>Updated</th>
-            <th>Created</th>
+            <th colspan="2">Title</th>
+            <th colspan="2">Description</th>
+            <th rowspan="2">Amount Needed</th>
+            <th rowspan="2">Points</th>
+            <th rowspan="2">Renew</th>
+            <th rowspan="2">Type</th>
+        </tr>
+        <tr>
+            <th>EN</th>
+            <th>RU</th>
+            <th>EN</th>
+            <th>RU</th>
         </tr>
     </template>
 </my-table>

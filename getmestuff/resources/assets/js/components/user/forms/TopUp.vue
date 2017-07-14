@@ -34,7 +34,9 @@
                                 window.events.$emit('increment', this.amount);
                                 this.buffering = false;
 
-                                flash(['All Done!']);
+                                let message = window.flashMessages[window.App.locale]['redeemed'];
+
+                                flash([message]);
                             }).catch((error) => {
                                 let messages = [];
                                 for (let key in error.response.data) {

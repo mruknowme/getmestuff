@@ -10,4 +10,5 @@
             <p>{{ $ref_count }}</p>
         </div>
     </div>
+    <social-widgets></social-widgets>
 </section>

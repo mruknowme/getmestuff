@@ -6,6 +6,7 @@ use App\GlobalSettings;
 use App\Http\Requests\DonateForm;
 use App\Http\Requests\WishesForm;
 use App\Wish;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -46,7 +47,8 @@ class WishesController extends Controller
             );
         }
 
-        return response(['status' => 'Wish published successfully']);
+        return response(['status' => 'Wish published successfully'])
+            ->cookie('currency', $form->currency, 2628000);
     }
 
 
@@ -80,8 +82,20 @@ class WishesController extends Controller
      * @param Wish $wish
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Wish $wish, DonateForm $form)
+    public function update($wish, DonateForm $form)
     {
+        try {
+             $wish = Wish::findOrFail($wish);
+        } catch (\Exception $e) {
+            $message = getErrorMessage(
+                'The wish was not found, try refreshing the page.',
+                'Желание не найдено, попробуйте перезагрузить страницу.');
+
+            return response()->json(
+                ['message' => [$message]], 404
+            );
+        }
+
         try {
             $form->save($wish);
         } catch (\Exception $e) {
@@ -116,5 +130,13 @@ class WishesController extends Controller
         $wish->save();
 
         return response(['status' => 'Wish has been reported']); 
+    }
+
+    public function getCurrency(Request $request)
+    {
+        $amount = $request->amount;
+        $currency = $request->currency;
+
+        return getConvertedValue($amount, $currency);
     }
 }

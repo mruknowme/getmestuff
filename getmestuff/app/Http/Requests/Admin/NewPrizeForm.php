@@ -25,8 +25,10 @@ class NewPrizeForm extends FormRequest
     public function rules()
     {
         return [
-            'item' => 'required|string|min:1|unique:prizes,item',
-            'description' => 'required|string|min:1',
+            'en.item' => 'required|string|min:1',
+            'en.description' => 'required|string|min:1',
+            'ru.item' => 'required|string|min:1',
+            'ru.description' => 'required|string|min:1',
             'price' => 'required|numeric|min:1',
             'user_column' => 'required|string',
         ];
@@ -34,7 +36,7 @@ class NewPrizeForm extends FormRequest
 
     public function save()
     {
-        $data = $this->only(['item', 'description', 'price', 'user_column']);
+        $data = $this->only(['en', 'ru', 'price', 'user_column']);
         $data['bought'] = 0;
 
         Prize::create($data);

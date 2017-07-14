@@ -91,6 +91,7 @@ return [
     'maxwish'              => 'The :attribute field may contain only :num_words.',
     'uniquearray'          => 'This value already exists.',
     'alpha_num_s'          => 'The :attribute may only contain letters, numbers and spaces.',
+    'less_than'            => 'The :attribute must be less then :param',
 
     /*
     |--------------------------------------------------------------------------

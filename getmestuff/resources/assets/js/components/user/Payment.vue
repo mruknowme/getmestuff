@@ -1,7 +1,7 @@
 <template>
     <div class="notification-info mw pos-r">
         <h4>{{ date }}</h4>
-        <p>Walet Topup: {{ data.amount }}$ <span>(+ {{ data.interest }})</span></p>
+        <p>{{ $t('wallet-top-up') }}: {{ data.amount }}$ <span>(+ {{ data.interest }})</span></p>
         <i class="pos-a fa fa-check-circle" aria-hidden="true" v-if="data.successful == 1"></i>
         <i class="pos-a fa fa-exclamation-circle" aria-hidden="true" v-else></i>
     </div>

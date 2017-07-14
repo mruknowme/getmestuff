@@ -1,6 +1,6 @@
 <template>
     <div class="alert" :class="classType" v-show="show">
-        <strong>{{ type }}</strong>
+        <strong v-text="$t(classType)"></strong>
         <ul>
             <li v-for="item in items" v-text="item"></li>
         </ul>
@@ -31,7 +31,6 @@
             flash(messages, type = 'success') {
                 this.items = messages;
                 this.classType = type;
-                this.type = this.capitalize(type);
                 this.show = true;
 
                 this.hide();

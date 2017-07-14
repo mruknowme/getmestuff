@@ -1,12 +1,12 @@
 <template>
     <div class="wallet-notification w48">
         <div class="notification bg-white mw flex vertical start">
-            <h3 class="mw">Transactions</h3>
+            <h3 class="mw" v-text="$t('transactions')"></h3>
             <div class="mw" v-if="arrayCheck(items)">
                 <payment v-for="payment in items" :data="payment" :key="payment.id"></payment>
             </div>
             <div class="mw flex center empty" v-else>
-                <p>You haven't made any transactions yet</p>
+                <p v-text="$t('no-transactions')"></p>
             </div>
         </div>
         <paginator :dataSet="dataSet" @updated="fetch" endpoint="transactions" other="donations"></paginator>

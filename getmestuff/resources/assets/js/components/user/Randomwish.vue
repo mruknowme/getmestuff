@@ -2,7 +2,11 @@
     <div class="mw">
         <div class="mw" v-if="arrayCheck(items)">
             <div class="mw item" v-for="(wish, index) in items" :key="wish.id">
-                <wish :data="wish" :wait="disabled" @disable="disabled = true" @donated="refresh(index)">
+                <wish :data="wish"
+                      :wait="disabled"
+                      @disable="disabled = true"
+                      @enable="disabled = false"
+                      @donated="refresh(index)">
                     <h3 slot="header" v-text="$t('random')"></h3>
                 </wish>
             </div>

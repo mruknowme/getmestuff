@@ -32,24 +32,29 @@ class PrizesForm extends FormRequest
     }
 
     public function save() {
-        $price = Prize::find($this->selected)->price * $this->quantity;
+        $prize = Prize::find($this->selected);
+
+        $quantity = $this->quantity;
+        if ($this->selected == 3) {
+            $quantity = 1;
+        }
+
+        $price = $prize->price * $quantity;
 
         if ($price > $this->user()->points) {
-            throw new Exception('You don\'t have enough points');
+            $message = getErrorMessage('You don\'t have enough point.', 'У вас не достаточно очков');
+            throw new Exception($message);
         }
 
-        if ($this->selected == 1) {
-            $this->user()->number_of_wishes += $this->quantity;
-            $this->user()->points -= $price;
-        } elseif ($this->selected == 2) {
-            $this->user()->priority += $this->quantity;
-            $this->user()->points -= $price;
-        } elseif ($this->selected == 3 && $this->user()->allowed_wishes == 2) {
-            $this->user()->allowed_wishes += 1;
-            $this->user()->points -= $price;
-        } else {
-            throw new \Exception('Unknown Error');
+        if ($this->selected == 3 && $this->user()->allowed_wishes != 0) {
+            $message = getErrorMessage('You already have maximum limit.', 'У вас уже максимальный лимит.');
+            throw new \Exception($message);
         }
+
+        $column = $prize->user_column;
+
+        $this->user()->$column += $quantity;
+        $this->user()->points -= $price;
 
         $this->user()->save();
     }
