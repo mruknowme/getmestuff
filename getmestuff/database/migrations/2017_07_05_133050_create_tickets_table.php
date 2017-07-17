@@ -23,6 +23,7 @@ class CreateTicketsTable extends Migration
             $table->tinyInteger('type')->unsigned()->default(0);
             $table->integer('user_id')->unsigned()->nullable();
             $table->boolean('is_admin')->unsigned()->default(0);
+            $table->string('locale')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Achievement;
 use App\Events\AchievementsOutdated;
+use App\GlobalSettings;
 use Illuminate\Http\Request;
 use App\Http\Requests\PrizesForm;
 use App\User;
@@ -36,17 +37,24 @@ class HomeController extends Controller
         }
 
         $random = Wish::getWishes(auth()->user()->id, 1);
-        $ref_count = User::getRefs();
+
+        $ref_info = User::getRefs();
+        $ref_info['link'] = auth()->user()->ref_link;
+
         $achievements = Achievement::all();
         $prizes = Prize::all();
         $wishes = $this->getUserWishes();
+        $settings = GlobalSettings::getSettingsGroup(
+            ['disable_achievements', 'commissions', 'turn_on/of_payment_systems']
+        );
 
         return view('userpage', [
             'random' => $random,
-            'ref_count' => $ref_count,
+            'ref_info' => $ref_info,
             'achievements' => $achievements,
             'prizes' => $prizes,
-            'wishes' => $wishes
+            'wishes' => $wishes,
+            'settings' => $settings
         ]);
     }
 
@@ -77,8 +85,10 @@ class HomeController extends Controller
 
     public function test()
     {
-        $wishes =  auth()->user()->wishes()->where('completed', 0)->get();
+        $settings = GlobalSettings::getSettingsGroup(
+            ['disable_achievements', 'commissions', 'turn_on/of_payment_systems']
+        );
 
-        dd($wishes);
+        return $settings;
     }
 }

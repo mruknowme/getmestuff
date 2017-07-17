@@ -2,13 +2,13 @@
     <h1>GetMeStuff</h1>
     <div class="owl-theme owl-carousel">
         <div class="item">
-            <p class="mw t-align">Here at GetMeStuff, you can join a community of people, who give each other monetary help, so they can pursue their dreams.</p>
+            <p class="mw t-align">Helping accomplish your goals.</p>
         </div>
         <div class="item t-align">
-            <p class="mw">Something else</p>
+            <p class="mw">Our mission is to help you achieve your dreams</p>
         </div>
         <div class="item t-align">
-            <p class="mw">Something else 2</p>
+            <p class="mw">We believe in the world where people achieve great things as a result of working together</p>
         </div>
     </div>
     <a class="btn" href="/register">Sign Up</a>

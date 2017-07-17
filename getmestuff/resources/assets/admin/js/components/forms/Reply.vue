@@ -23,6 +23,16 @@
         </div>
         <div class="custom card text-dark" v-else-if="showForm">
             <div class="card-block">
+                <div class="btn-group" data-toggle="buttons">
+                    <label @click="locale = 'ru'" class="btn btn-secondary" :class="{ active: (ticket.locale == 'ru')}">
+                        <input type="radio" name="locale" value="ru" autocomplete="off"
+                               :checked="ticket.locale == 'ru'"> RU
+                    </label>
+                    <label @click="locale = 'en'" class="btn btn-secondary" :class="{ active: (ticket.locale == 'en')}">
+                        <input type="radio" name="locale" value="en" autocomplete="off"
+                               :checked="ticket.locale == 'en'"> EN
+                    </label>
+                </div>
                 <textarea class="textarea_editor form-control" rows="5" placeholder="Enter text..."></textarea>
             </div>
             <div class="card-footer">
@@ -40,11 +50,14 @@
             if (this.$el.querySelector('.textarea_editor') != null) {
                 $('.textarea_editor').wysihtml5();
             }
+
+            this.locale = this.ticket.locale;
         },
         data() {
             return {
                 ticket: this.data,
                 showForm: this.answer,
+                locale: ''
             }
         },
         methods: {
@@ -67,7 +80,8 @@
             sendData() {
                 axios.post('/admin/api/tickets/reply/'+this.ticket.id, {
                     body: this.ticket.reply.body,
-                    subject: this.ticket.subject
+                    subject: this.ticket.subject,
+                    locale: this.locale
                 }).then(() => {
                     $('.textarea_editor').data('wysihtml5').editor.composer.hide();
                     $('.textarea_editor').data('wysihtml5').editor.toolbar.hide();

@@ -17,6 +17,7 @@
                         @if (auth()->user()->isAdmin())
                             <li><a class="user-link" target="_blank" href="/admin/dashboard">Dashboard</a></li>
                         @endif
+                        <li><a class="user-link" href="/{{ $lang }}/contact">Contact</a></li>
                         <li class="notification-link pos-r flex center">
                             <a class="user-link" href="/{{ $lang }}/notifications">Notifications</a>
                             <div class="unread flex center" v-if="unreadNotifications">

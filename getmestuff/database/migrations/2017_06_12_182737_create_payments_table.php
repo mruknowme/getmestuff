@@ -16,10 +16,10 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('braintree_id');
+            $table->string('payment_id');
             $table->boolean('successful');
-            $table->integer('amount')->unsigned();
-            $table->integer('interest')->unsigned();
+            $table->float('amount', 255, 2)->unsigned();
+            $table->float('interest', 255, 2)->unsigned();
             $table->timestamps();
         });
     }

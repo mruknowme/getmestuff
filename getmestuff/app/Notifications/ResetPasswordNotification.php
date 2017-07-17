@@ -11,17 +11,20 @@ class ResetPasswordNotification extends Notification
 {
     use Queueable;
 
-    public $token;
+    public $token, $isAdmin, $locale;
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $token
+     * @param $isAdmin
+     * @param $locale
      */
-    public function __construct($token, $isAdmin)
+    public function __construct($token, $isAdmin, $locale)
     {
         $this->token = $token;
         $this->isAdmin = $isAdmin;
+        $this->locale = $locale;
     }
 
     /**
@@ -48,7 +51,7 @@ class ResetPasswordNotification extends Notification
         } else {
             $url = url(config('app.url').route('password.reset', $this->token, false));
         }
-        return (new MailMessage)->view('emails.reset', ['url' => $url]);
+        return (new MailMessage)->view("email.{$this->locale}.reset", ['url' => $url]);
     }
 
     /**

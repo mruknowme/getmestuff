@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->float('balance', 255, 2)->unsigned()->default(0);
             $table->tinyInteger('status')->default(1);
             $table->json('address')->nullable();
-            $table->ipAddress('ip_address');
             $table->boolean('donated')->default(0);
             $table->integer('allowed_wishes')->unsigned()->default(0);
             $table->integer('number_of_wishes')->unsigned()->default(1);
@@ -36,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('amount_received')->default(0);
             $table->integer('points')->default(0);
             $table->boolean('admin')->default(0);
+            $table->string('locale', 2);
             $table->rememberToken();
             $table->timestamps();
 

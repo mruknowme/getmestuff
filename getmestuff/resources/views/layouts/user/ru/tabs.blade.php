@@ -3,7 +3,9 @@
         <settings :user="{{ auth()->user() }}"></settings>
     </tab>
     <tab name="<i class='fa fa-lg fa-money' aria-hidden='true'></i>" title="Кошелек">
-        <wallet user="{{ auth()->user()->email }}"></wallet>
+        <wallet :disabled="{{ json_encode($settings[2]->data) }}"
+                :commissions="{{ json_encode($settings[1]->data) }}"
+                user="{{ auth()->user()->email }}"></wallet>
     </tab>
     <tab name="<i class='fa fa-lg fa-trophy' aria-hidden='true'></i>" title="Достижение">
         @include ('layouts.user.'.$lang.'.achievements')

@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\GlobalSettings;
 use App\Ticket;
 use App\Wish;
+use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
+use Illuminate\Support\Facades\Queue;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,12 +45,20 @@ class AppServiceProvider extends ServiceProvider
         ], function ($view) {
             $wishes = Wish::query()->where('validated', false)->count();
             $tickets = Ticket::query()->where([
-                ['type', '!=', 3],
+                ['type', '!=', 2],
                 ['is_admin', '=', 0]
             ])->count();
             $view->with([
                 'reported' => $wishes,
                 'open' => $tickets
+            ]);
+        });
+
+        view()->composer('construction', function ($view) {
+            $message = GlobalSettings::getSettings('state')->data['value'];
+
+            $view->with([
+                'message' => $message
             ]);
         });
 
@@ -57,7 +68,9 @@ class AppServiceProvider extends ServiceProvider
         \Validator::extend('alpha_num_s', '\App\Rules\AlphaNumS@passes');
         \Validator::extend('less_than', '\App\Rules\LessThan@passes');
 
-//        \Validator::replacer('maxwish', '\App\Rules\MaxWish@replaceWords');
+        Queue::failing(function (JobFailed $event) {
+            \Log::error($event->exception);
+        });
     }
 
     /**

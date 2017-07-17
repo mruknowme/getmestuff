@@ -3,9 +3,7 @@
 namespace App;
 
 
-use App\Jobs\SendVerificationEmail;
-use App\Mail\EmailChange;
-use Carbon\Carbon;
+use App\Jobs\ChangeUserEmail;
 
 class Settings
 {
@@ -27,7 +25,7 @@ class Settings
     {
         if (isset($attributes['email']))
         {
-            dispatch(new SendVerificationEmail($this->user, $attributes['email']));
+            dispatch(new ChangeUserEmail($this->user, $attributes['email'], app()->getLocale()));
 
             unset($attributes['email']);
         }

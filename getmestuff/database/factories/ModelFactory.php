@@ -21,9 +21,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'token' => str_random(30),
-        'ip_address' => ip2long($faker->ipv4),
         'remember_token' => str_random(10),
-        'ref_link' => str_random(5)
+        'ref_link' => str_random(5),
+        'locale' => 'en'
     ];
 });
 

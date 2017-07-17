@@ -12,16 +12,19 @@ class EmailChange extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $token;
+    public $user, $token, $locale;
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $token
+     * @param $locale
      */
-    public function __construct($token)
+    public function __construct($user, $token, $locale)
     {
+        $this->user = $user;
         $this->token = $token;
+        $this->locale = $locale;
     }
 
     /**
@@ -31,8 +34,7 @@ class EmailChange extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.change_email')
-                    ->subject('Confirm Email Change')
-                    ->with(['token' => $this->token]);
+        return $this->view("email.{$this->locale}.change_email")
+                    ->subject('Confirm Email Change');
     }
 }

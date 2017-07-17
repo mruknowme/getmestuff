@@ -1,15 +1,16 @@
 <script>
     import Animated from './Animated.vue';
+    import ForgotPassword from './ForgotPassword.vue'
     export default {
-        components: { Animated },
+        components: { Animated, ForgotPassword },
         data() {
             return {
-                isVisible: false
+                visible: false
             }
         },
         methods: {
             showForm() {
-                this.isVisible = !this.isVisible;
+                this.visible = !this.visible;
             }
         }
     }

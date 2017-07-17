@@ -85,9 +85,8 @@
 
     .forgot-form
         background-color: $white
-        padding: 10px 20px 15px 20px
+        padding: 15px
         box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3)
-        width: 232px
         top: calc(100% + 10px)
         border: 1px solid #7a7a7a
         left: 50%
@@ -95,6 +94,7 @@
         cursor: initial
         transform-origin: center 0px
         z-index: 200
+        transition: height 200ms ease-in-out
 
         .arrow
             height: 20px
@@ -111,10 +111,8 @@
 
         .pas-wrapper
             overflow: hidden
-            height: 60px
-
-        .forgot-form form
-            margin-top: 5px
+            width: 200px
+            transition: height 200ms ease-in-out
 
         label, input, button
             font-size: 0.8rem
@@ -125,20 +123,18 @@
 
         input
             width: 70%
-            margin: 0px
+            margin: 0
 
         button
             width: 30%
-            padding: 3px
 
         label
             font-family: $lato
 
         .done
             i
-                left: 50%
-                margin-left: -13.716666px
                 color: $success
+                font-size: 1.3rem
 
             p
                 text-align: center

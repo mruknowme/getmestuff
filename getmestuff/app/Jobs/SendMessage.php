@@ -13,7 +13,7 @@ class SendMessage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $admin, $body, $subject, $user, $email;
+    protected $body, $subject, $user, $email, $locale;
 
 
     /**
@@ -23,14 +23,15 @@ class SendMessage implements ShouldQueue
      * @param $subject
      * @param $user
      * @param $email
+     * @param $locale
      */
-    public function __construct($admin, $body, $subject, $user, $email = null)
+    public function __construct($body, $subject, $user, $email = null, $locale)
     {
-        $this->admin = $admin;
         $this->body = $body;
         $this->subject = $subject;
         $this->user = $user;
         $this->email = $email;
+        $this->locale = $locale;
     }
 
     /**
@@ -41,9 +42,13 @@ class SendMessage implements ShouldQueue
     public function handle()
     {
         if (is_null($this->user)) {
-            \Mail::to($this->email)->send(new Message($this->admin, $this->body, $this->subject, $this->user));
+            \Mail::to($this->email)->send(
+                new Message($this->body, $this->subject, $this->user, $this->locale
+                ));
         } else {
-            \Mail::to($this->user)->send(new Message($this->admin, $this->body, $this->subject, $this->user));
+            \Mail::to($this->user)->send(
+                new Message($this->body, $this->subject, $this->user, $this->locale
+                ));
         }
     }
 }

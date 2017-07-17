@@ -12,23 +12,24 @@ class Message extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $admin, $body, $user;
+    public $admin, $body, $user, $locale;
 
 
     /**
      * Create a new message instance.
      *
-     * @param User $admin
+     * @param $admin
      * @param $body
      * @param $subject
-     * @param User $user
+     * @param $user
+     * @param $locale
      */
-    public function __construct(User $admin, $body, $subject, $user)
+    public function __construct($body, $subject, $user, $locale)
     {
-        $this->admin = $admin;
         $this->body = $body;
         $this->subject = $subject;
         $this->user = $user;
+        $this->locale = $locale;
     }
 
     /**
@@ -38,7 +39,7 @@ class Message extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.reply')
+        return $this->view("email.{$this->locale}.reply")
                     ->subject($this->subject);
     }
 }

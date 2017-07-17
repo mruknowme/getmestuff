@@ -20,14 +20,14 @@ class Payment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function recordTransaction($userId, $braintreeId, $successful, $amount)
+    public static function recordTransaction($userId, $payment_id, $successful, $amount, $commission)
     {
          return static::create([
                     'user_id' => $userId,
-                    'braintree_id' => $braintreeId,
+                    'payment_id' => $payment_id,
                     'successful' => $successful,
                     'amount' => $amount,
-                    'interest' => ($amount * 1.2 - $amount)
+                    'interest' => $commission
                 ]);
     }
 

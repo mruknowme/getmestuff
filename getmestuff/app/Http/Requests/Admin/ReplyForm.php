@@ -26,13 +26,14 @@ class ReplyForm extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required'
+            'body' => 'required',
+            'locale' => 'required'
         ];
     }
 
     public function save($ticket)
     {
-        $data = $this->intersect('body');
+        $data = $this->intersect('body', 'locale');
 
         $subject = $this->intersect('subject');
 
@@ -41,7 +42,9 @@ class ReplyForm extends FormRequest
         $data['body'] = preg_replace('/&nbsp;/', ' ', $data['body']);
         $data['user_id'] = $this->user()->id;
 
-        dispatch(new SendMessage($this->user(), $data['body'], $subject, $ticket->user, $ticket->email));
+        dispatch(new SendMessage(
+            $data['body'], $subject, $ticket->user, $ticket->email, $data['locale']
+        ));
 
         $ticket->reply()->create($data);
 

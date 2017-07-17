@@ -5,8 +5,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="interkassa-verification" content="ce84404609bc5db83dd757fb002f8992" />
 
         <script src="https://vk.com/js/api/openapi.js?146" type="text/javascript"></script>
+        <script type="text/javascript" src="https://vk.com/js/api/share.js?93" charset="windows-1251"></script>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
         <script>
             window.App = {!! json_encode([
                 'csrfToken' => csrf_token(),
@@ -25,15 +29,16 @@
     </head>
     
     <body class="@yield ('body-class')">
+        <div id="fb-root"></div>
         <script>
             (function(d, s, id){
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {return;}
                 js = d.createElement(s); js.id = id;
                 if (window.App.locale == 'ru') {
-                    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.9";
+                    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.9&appId=207139529816294";
                 } else {
-                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=207139529816294";
                 }
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));

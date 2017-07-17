@@ -78,6 +78,16 @@ const translationsEn = {
     /* Flash */
     success: 'Success',
     error: 'Error',
+
+    /* Contact */
+    'contact-email': 'Email',
+    subject: 'Subject',
+    message: 'Your message...',
+    send: 'Send',
+
+    /* Password Reset */
+    'your-email': 'Enter your email:',
+    'check-inbox': 'Check your inbox'
 };
 
 const translationsRu = {
@@ -87,7 +97,7 @@ const translationsRu = {
     total: "Всего",
     progress: 'Прогресс',
     collected: 'Собрано',
-    donate: 'Дать',
+    donate: 'ОК',
     report: 'Пожаловаться',
 
     /* Achievements */
@@ -95,23 +105,23 @@ const translationsRu = {
     'not-redeem': 'Вернутся назад',
 
     /* Profile Settings */
-    edit: 'Настроить Профиль',
-    'first_name': 'Ваше Имя',
-    'last_name': 'Ваша Фамилия',
-    email: 'Ваш Email',
-    'edit_password': 'Изменить Пароль',
-    'current_password': 'Текущий Пароль',
+    edit: 'Настроить профиль',
+    'first_name': 'Ваше имя',
+    'last_name': 'Ваша фамилия',
+    email: 'Ваш email',
+    'edit_password': 'Изменить пароль',
+    'current_password': 'Текущий пароль',
     confirm: 'Введите пароль что бы подтвердить изменения',
     save: 'Сохранить',
 
     /* Top Up */
-    wallet: 'Пополнить Кошелек',
+    wallet: 'Пополнить кошелек',
     amount: 'Сумма',
-    interest: 'Сумма с Комиссией',
+    interest: 'Сумма с комиссией',
     'top-up': 'Пополнить',
 
     /* Make a Wish */
-    wish: 'Создать Желание',
+    wish: 'Создать желание',
     priority: 'Приоритет этого желания будет выше.',
     item: 'Что бы вы хотели?',
     link: 'Ссылка на желаемый продукт...',
@@ -127,10 +137,10 @@ const translationsRu = {
     'not-donated': 'Похоже вы еще не пожертвовали. Пожалуйста, пожертвуйте любую сумму.',
 
     /* Random Wish */
-    random: 'Случайное Желание',
+    random: 'Случайное желание',
 
     /* User Wishes */
-    user: 'Ваше Текущее Желание',
+    user: 'Ваше текущее желание',
     'no-wishes': 'У вас пока нет желаний.',
 
     /* Notification */
@@ -147,11 +157,21 @@ const translationsRu = {
     prev: 'Пред.',
 
     /* Payments */
-    'wallet-top-up': 'Пополнение Кошелька',
+    'wallet-top-up': 'Пополнение кошелька',
 
     /* Flash */
     success: 'Удачно',
     error: 'Ошибка',
+
+    /* Contact */
+    'contact-email': 'Email',
+    subject: 'Тема',
+    message: 'Ваше сообщение...',
+    send: 'Отправить',
+
+    /* Password Reset */
+    'your-email': 'Ваш email:',
+    'check-inbox': 'Проверте почту'
 };
 
 Vue.i18n.add('en', translationsEn);
@@ -170,6 +190,7 @@ window.flashMessages = {
         redeemed: 'All done.',
         'profile-updated': 'Profile updated.',
         'verify-email': 'Please verify your new email.',
+        'contact-message': 'Thank you for your message, we will reply soon.',
     },
     ru: {
         'for-donating': 'Благодарим за пожертвование.',
@@ -178,6 +199,7 @@ window.flashMessages = {
         'published-wish': 'Ваше желание опубликовано.',
         redeemed: 'Все успешно.',
         'profile-updated': 'Информация обнавленна.',
-        'verify-email': 'Пожалуйста, подтвердите ваш новый email.'
+        'verify-email': 'Пожалуйста, подтвердите ваш новый email.',
+        'contact-message': 'Спасибо за ваше сообщение, мы скоро ответим.',
     }
 };

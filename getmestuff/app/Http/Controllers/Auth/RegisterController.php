@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Country;
 use App\Jobs\SendVerificationEmail;
-use App\Mail\EmailConfirmation;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -75,9 +73,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'token' => str_random(30),
-            'ip_address' => ip2long(request()->ip()),
             'ref_link' => str_random(5),
-            'ref_id' => $data['ref'] ?? null
+            'ref_id' => $data['ref'] ?? null,
+            'locale' => app()->getLocale()
         ]);
     }
 
@@ -95,7 +93,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        dispatch(new SendVerificationEmail($user, null, true));
+        dispatch(new SendVerificationEmail($user, app()->getLocale()));
 
         if (app()->getLocale() == 'en') flash('Please confirm your email');
         else flash('Пожалуйста подтвердите ваш email');

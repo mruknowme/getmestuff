@@ -9,7 +9,7 @@
                 <p v-text="$t('priority')"></p>
             </div>
         </div>
-        <form class="vertical center mw" data-parsley-validate>
+        <form class="vertical center mw" data-parsley-validate autocomplete="off">
             <div class="vertical mw center">
                 <div class="mw pos-r">
                     <input type="text"

@@ -21,6 +21,10 @@ Route::get('/about', function () {
 
 Route::get('/lang/{language}', 'LanguagesController@switchLang');
 
+//Route::middleware('ajax')->group(function () {
+//    $this->post('/tickets/new', 'TicketsController@store');
+//});
+
 Route::namespace('Auth')->group(function () {
     $this->get('login', 'LoginController@showLoginForm');
     $this->post('login', 'LoginController@login')->name('login');
@@ -41,6 +45,10 @@ Route::get('/home', 'HomeController@index');
 Route::get('/home/confirm/{token}', 'UserSettingsController@verify');
 
 Route::get('/wishes', 'WishesController@index');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->middleware('auth');
 
 Route::get('/notifications', function () {
     auth()->user()->unreadNotifications->markAsRead();
@@ -66,6 +74,8 @@ Route::middleware(['auth', 'ajax'])->group(function () {
 
     $this->get('/subscribe', 'HomeController@subscribed');
     $this->get('/convert', 'WishesController@getCurrency');
+
+    $this->get('/interkassa', 'PurchasesController@makeForm');
 });
 
 Route::namespace('Admin\Auth')->prefix('admin')->group(function () {
@@ -188,6 +198,12 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->patch('/settings/{setting}', 'GlobalSettingsController@changeValue');
 
     $this->get('/countries/visits', 'CountriesController@visits');
+});
+
+Route::post('/interkassa/payment', 'PurchasesController@interkassa');
+
+Route::get('/construction', function () {
+    return view('construction');
 });
 
 Route::get('/test', 'HomeController@test');

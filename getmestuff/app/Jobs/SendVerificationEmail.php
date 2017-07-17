@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Mail\EmailChange;
 use App\Mail\EmailConfirmation;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -16,23 +15,18 @@ class SendVerificationEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $user;
-    protected $newEmail;
-    protected $register;
-
+    protected $user, $lang;
 
     /**
      * SendVerificationEmail constructor.
      *
-     * @param User $user
-     * @param null $email
-     * @param bool $register
+     * @param $user
+     * @param $lang
      */
-    public function __construct(User $user, $email = null, $register = false)
+    public function __construct($user, $lang)
     {
         $this->user = $user;
-        $this->newEmail = $email;
-        $this->register = $register;
+        $this->lang = $lang;
     }
 
     /**
@@ -42,20 +36,6 @@ class SendVerificationEmail implements ShouldQueue
      */
     public function handle()
     {
-        if ($this->register) {
-            \Mail::to($this->user->email)->send(new EmailConfirmation($this->user));
-        } else {
-            $token = str_random(30);
-
-            \DB::table('email_resets')
-                ->insert([
-                    'user_id' => $this->user->id,
-                    'new_email' => $this->newEmail,
-                    'token' => $token,
-                    'created_at' => Carbon::now()
-                ]);
-
-            \Mail::to($this->newEmail)->send(new EmailChange($token));
-        }
+        \Mail::to($this->user)->send(new EmailConfirmation($this->user, $this->lang));
     }
 }

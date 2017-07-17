@@ -22,9 +22,9 @@ class User extends Authenticatable
             $user->achievements = Achievement::getAchievementsInfo();
         });
 
-        static::created(function ($user) {
-            Country::updateCountry($user->id);
-        });
+//        static::created(function ($user) {
+//            Country::updateCountry($user->id);
+//        });
     }
 
     /**
@@ -34,9 +34,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password', 'token',
-        'verified', 'balance', 'status', 'address', 'ip_address',
-        'donated', 'allowed_wishes', 'number_of_wishes', 'ref_link', 'ref_id',
-        'priority', 'amount_donated', 'amount_received', 'points', 'admin'
+        'verified', 'balance', 'status', 'address', 'donated',
+        'allowed_wishes', 'number_of_wishes', 'ref_link', 'ref_id',
+        'priority', 'amount_donated', 'amount_received', 'points', 'admin',
+        'locale'
     ];
 
     /**
@@ -59,7 +60,8 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $isAdmin = $this->isAdmin();
-        $this->notify(new ResetPasswordNotification($token, $isAdmin));
+        $locale = $this->locale;
+        $this->notify(new ResetPasswordNotification($token, $isAdmin, $locale));
     }
 
     /**
@@ -90,13 +92,24 @@ class User extends Authenticatable
 
     public static function getRefs()
     {
-        return \DB::table('users')
-                    ->where([
-                        ['ref_id', '=', auth()->user()->ref_link],
-                        ['verified', '=', 1],
-                        ['donated', '=', 1]
-                    ])
-                    ->count();
+        $refs =  \DB::table('users')->where([
+            ['ref_id', '=', auth()->user()->ref_link],
+            ['verified', '=', 1],
+            ['donated', '=', 1]
+        ])->get();
+
+        $ref_count = $refs->count();
+
+        $ref_table = $refs->groupBy(function ($item) {
+            return Carbon::parse($item->created_at)->format('m-y');
+        })->slice(0, 3)->map(function ($item) {
+            return collect($item)->count();
+        });
+
+        return [
+            'count' => $ref_count,
+            'table' => $ref_table
+        ];
     }
 
     public static function lastOnline()

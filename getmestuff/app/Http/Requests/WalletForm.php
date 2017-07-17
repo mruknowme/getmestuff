@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\GlobalSettings;
 use App\Payment;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,8 +33,13 @@ class WalletForm extends FormRequest
 
     public function save()
     {
+        $commission = GlobalSettings::getSettings('commissions')->data['value']['BrainTree'];
+        $commission = (1 + $commission / 100);
+
+        $amount = round($this->value * $commission);
+
         $result = \Braintree_Transaction::sale([
-            'amount' => ($this->value * 1.2),
+            'amount' => $amount,
             'paymentMethodNonce' => $this->braintreeNonce,
             'options' => [
                 'submitForSettlement' => true
@@ -42,11 +48,15 @@ class WalletForm extends FormRequest
 
         if ($result->success == false)
         {
-            Payment::recordTransaction($this->user()->id, $result->transaction->id, false, $this->value);
+            Payment::recordTransaction(
+                $this->user()->id, $result->transaction->id, false, $this->value, $commission
+            );
             throw new \Exception('Your card was declined');
         }
 
-        Payment::recordTransaction($this->user()->id, $result->transaction->id, true, $this->value);
+        Payment::recordTransaction(
+            $this->user()->id, $result->transaction->id, true, $this->value, $commission
+        );
         $this->user()->topup($this->value);
     }
 }

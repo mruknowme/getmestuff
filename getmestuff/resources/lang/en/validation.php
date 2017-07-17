@@ -123,6 +123,15 @@ return [
 
     'attributes' => [
         'item' => 'wish',
+        'first_name' => 'first name',
+        'last_name' => 'last name',
+        'current_amount' => 'current amount',
+        'amount_needed' => 'amount needed',
+        'address_one' => 'address one',
+        'address_two' => 'address two',
+        'post_code' => 'post code',
+        'current_password' => 'current password',
+        'selected' => 'prize'
     ],
 
 ];

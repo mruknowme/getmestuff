@@ -49,6 +49,7 @@ class NewTicketForm extends FormRequest
             $data['email'] = $user->email;
             $data['user_id'] = $user->id;
             $data['is_admin'] = true;
+            $data['locale'] = $user->locale;
 
             Ticket::create($data);
 

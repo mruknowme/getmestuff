@@ -18,6 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\Language::class,
+        \App\Http\Middleware\UnderConstruction::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
@@ -61,5 +62,6 @@ class Kernel extends HttpKernel
         'donated' => \App\Http\Middleware\HasDonated::class,
         'ajax' => \App\Http\Middleware\OnlyAjax::class,
         'admin' => \App\Http\Middleware\Admin::class,
+        'construct-payments' => \App\Http\Middleware\PaymentsConstruction::class,
     ];
 }

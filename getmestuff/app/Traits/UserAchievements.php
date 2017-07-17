@@ -4,6 +4,7 @@
 namespace App\Traits;
 
 use App\Achievement;
+use App\GlobalSettings;
 use App\User;
 use Carbon\Carbon;
 
@@ -16,6 +17,9 @@ trait UserAchievements
 
     public function recordAchievements($amount, $types, $ref = false)
     {
+        if (!GlobalSettings::getSettings('disable_achievements')->data['on'])
+            return abort(403, 'Under construction');
+
         $userAchievements = $this->checkAchievements();
 
         $achievements = $this->getAchievementsInfo();

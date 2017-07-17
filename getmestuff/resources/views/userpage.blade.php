@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section ('title', ' | '.auth()->user()->first_name.' '.auth()->user()->last_name)
+@section ('title', ' | Home')
 
 @section ('html-class', 'overflow-visible user-bg userpage')
 
@@ -29,6 +29,16 @@
     <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
     <script type="text/javascript">
         $(function() {
+
+            document.getElementById('vk_share_button').innerHTML =
+                VK.Share.button(
+                    {
+                        url: 'https://www.getmestuff.net',
+                        title: 'GetMeStuff',
+                        description: 'Make Your Dreams Come True'
+                    },
+                    {type: 'custom', text: '<i class="fa fa-vk"></i>'});
+
             $('.user-wishes').owlCarousel({
                 items: 1,
                 dots: false,

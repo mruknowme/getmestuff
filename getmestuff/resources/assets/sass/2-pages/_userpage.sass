@@ -179,12 +179,16 @@
     .wishes
         height: 531px
 
+    .ref-info
+        padding-bottom: 10px
+        //border-bottom: 1px solid $soft-grey
+
     .ref p
         font-size: 1rem
 
     .ref-link
         a
-            font-size: 1rem
+            font-size: 0.9rem
             color: transparentize($black, 0.3)
             background-color: #ffff99
             padding: 5px 10px
@@ -196,13 +200,45 @@
     .ref-count
         padding: 5px 20px
 
+    .ref-table
+        margin-top: 10px
+        padding-bottom: 10px
+        border-bottom: 1px solid $soft-grey
+
+        td
+            padding: 5px 0
+
+        tr
+            border-spacing: 5px
+
+            &:not(:nth-child(2))
+                background-color: $d-bg
+
+            p
+                font-size: 0.9rem
+
     .social-links
         margin-top: 10px
-        padding-top: 10px
-        border-top: 1px solid $soft-grey
 
-        &>div:not(last-child)
-            margin-right: 5px
+        &>div
+            border-radius: 50%
+            height: 30px
+            width: 30px
+
+        &>div:not(:last-child)
+            margin-right: 10px
+
+        .facebook
+            background-color: #3B5998
+
+        .vk
+            background-color: #507299
+
+        .twitter
+            background-color: #1DA1F2
+
+        a
+            color: $white
 
     .empty
         padding: 30px 0

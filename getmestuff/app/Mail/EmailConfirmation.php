@@ -12,16 +12,18 @@ class EmailConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $user;
+    public $user, $lang;
+
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $user
      */
-    public function __construct(User $user)
+    public function __construct($user, $lang)
     {
         $this->user = $user;
+        $this->lang = $lang;
     }
 
     /**
@@ -31,12 +33,7 @@ class EmailConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.verify')
-                    ->subject('Email Confirmation')
-                    ->with([
-                        'first_name' => $this->user->first_name,
-                        'last_name' => $this->user->last_name,
-                        'token' => $this->user->token,
-                    ]);
+        return $this->view("email.{$this->lang}.verify")
+                    ->subject('Email Confirmation');
     }
 }

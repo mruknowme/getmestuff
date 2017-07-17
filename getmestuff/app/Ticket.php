@@ -10,7 +10,7 @@ class Ticket extends Model
     protected $emails = [];
 
     protected $fillable = [
-        'unique_id', 'email', 'subject', 'body', 'priority', 'type', 'user_id', 'is_admin'
+        'unique_id', 'email', 'subject', 'body', 'priority', 'type', 'user_id', 'is_admin', 'locale'
     ];
 
     public function checkEmails()

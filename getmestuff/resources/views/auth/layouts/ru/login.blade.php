@@ -20,7 +20,7 @@
         </form>
         <div class="pos-a forgot">
             <p class="hover" @click="showForm()">Забыли пароль?</p>
-            @include ('auth.passwords.email')
+            <forgot-password :visible="visible" route="{{ route('password.email') }}"></forgot-password>
         </div>
     </div>
 </login>

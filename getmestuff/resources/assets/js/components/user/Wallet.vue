@@ -1,7 +1,7 @@
 <template>
     <section class="flex vertical start bg-white main-section" id="money">
         <h2 v-text="$t('wallet')"></h2>
-        <div class="mw">
+        <div class="mw" v-if="disabled.on">
             <div class="flex between select">
                 <form class="pos-r w48 m-auto">
                     <input :placeholder="$t('amount')" v-model="amount" @blur="twoDeciamls">
@@ -11,7 +11,11 @@
                     <input class="m-auto p-none" :value="amountWithInterest" type="text" :placeholder="$t('interest')" disabled>
                 </div>
             </div>
-            <topup v-show="current == 'credit'" :user="user" :amount="amount"></topup>
+            <topup :commissions="interkassa" v-show="current == 'credit'" :user="user" :amount="amount"></topup>
+        </div>
+        <div class="empty mw" v-else>
+            <p class="mw t-align">Sorry, payment systems are currently disabled.</p>
+            <p class="mw t-align">Reason: {{ disabled.value }}</p>
         </div>
     </section>
 </template>
@@ -21,18 +25,28 @@
 
     export default {
         components: { Topup },
-        props: ['user'],
+        props: ['user', 'disabled', 'commissions'],
         data() {
             return {
                 visible: '<i class="fa fa-credit-card" aria-hidden="true"></i> Credit Card',
                 current: 'credit',
-                amount: ''
+                amount: '',
+                interkassa: ''
             }
+        },
+        created() {
+              this.interkassa = this.commissions.value.INTERKASSA;
         },
         computed: {
             amountWithInterest() {
                 if (this.amount == '') return;
-                return (this.amount * 1.2).toFixed(2);
+                else if (window.App.locale == 'en') {
+                    let commission = (1 + this.commissions.value.BrainTree / 100);
+                    return (this.amount * commission).toFixed(2);
+                } else {
+                    let commission = (1 + this.commissions.value.INTERKASSA / 100);
+                    return (this.amount * commission).toFixed(2);
+                }
             }
         },
         methods: {
