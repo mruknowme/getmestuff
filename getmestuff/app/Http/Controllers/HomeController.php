@@ -48,13 +48,27 @@ class HomeController extends Controller
             ['disable_achievements', 'commissions', 'turn_on/of_payment_systems']
         );
 
+        $reasons = [
+            'en' => [
+                'Fixing Bugs',
+                'Updating',
+                'Back Soon'
+            ],
+            'ru' => [
+                'Исправление ошибок',
+                'Обновление',
+                'Скоро вернемся'
+            ]
+        ];
+
         return view('userpage', [
             'random' => $random,
             'ref_info' => $ref_info,
             'achievements' => $achievements,
             'prizes' => $prizes,
             'wishes' => $wishes,
-            'settings' => $settings
+            'settings' => $settings,
+            'reasons' => $reasons
         ]);
     }
 

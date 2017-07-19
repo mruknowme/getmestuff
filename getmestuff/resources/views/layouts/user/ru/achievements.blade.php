@@ -33,7 +33,7 @@
                 @else
                     <div class="empty mw">
                         <p class="mw t-align">Извините, достижения в настоящее время отключены.</p>
-                        <p class="mw t-align">Причина: {{ $settings[0]->data['value'] }}</p>
+                        <p class="mw t-align">Причина: {{ $reasons[$lang][$settings[0]->data['value']] }}</p>
                     </div>
                 @endif
             </div>

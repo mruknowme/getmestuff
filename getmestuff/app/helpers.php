@@ -260,9 +260,9 @@ function cacheCurrency() {
     $old_data = cache('currency');
     $old_date = \Carbon\Carbon::parse($old_data['usd'][0]['date']);
 
-    $now = \Carbon\Carbon::now(+3);
+    $now = \Carbon\Carbon::now('Europe/Moscow');
 
-    if ($old_date->lt($new_date) && $new_date->gte($now)) \Cache::forever('currency', $data);
+    if ($old_date->lt($new_date) && $new_date->lte($now)) \Cache::forever('currency', $new_data);
 }
 
 function getTimeZone($time) {

@@ -20,10 +20,13 @@ Route::get('/about', function () {
 })->middleware('guest');
 
 Route::get('/lang/{language}', 'LanguagesController@switchLang');
+Route::get('/terms', function () {
+    return view('terms');
+});
+Route::get('/privacy', function () {
+    return view('privacy');
+});
 
-//Route::middleware('ajax')->group(function () {
-//    $this->post('/tickets/new', 'TicketsController@store');
-//});
 
 Route::namespace('Auth')->group(function () {
     $this->get('login', 'LoginController@showLoginForm');
@@ -204,6 +207,8 @@ Route::post('/interkassa/payment', 'PurchasesController@interkassa');
 
 Route::get('/construction', function () {
     return view('construction');
-});
+})->middleware('only-construction');
 
-Route::get('/test', 'HomeController@test');
+Route::get('/test', function () {
+    return getConvertedValue(['120'], 'rub');
+});

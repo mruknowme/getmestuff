@@ -11,7 +11,7 @@
         @include ('layouts.user.'.$lang.'.achievements')
     </tab>
     <tab name="<i class='fa fa-lg fa-pencil' aria-hidden='true'></i>" title="Создать Желание">
-        <make :user="{{ auth()->user() }}"></make>
+        <make last_currency="{{ cache('currency.'.auth()->user()->id) }}" :user="{{ auth()->user() }}"></make>
     </tab>
     <tab name="<i class='fa fa-lg fa-globe' aria-hidden='true'></i>" title="Социальная Информация">
         @include ('layouts.user.'.$lang.'.social')

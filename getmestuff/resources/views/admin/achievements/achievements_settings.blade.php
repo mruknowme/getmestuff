@@ -16,7 +16,9 @@
 
 @section('content')
     <settings :data="{{ $settings }}"
-              :text="['disable_achievements']">
+              :select="{
+              'disable_achievements' : {0:'Fixing Bugs', 1:'Updating', 2:'Back Soon'}
+              }">
     </settings>
 @endsection
 
@@ -27,38 +29,4 @@
     <script src="{{ asset('admin/plugins/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('admin/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('admin/plugins/bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
-    <script>
-        jQuery(document).ready(function () {
-            // For select 2
-            $(".select2").select2();
-            $('.selectpicker').selectpicker();
-            // For multiselect
-            $('#pre-selected-options').multiSelect();
-            $('#pre-selected-options-2').multiSelect();
-            $('#optgroup').multiSelect({
-                selectableOptgroup: true
-            });
-            $('#public-methods').multiSelect();
-            $('#select-all').click(function () {
-                $('#public-methods').multiSelect('select_all');
-                return false;
-            });
-            $('#deselect-all').click(function () {
-                $('#public-methods').multiSelect('deselect_all');
-                return false;
-            });
-            $('#refresh').on('click', function () {
-                $('#public-methods').multiSelect('refresh');
-                return false;
-            });
-            $('#add-option').on('click', function () {
-                $('#public-methods').multiSelect('addOption', {
-                    value: 42
-                    , text: 'test 42'
-                    , index: 0
-                });
-                return false;
-            });
-        });
-    </script>
 @endsection

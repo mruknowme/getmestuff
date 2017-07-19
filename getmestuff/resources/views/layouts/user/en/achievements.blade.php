@@ -33,7 +33,7 @@
                 @else
                     <div class="empty mw">
                         <p class="mw t-align">Sorry, achievements are currently disabled.</p>
-                        <p class="mw t-align">Reason: {{ $settings[0]->data['value'] }}</p>
+                        <p class="mw t-align">Reason: {{ $reasons[$lang][$settings[0]->data['value']] }}</p>
                     </div>
                 @endif
             </div>

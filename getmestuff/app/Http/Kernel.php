@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'ajax' => \App\Http\Middleware\OnlyAjax::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'construct-payments' => \App\Http\Middleware\PaymentsConstruction::class,
+        'only-construction' => \App\Http\Middleware\OnlyConstruction::class,
     ];
 }

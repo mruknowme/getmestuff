@@ -17,8 +17,7 @@
         <div id="app">
             <main class="main flex center vertical">
                 <h1>GetMeStuff</h1>
-                <p>We'll be back with you shortly.</p>
-                <p>Currently: {{ $message }}</p>
+                @include("content.$lang.construction.message")
             </main>
             <flash :message="{{ json_encode([session('message')]) }}"></flash>
         </div>

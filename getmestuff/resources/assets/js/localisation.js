@@ -74,6 +74,7 @@ const translationsEn = {
 
     /* Payments */
     'wallet-top-up': 'Wallet Top Up',
+    disabled: 'Sorry, payment systems are currently disabled.',
 
     /* Flash */
     success: 'Success',
@@ -87,7 +88,10 @@ const translationsEn = {
 
     /* Password Reset */
     'your-email': 'Enter your email:',
-    'check-inbox': 'Check your inbox'
+    'check-inbox': 'Check your inbox',
+
+    /* Etc */
+    reason: 'Reason'
 };
 
 const translationsRu = {
@@ -158,6 +162,7 @@ const translationsRu = {
 
     /* Payments */
     'wallet-top-up': 'Пополнение кошелька',
+    disabled: 'Извините, в настоящее время платежные системы отключены.',
 
     /* Flash */
     success: 'Удачно',
@@ -171,7 +176,10 @@ const translationsRu = {
 
     /* Password Reset */
     'your-email': 'Ваш email:',
-    'check-inbox': 'Проверте почту'
+    'check-inbox': 'Проверте почту',
+
+    /* Etc */
+    reason: 'Причина'
 };
 
 Vue.i18n.add('en', translationsEn);
@@ -191,6 +199,11 @@ window.flashMessages = {
         'profile-updated': 'Profile updated.',
         'verify-email': 'Please verify your new email.',
         'contact-message': 'Thank you for your message, we will reply soon.',
+        construction: {
+            0: 'Fixing Bugs',
+            1: 'Updating',
+            2: 'Back Soon'
+        }
     },
     ru: {
         'for-donating': 'Благодарим за пожертвование.',
@@ -201,5 +214,10 @@ window.flashMessages = {
         'profile-updated': 'Информация обнавленна.',
         'verify-email': 'Пожалуйста, подтвердите ваш новый email.',
         'contact-message': 'Спасибо за ваше сообщение, мы скоро ответим.',
+        construction: {
+            0: 'Исправление ошибок',
+            1: 'Обновление',
+            2: 'Скоро вернемся'
+        }
     }
 };

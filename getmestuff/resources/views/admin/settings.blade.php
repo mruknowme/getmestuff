@@ -26,7 +26,7 @@
               {'items':1, 'title':'Site Status'}
               ]"
               :select="{
-              'state' : ['Fixing Bugs', 'Updating', 'Back Soon']
+              'state' : {0:'Fixing Bugs', 1:'Updating', 2:'Back Soon'}
               }"
               :icons="{
               'emails' : ['fa-info-circle', 'fa-envelope', 'fa-at', 'fa-envelope-o'],

@@ -1,7 +1,11 @@
 <footer class="mw flex around">
     <div class='col-12 mw mh flex between'>
-        <div class="copyright">
-            <p>{{ date('Y') }} <i class="fa fa-copyright" aria-hidden="true"></i> GetMeStuff. All rights reserved. <a href="#">Terms and Conditions</a></p>
+        <div class="footer-content flex center">
+            <a target="_blank" href="{{ $lang }}/terms">Terms and Conditions</a>
+            <span role="presentation" aria-hidden="true"> · </span>
+            <a target="_blank" href="{{ $lang }}/privacy">Privacy Policy</a>
+            <span role="presentation" aria-hidden="true"> · </span>
+            <p>{{ date('Y') }} <i class="fa fa-copyright" aria-hidden="true"></i> GetMeStuff. All rights reserved.</p>
         </div>
         <div class="social">
             <ul class="mw between">

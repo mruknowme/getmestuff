@@ -12,8 +12,8 @@
                 </div>
             </div>
             <div class="w5 self-start">
-                <label class="terms flex start-center checkbox-login">
-                    <input type="checkbox" name="remember" checked> <span>Remember me</span>
+                <label class="terms flex start-center checkbox-login checkbox">
+                    <input type="checkbox" name="remember" checked> <span class="flex center">Remember me</span>
                 </label>
             </div>
             <button class="mw" type="submit">Log In</button>
@@ -21,7 +21,6 @@
         <div class="pos-a forgot">
             <p class="hover" @click="showForm()">Forgot Password?</p>
             <forgot-password :visible="visible" route="{{ route('password.email') }}"></forgot-password>
-{{--            @include ('auth.passwords.email')--}}
         </div>
     </div>
 </login>

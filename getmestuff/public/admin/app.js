@@ -28931,6 +28931,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -30383,7 +30388,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       class: {
         'col-md-12': _vm.largeOrSmall(_vm.data, key), 'col-md-6': !_vm.largeOrSmall(_vm.data, key)
       }
-    }, [(!_vm.checkSearch(item.setting) && !_vm.checkText(item.setting)) ? _c('number-input', {
+    }, [(!_vm.checkSearch(item.setting) && !_vm.checkText(item.setting) && !_vm.checkSelect(item.setting)) ? _c('number-input', {
       key: item.id,
       attrs: {
         "data": item
@@ -30397,6 +30402,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: item.id,
       attrs: {
         "data": item
+      }
+    }) : (_vm.checkSelect(item.setting)) ? _c('select-value', {
+      key: item.id,
+      attrs: {
+        "data": item,
+        "options": _vm.select[item.setting]
       }
     }) : _vm._e()], 1)
   })) : _c('div', {
@@ -31026,11 +31037,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.value = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
-  }, _vm._l((_vm.options), function(option) {
+  }, _vm._l((_vm.options), function(option, type) {
     return _c('option', {
       domProps: {
-        "value": option,
-        "selected": option == _vm.value,
+        "value": type,
+        "selected": type == _vm.value,
         "textContent": _vm._s(option)
       }
     })

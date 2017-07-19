@@ -19,7 +19,7 @@
               post="/admin/api/settings"
               :text="['state']"
               :select="{
-              'turn_on/of_payment_systems' : ['Fixing Bugs', 'Updating', 'Back Soon']
+              'turn_on/of_payment_systems' : {0:'Fixing Bugs', 1:'Updating', 2:'Back Soon'}
               }"
               :group="[
               {'items':1, 'title':'Commissions'},

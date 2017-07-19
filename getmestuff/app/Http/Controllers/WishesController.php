@@ -47,8 +47,7 @@ class WishesController extends Controller
             );
         }
 
-        return response(['status' => 'Wish published successfully'])
-            ->cookie('currency', $form->currency, 2628000);
+        return response(['status' => 'Wish published successfully']);
     }
 
 

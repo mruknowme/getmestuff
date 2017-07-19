@@ -5,7 +5,7 @@
              :class="{'col-md-12' : largeOrSmall(data, key), 'col-md-6' : !largeOrSmall(data, key)}">
             <number-input :key="item.id"
                           :data="item"
-                          v-if="!checkSearch(item.setting) && !checkText(item.setting)">
+                          v-if="!checkSearch(item.setting) && !checkText(item.setting) && !checkSelect(item.setting)">
             </number-input>
             <search-array v-else-if="checkSearch(item.setting)"
                           :data="item"
@@ -15,6 +15,11 @@
                         :data="item"
                         :key="item.id">
             </text-input>
+            <select-value v-else-if="checkSelect(item.setting)"
+                          :data="item"
+                          :options="select[item.setting]"
+                          :key="item.id">
+            </select-value>
         </div>
     </div>
     <div class="row" v-else>

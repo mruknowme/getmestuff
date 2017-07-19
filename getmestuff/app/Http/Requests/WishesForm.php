@@ -55,6 +55,9 @@ class WishesForm extends FormRequest
         $this->user()->wishes()->create($wish);
 
         $this->user()->recordAchievements(1, [3]);
+
+        $key = sprintf("currency.%s", $this->user()->id);
+        \Cache::forever($key, $this->currency);
     }
 
     protected function canRequestWish()

@@ -38862,11 +38862,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             visible: '<i class="fa fa-credit-card" aria-hidden="true"></i> Credit Card',
             current: 'credit',
             amount: '',
-            interkassa: ''
+            message: ''
         };
-    },
-    created: function created() {
-        this.interkassa = this.commissions.value.INTERKASSA;
     },
 
     computed: {
@@ -38892,6 +38889,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             temp = (temp * 1).toFixed(2);
             this.amount = temp;
             return;
+        }
+    },
+    mounted: function mounted() {
+        if (!this.disabled.on) {
+            this.message = window.flashMessages[window.App.locale].construction[this.disabled.value];
         }
     }
 });
@@ -39174,7 +39176,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this3.number_of_wishes += parseFloat(quantity);
         });
 
-        if (this.last_currency != undefined) this.currency = this.last_currency;
+        if (this.last_currency != '') this.currency = this.last_currency;
     }
 });
 
@@ -39892,6 +39894,7 @@ var translationsEn = {
 
     /* Payments */
     'wallet-top-up': 'Wallet Top Up',
+    disabled: 'Sorry, payment systems are currently disabled.',
 
     /* Flash */
     success: 'Success',
@@ -39905,7 +39908,10 @@ var translationsEn = {
 
     /* Password Reset */
     'your-email': 'Enter your email:',
-    'check-inbox': 'Check your inbox'
+    'check-inbox': 'Check your inbox',
+
+    /* Etc */
+    reason: 'Reason'
 };
 
 var translationsRu = {
@@ -39976,6 +39982,7 @@ var translationsRu = {
 
     /* Payments */
     'wallet-top-up': 'Пополнение кошелька',
+    disabled: 'Извините, в настоящее время платежные системы отключены.',
 
     /* Flash */
     success: 'Удачно',
@@ -39989,7 +39996,10 @@ var translationsRu = {
 
     /* Password Reset */
     'your-email': 'Ваш email:',
-    'check-inbox': 'Проверте почту'
+    'check-inbox': 'Проверте почту',
+
+    /* Etc */
+    reason: 'Причина'
 };
 
 Vue.i18n.add('en', translationsEn);
@@ -40008,7 +40018,12 @@ window.flashMessages = {
         redeemed: 'All done.',
         'profile-updated': 'Profile updated.',
         'verify-email': 'Please verify your new email.',
-        'contact-message': 'Thank you for your message, we will reply soon.'
+        'contact-message': 'Thank you for your message, we will reply soon.',
+        construction: {
+            0: 'Fixing Bugs',
+            1: 'Updating',
+            2: 'Back Soon'
+        }
     },
     ru: {
         'for-donating': 'Благодарим за пожертвование.',
@@ -40018,7 +40033,12 @@ window.flashMessages = {
         redeemed: 'Все успешно.',
         'profile-updated': 'Информация обнавленна.',
         'verify-email': 'Пожалуйста, подтвердите ваш новый email.',
-        'contact-message': 'Спасибо за ваше сообщение, мы скоро ответим.'
+        'contact-message': 'Спасибо за ваше сообщение, мы скоро ответим.',
+        construction: {
+            0: 'Исправление ошибок',
+            1: 'Обновление',
+            2: 'Скоро вернемся'
+        }
     }
 };
 
@@ -65844,10 +65864,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "radio",
       "name": "currency",
-      "value": "usd",
-      "checked": ""
+      "value": "usd"
     },
     domProps: {
+      "checked": _vm.currency == 'usd',
       "checked": _vm._q(_vm.currency, "usd")
     },
     on: {
@@ -65872,6 +65892,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "rub"
     },
     domProps: {
+      "checked": _vm.currency == 'rub',
       "checked": _vm._q(_vm.currency, "rub")
     },
     on: {
@@ -65896,6 +65917,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "eur"
     },
     domProps: {
+      "checked": _vm.currency == 'eur',
       "checked": _vm._q(_vm.currency, "eur")
     },
     on: {
@@ -65920,6 +65942,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "gbp"
     },
     domProps: {
+      "checked": _vm.currency == 'gbp',
       "checked": _vm._q(_vm.currency, "gbp")
     },
     on: {
@@ -66647,17 +66670,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "current == 'credit'"
     }],
     attrs: {
-      "commissions": _vm.interkassa,
       "user": _vm.user,
       "amount": _vm.amount
     }
   })], 1) : _c('div', {
     staticClass: "empty mw"
   }, [_c('p', {
-    staticClass: "mw t-align"
-  }, [_vm._v("Sorry, payment systems are currently disabled.")]), _vm._v(" "), _c('p', {
-    staticClass: "mw t-align"
-  }, [_vm._v("Reason: " + _vm._s(_vm.disabled.value))])])])
+    staticClass: "mw t-align",
+    domProps: {
+      "textContent": _vm._s(_vm.$t('disabled'))
+    }
+  }), _vm._v(" "), _c('p', {
+    staticClass: "mw t-align",
+    domProps: {
+      "textContent": _vm._s(_vm.$t('reason') + ': ' + _vm.message)
+    }
+  })])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

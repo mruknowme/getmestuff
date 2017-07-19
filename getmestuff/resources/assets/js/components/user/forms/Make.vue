@@ -29,16 +29,16 @@
             </div>
             <div class="radio-group flex mw">
                 <label :class="{ active: currency == 'usd' }">
-                    <input type="radio" name="currency" value="usd" v-model="currency" checked/> USD
+                    <input type="radio" name="currency" value="usd" v-model="currency" :checked="currency == 'usd'"/> USD
                 </label>
                 <label :class="{ active: currency == 'rub' }">
-                    <input type="radio" name="currency" v-model="currency" value="rub"/> RUB
+                    <input type="radio" name="currency" v-model="currency" value="rub" :checked="currency == 'rub'"/> RUB
                 </label>
                 <label :class="{ active: currency == 'eur' }">
-                    <input type="radio" name="currency" v-model="currency" value="eur"/> EUR
+                    <input type="radio" name="currency" v-model="currency" value="eur" :checked="currency == 'eur'"/> EUR
                 </label>
                 <label :class="{ active: currency == 'gbp' }">
-                    <input type="radio" name="currency" v-model="currency" value="gbp"/> GBP
+                    <input type="radio" name="currency" v-model="currency" value="gbp" :checked="currency == 'gbp'"/> GBP
                 </label>
             </div>
             <div class="flex between mw">
@@ -191,7 +191,7 @@
                 this.number_of_wishes += parseFloat(quantity);
             });
 
-            if (this.last_currency != undefined) this.currency = this.last_currency;
+            if (this.last_currency != '') this.currency = this.last_currency;
         }
     }
 </script>

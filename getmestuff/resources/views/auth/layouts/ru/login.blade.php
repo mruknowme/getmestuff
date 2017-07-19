@@ -12,8 +12,8 @@
                 </div>
             </div>
             <div class="w5 self-start">
-                <label class="terms flex start-center checkbox-login">
-                    <input type="checkbox" name="remember" checked> <span>Оставаться в системе</span>
+                <label class="terms flex start-center checkbox-login checkbox">
+                    <input type="checkbox" name="remember" checked> <span class="flex center">Оставаться в системе</span>
                 </label>
             </div>
             <button class="mw" type="submit">Войти</button>

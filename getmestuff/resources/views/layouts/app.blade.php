@@ -58,9 +58,27 @@
             @endif
         </div>
 
+        @include('misc.spinner')
+
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script>
             Vue.i18n.set('{!! app()->getLocale() !!}');
+
+            window.onload = function () { 
+                setTimeout(function () {
+                    $('#loader').hide();
+                }, 200);
+            }
+
+            // window.onload = function () {
+            //     setTimeout(function () {
+            //         alert('Hello');
+            //     }, 200);
+            // }
+
+            // window.onload = function () { 
+            //     $('#loader').hide();
+            // }
         </script>
         
         @yield ('script')

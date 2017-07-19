@@ -11,11 +11,11 @@
                     <input class="m-auto p-none" :value="amountWithInterest" type="text" :placeholder="$t('interest')" disabled>
                 </div>
             </div>
-            <topup :commissions="interkassa" v-show="current == 'credit'" :user="user" :amount="amount"></topup>
+            <topup v-show="current == 'credit'" :user="user" :amount="amount"></topup>
         </div>
         <div class="empty mw" v-else>
-            <p class="mw t-align">Sorry, payment systems are currently disabled.</p>
-            <p class="mw t-align">Reason: {{ disabled.value }}</p>
+            <p class="mw t-align" v-text="$t('disabled')"></p>
+            <p class="mw t-align" v-text="$t('reason') +': '+ message"></p>
         </div>
     </section>
 </template>
@@ -31,11 +31,8 @@
                 visible: '<i class="fa fa-credit-card" aria-hidden="true"></i> Credit Card',
                 current: 'credit',
                 amount: '',
-                interkassa: ''
+                message: '',
             }
-        },
-        created() {
-              this.interkassa = this.commissions.value.INTERKASSA;
         },
         computed: {
             amountWithInterest() {
@@ -61,6 +58,11 @@
                 temp = (temp * 1).toFixed(2);
                 this.amount = temp;
                 return;
+            }
+        },
+        mounted() {
+            if (!this.disabled.on) {
+                this.message = window.flashMessages[window.App.locale].construction[this.disabled.value];
             }
         }
     }

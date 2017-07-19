@@ -10,7 +10,7 @@
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-font"></i></span>
                 <select class="form-control select2" v-model="value">
-                    <option v-for="option in options" :value="option" v-text="option" :selected="option == value"></option>
+                    <option v-for="(option, type) in options" :value="type" v-text="option" :selected="type == value"></option>
                 </select>
             </div>
         </div>

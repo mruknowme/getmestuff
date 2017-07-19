@@ -22,7 +22,7 @@
                     </td>
                     <td align="center">
                         <p>
-                            {{ $count.' '.str_plural('ref', $count) }}
+                            {{ $count.' '.trans_choice('messages.ref', $count) }}
                         </p>
                     </td>
                 </tr>
