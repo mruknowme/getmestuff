@@ -24,6 +24,7 @@
                         {{ $t('donate') }}
                     </button>
                 </form>
+                <a class="delete" @click="deleteWish" v-else>Delete</a>
             </div>
         </div>
     </div>
@@ -36,7 +37,7 @@
             data: { required: true },
             wait: { default: false },
             report: { default: true },
-            displayForm: { default: true }
+            displayForm: { default: true },
         },
         data() {
             return {
@@ -47,11 +48,6 @@
                 buffering: false,
             }
         },
-        // mounted() {
-        //     let date = moment.utc(this.data.created_at);
-        //     let localDate = moment(date).local();
-        //     console.log(localDate.format('YYYY-MM-DD HH:mm:ss'));
-        // },
         computed: {
             when() {
                 let date = moment.utc(this.data.created_at);
@@ -107,6 +103,22 @@
                     .catch((error) => {
                         let message = window.flashMessages[window.App.locale]['for-reporting-fails'];
                         flash([message], 'error');
+                    });
+            },
+            deleteWish() {
+                axios.delete('wish/'+this.id)
+                    .then(() => {
+                        this.$emit('delete', this.id);
+                        let message = window.flashMessages[window.App.locale]['deleting'];
+
+                        flash([message]);
+                    })
+                    .catch((error) => {
+                        let messages = [];
+                        for (let key in error.response.data) {
+                            messages.push(error.response.data[key][0]);
+                        }
+                        flash(messages, 'error');
                     });
             }
         }

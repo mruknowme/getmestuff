@@ -1,6 +1,6 @@
 <website-header inline-template>
     <header class="around mw">
-        <div class="col-12 mh flex between mw">
+        <div class="col-12 mh flex between mw header">
             @if(request()->path() == app()->getLocale())
                 <img class="logo" src="{{ asset('images/logo-white.png') }}">
             @else
@@ -9,7 +9,7 @@
             <p @click="toggle()" :class="{ active : show }" class="mobile"><i class="fa fa-bars" aria-hidden="true"></i></p>
             <nav :style="{ right : position }" class="mw">
                 <ul class="mw between">
-                    @if (Auth::guest())
+                    @guest
                         <li><a class="link" href="/{{ $lang }}">Главная</a></li>
                         <li><a class="link" href="/{{ $lang }}/about">О нас</a></li>
                         <li><a class="link" href="/{{ $lang }}/login">Войти</a></li>
@@ -22,7 +22,7 @@
                             <li><a class="link" target="_blank" href="/admin/dashboard">Панель</a></li>
                         @endif
                         <li><a class="link" href="/{{ $lang }}/contact">Контакты</a></li>
-                        <li class="notification-link pos-r flex center">
+                        <li class="notification-link pos-r flex start">
                             <a class="link" href="/{{ $lang }}/notifications">Уведомления</a>
                             <div class="unread flex center" v-if="unreadNotifications">
                                 <span v-text="unreadCount"></span>
@@ -40,7 +40,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-                    @endif
+                    @endauth
                 </ul>
             </nav>
         </div>

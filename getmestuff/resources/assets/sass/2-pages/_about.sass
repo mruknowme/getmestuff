@@ -16,6 +16,7 @@
         color: $white
         overflow: hidden
         background-image: url('../img/45deg2.png')
+        overflow: hidden
 
         &:not(:nth-child(1))
             top: 100%
@@ -23,29 +24,16 @@
         &:nth-child(1)
             background-color: $c-primary
 
-            .header
-                background-color: $c-primary
-
         &:nth-child(2)
             background-color: $dark-red
-
-            .header
-                background-color: $dark-red
 
         &:nth-child(3)
             background-color: $green
 
-            .header
-                background-color: $green
-
-    .text
-        height: 500px
-        left: 0px
-        right: 0px
-
     h2
         font-family: $open-s
         font-size: 2rem
+        padding: 20px 0 30px
 
     h3
         font-size: 1.2rem
@@ -57,65 +45,54 @@
         font-size: 0.85rem
 
     .main-image
-        width: 700px
+        width: 800px
         height: auto
         z-index: 1
-
-    .left, .right
-        z-index: 2
+        align-self: center
 
     .w45
         width: 48%
 
-    .left
-        top: 10px
-        left: 0px
-        text-align: right
-
-    .right
-        bottom: 10px
-        right: 0px
-        text-align: left
-
-    .inner
-        max-width: 1300px
-        height: 100%
-
-        &:after
-            position: absolute
-            background-color: $white
-            width: 1px
-            content: ''
-            top: 0px
-            left: 50%
-            bottom: 0px
-            margin-left: -0.5px
-            z-index: 0
-            display: block
-
     .header
         z-index: 1
-        height: 100px
         margin-top: 10px
-        background-image: url('../img/45deg2.png')
 
-        &:after, &:before
+        .circle
             display: block
-            position: absolute
             background-color: transparent
             border: 5px solid $white
-            width: 10px
-            height: 10px
-            content: ''
+            width: 20px
+            height: 20px
             border-radius: 50%
             left: 50%
             margin-left: -10px
             z-index: 0
 
-        &:after
+        .circle.above
             top: 0px
 
-        &:before
+            &:before
+                content: ''
+                position: absolute
+                width: 2px
+                background-color: $white
+                height: 1000%
+                left: 50%
+                bottom: 100%
+                z-index: 2
+                margin-left: -1px
+
+
+        .circle.below
             bottom: 0px
 
-            
+            &:after
+                content: ''
+                position: absolute
+                width: 2px
+                background-color: $white
+                height: 10000%
+                left: 50%
+                top: 100%
+                z-index: 2
+                margin-left: -1px

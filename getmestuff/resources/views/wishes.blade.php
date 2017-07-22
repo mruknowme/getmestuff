@@ -1,6 +1,11 @@
 @extends ('layouts.app')
 
-@section ('title', ' | Wishes')
+
+@if ($lang == 'en')
+    @section ('title', ' | Wishes')
+@else
+    @section ('title', ' | Желания')
+@endif
 
 @section ('html-class', 'user-bg overflow-visible current-wishes')
 

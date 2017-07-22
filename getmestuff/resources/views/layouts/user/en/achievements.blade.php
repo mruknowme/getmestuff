@@ -25,7 +25,7 @@
                     </div>
                     <div class="mw badges" v-show="!expanded">
                         @foreach($achievements as $achievement)
-                            <badge image="{{ asset('images/badge.svg') }}"
+                            <badge image="{{ asset("images/achievements/{$achievement->image}.png") }}"
                                    :achievement="{{ $achievement }}"
                                    :userinfo="{{ auth()->user()->achievements }}"></badge>
                         @endforeach

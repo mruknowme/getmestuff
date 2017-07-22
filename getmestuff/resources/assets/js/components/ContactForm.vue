@@ -1,10 +1,13 @@
 <template>
-    <form @keydown.13.prevent="send" class="vertical center mw" data-parsley-validate>
+    <form @keydown.13.prevent="send" class="vertical center mw" data-parsley-validate autocomplete="off">
         <div class="mw input-wrapper pos-r">
             <input type="email" v-model="email" name="email" :placeholder="$t('contact-email')" required>
         </div>
         <div class="mw input-wrapper pos-r">
             <input type="text" v-model="subject" name="subject" :placeholder="$t('subject')" required>
+        </div>
+        <div class="mw input-wrapper pos-r">
+            <input type="text" v-model="organisation" name="organisation" :placeholder="$t('org')">
         </div>
         <div class="mw input-wrapper pos-r">
             <textarea name="message" v-model="body" :placeholder="$t('message')" required></textarea>
@@ -21,6 +24,7 @@
             return {
                 email: '',
                 subject: '',
+                organisation: '',
                 body: '',
                 buffering: false,
             }

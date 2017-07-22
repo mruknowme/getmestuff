@@ -99,10 +99,15 @@ class HomeController extends Controller
 
     public function test()
     {
-        $settings = GlobalSettings::getSettingsGroup(
-            ['disable_achievements', 'commissions', 'turn_on/of_payment_systems']
-        );
+        $data = ip_info('128.68.36.251');
+        dd($data);
+//        $key = sprintf("user.%s", auth()->user()->id);
+//        \Cache::forever($key, Carbon::now()->addMinutes(2));
 
-        return $settings;
+//        dd(cache('user.1'));
+
+//        $user = auth()->user();
+//
+//        $user->recordAchievements(15, [4]);
     }
 }

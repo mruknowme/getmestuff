@@ -1,10 +1,17 @@
 <template>
-    <div class="alert" :class="classType" v-show="show">
-        <strong v-text="$t(classType)"></strong>
-        <ul>
-            <li v-for="item in items" v-text="item"></li>
-        </ul>
-    </div>
+    <transition name="flash">
+        <div class="alert" :class="classType" v-show="show">
+            <div class="header mw">
+                <strong v-text="$t(classType)"></strong>
+                <a v-show="classType == 'error'" class="close pos-a" data-dismiss="alert" @click.prevent="show = false">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <ul>
+                <li v-for="item in items" v-text="item"></li>
+            </ul>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -33,7 +40,7 @@
                 this.classType = type;
                 this.show = true;
 
-                this.hide();
+                if (type == 'success') this.hide();
             },
             hide() {
                 setTimeout(() => {

@@ -49,7 +49,9 @@ class WishesForm extends FormRequest
         }
 
         list($wish, $address) = $this->getWishFields();
-        
+
+        $wish['initial_amount'] = $wish['current_amount'];
+
         $this->saveUserData($address);
 
         $this->user()->wishes()->create($wish);

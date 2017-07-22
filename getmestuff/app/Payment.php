@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     protected $fillable = [
-        'user_id', 'braintree_id', 'successful', 'amount', 'interest'
+        'user_id', 'payment_id', 'successful', 'amount', 'interest', 'deleted_wish'
     ];
 
     protected $hidden = [
-        'braintree_id'
+        'payment_id', 'deleted_wish'
     ];
 
     public function user()
@@ -60,15 +60,31 @@ class Payment extends Model
             });
         }
 
-        if ($data->isEmpty()) return 0;
+        $deleted = $data->filter(function ($item) {
+            return !is_null($item->deleted_wish);
+        });
+
+        $data = $data->filter(function ($item) {
+            return $item->amount != 0;
+        });
+
+        if ($data->isEmpty()) {
+            if ($deleted->isEmpty()) return 0;
+
+            $deleted = $deleted->sum(function ($item) {return $item->deleted_wish;});
+            return number_format($deleted, 2);
+        }
 
         $amount = $data->sum(function ($item) {return $item->amount;});
         $interest = $data->sum(function ($item) {return $item->interest;});
         $count = $data->count();
+        $deleted = $deleted->sum(function ($item) {return $item->deleted_wish;});
 
         $total = $amount + $interest;
 
         $profit = ($total) - ($total * 0.019 + (.20 * $count)) - $amount;
+
+        $profit += $deleted;
 
         return number_format($profit, 2);
     }

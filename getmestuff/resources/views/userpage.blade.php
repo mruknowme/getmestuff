@@ -1,6 +1,10 @@
 @extends ('layouts.app')
 
-@section ('title', ' | Home')
+@if ($lang == 'en')
+    @section ('title', ' | Home')
+@else
+    @section ('title', ' | Домашняя')
+@endif
 
 @section ('html-class', 'overflow-visible user-bg userpage')
 
@@ -12,7 +16,7 @@
             <user-info :user="{{ auth()->user() }}" :notifications="{{ auth()->user()->unreadNotifications }}"></user-info>
 
             <div class="mw mh flex s-between main-wrapper">
-                <div class="main-content children">
+                <div class="main-content children pos-r">
                     @include ('layouts.user.'.$lang.'.tabs')
                 </div>
 

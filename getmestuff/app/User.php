@@ -22,9 +22,12 @@ class User extends Authenticatable
             $user->achievements = Achievement::getAchievementsInfo();
         });
 
-//        static::created(function ($user) {
+        static::created(function ($user) {
+            $key = sprintf("user.%s", $user->id);
+            \Cache::forever($key, Carbon::now()->addMonth());
+
 //            Country::updateCountry($user->id);
-//        });
+        });
     }
 
     /**

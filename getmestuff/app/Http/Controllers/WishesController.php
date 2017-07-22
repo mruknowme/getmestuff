@@ -114,7 +114,14 @@ class WishesController extends Controller
      */
     public function destroy(Wish $wish)
     {
-        //
+        if ($wish->user_id == auth()->user()->id) {
+            $wish->delete();
+            return response(['status' => 'Wish has been deleted']);
+        }
+
+        return response()->json(
+            ['message' => ['Something wen wrong']], 404
+        );
     }
 
     public function report(Wish $wish, Request $request)

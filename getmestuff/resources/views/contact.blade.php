@@ -1,6 +1,10 @@
 @extends ('layouts.app')
 
-@section ('title', ' | Contact')
+@if ($lang == 'en')
+    @section ('title', ' | Contact')
+@else
+    @section ('title', ' | Контакты')
+@endif
 
 @section ('html-class', 'overflow-visible user-bg contact')
 

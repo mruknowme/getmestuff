@@ -26,6 +26,12 @@ Route::get('/terms', function () {
 Route::get('/privacy', function () {
     return view('privacy');
 });
+Route::get('/rules', function () {
+    return view('rules');
+});
+Route::get('/faq', function () {
+    return view('faq');
+});
 
 
 Route::namespace('Auth')->group(function () {
@@ -70,6 +76,7 @@ Route::middleware(['auth', 'ajax'])->group(function () {
     $this->post('/wishes', 'WishesController@store')->middleware('donated');
     $this->patch('/wish/{wish}/donate', 'WishesController@update');
     $this->patch('/wish/{wish}/report', 'WishesController@report');
+    $this->delete('/wish/{wish}', 'WishesController@destroy');
 
     $this->get('/unread', 'NotificationsController@show');
     $this->get('/donations', 'NotificationsController@index');
@@ -203,6 +210,8 @@ Route::middleware(['auth', 'admin', 'ajax'])->namespace('Admin')->prefix('admin/
     $this->get('/countries/visits', 'CountriesController@visits');
 });
 
+Route::post('/tickets/new')->middleware('ajax');
+
 Route::post('/interkassa/payment', 'PurchasesController@interkassa');
 
 Route::get('/construction', function () {
@@ -210,5 +219,8 @@ Route::get('/construction', function () {
 })->middleware('only-construction');
 
 Route::get('/test', function () {
-    return getConvertedValue(['120'], 'rub');
+//    dd(request()->cookie('visited'));
+    $data = request()->server('HTTP_X_FORWARDED_FOR');
+    $data = request()->ip();
+    dd($data);
 });

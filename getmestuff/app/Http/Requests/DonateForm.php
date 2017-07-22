@@ -33,7 +33,7 @@ class DonateForm extends FormRequest
 
     public function save($wish)
     {
-        if ($wish->completed = 1) {
+        if ($wish->completed == 1) {
             $message = getErrorMessage(
                 'This wish is already completed, please choose another or refresh the page.',
                 'Это желание уже исполнено, пожалуйста выберете другое или перезагрузить страницу.');

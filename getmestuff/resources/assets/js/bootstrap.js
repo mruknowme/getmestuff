@@ -47,6 +47,7 @@ window.flash = function (message, type = 'success') {
 };
 
 window.shortenNum = function (number, abbrev = true) {
+    number = parseFloat(number);
     if (number < 1000) return number;
     let abbrevs = ['T', 'B', 'M', 'K', ''];
     let exponents = [12, 9, 6, 3, 0];

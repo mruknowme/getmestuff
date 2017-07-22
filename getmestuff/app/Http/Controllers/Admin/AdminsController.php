@@ -22,9 +22,12 @@ class AdminsController extends Controller
         if ($payment_data['this_month'] == 0) {
             $net_flow = 0;
         } else {
-            $net_flow = number_format(
-                100 - ($wishes_data['outflow'] * 100 / $payment_data['this_month']), 2
-            );
+            if ($wishes_data['outflow'] == 0) $net_flow = 100;
+            else {
+                $net_flow = number_format(
+                    100 - ($wishes_data['outflow'] * 100 / $payment_data['this_month']), 2
+                );
+            }
         }
 
         $cash_flow = [

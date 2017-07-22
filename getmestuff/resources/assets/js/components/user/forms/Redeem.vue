@@ -1,13 +1,13 @@
 <template>
     <form class="vertical mw start">
-        <div class="flex mw prize-option" v-for="prize in prizes" :class="{ disable : (prize.id == 3 && limit)}">
+        <label class="flex mw prize-option" v-for="prize in prizes" :class="{ disable : (prize.id == 3 && limit)}">
             <input :disabled="(prize.id == 3 && limit)" type="radio" name="prize" class="radio" :value="prize.id" v-model="selected" checked>
             <div class="prize-info mw flex vertical start">
                 <h4 v-text="prize.item"></h4>
                 <p v-text="prize.description"></p>
                 <p class="self-end">{{ prize.price }} <i class="currency fa fa-trophy" aria-hidden="true"></i></p>
             </div>
-        </div>
+        </label>
         <div class="mw flex quantity">
             <div>
                 <p>{{ $t('total') }}: {{ price }} <i class="currency fa fa-trophy" aria-hidden="true"></i></p>

@@ -1,7 +1,12 @@
 <template>
-    <div v-show="isActive">
-        <slot></slot>
-    </div>
+    <transition name="tab" v-if="transition">
+        <div v-show="isActive">
+            <slot></slot>
+        </div>
+    </transition>
+    <div v-show="isActive" v-else>
+            <slot></slot>
+        </div>
 </template>
 
 <script>
@@ -10,7 +15,8 @@
             'name': {required: true},
             'selected': {default: false},
             'title': {default: ''},
-            'form': {required: false}
+            'form': {required: false},
+            'transition': {default: true}
         },
         data() {
             return {

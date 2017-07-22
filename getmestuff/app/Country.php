@@ -12,6 +12,7 @@ class Country extends Model
     {
         if (!$this->checkIfCookieExists()) {
             $ip = request()->ip();
+//            $ip = request()->server('HTTP_X_FORWARDED_FOR');
 
             $data = ip_info($ip);
 
@@ -19,7 +20,7 @@ class Country extends Model
             $country_code = $data['country_code'];
             $remember_key = str_random();
 
-            $this->createCountry($ip, $country, $remember_key);
+            $this->createCountry($ip, $country, $country_code, $remember_key);
         }
     }
 
@@ -39,11 +40,13 @@ class Country extends Model
             $set->save();
         } else {
             $set = static::query()->getByIp()->first();
-            $set->user_id = $id;
+            if (!is_null($set)) {
+                $set->user_id = $id;
 
-            \Cookie::queue('visited', $set->remember_id, 2628000);
+                \Cookie::queue('visited', $set->remember_id, 2628000);
 
-            $set->save();
+                $set->save();
+            }
         }
     }
 
@@ -57,7 +60,7 @@ class Country extends Model
         return $query->where('ip_address', request()->ip());
     }
 
-    protected function createCountry($ip, $country, $remember_key)
+    protected function createCountry($ip, $country, $country_code, $remember_key)
     {
         $data = $this->newQuery()->getByIp()->first();
 
@@ -65,6 +68,7 @@ class Country extends Model
             $this->create([
                 'ip_address' => $ip,
                 'country' => $country,
+                'country_code' => $country_code,
                 'remember_key' => $remember_key
             ]);
 

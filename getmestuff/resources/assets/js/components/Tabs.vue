@@ -8,7 +8,9 @@
                 v-html="tab.name">
             </li>
         </ul>
-        <slot></slot>
+        <div class="sometimes">
+            <slot></slot>
+        </div>
     </div>
 </template>
 

@@ -83,6 +83,7 @@ const translationsEn = {
     /* Contact */
     'contact-email': 'Email',
     subject: 'Subject',
+    org: 'Organisation (optional)',
     message: 'Your message...',
     send: 'Send',
 
@@ -171,6 +172,7 @@ const translationsRu = {
     /* Contact */
     'contact-email': 'Email',
     subject: 'Тема',
+    org: 'Организация (не обязательно)',
     message: 'Ваше сообщение...',
     send: 'Отправить',
 
@@ -199,6 +201,7 @@ window.flashMessages = {
         'profile-updated': 'Profile updated.',
         'verify-email': 'Please verify your new email.',
         'contact-message': 'Thank you for your message, we will reply soon.',
+        'deleting': 'Wish has been deleted',
         construction: {
             0: 'Fixing Bugs',
             1: 'Updating',
@@ -214,6 +217,7 @@ window.flashMessages = {
         'profile-updated': 'Информация обнавленна.',
         'verify-email': 'Пожалуйста, подтвердите ваш новый email.',
         'contact-message': 'Спасибо за ваше сообщение, мы скоро ответим.',
+        'deleting': 'Желание было удаленно',
         construction: {
             0: 'Исправление ошибок',
             1: 'Обновление',

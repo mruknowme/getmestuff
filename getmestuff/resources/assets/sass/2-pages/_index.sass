@@ -5,7 +5,7 @@
         color: $white
 
         .footer-content
-            color: $white
+            color: transparentize($white, 0.3)
 
         .mobile
             color: $white
@@ -17,7 +17,7 @@
         color: $white
 
     .social a
-        color: $white
+        color: transparentize($white, 0.3)
 
     .pp-section
         width: 100vw
@@ -50,7 +50,6 @@
 
         h1, p
             color: $white
-            // margin-bottom: 15px
 
         p
             font-size: 1.5rem
@@ -60,9 +59,6 @@
         .btn
             font-size: 1.2rem
             padding: 10px 20px
-
-        // .text-wrapper
-        //     margin: 0 10%
     
     .s-section
         h2, p
@@ -92,3 +88,13 @@
 
     #pp-nav li .active span, .pp-slidesNav .active span
         background-color: $white
+
+    .contact-form
+        a
+            color: $white
+            opacity: 0.5
+            font-size: inherit
+            font-family: inherit
+
+            &:hover
+                opacity: 1

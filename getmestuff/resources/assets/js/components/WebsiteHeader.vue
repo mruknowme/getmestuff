@@ -3,7 +3,7 @@
         data() {
             return {
                 show: false,
-                position: '-150px',
+                position: '-200px',
                 color: '#000',
                 unreadNotifications: false,
                 unreadCount: ''
@@ -12,7 +12,7 @@
         methods: {
             toggle() {
                 if (this.show) {
-                    this.position = '-150px';
+                    this.position = '-200px';
                     this.color = 'black';
                     this.show = false;
                 } else {

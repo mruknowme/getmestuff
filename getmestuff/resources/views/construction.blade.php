@@ -10,7 +10,11 @@
 
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
-        <title>{{ config('app.name') }} | Construction</title>
+        @if ($lang == 'en')
+            <title>{{ config('app.name') }} | Construction</title>
+        @else
+            <title>{{ config('app.name') }} | Скоро вернемся</title>
+        @endif
     </head>
 
     <body class="overflow-visible">

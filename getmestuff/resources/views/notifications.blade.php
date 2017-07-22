@@ -1,6 +1,10 @@
 @extends ('layouts.app')
 
-@section ('title', ' | Notifications')
+@if ($lang == 'en')
+    @section ('title', ' | Notifications')
+@else
+    @section ('title', ' | Оповещения')
+@endif
 
 @section ('html-class', 'overflow-visible user-bg notifications')
 
@@ -10,7 +14,7 @@
     <main class="col-12 mw m-auto main-fix flex vertical center">
         <user-info :user="{{ auth()->user() }}" :notifications="{{ auth()->user()->unreadNotifications }}"></user-info>
         
-        <div class="mw flex s-between">
+        <div class="mw flex s-between notifications-wrapper">
             <notifications></notifications>
             <payments></payments>
         </div>

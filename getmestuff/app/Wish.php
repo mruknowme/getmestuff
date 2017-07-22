@@ -13,7 +13,7 @@ class Wish extends Model
     public $translatedAttributes = ['item'];
 
     protected $fillable = [
-        'user_id', 'url', 'current_amount',
+        'user_id', 'url', 'initial_amount', 'current_amount',
         'amount_needed', 'address', 'donated', 'completed',
         'priority', 'validated'
     ];
@@ -43,6 +43,25 @@ class Wish extends Model
                     $wish->user->increment('number_of_wishes');
                 }
                 return;
+            }
+        });
+
+        static::deleting(function (Wish $wish) {
+            $amount = $wish->current_amount - $wish->initial_amount;
+
+            if ($wish->user->number_of_wishes == 0) {
+                $wish->user->increment('number_of_wishes');
+            }
+
+            if ($amount != 0) {
+                Payment::create([
+                    'user_id' => $wish->user_id,
+                    'payment_id' => 12345,
+                    'successful' => true,
+                    'amount' => 0,
+                    'interest' => 0,
+                    'deleted_wish' => $amount
+                ]);
             }
         });
     }

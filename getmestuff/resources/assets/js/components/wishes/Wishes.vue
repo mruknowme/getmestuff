@@ -47,8 +47,3 @@
         }
     }
 </script>
-<style>
-    /*.container:nth-child(2) {
-        opacity: 0.5
-    }*/
-</style>

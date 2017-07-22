@@ -18,7 +18,11 @@ trait UserAchievements
     public function recordAchievements($amount, $types, $ref = false)
     {
         if (!GlobalSettings::getSettings('disable_achievements')->data['on'])
-            return abort(403, 'Under construction');
+            return;
+
+        if (cache("user.{$this->id}")->lte(Carbon::now())) {
+            $this->clearAchievements($this);
+        }
 
         $userAchievements = $this->checkAchievements();
 
@@ -36,9 +40,15 @@ trait UserAchievements
         if ($ref) $this->recordRefAchievements($ref);
     }
 
-    public function clearAchievements()
+    protected function cacheNewDate($user)
     {
-        $userAchievements = collect(json_decode($this->achievements, true));
+        $key = sprintf("user.%s", $user->id);
+        \Cache::forever($key, Carbon::now()->addMonth());
+    }
+
+    public function clearAchievements($user)
+    {
+        $userAchievements = collect(json_decode($user->achievements, true));
 
         $this->allAchievements = $this->getAchievementsInfo(false)->keyBy(function ($item) {
             return $item->id;
@@ -54,14 +64,18 @@ trait UserAchievements
             return $item;
         });
 
-        $this->achievements = $userAchievements;
-        $this->save();
+        $user->achievements = $userAchievements;
+        $user->save();
+
+        $user->cacheNewDate($user);
     }
 
 
     protected function recordRefAchievements($ref)
     {
         $referral = User::query()->where('ref_link', '=', $ref)->first();
+
+        $this->clearAchievements($referral);
 
         $refAchievements = collect(json_decode($referral->achievements, true));
 

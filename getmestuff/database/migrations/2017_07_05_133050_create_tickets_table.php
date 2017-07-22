@@ -18,6 +18,7 @@ class CreateTicketsTable extends Migration
             $table->string('unique_id');
             $table->string('email');
             $table->string('subject');
+            $table->string('organisation')->nullable();
             $table->text('body');
             $table->tinyInteger('priority')->unsigned()->default(0);
             $table->tinyInteger('type')->unsigned()->default(0);

@@ -19,6 +19,7 @@ class CreateAchievementsTable extends Migration
             $table->mediumInteger('prize');
             $table->tinyInteger('renew');
             $table->integer('type');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
 

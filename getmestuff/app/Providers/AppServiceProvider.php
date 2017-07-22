@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Country;
 use App\GlobalSettings;
 use App\Ticket;
 use App\Wish;
@@ -21,8 +22,12 @@ class AppServiceProvider extends ServiceProvider
     {
         app()->setLocale(request()->segment(1));
 
-        view()->composer('*', function ($view) {
-            $view->with('refresh', \App\User::lastOnline());
+        view()->composer([
+            'index', 'about', 'auth.authenticate', 'terms', 'privacy', 'faq'
+        ], function ($view) {
+            $country = new Country();
+            $country->setCountry();
+//            $view->with('refresh', \App\User::lastOnline());
         });
 
         view()->composer('*', function ($view) {

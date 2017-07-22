@@ -7,8 +7,11 @@
             font-size: 0.9rem
 
     footer
-        position: relative
+        position: fixed
         box-shadow: 0px 500px 0px 500px $white
+
+    .sometimes
+        background-color: $white
 
     .parsley-errors-list.filled
         position: absolute
@@ -17,9 +20,9 @@
 
     .main-content
         width: 55%
-        box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3)
 
     .main-section
+        border: 1px solid transparentize($soft-grey, 0.5)
         border-top: 1px solid $c-primary
         padding: 15px 12px 15px
 
@@ -75,9 +78,6 @@
         p
             font-size: 0.9rem
 
-    .owl-stage-outer
-        box-shadow: 2px 4px 20px rgba(19, 35, 47, 0.3)
-
     .star-info
         p:first-child
             font-size: 0.8rem
@@ -115,12 +115,14 @@
             font-size: 0.9rem
 
         p
-            font-size: 0.9rem
+            font-size: 0.8rem
             margin-top: 5px
 
         .radio
-            margin: 0 10px 0 0
-            width: auto
+            display: none
+
+        .radio:checked + .prize-info
+            color: $light-blue
 
     .quantity
         padding: 10px 5px

@@ -1,6 +1,6 @@
 <template>
     <section class="flex vertical start bg-white main-section" id="wish" v-if="allowed == 1">
-        <div class="flex between mw">
+        <div class="flex between mw wish-title-wrapper">
              <div class="flex center wish-title">
                 <h2 v-text="$t('wish')"></h2>
                 <span v-text="number_of_wishes"></span>
@@ -41,7 +41,7 @@
                     <input type="radio" name="currency" v-model="currency" value="gbp" :checked="currency == 'gbp'"/> GBP
                 </label>
             </div>
-            <div class="flex between mw">
+            <div class="flex between mw small-input-wrapper">
                 <div class="w48 pos-r">
                     <input type="number"
                            name="current_amount"
@@ -72,7 +72,7 @@
                            v-model="address_two"
                            :placeholder="$t('address2')">
                 </div>
-                <div class="mw flex between">
+                <div class="mw flex between small-input-wrapper">
                     <div class="w3 pos-r">
                         <input type="text"
                                name="city"
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="self-start">
-                <button :disabled="buffering" @click.prevent="postWish" type="submit">
+                <button class="pos-r" :disabled="buffering" @click.prevent="postWish" type="submit">
                     <i v-show="buffering" class="fa fa-refresh fa-spin pos-a fa-lg" aria-hidden="true"></i>
                     {{ $t('request') }}
                 </button>

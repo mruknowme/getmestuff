@@ -36,7 +36,6 @@ $factory->define(App\Wish::class, function (Faker\Generator $faker) {
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
-        'item' => $faker->word,
         'url' => $faker->url,
         'address' => [
             'address_one' => $faker->streetAddress,

@@ -1,14 +1,16 @@
-<div class="flex around header pos-r">
-    <h2>Начало</h2>
+<div class="flex center header pos-r">
+    <div class="circle above pos-a"></div>
+    <h2>Идея</h2>
+    <div class="circle below pos-a"></div>
 </div>
-<div data-900="opacity: 1;" data-1200="opacity: 0;" class="text pos-a" data-1700="opacity: 1;" data-2000="opacity: 0;">
-    <div class="pos-a left w45">
-        <h3>Lorem ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel quisquam adipisci sunt fugit consequuntur assumenda repellendus quos minus porro voluptatum.</p>
+<div data-900="opacity: 1;" data-1200="opacity: 0;" class="text flex vertical w8 m-auto" data-1700="opacity: 1;" data-2000="opacity: 0;">
+    <div class="w45 self-start">
+        <h3>Проблема</h3>
+        <p>Все началось со страсти к достижению наших целей. Почти всегда, чтобы в итоге оказаться там, где мы хотим, нам нужны различные (вспомогательные) инструменты такие как: машина, дом, мобильный телефон, и так далее… ну вы понимаете. Главный вопрос, как это получить, не имея денег на свободные инвестиции?</p>
     </div>
-    <img class="main-image pos-center pos-a" src="{{ asset('images/ex.png') }}">
-    <div class="pos-a right w45">
-        <h3>Lorem ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi amet ipsam vero ratione vel, enim excepturi molestiae deserunt dolorem illo consectetur distinctio error! Minima, animi.</p>
+    <img class="main-image" src="{{ asset('images/ex.png') }}">
+    <div class="w45 self-end">
+        <h3>Ответ</h3>
+        <p>Вот тут-то и родилась идея, с мысли, которая должна была остаться только шуткой, мы представили, что если тысячи людей дали бы нам всего лишь по одному доллару? Это бы могло поменять все… Это, почти моментально, превратилось в бизнес идею с vision объединить и вдохновить людей предложение небольшой помощи друг другу для совместного достижения гораздо больших целей.</p>
     </div>
 </div>

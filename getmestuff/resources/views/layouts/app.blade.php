@@ -69,16 +69,6 @@
                     $('#loader').hide();
                 }, 200);
             }
-
-            // window.onload = function () {
-            //     setTimeout(function () {
-            //         alert('Hello');
-            //     }, 200);
-            // }
-
-            // window.onload = function () { 
-            //     $('#loader').hide();
-            // }
         </script>
         
         @yield ('script')
